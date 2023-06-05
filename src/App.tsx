@@ -1,13 +1,9 @@
 import './App.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import logo from './logo.svg'
 
 function App() {
   const [count, setCount] = useState(0)
-  useEffect(() => {
-    setCount((prev) => prev + 1)
-    return
-  }, [])
 
   return (
     <div className="App">
@@ -22,7 +18,9 @@ function App() {
           <button onClick={() => setCount((count) => count + 1)}>
             🪂 Натисніть на мене : {count}
           </button>
-
+          <button onClick={() => setCount((count) => count - 1)}>
+            🪂 Не натискайте на мене : {count}
+          </button>
           <p> Don&apos;t forgot to install Eslint and Prettier in Your Vscode.</p>
 
           <p>

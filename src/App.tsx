@@ -1,20 +1,7 @@
 import './App.css'
-import { useEffect, useState } from 'react'
 import logo from './logo.svg'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [oppositeCount, setOppositeCount] = useState(0)
-
-  useEffect(() => {
-    setCount((prev) => prev + 1)
-    return
-  }, [])
-
-  const oppositeButtonHandler = () => {
-    setCount((prev) => prev - 1)
-    setOppositeCount((prev) => prev + 1)
-  }
   return (
     <div className="App">
       <header className="App-header">
@@ -25,13 +12,6 @@ function App() {
         </p>
 
         <div className="body">
-          <button onClick={() => setCount((count) => count + 1)}>
-            🪂 Натисніть на мене : {count}
-          </button>
-          <button onClick={oppositeButtonHandler}>
-            🪂 Ні, на мене : {oppositeCount}
-          </button>
-
           <p> Don&apos;t forgot to install Eslint and Prettier in Your Vscode.</p>
 
           <p>

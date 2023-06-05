@@ -1,3 +1,8 @@
 {
-  "workbench.colorTheme": "One Dark Pro"
+  "workbench.colorTheme": "One Dark Pro",
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.useTabs": true,
+  "prettier.semi": false
 }

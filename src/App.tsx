@@ -18,9 +18,6 @@ function App() {
           <button onClick={() => setCount((count) => count + 1)}>
             🪂 Натисніть на мене : {count}
           </button>
-          <button onClick={() => setCount((count) => count - 1)}>
-            🪂 Не натискайте на мене : {count}
-          </button>
           <p> Don&apos;t forgot to install Eslint and Prettier in Your Vscode.</p>
 
           <p>

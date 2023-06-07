@@ -15,7 +15,6 @@ function App() {
               <Route index element={<Home />} />
               <Route path="dogs" element={<Dogs />} />
               <Route path="about" element={<About />} />
-              {/* not found route */}
               {/* <Route path="*" element={<Home />} /> */}
             </Route>
           </Routes>

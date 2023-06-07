@@ -1,4 +1,4 @@
-export { About } from './About'
-export { Dogs } from './Dogs'
-export { ExamplePage } from './ExamplePage'
-export { Home } from './Home'
+export { default as About } from './About'
+export { default as Dogs } from './Dogs'
+export { default as ExamplePage } from './ExamplePage'
+export { default as Home } from './Home'

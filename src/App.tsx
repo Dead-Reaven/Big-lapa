@@ -4,6 +4,7 @@ import MainLayout from './Layout/MainLayout'
 import Home from './Pages/Home'
 import Dogs from './Pages/Dogs'
 import ExamplePage from './Pages/ExamplePage'
+import About from './Pages/About'
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="test" element={<ExamplePage />} />
               <Route path="dogs" element={<Dogs />} />
+              <Route path="about" element={<About />} />
               {/* not found route */}
               {/* <Route path="*" element={<Home />} /> */}
             </Route>

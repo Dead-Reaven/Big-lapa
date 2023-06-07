@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import MainLayout from './Layout/MainLayout'
-import { Home, Dogs, About } from './Pages'
+import MainLayout from 'Layout/MainLayout'
+import { Home, Dogs, About } from 'Pages'
 import './App.css'
 
 function App() {

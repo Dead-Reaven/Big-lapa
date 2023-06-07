@@ -1,10 +1,7 @@
 import { Route, Routes } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import MainLayout from './Layout/MainLayout'
-import Home from './Pages/Home'
-import Dogs from './Pages/Dogs'
-import ExamplePage from './Pages/ExamplePage'
-import About from './Pages/About'
+import { Home, Dogs, ExamplePage, About } from './Pages'
 import './App.css'
 
 function App() {

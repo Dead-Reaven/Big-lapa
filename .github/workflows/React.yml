@@ -11,11 +11,11 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: windows-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -28,4 +28,4 @@ jobs:
       - run: npm i
       - run: npm run dev
       - run: npm test
-      - run: npm run build 
+      - run: npm run build

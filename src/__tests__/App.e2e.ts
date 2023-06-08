@@ -11,11 +11,11 @@ describe('App.js', () => {
     page = await browser.newPage()
   })
 
-  it('contains the welcome text', async () => {
+  it('contains This is home page', async () => {
     await page.goto('http://localhost:3000')
-    // await page.waitForSelector('.App-welcome-text')
-    // const text = await page.$eval('.App-welcome-text', (e) => e.textContent)
-    // expect(text).toContain('Edit src/App.js and save to reload.')
+    await page.waitForSelector('div > .app')
+    const text = await page.$eval('div > .app', (e) => e.textContent)
+    expect(text).toContain('This is home page')
   })
 
   afterAll(() => browser.close())

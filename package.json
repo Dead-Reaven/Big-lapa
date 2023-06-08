@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "test": "jest -w",
-    "dev-and-test": "concurrently --raw  \"npm run dev\"  \"npm run test\" --kill-others  \"npm run dev\"  \"npm run test\"  ",
+    "dev-and-test": "concurrently --raw  \"npm run dev\"  \"npm run test\" --kill-others ",
     "build": "vite build",
     "serve": "vite preview",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",

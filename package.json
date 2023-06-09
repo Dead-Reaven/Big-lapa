@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "test": "jest -w",
-    "dev-and-test": "concurrently --raw  \"npm run dev\"  \"npm run test\" --kill-others ",
+    "action-test": "bash .github/bin/run_dev.sh 5 & npm run test  ",
+    "dev-and-test": "concurrently -kill-others-on-fail \"yarn test\" \"yarn dev\" ",
     "build": "vite build",
     "serve": "vite preview",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",

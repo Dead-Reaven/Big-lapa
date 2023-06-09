@@ -1,5 +1,5 @@
 function Dogs() {
-  return <div>Dogs</div>
+  return <div>this is Dogs page</div>
 }
 
 export default Dogs

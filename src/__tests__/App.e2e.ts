@@ -18,5 +18,19 @@ describe('App.js', () => {
     expect(text).toContain('This is home page')
   })
 
+  it('contains Dogs', async () => {
+    await page.goto('http://localhost:3000')
+    await page.waitForSelector('div > .app')
+    const text = await page.$eval('div > .app', (e) => e.textContent)
+    expect(text).toContain('Dogs')
+  })
+
+  it('contains This is not a page', async () => {
+    await page.goto('http://localhost:3000')
+    await page.waitForSelector('div > .app')
+    const text = await page.$eval('div > .app', (e) => e.textContent)
+    expect(text).toContain('This is not a page')
+  })
+
   afterAll(() => browser.close())
 })

@@ -1,7 +1,7 @@
 function Support() {
   return (
     <div>
-      <p>Contact support if you have any questions</p>
+      <p>Support us</p>
     </div>
   )
 }

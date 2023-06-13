@@ -2,7 +2,14 @@ node_modules
 .DS_Store
 dist
 dist-ssr
-/coverage
+coverage/*
 *.local
 node_modules/*
 .vscode
+coverage/clover.xml
+coverage/lcov-report/base.css
+coverage/lcov-report/block-navigation.js
+coverage/lcov-report/index.html
+coverage/lcov-report/prettify.css
+coverage/lcov-report/prettify.js
+coverage/lcov-report/sorter.js

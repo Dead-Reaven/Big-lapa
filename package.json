@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "test": "jest -w",
+    "test": "jest -w --watchAll --coverage",
     "action-test": "bash .github/bin/run_dev.sh 5 & npm run test  ",
     "dev-and-test": "concurrently -kill-others-on-fail \"yarn test\" \"yarn dev\" ",
     "build": "vite build",

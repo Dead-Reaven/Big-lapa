@@ -7,8 +7,10 @@ on:
   push:
     branches: ['master, development']
   pull_request:
+    types: 
+      - opened
+      - review_requested
     branches: ['master, development']
-
 jobs:
   build:
     runs-on: ubuntu-latest

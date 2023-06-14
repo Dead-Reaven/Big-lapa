@@ -27,4 +27,4 @@ jobs:
           cache: 'npm'
       - run: npm i
       - run: npm run action-test
-      - run: npm run deploy
+

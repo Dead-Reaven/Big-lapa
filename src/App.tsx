@@ -17,7 +17,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="support" element={<Support />}></Route>
               {/* not found route */}
-              <Route path="*" element={<Home />} />
+              {/* <Route path="*" element={<Home />} /> */}
             </Route>
           </Routes>
         </div>

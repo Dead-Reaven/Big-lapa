@@ -5,9 +5,12 @@ name: Development CI/CD
 
 on:
   push:
-    branches: ['master, development']
+    branches:
+      - 'development'
+
   pull_request:
-    branches: ['development']
+    branches:
+      - 'development'
 
 jobs:
   build:

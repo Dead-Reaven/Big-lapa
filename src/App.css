@@ -6,8 +6,8 @@
 html,
 body {
   height: 100vw;
-  background: #000;
-  color: antiquewhite;
+  background: white;
+  color: black;
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
 }

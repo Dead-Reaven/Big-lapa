@@ -2,7 +2,7 @@
 import puppeteer from 'puppeteer'
 import type { Page, Browser } from 'puppeteer'
 
-describe('App.js', () => {
+describe('Example block', () => {
   let browser: Browser
   let page: Page
 

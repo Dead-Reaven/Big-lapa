@@ -3,8 +3,6 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  // testRegex: '(//.*|(\\.|/)(test|spec))\\.[jt]sx?$',
+  testMatch: ['**/*.test.ts', '**/*.e2e.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  //   testPathIgnorePatterns: ['/*.*.ts/'],
-  // setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
 }

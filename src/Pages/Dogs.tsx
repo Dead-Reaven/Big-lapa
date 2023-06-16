@@ -1,5 +1,5 @@
 function Dogs() {
-  return <div>Dogs</div>
+  return <div data-testid="dogs-page">Dogs</div>
 }
 
 export default Dogs

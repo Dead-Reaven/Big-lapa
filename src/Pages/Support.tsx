@@ -1,6 +1,6 @@
 function Support() {
   return (
-    <div>
+    <div data-testid="support-page">
       <p>Contact support if you have any questions</p>
     </div>
   )

@@ -1,5 +1,5 @@
 function About() {
-  return <div>About page</div>
+  return <div data-testid="about-page">About page</div>
 }
 
 export default About

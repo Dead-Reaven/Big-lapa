@@ -18,7 +18,5 @@ describe('User test App.e2e.ts', () => {
     expect(text).toContain('This is the Home Page')
   })
 
-
-
   afterAll(() => browser.close())
 })

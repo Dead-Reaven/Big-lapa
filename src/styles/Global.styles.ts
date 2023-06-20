@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
-import fonts from './fonts.module.css'
 
 const Global = createGlobalStyle`
-${fonts}
 *{
   margin: 0;
   padding: 0;
@@ -11,7 +9,7 @@ ${fonts}
   font-size: 100%;
   font-weight: inherit;
   font-style: inherit;
-  font-family: ${({ theme }) => theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.openSans};
   vertical-align: baseline;
   box-sizing: border-box;
 }

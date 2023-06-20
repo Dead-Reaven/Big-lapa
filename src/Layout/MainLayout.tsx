@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Menu from '../Components/Menu'
-import ResetStyles from './Reset.styles'
+import ResetStyles from '../styles/Global.styles'
 
 function MainLayout() {
   return (

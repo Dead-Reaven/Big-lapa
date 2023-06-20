@@ -3,8 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/Theme.styles'
 import MainLayout from './Layout/MainLayout'
-import { Home, Dogs, About, Support } from './Pages'
-import NotFound from './Components/NotFound'
+import { Home, Dogs, About, Support, NotFound } from './Pages'
 
 function App() {
   return (

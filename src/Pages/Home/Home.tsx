@@ -1,13 +1,11 @@
-import Orange from './Home.styles'
-import Container from '../../styles/Container.style'
+import ExampleBlock from './Components/ExampleBlock/ExampleBlock'
+import StyledHome from './Home.styles'
 
 function Home() {
   return (
-    <Orange>
-      <Container>
-        <div data-testid="home-page">This is the Home Page</div>
-      </Container>
-    </Orange>
+    <StyledHome data-testid="home-page">
+      <ExampleBlock />
+    </StyledHome>
   )
 }
 

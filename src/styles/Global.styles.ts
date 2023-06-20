@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
-import fonts from './fonts.module.css'
 
 const Global = createGlobalStyle`
-${fonts}
 *{
   margin: 0;
   padding: 0;

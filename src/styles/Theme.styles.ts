@@ -11,7 +11,7 @@ export const theme = {
     darkYellow: '#B58200',
   },
   fonts: {
-    poppins: 'Poppins',
+    openSans: 'Open Sans',
   },
   fontSizes: {
     subheadline: '1rem',

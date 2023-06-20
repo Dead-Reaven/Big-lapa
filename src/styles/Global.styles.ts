@@ -11,7 +11,7 @@ ${fonts}
   font-size: 100%;
   font-weight: inherit;
   font-style: inherit;
-  font-family: ${({ theme }) => theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.openSans};
   vertical-align: baseline;
   box-sizing: border-box;
 }

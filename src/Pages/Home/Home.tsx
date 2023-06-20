@@ -1,10 +1,13 @@
 import Orange from './Home.styles'
+import Container from '../../styles/Container.style'
 
 function Home() {
   return (
-    <div data-testid="home-page">
-      <Orange>This is the Home Page</Orange>
-    </div>
+    <Orange>
+      <Container>
+        <div data-testid="home-page">This is the Home Page</div>
+      </Container>
+    </Orange>
   )
 }
 

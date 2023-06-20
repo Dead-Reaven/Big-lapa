@@ -1,7 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
+import fonts from './fonts.module.css'
 
-const ResetStyles = createGlobalStyle`
-
+const Global = createGlobalStyle`
+${fonts}
 *{
   margin: 0;
   padding: 0;
@@ -10,15 +11,16 @@ const ResetStyles = createGlobalStyle`
   font-size: 100%;
   font-weight: inherit;
   font-style: inherit;
-  font-family: inherit;
+  font-family: ${({ theme }) => theme.fonts.poppins};
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 :focus { outline: 0;
  } 
  body { 
   line-height: 1;
-  color: black;
-  background: white;
+  color: ${({ theme }) => theme.colors.dark};
+  background-color: ${({ theme }) => theme.colors.background};
  } ol, ul { list-style: none;
  } /* tables still need 'cellspacing="0"' in the markup */ 
  table { border-collapse: separate;
@@ -31,4 +33,4 @@ const ResetStyles = createGlobalStyle`
  } 
 `
 
-export default ResetStyles
+export default Global

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import logo from '../../assets/img/logo_header.svg'
+import { ReactComponent as Logo } from '../../assets/img/logo_header.svg'
 import Container from '../../styles/Container.style'
 import Flex from '../../styles/Flex.styles'
 import NavBar from './NavBar'
@@ -12,7 +12,7 @@ const Header = () => {
       <Container>
         <Flex justify="space-between" align="center" height="96px">
           <NavLink to="." end data-testid="home-link">
-            <img alt="logo" src={logo} />
+            <Logo />
           </NavLink>
           <NavBar />
           <DogSearch />

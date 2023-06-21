@@ -21,7 +21,7 @@ const StyledDogSearch = styled.form<Props>`
     color: ${({ theme }) => theme.colors.dark};
     width: 80%;
 
-    &:focus + button #searchIcon {
+    &:focus + button svg {
       transition: ${({ theme }) => theme.transitions.long};
       stroke: ${({ theme }) => theme.colors.green};
     }

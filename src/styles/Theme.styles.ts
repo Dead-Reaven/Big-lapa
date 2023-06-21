@@ -26,7 +26,17 @@ export const theme = {
     semiBold: 600,
     bold: 700,
   },
+  lineHeights: {
+    h1: 1.2,
+    normal: 1.4,
+  },
   paddings: {
     container: '0 84px',
+    button: '15.5px 24px',
+    input: '12px',
+  },
+  transitions: {
+    long: 'all ease 0.3s',
+    quick: 'all ease 0.1s',
   },
 }

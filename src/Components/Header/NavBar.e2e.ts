@@ -38,11 +38,11 @@ describe('Menu.test.ts', () => {
     expect(currentURL).toBe('http://localhost:3000/Big-lapa/about')
   })
 
-  it('should navigate to the support page', async () => {
-    const link = await page.waitForSelector('[data-testid="support-link"]')
+  it('should navigate to the contacts page', async () => {
+    const link = await page.waitForSelector('[data-testid="contacts-link"]')
     link?.click()
     await page.waitForNavigation()
     const currentURL = page.url()
-    expect(currentURL).toBe('http://localhost:3000/Big-lapa/support')
+    expect(currentURL).toBe('http://localhost:3000/Big-lapa/contacts')
   })
 })

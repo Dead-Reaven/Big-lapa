@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import Menu from '../Components/Menu/Menu'
+import Header from '../Components/Header/Header'
 import ResetStyles from '../styles/Global.styles'
 import Container from '../styles/Container.style'
 
@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <Container>
       <ResetStyles />
-      <Menu />
+      <Header />
       <Outlet />
     </Container>
   )

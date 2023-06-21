@@ -1,8 +1,14 @@
 import { styled } from 'styled-components'
 
-const Container = styled.div`
+interface Props {
+  fontSize?: string
+  padding?: string
+}
+
+const Container = styled.div<Props>`
   max-width: 1440px;
   margin: 0 auto;
-  padding: ${({ theme }) => theme.paddings.container};
+  padding: ${({ padding, theme }) => padding || theme.paddings.container};
+  font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.bodyText};
 `
 export default Container

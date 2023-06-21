@@ -3,8 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/Theme.styles'
 import MainLayout from './Layout/MainLayout'
-import { Home, Dogs, About, Support } from './Pages'
-import NotFound from './Components/NotFound'
+import { Home, Dogs, About, Contacts, NotFound } from './Pages'
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
             <Route index path="/" element={<Home />} />
             <Route path="dogs" element={<Dogs />} />
             <Route path="about" element={<About />} />
-            <Route path="support" element={<Support />}></Route>
+            <Route path="contacts" element={<Contacts />}></Route>
             {/* not found route */}
             <Route path="*" element={<NotFound />} />
           </Route>

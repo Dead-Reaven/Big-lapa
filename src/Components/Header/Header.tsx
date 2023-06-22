@@ -9,8 +9,8 @@ import DogSearch from './DogSearch'
 const Header = () => {
   return (
     <header>
-      <Container>
-        <Flex justify="space-between" align="center" height="100px">
+      <Container paddingtop="20px" paddingbottom="20px">
+        <Flex justify="space-between" align="center">
           <NavLink to="." end data-testid="home-link">
             <Logo />
           </NavLink>

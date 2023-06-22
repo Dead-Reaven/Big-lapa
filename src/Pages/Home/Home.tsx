@@ -1,3 +1,4 @@
+import Donation from './Components/Donation/Donation'
 import Main from './Components/Main'
 import { GridContainer, StyledHome } from './Home.styles'
 
@@ -6,6 +7,7 @@ function Home() {
     <StyledHome data-testid="home-page">
       <GridContainer>
         <Main />
+        <Donation />
       </GridContainer>
     </StyledHome>
   )

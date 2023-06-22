@@ -5,7 +5,7 @@ import email from '../../assets/svgs-footer/email.svg'
 import insta from '../../assets/svgs-footer/insta.svg'
 import fb from '../../assets/svgs-footer/fb.svg'
 import Container from '../../styles/Container.style'
-import { FooterSection, ListItem } from './Footer.style'
+import { FooterSection, ListItem, Paragraph } from './Footer.style'
 
 const Footer = () => {
   return (
@@ -74,7 +74,9 @@ const Footer = () => {
             </a>
           </ListItem>
         </ul>
-        <p>Розробка Baza Trainee Ukraine 2023 &copy; Усі права захищені</p>
+        <Paragraph>
+          Розробка Baza Trainee Ukraine 2023 &copy; Усі права захищені
+        </Paragraph>
       </Container>
     </FooterSection>
   )

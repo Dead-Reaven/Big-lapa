@@ -5,6 +5,7 @@ interface Props {
   paddingtop?: string
   paddingbottom?: string
   color?: string
+  padding?: string
 }
 
 const Container = styled.div<Props>`
@@ -15,6 +16,5 @@ const Container = styled.div<Props>`
   padding-top: ${({ paddingtop }) => paddingtop || '0'};
   padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
   font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.bodyText};
-  background: ${({ color, theme }) => color || theme.colors.background};
 `
 export default Container

@@ -1,13 +1,15 @@
 import Donation from './Components/Donation/Donation'
-import Main from './Components/Main'
+import Slider from './Components/Slider'
 import { GridContainer, StyledHome } from './Home.styles'
+import ShelterEvents from './Components/ShelterEvents'
 
 function Home() {
   return (
     <StyledHome data-testid="home-page">
       <GridContainer>
-        <Main />
+        <Slider />
         <Donation />
+        <ShelterEvents />
       </GridContainer>
     </StyledHome>
   )

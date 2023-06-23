@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header>
       <Container>
-        <Flex justify="space-between" align="center" height="96px">
+        <Flex justify="space-between" align="center" height="100px">
           <NavLink to="." end data-testid="home-link">
             <Logo />
           </NavLink>

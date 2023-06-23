@@ -15,16 +15,9 @@ const StyledDogSearch = styled.form<Props>`
   /* width: 300px; */
   width: 23.5%;
 
-  input {
-    background-color: transparent;
-    caret-color: ${({ theme }) => theme.colors.yellow};
-    color: ${({ theme }) => theme.colors.dark};
-    width: 80%;
-
-    &:focus + button svg {
-      transition: ${({ theme }) => theme.transitions.long};
-      stroke: ${({ theme }) => theme.colors.green};
-    }
+  input:focus + button svg {
+    transition: ${({ theme }) => theme.transitions.long};
+    stroke: ${({ theme }) => theme.colors.green};
   }
 `
 

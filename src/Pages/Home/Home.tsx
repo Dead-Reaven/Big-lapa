@@ -1,13 +1,12 @@
-import Container from '../../styles/Container.style'
-import ExampleBlock from './Components/ExampleBlock/ExampleBlock'
-import StyledHome from './Home.styles'
+import Main from './Components/Main'
+import { GridContainer, StyledHome } from './Home.styles'
 
 function Home() {
   return (
     <StyledHome data-testid="home-page">
-      <Container>
-        <ExampleBlock />
-      </Container>
+      <GridContainer>
+        <Main />
+      </GridContainer>
     </StyledHome>
   )
 }

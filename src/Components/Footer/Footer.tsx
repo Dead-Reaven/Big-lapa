@@ -1,79 +1,93 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../../assets/svgs-footer/logo-footer.svg'
-import tel from '../../assets/svgs-footer/phone.svg'
-import email from '../../assets/svgs-footer/email.svg'
-import insta from '../../assets/svgs-footer/insta.svg'
-import fb from '../../assets/svgs-footer/fb.svg'
 import Container from '../../styles/Container.style'
-import { FooterSection, ListItem, Paragraph } from './Footer.style'
+import {
+  FooterSection,
+  ListItem,
+  Paragraph,
+  AbsoluteLink,
+  FlexWrapper,
+  FlexList,
+  ContactListItem,
+  SocialIcons,
+} from './Footer.style'
+import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
+import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
+import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
+import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
+import { ReactComponent as FbIcon } from '../../assets/svgs-footer/fb.svg'
 
 const Footer = () => {
   return (
     <FooterSection>
       <Container>
-        <img src={logo} alt="logo-footer" />
+        <FlexWrapper>
+          <LogoIcon />
 
-        <ul>
-          <ListItem>
-            <NavLink to="about">Про притулок</NavLink>
-          </ListItem>
-          <ListItem>
-            <NavLink to="dogs">Наші хвостики</NavLink>
-          </ListItem>
-          <ListItem>
-            <NavLink to="contacts">Контакти</NavLink>
-          </ListItem>
-          <ListItem>
-            <a href="path/to/confdentiality/agreement" target="_blank">
-              Політика конфіденційності
-            </a>
-          </ListItem>
-          <ListItem>
-            <a href="path/to/rules" target="_blank">
-              Правила поведінки на сайті
-            </a>
-          </ListItem>
-          <ListItem>
-            <a href="path/to/reports" target="_blank">
-              Звітність
-            </a>
-          </ListItem>
-        </ul>
+          <ul>
+            <ListItem>
+              <NavLink to="about">Про притулок</NavLink>
+            </ListItem>
+            <ListItem>
+              <NavLink to="dogs">Наші хвостики</NavLink>
+            </ListItem>
+            <ListItem>
+              <NavLink to="contacts">Контакти</NavLink>
+            </ListItem>
+            <ListItem>
+              <AbsoluteLink href="path/to/confdentiality/agreement" target="_blank">
+                Політика конфіденційності
+              </AbsoluteLink>
+            </ListItem>
+            <ListItem>
+              <AbsoluteLink href="path/to/rules" target="_blank">
+                Правила поведінки на сайті
+              </AbsoluteLink>
+            </ListItem>
+            <ListItem>
+              <AbsoluteLink href="path/to/reports" target="_blank">
+                Звітність
+              </AbsoluteLink>
+            </ListItem>
+          </ul>
 
-        <ul>
-          <ListItem>
-            <a href="tel: +38 063 628 6630">
-              <img src={tel} alt="phone icon" />
-              +38 063 628 6630
-            </a>
-          </ListItem>
-          <ListItem>
-            <a href="tel: +38 067 568 1788">
-              <img src={tel} alt="phone icon" />
-              +38 067 568 1788
-            </a>
-          </ListItem>
-          <ListItem>
-            <a href="emailto: biglapa@gmail.com">
-              <img src={email} alt="email icon" />
-              biglapa@gmail.com
-            </a>
-          </ListItem>
-        </ul>
+          <ul>
+            <ContactListItem>
+              <p>
+                <PhoneIcon /> +38 063 628 6630
+              </p>
+            </ContactListItem>
+            <ContactListItem>
+              <p>
+                <PhoneIcon />
+                +38 067 568 1788
+              </p>
+            </ContactListItem>
+            <ContactListItem>
+              <p>
+                <EmailIcon />
+                biglapa@gmail.com
+              </p>
+            </ContactListItem>
 
-        <ul>
-          <ListItem>
-            <a href="path/to/insta">
-              <img src={insta} alt="instagram icon" />
-            </a>
-          </ListItem>
+            <ContactListItem>
+              <FlexList>
+                <ListItem>
+                  <SocialIcons href="path/to/insta">
+                    <InstaIcon />
+                  </SocialIcons>
+                </ListItem>
 
-          <ListItem>
-            <a href="path/to/fb">
-              <img src={fb} alt="facebookicon" />
-            </a>
-          </ListItem>
-        </ul>
+                <ContactListItem>
+                  <SocialIcons href="path/to/fb">
+                    <FbIcon />
+                  </SocialIcons>
+                </ContactListItem>
+              </FlexList>
+            </ContactListItem>
+          </ul>
+        </FlexWrapper>
+
         <Paragraph>
           Розробка Baza Trainee Ukraine 2023 &copy; Усі права захищені
         </Paragraph>

@@ -33,6 +33,8 @@ export const FlexList = styled.ul`
   gap: 24px;
 `
 export const ContactListItem = styled.li`
+  display: flex;
+  gap: 12px;
   font-size: 1.1rem;
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   color: ${({ theme }) => theme.colors.background};

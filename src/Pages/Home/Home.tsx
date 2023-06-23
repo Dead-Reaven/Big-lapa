@@ -1,4 +1,5 @@
 import Main from './Components/Main'
+import ShelterEvents from './Components/ShelterEvents'
 import { GridContainer, StyledHome } from './Home.styles'
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <StyledHome data-testid="home-page">
       <GridContainer>
         <Main />
+        <ShelterEvents />
       </GridContainer>
     </StyledHome>
   )

@@ -16,12 +16,13 @@ import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
 import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
 import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
 import { ReactComponent as FbIcon } from '../../assets/svgs-footer/fb.svg'
+import { theme } from '../../styles/Theme.styles'
 
-const Footer = () => {
+function Footer() {
   return (
     <FooterSection>
-      <Container>
-        <FlexWrapper>
+      <Container color={theme.colors.green}>
+        <FlexWrapper color={theme.colors.green}>
           <LogoIcon />
 
           <ul>
@@ -53,21 +54,16 @@ const Footer = () => {
 
           <ul>
             <ContactListItem>
-              <p>
-                <PhoneIcon /> +38 063 628 6630
-              </p>
+              <PhoneIcon />
+              <p>+38 063 628 6630</p>
             </ContactListItem>
             <ContactListItem>
-              <p>
-                <PhoneIcon />
-                +38 067 568 1788
-              </p>
+              <PhoneIcon />
+              <p>+38 067 568 1788</p>
             </ContactListItem>
             <ContactListItem>
-              <p>
-                <EmailIcon />
-                biglapa@gmail.com
-              </p>
+              <EmailIcon />
+              <p>biglapa@gmail.com</p>
             </ContactListItem>
 
             <ContactListItem>

@@ -11,8 +11,8 @@ function MainLayout() {
         <ResetStyles />
         <Header />
         <Outlet />
+        <Footer />
       </Container>
-      <Footer />
     </>
   )
 }

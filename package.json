@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "test": "jest -w",
-    "test-watch": "jest -w --watchAll --coverage",
+    "test-watch": "jest -w --watchAll --coverage ",
     "action-test": "bash .github/bin/run_dev.sh 10 & npm run test  ",
     "dev-and-test": "concurrently -kill-others-on-fail \"yarn test\" \"yarn dev\" ",
     "build": "vite build",

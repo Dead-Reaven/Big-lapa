@@ -1,16 +1,16 @@
-import React from 'react'
-import StyledDonationCard from './DonationCard.styles'
+import React, { ReactNode } from 'react'
+import StyledDonationCard from './DonationCard.style'
 import Flex from '../../../../styles/Flex.styles'
-import TitleH3 from '../../../../styles/TitleH3.styles'
 
-function DonationCard() {
+interface Props {
+  children?: ReactNode
+}
+
+function DonationCard(props: Props) {
   return (
     <StyledDonationCard>
-      <Flex direction="column">
-        <TitleH3>Разовий внесок</TitleH3>
-        <p>
-          Нагодуй пса вже сьогодні – <br /> твоя допомога важлива!
-        </p>
+      <Flex direction="column" align="center" gap="35px">
+        {props.children}
       </Flex>
     </StyledDonationCard>
   )

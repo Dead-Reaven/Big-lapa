@@ -15,6 +15,7 @@ const Global = createGlobalStyle`
   font-family: ${({ theme }) => theme.fonts.openSans};
   vertical-align: baseline;
   box-sizing: border-box;
+  position: relative;
 }
 :focus { outline: 0;
  } 

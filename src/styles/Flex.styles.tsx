@@ -6,6 +6,7 @@ interface Props {
   justify?: string
   gap?: string
   height?: string
+  width?: string
   fullheight?: boolean
 }
 
@@ -16,6 +17,7 @@ const Flex = styled.div<Props>`
   justify-content: ${({ justify }) => justify};
   gap: ${({ gap }) => gap};
   height: ${({ fullheight, height }) => (fullheight ? 'calc(100vh - 100px)' : height)};
+  width: ${({ width }) => width || 'auto'};
 `
 
 export default Flex

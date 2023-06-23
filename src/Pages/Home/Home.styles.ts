@@ -5,8 +5,8 @@ const StyledHome = styled.div`
 `
 const GridContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(1, calc(100vh - 100px));
-  grid-template-areas: 'main';
+  /* grid-template-rows: repeat(3, calc(100vh - 100px)); */
+  grid-template-areas: 'main' 'dontation' 'shelterBlock';
 `
 
 export { StyledHome, GridContainer }

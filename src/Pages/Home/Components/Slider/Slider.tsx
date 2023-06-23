@@ -6,9 +6,9 @@ import {
   SubText,
   TextContainer,
 } from './Slider.style'
-import Container from '../../../styles/Container.style'
-import mainPhoto from '../../../assets/img/main_photo.png'
-import Flex from '../../../styles/Flex.styles'
+import Container from '../../../../styles/Container.style'
+import mainPhoto from '../../../../assets/img/main_photo.png'
+import Flex from '../../../../styles/Flex.styles'
 
 function Slider() {
   return (

@@ -7,7 +7,7 @@ interface Props {
   gap?: string
   height?: string
   width?: string
-  fullheight?: boolean
+  fullheight?: boolean /* 100vh - header */
 }
 
 const Flex = styled.div<Props>`
@@ -16,7 +16,7 @@ const Flex = styled.div<Props>`
   align-items: ${({ align }) => align};
   justify-content: ${({ justify }) => justify};
   gap: ${({ gap }) => gap};
-  height: ${({ fullheight, height }) => (fullheight ? 'calc(100vh - 100px)' : height)};
+  height: ${({ fullheight, height }) => (fullheight ? 'calc(100vh - 96px)' : height)};
   width: ${({ width }) => width || 'auto'};
 `
 

@@ -1,9 +1,8 @@
-import { theme } from '../../../styles/Theme.styles'
+import { theme } from '../../../../styles/Theme.styles'
 import styled from 'styled-components'
 
 const SliderStyled = styled.div`
   color: ${theme.colors.background};
-  height: calc(100vh - 100px);
   background-color: ${theme.colors.green};
 `
 const TextContainer = styled.div`

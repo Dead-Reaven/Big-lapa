@@ -1,4 +1,11 @@
-import { SliderStyled, img as DogImg, YellowBlock, H1, SubText } from './Slider.style'
+import {
+  SliderStyled,
+  img as DogImg,
+  YellowBlock,
+  H1,
+  SubText,
+  TextContainer,
+} from './Slider.style'
 import Container from '../../../styles/Container.style'
 import mainPhoto from '../../../assets/img/main_photo.png'
 import Flex from '../../../styles/Flex.styles'
@@ -8,13 +15,16 @@ function Slider() {
     <SliderStyled>
       <Container>
         <Flex justify="space-between" align="center" fullheight>
-          <Flex direction="column">
-            <H1>Подаруй другу шанс, врятуй тварину!</H1>
+          <TextContainer>
+            <H1>
+              Подаруй другу шанс, <br />
+              врятуй тварину!
+            </H1>
             <SubText>
-              Допоможи домашнім тваринам повернутся додому. Ми розділяємо щастя,
-              об&apos;єднуючи тварин та їх господарів.
+              Допоможи домашнім тваринам повернутся додому. <br />
+              Ми розділяємо щастя, об&apos;єднуючи тварин та їх господарів.
             </SubText>
-          </Flex>
+          </TextContainer>
           <YellowBlock>
             <DogImg src={mainPhoto} alt="Home main dog" />
           </YellowBlock>

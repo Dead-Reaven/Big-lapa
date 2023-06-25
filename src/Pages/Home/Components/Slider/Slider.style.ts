@@ -1,21 +1,30 @@
 import { theme } from '../../../../styles/Theme.styles'
 import styled from 'styled-components'
+import mainPhoto from '../../../../assets/img/main_photo.png'
 
 const SliderStyled = styled.div`
   color: ${theme.colors.background};
   background-color: ${theme.colors.green};
 `
 const TextContainer = styled.div`
-  padding: 0 40px 0px 0px;
-  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10%;
   text-align: justify;
+  position: relative;
+  & svg {
+    position: absolute;
+    bottom: 0px;
+  }
 `
 
 const H1 = styled.pre`
   font-size: 56px;
   font-weight: 700;
   line-height: 120%;
-  margin-bottom: 10%;
+  /* margin-bottom: 10%; */
 `
 const SubText = styled.pre`
   font-size: 18px;
@@ -23,15 +32,12 @@ const SubText = styled.pre`
 `
 
 const YellowBlock = styled.div`
-  width: 100%;
-  height: 90%;
-  background: ${theme.colors.yellow};
-`
-const img = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: bottom;
+  display: flex;
+  flex: 100% 1 1;
+  max-width: 100%;
+  background: ${theme.colors.yellow} url(${mainPhoto}) bottom no-repeat;
+  background-size: contain;
+  border-radius: 5%;
 `
 
-export { SliderStyled, img, YellowBlock, SubText, H1, TextContainer }
+export { SliderStyled, YellowBlock, SubText, H1, TextContainer }

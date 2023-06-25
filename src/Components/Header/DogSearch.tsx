@@ -1,4 +1,3 @@
-import React from 'react'
 import StyledDogSearch from './DogSearch.style'
 import Flex from '../../styles/Flex.styles'
 import StyledInput from '../../styles/Input.styles'

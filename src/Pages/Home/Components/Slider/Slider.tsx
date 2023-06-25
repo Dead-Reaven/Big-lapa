@@ -1,20 +1,13 @@
-import {
-  SliderStyled,
-  img as DogImg,
-  YellowBlock,
-  H1,
-  SubText,
-  TextContainer,
-} from './Slider.style'
+import { SliderStyled, YellowBlock, H1, SubText, TextContainer } from './Slider.style'
 import Container from '../../../../styles/Container.style'
-import mainPhoto from '../../../../assets/img/main_photo.png'
 import Flex from '../../../../styles/Flex.styles'
+import { ReactComponent as Bullet } from '../../../../assets/img/bullet_first.svg'
 
 function Slider() {
   return (
     <SliderStyled>
       <Container>
-        <Flex justify="space-between" align="center" fullheight>
+        <Flex style={{ padding: '2.5% 0px' }} fullheight>
           <TextContainer>
             <H1>
               Подаруй другу шанс, <br />
@@ -24,10 +17,9 @@ function Slider() {
               Допоможи домашнім тваринам повернутся додому. <br />
               Ми розділяємо щастя, об&apos;єднуючи тварин та їх господарів.
             </SubText>
+            <Bullet />
           </TextContainer>
-          <YellowBlock>
-            <DogImg src={mainPhoto} alt="Home main dog" />
-          </YellowBlock>
+          <YellowBlock />
         </Flex>
       </Container>
     </SliderStyled>

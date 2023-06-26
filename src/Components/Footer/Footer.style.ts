@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 import Container from '../../styles/Container.style'
-
+import { ReactComponent as FbIcon } from '../../assets/svgs-footer/fb.svg'
+import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
 export const FooterSection = styled.footer`
   background-color: ${({ theme }) => theme.colors.green};
 `
@@ -47,5 +48,15 @@ export const SocialIcons = styled.a`
   &:hover svg {
     transition: ${({ theme }) => theme.transitions.long};
     stroke: ${({ theme }) => theme.colors.yellow};
+  }
+`
+export const StyledIcon = styled(FbIcon)`
+  &:hover path {
+    stroke: ${({ theme }) => theme.colors.yellow};
+  }
+`
+export const StyledInstaIcon = styled(InstaIcon)`
+  &:hover path {
+    fill: ${({ theme }) => theme.colors.yellow};
   }
 `

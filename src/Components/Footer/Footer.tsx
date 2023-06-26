@@ -10,12 +10,14 @@ import {
   FlexList,
   ContactListItem,
   SocialIcons,
+  StyledIcon,
+  StyledInstaIcon,
 } from './Footer.style'
 import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
 import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
 import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
-import { ReactComponent as FbIcon } from '../../assets/svgs-footer/fb.svg'
+
 import { theme } from '../../styles/Theme.styles'
 
 function Footer() {
@@ -70,13 +72,13 @@ function Footer() {
               <FlexList>
                 <ListItem>
                   <SocialIcons href="path/to/insta">
-                    <InstaIcon />
+                    <StyledInstaIcon />
                   </SocialIcons>
                 </ListItem>
 
                 <ContactListItem>
                   <SocialIcons href="path/to/fb">
-                    <FbIcon />
+                    <StyledIcon />
                   </SocialIcons>
                 </ContactListItem>
               </FlexList>

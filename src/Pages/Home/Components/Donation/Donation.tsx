@@ -12,13 +12,12 @@ import DonationCard from './DonationCard'
 import Amounts from './Amounts'
 import StyledAdress from './Adress.style'
 import StyledDogs from './Dogs.style'
-import StyledFirstRectangle from './FirstRectangle.style'
-import StyledSecondRectangle from './SecondRectangle.style'
 import DonationContent from './DonationContent.style'
+import StyledDonation from './Donation.style'
 
 function Donation() {
   return (
-    <section>
+    <StyledDonation>
       <Container paddingtop="45px" paddingbottom="175px">
         <DonationContent>
           <Flex direction="column" align="center">
@@ -50,11 +49,9 @@ function Donation() {
             </Flex>
           </Flex>
         </DonationContent>
-        <StyledFirstRectangle src={FirstRectangle} />
-        <StyledSecondRectangle src={SecondRectangle} />
         <StyledDogs src={Dogs} />
       </Container>
-    </section>
+    </StyledDonation>
   )
 }
 

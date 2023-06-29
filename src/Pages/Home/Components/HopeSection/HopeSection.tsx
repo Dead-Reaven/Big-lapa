@@ -1,7 +1,7 @@
-import dog1 from '../../../../assets/HopeSection/dog1.png'
-import dog2 from '../../../../assets/HopeSection/dog2.png'
-import dog3 from '../../../../assets/HopeSection/dog3.png'
-import dog4 from '../../../../assets/HopeSection/dog4.png'
+import dog1 from '../../../../assets/hopeSection/dog1.png'
+import dog2 from '../../../../assets/hopeSection/dog2.png'
+import dog3 from '../../../../assets/hopeSection/dog3.png'
+import dog4 from '../../../../assets/hopeSection/dog4.png'
 import TitleH2 from '../../../../styles/TitleH2.styles'
 import {
   StyledContainer,

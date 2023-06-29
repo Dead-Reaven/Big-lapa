@@ -16,7 +16,6 @@ import {
 import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
 import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
-import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
 
 import { theme } from '../../styles/Theme.styles'
 

@@ -11,7 +11,6 @@ const StyledSection = styled.section`
 `
 const StyledContainer = styled(Container)`
   display: flex;
-  gap: 132px;
   align-items: center;
   justify-content: space-between;
 `

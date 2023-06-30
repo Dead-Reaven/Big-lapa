@@ -2,6 +2,7 @@ export const theme = {
   colors: {
     background: '#F9F9F9',
     grey: '#ACABAB',
+    lightGrey: '#EDEDED',
     dark: '#2E2E2E',
     green: '#758650',
     lightGreen: '#B5C268',
@@ -20,6 +21,12 @@ export const theme = {
     h3: '1.5rem',
     h2: '2.5rem',
     h1: '3.5rem',
+    mobileSubheadline: '0.75rem',
+    mobileBodyText: '1rem',
+    mobileButtonText: '1rem',
+    mobileH3: '1.25rem',
+    mobileH2: '2rem',
+    mobileH1: '2.5rem',
   },
   fontWeights: {
     regular: 400,
@@ -32,11 +39,18 @@ export const theme = {
   },
   paddings: {
     container: '0 84px',
+    containerTablet: '0 40px',
+    containerMobile: '0 16px',
     button: '15.5px 24px',
+    buttonTablet: '10px 12.5px',
     input: '12px',
   },
   transitions: {
     long: 'all ease 0.3s',
     quick: 'all ease 0.1s',
+  },
+  breakPoints: {
+    tablet: 'max-width: 1279px',
+    mobile: 'max-width: 767px',
   },
 }

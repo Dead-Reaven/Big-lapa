@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Container from '../../../../styles/Container.style'
-import rectangle1 from '../../../../assets/HopeSection/rectangle1.png'
+import rectangle1 from './img/rectangle2.png'
 
 const StyledSection = styled.section`
   background-image: url(${rectangle1}), url(${rectangle1});

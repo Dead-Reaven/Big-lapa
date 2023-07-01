@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+// import device from '../styles/Sizes'
 
 interface Props {
   fontSize?: string
@@ -9,8 +10,6 @@ interface Props {
 }
 
 const Container = styled.div<Props>`
-  width: 100%;
-  max-width: 1440px;
   margin: 0 auto;
   padding: ${({ theme, padding }) => padding || theme.paddings.container};
   padding-top: ${({ paddingtop }) => paddingtop || '0'};

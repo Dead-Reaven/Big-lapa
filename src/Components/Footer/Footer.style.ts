@@ -28,6 +28,14 @@ const FlexWrapper = styled(Container)`
   display: flex;
   padding: 60px 0 83px 0;
   justify-content: space-between;
+
+  @media screen and (min-width: 393px) and (max-width: 767px) {
+    display: block;
+    padding: 16px 60px 41px 40px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+  }
 `
 
 const FlexList = styled.ul`

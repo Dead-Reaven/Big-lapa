@@ -2,6 +2,7 @@ import { styled } from 'styled-components'
 import Container from '../../styles/Container.style'
 import { ReactComponent as FbIcon } from '../../assets/svgs-footer/fb.svg'
 import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
+import device from '../../styles/Sizes'
 
 const FooterSection = styled.footer`
   background-color: ${({ theme }) => theme.colors.green};
@@ -28,6 +29,10 @@ const FlexWrapper = styled(Container)`
   display: flex;
   padding: 60px 0 83px 0;
   justify-content: space-between;
+  @media screen and ${device.mobile} {
+    display: block;
+    padding: 16px 60px 41px 40px;
+  }
 `
 
 const FlexList = styled.ul`

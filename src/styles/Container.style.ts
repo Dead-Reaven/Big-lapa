@@ -27,7 +27,7 @@ const Container = styled.div<Props>`
     width: 1280px;
   }
   @media screen and ${device.desktop} {
-    width: 1440px;
+    max-width: 1440px;
   }
 `
 export default Container

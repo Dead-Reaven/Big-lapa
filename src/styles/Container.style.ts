@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-// import device from '../styles/Sizes'
+import { theme } from './Theme.styles'
 
 interface Props {
   fontSize?: string
@@ -17,5 +17,16 @@ const Container = styled.div<Props>`
   padding-top: ${({ paddingtop }) => paddingtop || '0'};
   padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
   font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.bodyText};
+
+  @media (${theme.breakPoints.tablet}) {
+    padding: ${({ theme, padding }) => padding || theme.paddings.containerTablet};
+    padding-top: ${({ paddingtop }) => paddingtop || '0'};
+    padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
+  }
+  @media (${theme.breakPoints.mobile}) {
+    padding: ${({ theme, padding }) => padding || theme.paddings.containerMobile};
+    padding-top: ${({ paddingtop }) => paddingtop || '0'};
+    padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
+  }
 `
 export default Container

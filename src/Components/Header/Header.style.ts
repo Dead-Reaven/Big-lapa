@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.background};
-  height: 96px;
+  height: ${({ theme }) => theme.headerHeight};
 `
 
 interface BurgerMenuProps {

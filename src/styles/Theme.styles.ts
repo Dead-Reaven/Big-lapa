@@ -53,4 +53,5 @@ export const theme = {
     tablet: 'max-width: 1279px',
     mobile: 'max-width: 767px',
   },
+  headerHeight: '96px',
 }

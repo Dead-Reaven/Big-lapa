@@ -1,4 +1,3 @@
-import StyledButton from '../../../../styles/Button.styles'
 import {
   StyledSection,
   StyledTitle,
@@ -6,12 +5,14 @@ import {
   StyledText,
   FormInput,
   StyledForm,
+  StyledContainer,
+  StyledButton,
 } from './ShelterEvents.style'
-import Container from '../../../../styles/Container.style'
+
 function ShelterEvents() {
   return (
     <StyledSection>
-      <Container>
+      <StyledContainer>
         <StyledTitle>Події притулку</StyledTitle>
         <StyledParagraph>Стежте за останніми подіями притулку</StyledParagraph>
         <StyledText>
@@ -21,7 +22,7 @@ function ShelterEvents() {
           <FormInput type="email" placeholder="email@gmail.com" />
           <StyledButton>Надіслати</StyledButton>
         </StyledForm>
-      </Container>
+      </StyledContainer>
     </StyledSection>
   )
 }

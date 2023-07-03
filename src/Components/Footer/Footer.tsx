@@ -1,6 +1,5 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Container from '../../styles/Container.style'
 import {
   FooterSection,
   ListItem,
@@ -12,6 +11,9 @@ import {
   SocialIcons,
   StyledIcon,
   StyledInstaIcon,
+  StyledContainer,
+  StyledLinksList,
+  StyledContactsList,
 } from './Footer.style'
 import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
@@ -22,11 +24,11 @@ import { theme } from '../../styles/Theme.styles'
 function Footer() {
   return (
     <FooterSection>
-      <Container color={theme.colors.green}>
+      <StyledContainer color={theme.colors.green}>
         <FlexWrapper color={theme.colors.green}>
           <LogoIcon />
 
-          <ul>
+          <StyledLinksList>
             <ListItem>
               <NavLink to="about">Про притулок</NavLink>
             </ListItem>
@@ -51,9 +53,9 @@ function Footer() {
                 Звітність
               </AbsoluteLink>
             </ListItem>
-          </ul>
+          </StyledLinksList>
 
-          <ul>
+          <StyledContactsList>
             <ContactListItem>
               <PhoneIcon />
               <p>+38 063 628 6630</p>
@@ -82,13 +84,13 @@ function Footer() {
                 </ContactListItem>
               </FlexList>
             </ContactListItem>
-          </ul>
+          </StyledContactsList>
         </FlexWrapper>
 
         <Paragraph>
           Розробка Baza Trainee Ukraine 2023 &copy; Усі права захищені
         </Paragraph>
-      </Container>
+      </StyledContainer>
     </FooterSection>
   )
 }

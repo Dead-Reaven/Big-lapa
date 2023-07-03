@@ -71,6 +71,8 @@ const AbsoluteLink = styled.a`
 `
 const FlexWrapper = styled.div`
   padding: 60px 0 83px 0;
+  display: flex;
+  justify-content: space-between;
 
   @media screen and (min-width: 393px) and (max-width: 767px) {
     display: block;

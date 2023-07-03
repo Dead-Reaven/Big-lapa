@@ -1,13 +1,19 @@
-import { SliderStyled, YellowBlock, H1, SubText, TextContainer } from './Slider.style'
-import Container from '../../../../styles/Container.style'
-import Flex from '../../../../styles/Flex.styles'
+import {
+  SliderStyled,
+  YellowBlock,
+  H1,
+  SubText,
+  TextContainer,
+  Flex,
+  StyledContainer,
+} from './Slider.style'
 import { ReactComponent as Bullet } from '../../../../assets/img/bullet_first.svg'
 
 function Slider() {
   return (
     <SliderStyled>
-      <Container>
-        <Flex style={{ padding: '2.5% 0px' }} fullheight>
+      <StyledContainer>
+        <Flex>
           <TextContainer>
             <H1>
               Подаруй другу шанс, <br />
@@ -21,7 +27,7 @@ function Slider() {
           </TextContainer>
           <YellowBlock />
         </Flex>
-      </Container>
+      </StyledContainer>
     </SliderStyled>
   )
 }

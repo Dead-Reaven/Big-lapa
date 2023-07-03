@@ -18,7 +18,7 @@ const Global = createGlobalStyle`
   position: relative;
 }
 :focus { outline: 0;
- } 
+ }
 a {
 	text-decoration: none;
 	color: inherit;
@@ -46,6 +46,7 @@ body {
 	line-height: 1.4;
   color: ${({ theme }) => theme.colors.dark};
   background-color: ${({ theme }) => theme.colors.background};
+  overflow-x: hidden;
 }
 button,
 input {
@@ -60,7 +61,7 @@ button {
 }
 table { border-collapse: separate;
  border-spacing: 0;
- } caption, th, td { 
+ } caption, th, td {
   text-align: left;
   font-weight: normal;
  } blockquote:before, blockquote:after, q:before, q:after { content: "";

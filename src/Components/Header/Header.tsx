@@ -8,7 +8,7 @@ import DogSearch from './DogSearch'
 
 const Header = () => {
   return (
-    <header>
+    <header style={{ maxHeight: '96px' }}>
       <Container paddingtop="20px" paddingbottom="20px">
         <Flex justify="space-between" align="center">
           <NavLink to="." end data-testid="home-link">

@@ -21,5 +21,13 @@ const Button = styled.button`
   &:disabled {
     background-color: ${({ theme }) => theme.colors.lightYellow};
   }
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.fontSizes.mobileButtonText};
+  }
+  @media (max-width: 767px) {
+    padding: ${({ theme }) => theme.paddings.buttonTablet};
+    padding: ${({ theme }) => theme.paddings.butonMobile};
+  }
 `
 export default Button

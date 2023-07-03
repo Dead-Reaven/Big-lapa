@@ -9,6 +9,11 @@ describe('User test App.e2e.ts', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({ headless: 'new' })
     page = await browser.newPage()
+    await page.setViewport({
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 1,
+    })
   })
   afterAll(async () => await browser.close())
 

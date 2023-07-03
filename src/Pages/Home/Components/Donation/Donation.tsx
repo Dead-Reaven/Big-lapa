@@ -5,20 +5,16 @@ import TitleH2 from '../../../../styles/TitleH2.styles'
 import TitleH3 from '../../../../styles/TitleH3.styles'
 import Button from '../../../../styles/Button.styles'
 import Dogs from './../../../../assets/img/Dogs_donation.png'
-import FirstRectangle from '../../../../assets/img/First_green_rectangle.svg'
-import SecondRectangle from '../../../../assets/img/Second_green_rectangle.svg'
-
 import DonationCard from './DonationCard'
 import Amounts from './Amounts'
 import StyledAdress from './Adress.style'
 import StyledDogs from './Dogs.style'
-import StyledFirstRectangle from './FirstRectangle.style'
-import StyledSecondRectangle from './SecondRectangle.style'
 import DonationContent from './DonationContent.style'
+import StyledDonation from './Donation.style'
 
 function Donation() {
   return (
-    <section>
+    <StyledDonation>
       <Container paddingtop="45px" paddingbottom="175px">
         <DonationContent>
           <Flex direction="column" align="center">
@@ -50,11 +46,9 @@ function Donation() {
             </Flex>
           </Flex>
         </DonationContent>
-        <StyledFirstRectangle src={FirstRectangle} />
-        <StyledSecondRectangle src={SecondRectangle} />
         <StyledDogs src={Dogs} />
       </Container>
-    </section>
+    </StyledDonation>
   )
 }
 

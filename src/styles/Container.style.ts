@@ -27,6 +27,7 @@ const Container = styled.div<Props>`
     padding: ${({ theme, padding }) => padding || theme.paddings.containerMobile};
     padding-top: ${({ paddingtop }) => paddingtop || '0'};
     padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
+    font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.mobileBodyText};
   }
 `
 export default Container

@@ -1,15 +1,15 @@
 import React from 'react'
-import StyledAmount from './Amount.style'
-import Grid from './Grid.styled'
+import Amount from './Amount'
+import { Grid } from './Donation.style'
 
 function Amounts() {
   return (
     <Grid>
-      <StyledAmount text="50 грн" />
-      <StyledAmount text="20 грн" />
-      <StyledAmount text="100 грн" />
-      <StyledAmount text="200 грн" />
-      <StyledAmount isInput={true} />
+      <Amount text="20 грн" />
+      <Amount text="50 грн" />
+      <Amount text="100 грн" />
+      <Amount text="200 грн" />
+      <Amount isInput={true} />
     </Grid>
   )
 }

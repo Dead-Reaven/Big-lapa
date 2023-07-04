@@ -42,7 +42,7 @@ export const theme = {
     containerTablet: '0 40px',
     containerMobile: '0 16px',
     button: '15.5px 24px',
-    buttonTablet: '10px 12.5px',
+    buttonTablet: '17px 12.5px',
     input: '12px',
   },
   transitions: {

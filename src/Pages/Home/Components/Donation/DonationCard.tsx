@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import StyledDonationCard from './DonationCard.style'
+import { StyledDonationCard } from './Donation.style'
 import Flex from '../../../../styles/Flex.styles'
 
 interface Props {

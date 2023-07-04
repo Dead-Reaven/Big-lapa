@@ -5,8 +5,12 @@ import Container from '../../../../styles/Container.style'
 import StyledInput from '../../../../styles/Input.styles'
 import Button from '../../../../styles/Button.styles'
 const StyledSection = styled.section`
+  background-image: url(${dog});
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: auto auto;
   padding-top: 120px;
-  padding-bottom: 91px;
+
   @media screen and (min-width: 393px) and (max-width: 767px) {
     background: ${({ theme }) => theme.colors.background};
     padding-top: 80px;
@@ -23,7 +27,6 @@ const StyledSection = styled.section`
     background-position: right bottom;
     background-size: auto auto;
     padding-top: 120px;
-    padding-bottom: 91px;
   }
 `
 const StyledContainer = styled(Container)`
@@ -91,6 +94,7 @@ const FormInput = styled(StyledInput)`
   }
   @media screen and (min-width: 393px) and (max-width: 767px) {
     width: 361px;
+    height: 56px;
     margin-bottom: 32px;
     padding: 22px 12px 22px 12px;
     &::placeholder {

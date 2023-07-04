@@ -2,13 +2,15 @@ import dog1 from '../../../../assets/hopeSection/dog1.png'
 import dog2 from '../../../../assets/hopeSection/dog2.png'
 import dog3 from '../../../../assets/hopeSection/dog3.png'
 import dog4 from '../../../../assets/hopeSection/dog4.png'
-import TitleH2 from '../../../../styles/TitleH2.styles'
+
 import {
   StyledContainer,
   StyledDogList,
   StyledParagraphList,
   StyledSection,
   StyledP,
+  StyledImages,
+  StyledTitle,
 } from './HopeSection.style'
 
 function HopeSection() {
@@ -17,22 +19,22 @@ function HopeSection() {
       <StyledContainer>
         <StyledDogList>
           <li>
-            <img src={dog1} alt="dog1" />
+            <StyledImages src={dog1} alt="dog1" />
           </li>
           <li>
-            <img src={dog2} alt="dog2" />
+            <StyledImages src={dog2} alt="dog2" />
           </li>
           <li>
-            <img src={dog3} alt="dog3" />
+            <StyledImages src={dog3} alt="dog3" />
           </li>
           <li>
-            <img src={dog4} alt="dog4" />
+            <StyledImages src={dog4} alt="dog4" />
           </li>
         </StyledDogList>
 
         <StyledParagraphList>
           <li>
-            <TitleH2>Подаруй собакам нову надію на щасливе життя! </TitleH2>
+            <StyledTitle>Подаруй собакам нову надію на щасливе життя! </StyledTitle>
           </li>
           <li>
             <StyledP>
@@ -46,11 +48,11 @@ function HopeSection() {
               підтримка допомагає нам забезпечувати безперебійну медичну допомогу, належне
               харчування, безпечний притулок та всебічний догляд для собак
             </StyledP>
-            <p>
+            <StyledP>
               Ваша допомога має велике значення для покращення життя цих тварин. Кожен ваш
               внесок допомагає нам забезпечити собакам необхідну медичну допомогу, належне
               харчування, безпечне місце проживання і належний догляд.
-            </p>
+            </StyledP>
           </li>
         </StyledParagraphList>
       </StyledContainer>

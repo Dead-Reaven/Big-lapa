@@ -1,25 +1,28 @@
 import React from 'react'
-import Container from '../../../../styles/Container.style'
 import Flex from '../../../../styles/Flex.styles'
 import TitleH2 from '../../../../styles/TitleH2.styles'
 import TitleH3 from '../../../../styles/TitleH3.styles'
-import Button from '../../../../styles/Button.styles'
 import Dogs from './../../../../assets/img/Dogs_donation.png'
 import DonationCard from './DonationCard'
 import Amounts from './Amounts'
-import StyledAdress from './Adress.style'
-import StyledDogs from './Dogs.style'
-import DonationContent from './DonationContent.style'
-import StyledDonation from './Donation.style'
+import Adress from './Adress'
+import {
+  StyledDonation,
+  DonationContainer,
+  DonationContent,
+  DonationButton,
+  StyledDogs,
+  DonationFlex,
+} from './Donation.style'
 
 function Donation() {
   return (
     <StyledDonation>
-      <Container paddingtop="45px" paddingbottom="175px">
+      <DonationContainer paddingtop="45px" paddingbottom="175px">
         <DonationContent>
           <Flex direction="column" align="center">
             <TitleH2>Безпечний донат</TitleH2>
-            <Flex gap="24px" width="100%">
+            <DonationFlex gap="24px" width="100%">
               <DonationCard>
                 <div>
                   <TitleH3>Разовий внесок</TitleH3>
@@ -28,26 +31,25 @@ function Donation() {
                   </span>
                 </div>
                 <Amounts />
-                <Button>Зробити внесок</Button>
+                <DonationButton>Зробити внесок</DonationButton>
               </DonationCard>
               <DonationCard>
                 <div>
                   <TitleH3>Негрошова допомога</TitleH3>
                   <p>
                     Існує багато способів допомоги – оберіть свій!
-                    <br /> Допомога вуличним собакам не обмежується лише фінансами.
-                    <br /> Ми постійно потребуємо кормів, медикаментів,
-                    <br />
-                    розповсюдження інформації тощо.
+                    <br /> Допомога вуличним собакам не обмежується лише фінансами. Ми
+                    постійно потребуємо кормів, медикаментів, розповсюдження інформації
+                    тощо.
                   </p>
                 </div>
-                <StyledAdress />
+                <Adress />
               </DonationCard>
-            </Flex>
+            </DonationFlex>
           </Flex>
         </DonationContent>
         <StyledDogs src={Dogs} />
-      </Container>
+      </DonationContainer>
     </StyledDonation>
   )
 }

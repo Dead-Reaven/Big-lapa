@@ -60,7 +60,7 @@ const StyledDogList = styled.ul`
   display: flex;
   width: 576px;
   align-items: flex-start;
-  justify-content: space-around;
+
   flex-wrap: wrap;
   column-gap: 44px;
   padding-top: 44px;
@@ -76,7 +76,6 @@ const StyledDogList = styled.ul`
     width: 361px;
     column-gap: 28px;
     padding-top: 27px;
-    align-items: center;
 
     li:nth-child(2) {
       margin-top: 54px;

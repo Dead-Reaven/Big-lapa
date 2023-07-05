@@ -5,36 +5,33 @@ import dog4 from '../../../../assets/hopeSection/dog4.png'
 
 import {
   StyledContainer,
-  StyledDogList,
   StyledParagraphList,
   StyledSection,
   StyledP,
-  StyledImages,
   StyledTitle,
+  StyledDogs,
+  StyledImages,
 } from './HopeSection.style'
 
 function HopeSection() {
   return (
     <StyledSection>
       <StyledContainer>
-        <StyledDogList>
-          <li>
+        <StyledDogs>
+          <div>
             <StyledImages src={dog1} alt="dog1" />
-          </li>
-          <li>
-            <StyledImages src={dog2} alt="dog2" />
-          </li>
-          <li>
             <StyledImages src={dog3} alt="dog3" />
-          </li>
-          <li>
+          </div>
+          <div>
+            <StyledImages src={dog2} alt="dog2" />
             <StyledImages src={dog4} alt="dog4" />
-          </li>
-        </StyledDogList>
-
+          </div>
+        </StyledDogs>
         <StyledParagraphList>
           <li>
-            <StyledTitle>Подаруй собакам нову надію на щасливе життя! </StyledTitle>
+            <StyledTitle>
+              Подаруй собакам нову надію <br /> на щасливе життя!
+            </StyledTitle>
           </li>
           <li>
             <StyledP>

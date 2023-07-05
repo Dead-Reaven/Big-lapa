@@ -6,8 +6,9 @@ import {
   TextContainer,
   Flex,
   StyledContainer,
+  Bullet,
 } from './Slider.style'
-import { ReactComponent as Bullet } from '../../../../assets/img/bullet_first.svg'
+// import { ReactComponent as Bullet } from '../../../../assets/img/bullet_first.svg'
 
 function Slider() {
   return (
@@ -23,9 +24,9 @@ function Slider() {
               Допоможи домашнім тваринам повернутся додому. <br />
               Ми розділяємо щастя, об&apos;єднуючи тварин та їх господарів.
             </SubText>
-            <Bullet />
           </TextContainer>
           <YellowBlock />
+          <Bullet />
         </Flex>
       </StyledContainer>
     </SliderStyled>

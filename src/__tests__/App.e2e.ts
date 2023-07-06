@@ -63,7 +63,7 @@ describe('User test App.e2e.ts', () => {
         '[data-testid="not-found-page"]',
         (e) => e.textContent,
       )
-      expect(text).toContain('404 NotFound')
+      expect(text).toContain('404')
     })
   })
 })

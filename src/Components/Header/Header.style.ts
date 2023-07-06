@@ -148,6 +148,9 @@ interface HeaderButtonProps {
 }
 
 const HeaderButton = styled(Button)<HeaderButtonProps>`
+  @media (${theme.breakPoints.tablet}) {
+    padding: 10px 12.5px;
+  }
   @media (${theme.breakPoints.mobile}) {
     ${({ extendNavbar }) => extendNavbar && 'display: none;'}
   }

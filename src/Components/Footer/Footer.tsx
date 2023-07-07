@@ -11,7 +11,7 @@ import {
   SocialIcons,
   StyledIcon,
   StyledInstaIcon,
-  StyledContainer,
+  // StyledContainer,
   StyledLinksList,
   StyledContactsList,
 } from './Footer.style'
@@ -20,11 +20,12 @@ import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
 import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
 
 import { theme } from '../../styles/Theme.styles'
+import Container from '../../styles/Container.style'
 
 function Footer() {
   return (
     <FooterSection>
-      <StyledContainer color={theme.colors.green}>
+      <Container>
         <FlexWrapper color={theme.colors.green}>
           <LogoIcon />
 
@@ -90,7 +91,7 @@ function Footer() {
         <Paragraph>
           Розробка Baza Trainee Ukraine 2023 &copy; Усі права захищені
         </Paragraph>
-      </StyledContainer>
+      </Container>
     </FooterSection>
   )
 }

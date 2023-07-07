@@ -85,7 +85,7 @@ const FormInput = styled(StyledInput)`
   display: inline-block;
   max-width: 444px;
   border-color: ${({ theme }) => theme.colors.lightYellow};
-  &: invalid {
+  &:invalid {
     border-color: #ff4141;
     background-color: #ffebeb;
   }

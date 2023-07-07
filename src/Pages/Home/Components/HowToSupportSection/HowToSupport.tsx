@@ -1,5 +1,7 @@
 import pic1 from './../../../../assets/howToHelp/pic1.png'
 import pic2 from '../../../../assets/howToHelp/pic2.png'
+import Container from '../../../../styles/Container.style'
+
 import {
   StyledSection,
   FlexContainer,
@@ -9,13 +11,13 @@ import {
   StyledImg,
   StyledTitle3,
   StyledParagraph,
-  StyledContainer,
+  // StyledContainer,
 } from './HowToSupport.style'
 
 function HowToSupport() {
   return (
     <StyledSection>
-      <StyledContainer>
+      <Container>
         <StyledTitle>Як підтримати притулок </StyledTitle>
         <FlexContainer>
           <CardDiv>
@@ -36,7 +38,7 @@ function HowToSupport() {
             </StyledTextDiv>
           </CardDiv>
         </FlexContainer>
-      </StyledContainer>
+      </Container>
     </StyledSection>
   )
 }

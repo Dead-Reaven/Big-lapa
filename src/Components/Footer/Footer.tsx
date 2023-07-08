@@ -14,6 +14,7 @@ import {
   StyledContainer,
   StyledLinksList,
   StyledContactsList,
+  ContactItem,
 } from './Footer.style'
 import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
@@ -58,15 +59,15 @@ function Footer() {
           <StyledContactsList>
             <ContactListItem>
               <PhoneIcon />
-              <p>+38 063 628 6630</p>
+              <ContactItem>+38 063 628 6630</ContactItem>
             </ContactListItem>
             <ContactListItem>
               <PhoneIcon />
-              <p>+38 067 568 1788</p>
+              <ContactItem>+38 067 568 1788</ContactItem>
             </ContactListItem>
             <ContactListItem>
               <EmailIcon />
-              <p>biglapa@gmail.com</p>
+              <ContactItem>biglapa@gmail.com</ContactItem>
             </ContactListItem>
 
             <ContactListItem>

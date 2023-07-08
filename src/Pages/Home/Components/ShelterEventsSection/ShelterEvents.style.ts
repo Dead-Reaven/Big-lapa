@@ -87,7 +87,7 @@ const StyledText = styled.p`
 `
 const FormInput = styled(StyledInput)`
   border-color: ${({ theme }) => theme.colors.lightYellow};
-  &: invalid {
+  &:invalid {
     border-color: #ff4141;
     background-color: #ffebeb;
   }

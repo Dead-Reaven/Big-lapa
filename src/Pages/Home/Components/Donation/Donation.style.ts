@@ -92,7 +92,6 @@ const Grid = styled.div<GridProps>`
 const StyledAmount = styled.label`
   border: 1px solid ${({ theme }) => theme.colors.lightGreen};
   border-radius: 4px;
-  padding: 15px 35px;
   cursor: pointer;
 
   &:focus {
@@ -104,6 +103,7 @@ const StyledAmount = styled.label`
     width: 100%;
     height: 100%;
     transition: ${({ theme }) => theme.transitions.quick};
+    padding: 15px 37px;
 
     &:hover {
       background-color: ${({ theme }) => theme.colors.lightGreen};
@@ -112,10 +112,6 @@ const StyledAmount = styled.label`
     span {
       padding: 0;
     }
-  }
-
-  @media (max-width: 1000px) {
-    padding: 20px 39px;
   }
 
   input[type='radio'] {

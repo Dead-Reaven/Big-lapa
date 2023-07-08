@@ -13,21 +13,9 @@ const Container = styled.div<Props>`
   width: 100vw;
   max-width: 1440px;
   margin: 0 auto;
-  padding: ${({ theme, padding }) => padding || theme.paddings.container};
-  padding-top: ${({ paddingtop }) => paddingtop || '0'};
-  padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
-  font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.bodyText};
-
-  @media (${theme.breakPoints.tablet}) {
-    padding: ${({ theme, padding }) => padding || theme.paddings.containerTablet};
-    padding-top: ${({ paddingtop }) => paddingtop || '0'};
-    padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
-  }
-  @media (${theme.breakPoints.mobile}) {
-    padding: ${({ theme, padding }) => padding || theme.paddings.containerMobile};
-    padding-top: ${({ paddingtop }) => paddingtop || '0'};
-    padding-bottom: ${({ paddingbottom }) => paddingbottom || '0'};
-    font-size: ${({ fontSize, theme }) => fontSize || theme.fontSizes.mobileBodyText};
+  padding: 0 5.83%;
+  @media (min-width: 1440px) {
+    padding: 0 84px;
   }
 `
 export default Container

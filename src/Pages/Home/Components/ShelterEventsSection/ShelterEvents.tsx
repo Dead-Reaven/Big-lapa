@@ -5,14 +5,15 @@ import {
   StyledText,
   FormInput,
   StyledForm,
-  StyledContainer,
+  // StyledContainer,
   StyledButton,
 } from './ShelterEvents.style'
+import Container from '../../../../styles/Container.style'
 
 function ShelterEvents() {
   return (
     <StyledSection>
-      <StyledContainer>
+      <Container>
         <StyledTitle>Події притулку</StyledTitle>
         <StyledParagraph>Стежте за останніми подіями притулку</StyledParagraph>
         <StyledText>
@@ -22,7 +23,7 @@ function ShelterEvents() {
           <FormInput type="email" placeholder="email@gmail.com" />
           <StyledButton>Надіслати</StyledButton>
         </StyledForm>
-      </StyledContainer>
+      </Container>
     </StyledSection>
   )
 }

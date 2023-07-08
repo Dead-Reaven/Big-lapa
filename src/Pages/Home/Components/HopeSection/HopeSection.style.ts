@@ -8,7 +8,7 @@ const StyledSection = styled.section`
   padding: 120px 0;
 
   @media (${theme.breakPoints.mobile}) {
-    padding: 80px 0 60px;
+    padding: 80px inherit 60px;
   }
 `
 const StyledContainer = styled(Container)`

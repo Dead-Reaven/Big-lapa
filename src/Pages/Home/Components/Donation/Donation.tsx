@@ -8,17 +8,18 @@ import Amounts from './Amounts'
 import Adress from './Adress'
 import {
   StyledDonation,
-  DonationContainer,
+  // DonationContainer,
   DonationContent,
   DonationButton,
   StyledDogs,
   DonationFlex,
 } from './Donation.style'
+import Container from '../../../../styles/Container.style'
 
 function Donation() {
   return (
     <StyledDonation>
-      <DonationContainer paddingtop="45px" paddingbottom="175px">
+      <Container paddingtop="45px" paddingbottom="175px">
         <DonationContent>
           <Flex direction="column" align="center">
             <TitleH2>Безпечний донат</TitleH2>
@@ -49,7 +50,7 @@ function Donation() {
           </Flex>
         </DonationContent>
         <StyledDogs src={Dogs} />
-      </DonationContainer>
+      </Container>
     </StyledDonation>
   )
 }

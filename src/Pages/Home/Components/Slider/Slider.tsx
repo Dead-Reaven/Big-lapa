@@ -8,7 +8,6 @@ import {
   StyledContainer,
   Bullet,
 } from './Slider.style'
-// import { ReactComponent as Bullet } from '../../../../assets/img/bullet_first.svg'
 
 function Slider() {
   return (

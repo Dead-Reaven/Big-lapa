@@ -1,26 +1,26 @@
 import { styled } from 'styled-components'
-import Container from '../../styles/Container.style'
+
 import { ReactComponent as FbIcon } from '../../assets/svgs-footer/fb.svg'
 import { ReactComponent as InstaIcon } from '../../assets/svgs-footer/insta.svg'
 
-const StyledContainer = styled(Container)`
-  @media (max-width: 767px) {
-    padding: 16% 41px 40px 5%;
-  }
-  @media screen and (min-width: 767px) and (max-width: 1279px) {
-    padding: 7% 40px 40px 40px;
-  }
-  @media screen and (min-width: 1279px) and (max-width: 1438px) {
-    max-width: 100%;
-    padding: 60px 40px 40px 40px;
-  }
-  @media (min-width: 1438px) {
-    max-width: 100%;
-    padding: 40px 84px 60px;
-  }
-`
 const FooterSection = styled.footer`
   background-color: ${({ theme }) => theme.colors.green};
+  @media (max-width: 767px) {
+    padding-top: 41px;
+    padidng-bottom: 40px;
+  }
+  @media screen and (min-width: 767px) and (max-width: 1279px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @media screen and (min-width: 1279px) and (max-width: 1438px) {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+  @media (min-width: 1438px) {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
 `
 
 const StyledLinksList = styled.ul`
@@ -156,7 +156,6 @@ export {
   SocialIcons,
   StyledIcon,
   StyledInstaIcon,
-  StyledContainer,
   StyledLinksList,
   StyledContactsList,
   ContactItem,

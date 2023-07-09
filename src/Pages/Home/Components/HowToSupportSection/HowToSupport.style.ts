@@ -1,7 +1,6 @@
 import { styled } from 'styled-components'
 import TitleH2 from '../../../../styles/TitleH2.styles'
 import TitleH3 from '../../../../styles/TitleH3.styles'
-import Container from '../../../../styles/Container.style'
 
 const StyledSection = styled.section`
   @media (max-width: 767px) {
@@ -14,21 +13,7 @@ const StyledSection = styled.section`
     padding-bottom: 120px;
   }
 `
-const StyledContainer = styled(Container)`
-  @media (max-width: 767px) {
-    padding: 0 16px 0 16px;
-    max-width: 766px;
-  }
-  @media screen and (min-width: 767px) and (max-width: 1279px) {
-    padding: 0 126px;
-    max-width: 1000px;
-  }
-  @media screen and (min-width: 1280px) {
-    max-width: 100%;
-    padding: 0 112px;
-    max-width: 1440px;
-  }
-`
+
 const StyledTitle = styled(TitleH2)`
   text-align: center;
   @media (max-width: 767px) {
@@ -47,8 +32,6 @@ const StyledTitle = styled(TitleH2)`
 const FlexContainer = styled.div`
   @media (max-width: 767px) {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
   @media screen and (min-width: 768px) and (max-width: 1278px) {
     display: block;
@@ -70,7 +53,7 @@ const CardDiv = styled.div`
   }
   @media screen and (min-width: 767px) and (max-width: 1279px) {
     width: 100%;
-    max-width: 816px;
+    max-width: 1200px;
 
     &:first-child {
       margin-bottom: 24px;
@@ -93,7 +76,7 @@ const StyledImg = styled.img`
   }
   @media screen and (min-width: 767px) and (max-width: 1279px) {
     width: 100%;
-    max-width: 816px;
+    max-width: 1200px;
   }
   @media screen and (min-width: 1279px) {
     width: 100%;
@@ -116,7 +99,7 @@ const StyledTextDiv = styled.div`
   }
   @media screen and (min-width: 767px) and (max-width: 1278px) {
     width: 100%;
-    max-width: 816px;
+    max-width: 1200px;
     height: 151px;
     padding: 24px 20px;
   }
@@ -173,5 +156,4 @@ export {
   StyledImg,
   StyledTitle3,
   StyledParagraph,
-  StyledContainer,
 }

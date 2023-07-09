@@ -11,7 +11,6 @@ import {
   SocialIcons,
   StyledIcon,
   StyledInstaIcon,
-  // StyledContainer,
   StyledLinksList,
   StyledContactsList,
   ContactItem,

@@ -20,29 +20,31 @@ const StyledSection = styled.section`
     background-image: url(${dog});
     background-repeat: no-repeat;
     background-position: right bottom;
-    background-size: auto auto;
-    padding-top: 120px;
+    background-size: contain;
+    margin-top: 120px;
+    margin-bottom: 120px;
   }
   @media (min-width: 1440px) {
     background-image: url(${dog});
     background-repeat: no-repeat;
     background-position: right bottom;
-    background-size: auto auto;
-    padding-top: 120px;
+    background-size: contain;
+    margin-top: 120px;
+    margin-bottom: 120px;
   }
 `
-const StyledContainer = styled(Container)`
-  @media (max-width: 767px) {
-    padding: 40px 4% 40px 4%;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1278px) {
-    padding: 76px 72px 76px 72px;
-  }
-  @media (min-width: 1279px) {
-    max-width: 100%;
-    padding: 60px 15% 91px 15%;
-  }
-`
+// const StyledContainer = styled(Container)`
+//   @media (max-width: 767px) {
+//     padding: 40px 4% 40px 4%;
+//   }
+//   @media screen and (min-width: 768px) and (max-width: 1278px) {
+//     padding: 76px 72px 76px 72px;
+//   }
+//   @media (min-width: 1279px) {
+//     max-width: 100%;
+//     padding: 60px 15% 91px 15%;
+//   }
+// `
 const StyledTitle = styled(TitleH2)`
   @media (max-width: 767px) {
     text-align: center;
@@ -136,11 +138,13 @@ const StyledForm = styled.form`
     display: flex;
     justify-content: center;
     gap: 40px;
+    margin-bottom: 91px;
   }
-  @media screen and (min-width: 1279px) and (max-width: 1440px) {
+  @media (min-width: 1440px) {
     display: flex;
     justify-content: center;
     gap: 40px;
+    margin-bottom: 91px;
   }
 `
 export {
@@ -150,6 +154,5 @@ export {
   StyledText,
   FormInput,
   StyledForm,
-  StyledContainer,
   StyledButton,
 }

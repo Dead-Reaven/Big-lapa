@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/Theme.styles'
 import MainLayout from './Layout/MainLayout'
 import { Home, Dogs, About, Contacts, NotFound } from './Pages'
+import Admin from './Pages/Admin/Admin'
+import AdminLayout from './Layout/AdminLayout'
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
             <Route path="contacts" element={<Contacts />}></Route>
             {/* not found route */}
             <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route element={<AdminLayout />}>
+            <Route path="admin" element={<Admin />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

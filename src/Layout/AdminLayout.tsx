@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom'
-import ResetStyles from '../styles/Global.styles'
+import ResetStyles from '../Components/UI/Global.styles'
 import AdminHeader from '../Components/AdminHeader/AdminHeader'
-import Container from '../styles/Container.style'
+import Container from '../Components/UI/Container.style'
 
 function AdminLayout() {
   return (
-    <Container padding="2.7% ">
+    <Container style={{ padding: '2.7%' }}>
       <ResetStyles />
       <AdminHeader />
       <Outlet />

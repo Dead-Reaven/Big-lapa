@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { theme } from '../../styles/Theme.styles'
+import { theme } from '../../Components/UI/Theme.styles'
 import { ReactComponent as Logo } from './Logo.svg'
 
 const StyledHeader = styled.header`

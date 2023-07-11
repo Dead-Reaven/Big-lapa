@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import firstGreenRectangle from './img/First_green_rectangle.svg'
 import secondGreenRectangle from './img/Second_green_rectangle.svg'
-import Flex from '../../../../styles/Flex.styles'
-import Container from '../../../../styles/Container.style'
-import Button from '../../../../styles/Button.styles'
+import Flex from '../../../../Components/UI/Flex.styles'
+import Container from '../../../../Components/UI/Container.style'
+import Button from '../../../../Components/UI/Button.styles'
 
 const StyledDonation = styled.section`
   background-image: url(${firstGreenRectangle}), url(${secondGreenRectangle});

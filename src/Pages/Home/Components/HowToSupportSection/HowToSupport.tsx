@@ -1,6 +1,6 @@
 import pic1 from './img/pic1.png'
 import pic2 from './img/pic2.png'
-import Container from '../../../../styles/Container.style'
+import Container from '../../../../Components/UI/Container.style'
 
 import {
   StyledSection,

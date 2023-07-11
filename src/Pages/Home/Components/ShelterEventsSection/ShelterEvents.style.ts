@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import dog from './img/shelter-events.png'
-import TitleH2 from '../../../../styles/TitleH2.styles'
-import StyledInput from '../../../../styles/Input.styles'
-import Button from '../../../../styles/Button.styles'
-import Container from '../../../../styles/Container.style'
+import TitleH2 from '../../../../Components/UI/TitleH2.styles'
+import StyledInput from '../../../../Components/UI/Input.styles'
+import Button from '../../../../Components/UI/Button.styles'
+import Container from '../../../../Components/UI/Container.style'
 
 const StyledSection = styled.section`
   background-image: url(${dog});

@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import Button from '../../styles/Button.styles'
+import Button from '../UI/Button.styles'
 
 interface Props {
   isShow: boolean

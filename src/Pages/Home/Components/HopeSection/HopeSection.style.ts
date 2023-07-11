@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import Container from '../../../../styles/Container.style'
+import Container from '../../../../Components/UI/Container.style'
 import rectangle1 from './img/rectangle2.png'
-import TitleH2 from '../../../../styles/TitleH2.styles'
+import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 
 const StyledSection = styled.section`
   padding: 120px 0;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Flex from '../../../../styles/Flex.styles'
+import Flex from '../../../../Components/UI/Flex.styles'
 import NovaPoshta from './img/Nova_Poshta.png'
 import { StyledAdress } from './Donation.style'
 

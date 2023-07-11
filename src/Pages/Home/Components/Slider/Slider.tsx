@@ -1,5 +1,5 @@
-import TitleH1 from '../../../../styles/TitleH1.style'
-import Container from '../../../../styles/Container.style'
+import TitleH1 from '../../../../Components/UI/TitleH1.style'
+import Container from '../../../../Components/UI/Container.style'
 import { SliderStyled, YellowBlock, TextContainer, Flex, Bullet } from './Slider.style'
 
 function Slider() {

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { StyledDonationCard } from './Donation.style'
-import Flex from '../../../../styles/Flex.styles'
+import Flex from '../../../../Components/UI/Flex.styles'
 
 interface Props {
   children?: ReactNode

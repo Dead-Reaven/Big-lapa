@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { theme } from '../../styles/Theme.styles'
-import TitleH2 from '../../styles/TitleH2.styles'
-import TitleH3 from '../../styles/TitleH3.styles'
-import Container from '../../styles/Container.style'
-import Button from '../../styles/Button.styles'
+import { theme } from '../../Components/UI/Theme.styles'
+import TitleH2 from '../../Components/UI/TitleH2.styles'
+import TitleH3 from '../../Components/UI/TitleH3.styles'
+import Container from '../../Components/UI/Container.style'
+import Button from '../../Components/UI/Button.styles'
 
 const StyledNotFound = styled(Container)`
   color: ${({ theme }) => theme.colors.dark};

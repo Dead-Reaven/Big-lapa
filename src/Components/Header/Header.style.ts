@@ -1,6 +1,6 @@
 import { styled, css } from 'styled-components'
-import Button from '../../styles/Button.styles'
-import Flex from '../../styles/Flex.styles'
+import Button from '../UI/Button.styles'
+import Flex from '../UI/Flex.styles'
 
 const StyledHeader = styled.header`
   z-index: 10;

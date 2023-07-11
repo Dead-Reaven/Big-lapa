@@ -1,6 +1,6 @@
-import Button from '../../styles/Button.styles'
-import Flex from '../../styles/Flex.styles'
-import TitleH3 from '../../styles/TitleH3.styles'
+import Button from '../../Components/UI/Button.styles'
+import Flex from '../../Components/UI/Flex.styles'
+import TitleH3 from '../../Components/UI/TitleH3.styles'
 import { StyledNotFound, ErrorCode } from './NotFound.style'
 import { ReactComponent as Arrow } from './img/Arrow.svg'
 

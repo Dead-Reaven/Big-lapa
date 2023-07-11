@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
-import TitleH2 from '../../../../styles/TitleH2.styles'
-import TitleH3 from '../../../../styles/TitleH3.styles'
+import TitleH2 from '../../../../Components/UI/TitleH2.styles'
+import TitleH3 from '../../../../Components/UI/TitleH3.styles'
 
 const StyledSection = styled.section`
   @media (max-width: 767px) {

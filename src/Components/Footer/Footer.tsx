@@ -19,8 +19,8 @@ import { ReactComponent as LogoIcon } from './svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from './svgs-footer/phone.svg'
 import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 
-import { theme } from '../../styles/Theme.styles'
-import Container from '../../styles/Container.style'
+import { theme } from '../UI/Theme.styles'
+import Container from '../UI/Container.style'
 
 function Footer() {
   return (

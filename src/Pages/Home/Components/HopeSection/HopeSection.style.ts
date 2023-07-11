@@ -1,14 +1,13 @@
 import styled from 'styled-components'
-import Container from '../../../../styles/Container.style'
+import Container from '../../../../Components/UI/Container.style'
 import rectangle1 from './img/rectangle2.png'
-import TitleH2 from '../../../../styles/TitleH2.styles'
-import { theme } from '../../../../styles/Theme.styles'
+import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 
 const StyledSection = styled.section`
   padding: 120px 0;
 
-  @media (${theme.breakPoints.mobile}) {
-    padding: 80px 0 60px;
+  @media (max-width: 767px) {
+    padding: 80px 0;
   }
 `
 const StyledContainer = styled(Container)`
@@ -21,7 +20,7 @@ const StyledContainer = styled(Container)`
     gap: 40px;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     gap: 30px;
   }
 `
@@ -56,7 +55,7 @@ const StyledDogs = styled.div`
     width: 100%;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     padding: 26px 37px 18% 19px;
     gap: 9%;
 
@@ -86,7 +85,7 @@ const StyledTitle = styled(TitleH2)`
     text-align: center;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     margin-bottom: 25px;
   }
 `
@@ -96,7 +95,7 @@ const StyledP = styled.p`
     margin-bottom: 0;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     margin-bottom: 20px;
   }
 `

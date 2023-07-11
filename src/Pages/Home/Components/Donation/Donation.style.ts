@@ -1,32 +1,33 @@
 import styled from 'styled-components'
-import { theme } from '../../../../styles/Theme.styles'
-import firstGreenRectangle from '../../../../assets/img/First_green_rectangle.svg'
-import secondGreenRectangle from '../../../../assets/img/Second_green_rectangle.svg'
-import Flex from '../../../../styles/Flex.styles'
-import Container from '../../../../styles/Container.style'
-import Button from '../../../../styles/Button.styles'
+import firstGreenRectangle from './img/First_green_rectangle.svg'
+import secondGreenRectangle from './img/Second_green_rectangle.svg'
+import Flex from '../../../../Components/UI/Flex.styles'
+import Container from '../../../../Components/UI/Container.style'
+import Button from '../../../../Components/UI/Button.styles'
 
 const StyledDonation = styled.section`
   background-image: url(${firstGreenRectangle}), url(${secondGreenRectangle});
   background-repeat: no-repeat;
   background-position: left top, right bottom;
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     background-position: -50px top, right bottom;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     background-position: -150px top, right bottom;
   }
 `
 
 const DonationContainer = styled(Container)`
+  padding-top: 45px;
+  padding-bottom: 180px;
   @media (max-width: 1000px) {
     padding-left: 84px;
     padding-right: 84px;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     padding: ${({ theme }) => theme.paddings.containerMobile};
     padding-top: 40px;
     padding-bottom: 160px;
@@ -42,7 +43,7 @@ const DonationFlex = styled(Flex)`
     flex-direction: column;
     gap: 60px;
   }
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     gap: 40px;
   }
 `
@@ -56,8 +57,12 @@ const StyledDonationCard = styled.div`
     flex: 1;
   }
   &:nth-of-type(2) {
-    flex: 1.42;
+    flex: 1.25;
     padding: 20px 40px;
+  }
+
+  p {
+    max-width: 90%;
   }
 
   @media (max-width: 1000px) {
@@ -65,6 +70,16 @@ const StyledDonationCard = styled.div`
 
     &:nth-of-type(1) {
       padding: 20px 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    p {
+      max-width: 100%;
+    }
+
+    &:nth-of-type(2) {
+      padding: 20px 12px;
     }
   }
 `
@@ -153,11 +168,12 @@ const DonationButton = styled(Button)`
 const StyledAdress = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGreen};
   width: 100%;
-  padding: 50px 20px;
+  padding: 50px 20px 30px;
   border-radius: 5px;
   text-align: left;
 
   p {
+    max-width: 100%;
     &:first-child {
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       margin-bottom: 10px;
@@ -167,7 +183,7 @@ const StyledAdress = styled.div`
     }
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     padding: 12px 12px 56px;
 
     ${Flex} {
@@ -198,7 +214,7 @@ const StyledDogs = styled.img<DogsProps>`
   @media (max-width: 1000px) {
     width: 418px;
   }
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     width: calc(20% + 190px);
   }
 `

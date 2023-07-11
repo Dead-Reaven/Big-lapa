@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from './Theme.styles'
 
 interface Props {
   marginBottom?: string
@@ -10,7 +9,11 @@ const TitleH3 = styled.h3<Props>`
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   margin-bottom: ${({ marginBottom }) => marginBottom || '5px'};
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 1279px) {
+    font-size: ${({ theme }) => theme.fontSizes.tabletH3};
+  }
+
+  @media (max-width: 767px) {
     font-size: ${({ theme }) => theme.fontSizes.mobileH3};
   }
 `

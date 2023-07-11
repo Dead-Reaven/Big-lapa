@@ -1,7 +1,6 @@
 import { styled, css } from 'styled-components'
-import { theme } from '../../styles/Theme.styles'
-import Button from '../../styles/Button.styles'
-import Flex from '../../styles/Flex.styles'
+import Button from '../UI/Button.styles'
+import Flex from '../UI/Flex.styles'
 
 const StyledHeader = styled.header`
   z-index: 10;
@@ -9,6 +8,8 @@ const StyledHeader = styled.header`
   width: 100%;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.background};
   height: ${({ theme }) => theme.headerHeight};
 `
@@ -21,7 +22,7 @@ interface BurgerMenuProps {
 const StyledBurgerMenu = styled(Flex)<BurgerMenuProps>`
   flex: 0.8;
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     flex-direction: column-reverse;
     align-items: start;
     justify-content: start;
@@ -40,32 +41,24 @@ const StyledBurgerMenu = styled(Flex)<BurgerMenuProps>`
     font-size: ${({ theme }) => theme.fontSizes.mobileBodyText};
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     align-items: center;
     max-width: 100%;
     height: 100vh;
     top: 90px;
     gap: 100px;
-  }
-`
-
-const BurgerMenuButton = styled(Button)`
-  display: none;
-  @media (${theme.breakPoints.mobile}) {
-    display: block;
-    font-size: ${({ theme }) => theme.fontSizes.buttonText};
-    padding: ${({ theme }) => theme.paddings.button};
+    font-size: ${({ theme }) => theme.fontSizes.bodyText};
   }
 `
 
 const StyledNavBar = styled.nav`
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     width: 100%;
   }
 `
 
 const NavFlex = styled(Flex)`
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     align-items: start;
     width: 100%;
@@ -79,7 +72,7 @@ const StyledNavItem = styled.li`
     color: ${({ theme }) => theme.colors.green};
   }
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     width: 100%;
     text-align: start;
 
@@ -94,7 +87,7 @@ const StyledNavItem = styled.li`
     }
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     text-align: center;
   }
 `
@@ -114,8 +107,12 @@ const StyledDogSearch = styled.form<DogSearchProps>`
   width: 40%;
   max-width: 300px;
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     width: 100%;
+  }
+
+  input {
+    padding: 0;
   }
 
   input:focus + button svg {
@@ -129,17 +126,12 @@ interface HeaderRightProps {
 }
 
 const StyledHeaderRight = styled(Flex)<HeaderRightProps>`
-  @media (${theme.breakPoints.tablet}) {
-    flex: 0.5;
+  @media (max-width: 1279px) {
+    width: 315px;
   }
-  @media (${theme.breakPoints.mobile}) {
+
+  @media (max-width: 767px) {
     ${({ extendNavbar }) => extendNavbar && 'flex-direction: row-reverse;'}
-  }
-  @media (max-width: 600px) {
-    flex: 0.7;
-  }
-  @media (max-width: 500px) {
-    flex: 1;
   }
 `
 
@@ -148,10 +140,11 @@ interface HeaderButtonProps {
 }
 
 const HeaderButton = styled(Button)<HeaderButtonProps>`
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     padding: 10px 12.5px;
+    font-size: ${({ theme }) => theme.fontSizes.mobileButtonText};
   }
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     ${({ extendNavbar }) => extendNavbar && 'display: none;'}
   }
 `
@@ -163,7 +156,7 @@ interface BurgerBtnProps {
 const StyledBurgerBtn = styled.button<BurgerBtnProps>`
   display: none;
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     display: block;
     flex: 0 0 35px;
     height: 20px;
@@ -218,7 +211,6 @@ const StyledBurgerBtn = styled.button<BurgerBtnProps>`
 export {
   StyledHeader,
   StyledBurgerMenu,
-  BurgerMenuButton,
   StyledHeaderRight,
   HeaderButton,
   StyledDogSearch,

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { theme } from './styles/Theme.styles'
+import { theme } from './Components/UI/Theme.styles'
 import MainLayout from './Layout/MainLayout'
 import { Home, Dogs, About, Contacts, NotFound } from './Pages'
 

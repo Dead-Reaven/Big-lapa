@@ -16,7 +16,8 @@ function Input({ type, placeholder, className }: Props) {
 
 const StyledInput = styled(Input)<Props>`
   width: ${({ width }) => width || '80%'};
-  background-color: transparent;
+  padding: ${({ theme }) => theme.paddings.input};
+  background-color: ${({ theme }) => theme.colors.background};
   caret-color: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.dark};
   ${({ withSvg }) =>

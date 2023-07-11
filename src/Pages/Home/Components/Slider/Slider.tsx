@@ -1,34 +1,23 @@
-import {
-  SliderStyled,
-  YellowBlock,
-  H1,
-  SubText,
-  TextContainer,
-  Flex,
-  StyledContainer,
-  Bullet,
-} from './Slider.style'
-// import { ReactComponent as Bullet } from '../../../../assets/img/bullet_first.svg'
+import TitleH1 from '../../../../Components/UI/TitleH1.style'
+import Container from '../../../../Components/UI/Container.style'
+import { SliderStyled, YellowBlock, TextContainer, Flex, Bullet } from './Slider.style'
 
 function Slider() {
   return (
     <SliderStyled>
-      <StyledContainer>
+      <Container>
         <Flex>
           <TextContainer>
-            <H1>
-              Подаруй другу шанс, <br />
-              врятуй тварину!
-            </H1>
-            <SubText>
-              Допоможи домашнім тваринам повернутся додому. <br />
-              Ми розділяємо щастя, об&apos;єднуючи тварин та їх господарів.
-            </SubText>
+            <TitleH1>Подаруй другу шанс, врятуй тварину!</TitleH1>
+            <p>
+              Допоможи домашнім тваринам повернутся додому. Ми розділяємо щастя,
+              об&apos;єднуючи тварин та їх господарів.
+            </p>
           </TextContainer>
           <YellowBlock />
           <Bullet />
         </Flex>
-      </StyledContainer>
+      </Container>
     </SliderStyled>
   )
 }

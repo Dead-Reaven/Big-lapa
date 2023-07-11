@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ReactComponent as Logo } from '../../assets/img/logo_header.svg'
-import Container from '../../styles/Container.style'
-import Flex from '../../styles/Flex.styles'
+import { ReactComponent as Logo } from './img/logo_header.svg'
+import Container from '../UI/Container.style'
+import Flex from '../UI/Flex.styles'
 import { HeaderButton, StyledHeader } from './Header.style'
 import BurgerMenu from './BurgerMenu'
 import HeaderRight from './HeaderRight'
@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <Container paddingtop="20px" paddingbottom="20px">
+      <Container>
         <Flex justify="space-between" align="center" gap="20px">
           <NavLink to="." end data-testid="home-link">
             <Logo />

@@ -10,7 +10,11 @@ const TitleH2 = styled.h2<Props>`
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   margin-bottom: ${({ marginBottom }) => marginBottom || '45px'};
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 1279px) {
+    font-size: ${({ theme }) => theme.fontSizes.tabletH2};
+  }
+
+  @media (max-width: 767px) {
     font-size: ${({ theme }) => theme.fontSizes.mobileH2};
   }
 `

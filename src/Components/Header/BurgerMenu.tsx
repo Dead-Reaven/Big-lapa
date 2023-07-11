@@ -1,6 +1,6 @@
 import NavBar from './NavBar'
 import DogSearch from './DogSearch'
-import { StyledBurgerMenu, BurgerMenuButton } from './Header.style'
+import { StyledBurgerMenu } from './Header.style'
 
 interface Props {
   className?: string
@@ -17,7 +17,6 @@ function BurgerMenu({ className, extendNavbar, setExtendNavbar }: Props) {
       className={className}
       extendNavbar={extendNavbar}
     >
-      <BurgerMenuButton>Підтримати притулок</BurgerMenuButton>
       <NavBar setExtendNavbar={setExtendNavbar} />
       <DogSearch />
     </StyledBurgerMenu>

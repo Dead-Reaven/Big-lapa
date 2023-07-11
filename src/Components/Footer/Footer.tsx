@@ -11,20 +11,21 @@ import {
   SocialIcons,
   StyledIcon,
   StyledInstaIcon,
-  StyledContainer,
   StyledLinksList,
   StyledContactsList,
+  ContactItem,
 } from './Footer.style'
-import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
-import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
-import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
+import { ReactComponent as LogoIcon } from './svgs-footer/logo-footer.svg'
+import { ReactComponent as PhoneIcon } from './svgs-footer/phone.svg'
+import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 
-import { theme } from '../../styles/Theme.styles'
+import { theme } from '../UI/Theme.styles'
+import Container from '../UI/Container.style'
 
 function Footer() {
   return (
     <FooterSection>
-      <StyledContainer color={theme.colors.green}>
+      <Container>
         <FlexWrapper color={theme.colors.green}>
           <LogoIcon />
 
@@ -34,9 +35,6 @@ function Footer() {
             </ListItem>
             <ListItem>
               <NavLink to="dogs">Наші хвостики</NavLink>
-            </ListItem>
-            <ListItem>
-              <NavLink to="contacts">Контакти</NavLink>
             </ListItem>
             <ListItem>
               <AbsoluteLink href="path/to/confdentiality/agreement" target="_blank">
@@ -58,15 +56,15 @@ function Footer() {
           <StyledContactsList>
             <ContactListItem>
               <PhoneIcon />
-              <p>+38 063 628 6630</p>
+              <ContactItem>+38 063 628 6630</ContactItem>
             </ContactListItem>
             <ContactListItem>
               <PhoneIcon />
-              <p>+38 067 568 1788</p>
+              <ContactItem>+38 067 568 1788</ContactItem>
             </ContactListItem>
             <ContactListItem>
               <EmailIcon />
-              <p>biglapa@gmail.com</p>
+              <ContactItem>biglapa@gmail.com</ContactItem>
             </ContactListItem>
 
             <ContactListItem>
@@ -90,7 +88,7 @@ function Footer() {
         <Paragraph>
           Розробка Baza Trainee Ukraine 2023 &copy; Усі права захищені
         </Paragraph>
-      </StyledContainer>
+      </Container>
     </FooterSection>
   )
 }

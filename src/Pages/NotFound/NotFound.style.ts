@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { theme } from '../../styles/Theme.styles'
-import TitleH2 from '../../styles/TitleH2.styles'
-import TitleH3 from '../../styles/TitleH3.styles'
-import Container from '../../styles/Container.style'
-import Button from '../../styles/Button.styles'
+import { theme } from '../../Components/UI/Theme.styles'
+import TitleH2 from '../../Components/UI/TitleH2.styles'
+import TitleH3 from '../../Components/UI/TitleH3.styles'
+import Container from '../../Components/UI/Container.style'
+import Button from '../../Components/UI/Button.styles'
 
 const StyledNotFound = styled(Container)`
   color: ${({ theme }) => theme.colors.dark};
@@ -28,7 +28,7 @@ const StyledNotFound = styled(Container)`
     padding: 15px 100px;
   }
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     padding-top: 0;
     padding-bottom: 40px;
 
@@ -41,7 +41,7 @@ const StyledNotFound = styled(Container)`
     }
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     padding-top: 160px;
     padding-bottom: 180px;
 
@@ -65,13 +65,13 @@ const ErrorCode = styled(TitleH2)`
   margin-right: -0.1em;
   letter-spacing: 0.1em;
 
-  @media (${theme.breakPoints.tablet}) {
+  @media (max-width: 1279px) {
     font-size: 120px;
     margin-right: -0.2em;
     margin-bottom: 8px;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     margin-bottom: 20px;
   }
 `

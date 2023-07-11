@@ -1,7 +1,8 @@
-import dog1 from '../../../../assets/hopeSection/dog1.png'
-import dog2 from '../../../../assets/hopeSection/dog2.png'
-import dog3 from '../../../../assets/hopeSection/dog3.png'
-import dog4 from '../../../../assets/hopeSection/dog4.png'
+import dog1 from './img/dog1.png'
+import dog2 from './img/dog2.png'
+import dog3 from './img/dog3.png'
+import dog4 from './img/dog4.png'
+// import Container from '../../../../styles/Container.style'
 
 import {
   StyledContainer,

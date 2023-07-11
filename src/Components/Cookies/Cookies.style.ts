@@ -1,6 +1,5 @@
 import { styled } from 'styled-components'
-import { theme } from '../../../../styles/Theme.styles'
-import Button from '../../../../styles/Button.styles'
+import Button from '../../styles/Button.styles'
 
 interface Props {
   isShow: boolean
@@ -30,7 +29,7 @@ const StyledCookies = styled.div<Props>`
     padding: 24px;
   }
 
-  @media (${theme.breakPoints.mobile}) {
+  @media (max-width: 767px) {
     padding: 20px 0;
     p {
       font-size: 0.75rem;

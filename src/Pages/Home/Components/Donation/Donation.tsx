@@ -2,24 +2,23 @@ import React from 'react'
 import Flex from '../../../../styles/Flex.styles'
 import TitleH2 from '../../../../styles/TitleH2.styles'
 import TitleH3 from '../../../../styles/TitleH3.styles'
-import Dogs from './../../../../assets/img/Dogs_donation.png'
+import Dogs from './img/Dogs_donation.png'
 import DonationCard from './DonationCard'
 import Amounts from './Amounts'
 import Adress from './Adress'
 import {
   StyledDonation,
-  // DonationContainer,
+  DonationContainer,
   DonationContent,
   DonationButton,
   StyledDogs,
   DonationFlex,
 } from './Donation.style'
-import Container from '../../../../styles/Container.style'
 
 function Donation() {
   return (
     <StyledDonation>
-      <Container paddingtop="45px" paddingbottom="175px">
+      <DonationContainer>
         <DonationContent>
           <Flex direction="column" align="center">
             <TitleH2>Безпечний донат</TitleH2>
@@ -50,7 +49,7 @@ function Donation() {
           </Flex>
         </DonationContent>
         <StyledDogs src={Dogs} />
-      </Container>
+      </DonationContainer>
     </StyledDonation>
   )
 }

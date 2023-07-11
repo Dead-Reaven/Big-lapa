@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Button from '../../../../styles/Button.styles'
-import Container from '../../../../styles/Container.style'
+import Button from '../../styles/Button.styles'
+import Container from '../../styles/Container.style'
 import { StyledCookies } from './Cookies.style'
-import Flex from '../../../../styles/Flex.styles'
+import Flex from '../../styles/Flex.styles'
 
 function Cookies() {
   const [isShow, setIsShow] = useState(true)

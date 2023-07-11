@@ -1,6 +1,6 @@
 import React from 'react'
 import Flex from '../../../../styles/Flex.styles'
-import NovaPoshta from '../../../../assets/img/Nova_Poshta.png'
+import NovaPoshta from './img/Nova_Poshta.png'
 import { StyledAdress } from './Donation.style'
 
 function Adress() {

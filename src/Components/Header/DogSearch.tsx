@@ -1,7 +1,7 @@
 import { StyledDogSearch } from './Header.style'
 import Flex from '../../styles/Flex.styles'
 import StyledInput from '../../styles/Input.styles'
-import { ReactComponent as SearchIcon } from '../../assets/img/Search_icon_default.svg'
+import { ReactComponent as SearchIcon } from './img/Search_icon_default.svg'
 
 function DogSearch() {
   return (

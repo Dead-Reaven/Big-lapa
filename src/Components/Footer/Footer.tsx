@@ -15,9 +15,9 @@ import {
   StyledContactsList,
   ContactItem,
 } from './Footer.style'
-import { ReactComponent as LogoIcon } from '../../assets/svgs-footer/logo-footer.svg'
-import { ReactComponent as PhoneIcon } from '../../assets/svgs-footer/phone.svg'
-import { ReactComponent as EmailIcon } from '../../assets/svgs-footer/email.svg'
+import { ReactComponent as LogoIcon } from './svgs-footer/logo-footer.svg'
+import { ReactComponent as PhoneIcon } from './svgs-footer/phone.svg'
+import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 
 import { theme } from '../../styles/Theme.styles'
 import Container from '../../styles/Container.style'
@@ -35,9 +35,6 @@ function Footer() {
             </ListItem>
             <ListItem>
               <NavLink to="dogs">Наші хвостики</NavLink>
-            </ListItem>
-            <ListItem>
-              <NavLink to="contacts">Контакти</NavLink>
             </ListItem>
             <ListItem>
               <AbsoluteLink href="path/to/confdentiality/agreement" target="_blank">

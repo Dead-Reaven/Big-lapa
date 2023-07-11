@@ -1,5 +1,5 @@
-import pic1 from './../../../../assets/howToHelp/pic1.png'
-import pic2 from '../../../../assets/howToHelp/pic2.png'
+import pic1 from './img/pic1.png'
+import pic2 from './img/pic2.png'
 import Container from '../../../../styles/Container.style'
 
 import {
@@ -11,7 +11,6 @@ import {
   StyledImg,
   StyledTitle3,
   StyledParagraph,
-  // StyledContainer,
 } from './HowToSupport.style'
 
 function HowToSupport() {

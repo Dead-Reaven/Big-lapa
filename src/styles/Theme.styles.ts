@@ -24,9 +24,12 @@ export const theme = {
     mobileSubheadline: '0.75rem',
     mobileBodyText: '1rem',
     mobileButtonText: '1rem',
+    tabletH3: '1.5rem',
+    tabletH2: '2.25rem',
+    tabletH1: '2.625rem',
     mobileH3: '1.25rem',
-    mobileH2: '2rem',
-    mobileH1: '2.5rem',
+    mobileH2: '1.75rem',
+    mobileH1: '2rem',
   },
   fontWeights: {
     regular: 400,
@@ -48,10 +51,6 @@ export const theme = {
   transitions: {
     long: 'all ease 0.3s',
     quick: 'all ease 0.1s',
-  },
-  breakPoints: {
-    tablet: 'max-width: 1279px',
-    mobile: 'max-width: 767px',
   },
   headerHeight: '96px',
 }

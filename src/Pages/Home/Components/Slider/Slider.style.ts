@@ -16,7 +16,7 @@ const Flex = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 31px;
+  gap: 2vh;
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
@@ -44,6 +44,7 @@ const TextContainer = styled.div`
 const YellowBlock = styled.div`
   flex: 0 1 50%;
   aspect-ratio: 1/1;
+  max-height: 70vh;
   background: ${theme.colors.yellow} url(${mainPhoto}) bottom no-repeat;
   background-size: contain;
   border-radius: 3%;
@@ -55,7 +56,7 @@ const YellowBlock = styled.div`
 
   @media screen and (max-width: 767px) {
     width: 80%;
-    aspect-ratio: 1.1/1;
+    max-height: 45vh;
   }
 
   @media screen and (max-width: 550px) {

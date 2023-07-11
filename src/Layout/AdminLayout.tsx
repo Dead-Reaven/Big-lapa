@@ -5,7 +5,7 @@ import Container from '../Components/UI/Container.style'
 
 function AdminLayout() {
   return (
-    <Container style={{ padding: '2.7%' }}>
+    <Container style={{ padding: '0 2.7%' }}>
       <ResetStyles />
       <AdminHeader />
       <Outlet />

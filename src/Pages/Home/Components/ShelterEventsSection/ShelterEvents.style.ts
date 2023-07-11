@@ -18,7 +18,7 @@ const StyledSection = styled.section`
   }
 
   @media (max-width: 767px) {
-    padding: 80px 0;
+    padding: 120px 0 40px;
   }
 `
 
@@ -33,7 +33,6 @@ const StyledContainer = styled(Container)`
 
 const StyledTitle = styled(TitleH2)`
   text-align: center;
-  font-size: 32px;
   margin-bottom: 30px;
 `
 

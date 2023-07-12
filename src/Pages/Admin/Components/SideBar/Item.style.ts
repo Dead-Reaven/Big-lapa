@@ -1,15 +1,21 @@
 import { styled } from 'styled-components'
 
+const Text = styled.span`
+  font-size: calc(10px + 0.7vw);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  text-align: left;
+  @media screen and (max-width: 767px) {
+    font-size: 0;
+  }
+`
+
 const StyledItem = styled.button`
   display: flex;
   align-items: center;
   height: 30px;
-  text-align: left;
   margin-bottom: 40px;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 140%;
 
   & svg {
     width: 24px;
@@ -27,6 +33,8 @@ const StyledItem = styled.button`
     color: red;
     margin-top: 80px;
   }
+  @media screen and (max-width: 767px) {
+  }
 `
 
-export { StyledItem }
+export { StyledItem, Text }

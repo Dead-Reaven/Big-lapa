@@ -1,4 +1,4 @@
-import { StyledItem } from './Item.style'
+import { StyledItem, Text } from './Item.style'
 
 interface props {
   children?: React.ReactNode
@@ -9,7 +9,7 @@ function Item(props: props) {
   const { children, text } = props
   return (
     <StyledItem>
-      {children} {text}
+      {children} <Text>{text}</Text>
     </StyledItem>
   )
 }

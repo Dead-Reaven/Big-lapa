@@ -5,7 +5,31 @@ function Admin() {
     <StyledAdmin>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatem
       cupiditate ut dignissimos sit perferendis ex placeat esse nobis, pariatur eius
-      doloribus molestias nostrum quia consequuntur obcaecati accusamus est maiores.
+      doloribus molestias nostrum quia consequuntur obcaecati accusamus est maiores. Lorem
+      ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatem cupiditate
+      ut dignissimos sit perferendis ex placeat esse nobis, pariatur eius doloribus
+      molestias nostrum quia consequuntur obcaecati accusamus est maiores. Lorem ipsum
+      dolor sit amet consectetur adipisicing elit. Praesentium voluptatem cupiditate ut
+      dignissimos sit perferendis ex placeat esse nobis, pariatur eius doloribus molestias
+      nostrum quia consequuntur obcaecati accusamus est maiores. Lorem ipsum dolor sit
+      amet consectetur adipisicing elit. Praesentium voluptatem cupiditate ut dignissimos
+      sit perferendis ex placeat esse nobis, pariatur eius doloribus molestias nostrum
+      quia consequuntur obcaecati accusamus est maiores. Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Praesentium voluptatem cupiditate ut dignissimos sit
+      perferendis ex placeat esse nobis, pariatur eius doloribus molestias nostrum quia
+      consequuntur obcaecati accusamus est maiores. Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Praesentium voluptatem cupiditate ut dignissimos sit perferendis
+      ex placeat esse nobis, pariatur eius doloribus molestias nostrum quia consequuntur
+      obcaecati accusamus est maiores. Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Praesentium voluptatem cupiditate ut dignissimos sit perferendis ex placeat
+      esse nobis, pariatur eius doloribus molestias nostrum quia consequuntur obcaecati
+      accusamus est maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Praesentium voluptatem cupiditate ut dignissimos sit perferendis ex placeat esse
+      nobis, pariatur eius doloribus molestias nostrum quia consequuntur obcaecati
+      accusamus est maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Praesentium voluptatem cupiditate ut dignissimos sit perferendis ex placeat esse
+      nobis, pariatur eius doloribus molestias nostrum quia consequuntur obcaecati
+      accusamus est maiores.
     </StyledAdmin>
   )
 }

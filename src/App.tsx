@@ -22,7 +22,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route element={<AdminLayout />}>
-            <Route path="admin" element={<Admin />}></Route>
+            <Route path="admin/*" element={<Admin />}></Route>
           </Route>
         </Routes>
       </HashRouter>

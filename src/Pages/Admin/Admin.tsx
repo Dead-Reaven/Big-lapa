@@ -1,35 +1,20 @@
+import { Route, Routes } from 'react-router'
 import { StyledAdmin } from './Admin.style'
+import { DogCards, Partners, Sliders, Reports, Contacts, Settings } from './Catalog'
+import NotFound from '../NotFound/NotFound'
 
 function Admin() {
   return (
     <StyledAdmin>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatem
-      cupiditate ut dignissimos sit perferendis ex placeat esse nobis, pariatur eius
-      doloribus molestias nostrum quia consequuntur obcaecati accusamus est maiores. Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatem cupiditate
-      ut dignissimos sit perferendis ex placeat esse nobis, pariatur eius doloribus
-      molestias nostrum quia consequuntur obcaecati accusamus est maiores. Lorem ipsum
-      dolor sit amet consectetur adipisicing elit. Praesentium voluptatem cupiditate ut
-      dignissimos sit perferendis ex placeat esse nobis, pariatur eius doloribus molestias
-      nostrum quia consequuntur obcaecati accusamus est maiores. Lorem ipsum dolor sit
-      amet consectetur adipisicing elit. Praesentium voluptatem cupiditate ut dignissimos
-      sit perferendis ex placeat esse nobis, pariatur eius doloribus molestias nostrum
-      quia consequuntur obcaecati accusamus est maiores. Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Praesentium voluptatem cupiditate ut dignissimos sit
-      perferendis ex placeat esse nobis, pariatur eius doloribus molestias nostrum quia
-      consequuntur obcaecati accusamus est maiores. Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Praesentium voluptatem cupiditate ut dignissimos sit perferendis
-      ex placeat esse nobis, pariatur eius doloribus molestias nostrum quia consequuntur
-      obcaecati accusamus est maiores. Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Praesentium voluptatem cupiditate ut dignissimos sit perferendis ex placeat
-      esse nobis, pariatur eius doloribus molestias nostrum quia consequuntur obcaecati
-      accusamus est maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Praesentium voluptatem cupiditate ut dignissimos sit perferendis ex placeat esse
-      nobis, pariatur eius doloribus molestias nostrum quia consequuntur obcaecati
-      accusamus est maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Praesentium voluptatem cupiditate ut dignissimos sit perferendis ex placeat esse
-      nobis, pariatur eius doloribus molestias nostrum quia consequuntur obcaecati
-      accusamus est maiores.
+      <Routes>
+        <Route index path="/" element={<DogCards />} />
+        <Route path="/partners" element={<Partners />} />
+        <Route path="/sliders" element={<Sliders />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </StyledAdmin>
   )
 }

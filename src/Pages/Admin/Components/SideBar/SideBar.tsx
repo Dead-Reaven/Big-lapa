@@ -11,25 +11,25 @@ import { ReactComponent as IcoLogOut } from './icons/LogOut.svg'
 function SideBar() {
   return (
     <StyledSideBar>
-      <Item text="Картки собак">
+      <Item link="admin" text="Картки собак">
         <IcoDogCard />
       </Item>
-      <Item text="Партнери">
+      <Item link="admin/partners" text="Партнери">
         <IcoPartners />
       </Item>
-      <Item text="Слайдери">
+      <Item link="admin/sliders" text="Слайдери">
         <IcoSliders />
       </Item>
-      <Item text="Звітність">
+      <Item link="admin/reports" text="Звітність">
         <IcoReports />
       </Item>
-      <Item text="Контакти">
+      <Item link="admin/contacts" text="Контакти">
         <IcoPhone />
       </Item>
-      <Item text="Налаштування">
+      <Item link="admin/settings" text="Налаштування">
         <IcoSettings />
       </Item>
-      <Item text="Log out">
+      <Item link="/logout" text="Log out">
         <IcoLogOut />
       </Item>
     </StyledSideBar>

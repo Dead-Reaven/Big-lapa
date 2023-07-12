@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './Components/UI/Theme.styles'
 import MainLayout from './Layout/MainLayout'
@@ -10,7 +10,7 @@ import AdminLayout from './Layout/AdminLayout'
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter basename="/Big-lapa/">
+      <HashRouter basename="/">
         <Routes>
           <Route element={<MainLayout />}>
             {/* Default route and test route */}
@@ -25,7 +25,7 @@ function App() {
             <Route path="admin" element={<Admin />}></Route>
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }

@@ -7,7 +7,7 @@ import {
   Flex,
   Bullet,
   SliderButton,
-  MobileSliderButton
+  MobileSliderButton,
 } from './Slider.style'
 
 function Slider() {

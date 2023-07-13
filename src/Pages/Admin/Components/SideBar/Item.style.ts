@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { ReactComponent as Mark } from './icons/GreenMark.svg'
 
 const Text = styled.span`
   font-size: calc(10px + 0.7vw);
@@ -10,10 +11,20 @@ const Text = styled.span`
     font-size: 0;
   }
 `
+interface Props {
+  $active: boolean
+}
+
+const GreenMark = styled(Mark)<Props>`
+  display: ${({ $active }) => !$active && ` none`};
+  height: 100%;
+  position: absolute;
+  left: -16px;
+`
 
 const StyledItem = styled.button`
   display: flex;
-  align-items: center;
+  align-content: center;
   height: 30px;
   margin-bottom: 40px;
 
@@ -37,4 +48,4 @@ const StyledItem = styled.button`
   }
 `
 
-export { StyledItem, Text }
+export { StyledItem, Text, GreenMark }

@@ -1,18 +1,21 @@
-import { Link } from 'react-router-dom'
-import { StyledItem, Text } from './Item.style'
+import { Link, useLocation } from 'react-router-dom'
+import { GreenMark, StyledItem, Text } from './Item.style'
 
 interface props {
-  children?: React.ReactNode
+  children?: React.ReactNode // ico
   text: string
   link: string
 }
 
 function Item(props: props) {
   const { children, text, link } = props
+
+  const isActive = () => useLocation().pathname === link
+
   return (
     <StyledItem>
       <Link to={link}>
-        {children} <Text>{text}</Text>
+        <GreenMark $active={isActive()} /> {children} <Text>{text}</Text>
       </Link>
     </StyledItem>
   )

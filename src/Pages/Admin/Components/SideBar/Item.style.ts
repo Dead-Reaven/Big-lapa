@@ -1,0 +1,40 @@
+import { styled } from 'styled-components'
+
+const Text = styled.span`
+  font-size: calc(10px + 0.7vw);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  text-align: left;
+  @media screen and (max-width: 767px) {
+    font-size: 0;
+  }
+`
+
+const StyledItem = styled.button`
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 40px;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    overflow: visible;
+  }
+  &:hover {
+    transition: 0.1s;
+    transform: scale(105%);
+    margin-left: 5%;
+    overflow: visible;
+  }
+  &:last-child {
+    color: red;
+    margin-top: 80px;
+  }
+  @media screen and (max-width: 767px) {
+  }
+`
+
+export { StyledItem, Text }

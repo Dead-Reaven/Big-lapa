@@ -2,7 +2,7 @@ export const theme = {
   colors: {
     background: '#F9F9F9',
     grey: '#ACABAB',
-    lightGrey: '#EDEDED',
+    lightGrey: '#CDCDCD',
     dark: '#2E2E2E',
     green: '#758650',
     lightGreen: '#B5C268',

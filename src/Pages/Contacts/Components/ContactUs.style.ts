@@ -117,11 +117,9 @@ const SectionWrapper = styled.div`
 `
 const RestyledInput = styled(StyledInput)`
   width: 100%;
-  max-width: 700px;
 `
 const StyledTextArea = styled.textarea`
   width: 100%;
-  max-width: 700px;
   height: 175px;
   padding: 12px;
   background-color: ${({ theme }) => theme.colors.background};
@@ -136,7 +134,6 @@ const StyledTextArea = styled.textarea`
 `
 const StyledButton = styled(Button)`
   width: 100%;
-  max-width: 700px;
 `
 export {
   StyledTitleH2,

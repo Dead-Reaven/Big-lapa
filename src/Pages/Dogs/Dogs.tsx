@@ -1,4 +1,4 @@
-import Gallery from './Components/Gallery/Gallery'
+import Gallery from '../../Components/Gallery/Gallery'
 import Slider from './Components/Slider/Slider'
 import { DogsStyled } from './Dogs.style'
 

@@ -1,5 +1,6 @@
 export { default as About } from './About'
-export { default as Dogs } from './Dogs'
+export { default as Dogs } from './Dogs/Dogs'
 export { default as Home } from './Home/Home'
-export { default as Contacts } from './Contacts/Contacts'
+export { default as Contacts } from './Contacts'
+export { default as Dog } from './Dog'
 export { default as NotFound } from './NotFound/NotFound'

@@ -1,43 +1,78 @@
-import { theme } from '../../../../styles/Theme.styles'
+import { theme } from '../../../../Components/UI/Theme.styles'
 import styled from 'styled-components'
-import mainPhoto from '../../../../assets/img/main_photo.png'
+import mainPhoto from './img/main_photo.png'
+import { ReactComponent as Bullet } from './img/bullet_first.svg'
 
 const SliderStyled = styled.div`
+  height: calc(100vh - 96px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: ${theme.colors.background};
   background-color: ${theme.colors.green};
 `
-const TextContainer = styled.div`
-  height: 100%;
+
+const Flex = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10%;
-  text-align: justify;
-  position: relative;
-  & svg {
-    position: absolute;
-    bottom: 0px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2vh;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
   }
 `
 
-const H1 = styled.pre`
-  font-size: 56px;
-  font-weight: 700;
-  line-height: 120%;
-  /* margin-bottom: 10%; */
-`
-const SubText = styled.pre`
-  font-size: 18px;
-  line-height: 140%;
+const TextContainer = styled.div`
+  flex: 0 0 60%;
+  max-width: 624px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @media screen and (max-width: 1279px) {
+    flex: 0 0 48%;
+  }
+  @media screen and (max-width: 767px) {
+    gap: 20px;
+    text-align: center;
+    h1 {
+      text-align: center;
+    }
+  }
 `
 
 const YellowBlock = styled.div`
-  display: flex;
-  flex: 100% 1 1;
-  max-width: 100%;
+  flex: 0 1 50%;
+  aspect-ratio: 1/1;
+  max-height: 70vh;
   background: ${theme.colors.yellow} url(${mainPhoto}) bottom no-repeat;
   background-size: contain;
-  border-radius: 5%;
+  border-radius: 3%;
+  z-index: 0;
+
+  @media screen and (max-width: 1279px) {
+    aspect-ratio: 1/1.1;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 80%;
+    max-height: 45vh;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+  }
 `
 
-export { SliderStyled, YellowBlock, SubText, H1, TextContainer }
+const BulletIco = styled(Bullet)`
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  @media screen and (max-width: 767px) {
+    left: 50%;
+    bottom: 14px;
+    transform: translate(-50%);
+  }
+`
+
+export { SliderStyled, YellowBlock, TextContainer, Flex, BulletIco as Bullet }

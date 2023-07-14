@@ -1,29 +1,28 @@
 import React from 'react'
-import Container from '../../../../styles/Container.style'
-import Flex from '../../../../styles/Flex.styles'
-import TitleH2 from '../../../../styles/TitleH2.styles'
-import TitleH3 from '../../../../styles/TitleH3.styles'
-import Button from '../../../../styles/Button.styles'
-import Dogs from './../../../../assets/img/Dogs_donation.png'
-import FirstRectangle from '../../../../assets/img/First_green_rectangle.svg'
-import SecondRectangle from '../../../../assets/img/Second_green_rectangle.svg'
-
+import Flex from '../../../../Components/UI/Flex.styles'
+import TitleH2 from '../../../../Components/UI/TitleH2.styles'
+import TitleH3 from '../../../../Components/UI/TitleH3.styles'
+import Dogs from './img/Dogs_donation.png'
 import DonationCard from './DonationCard'
 import Amounts from './Amounts'
-import StyledAdress from './Adress.style'
-import StyledDogs from './Dogs.style'
-import StyledFirstRectangle from './FirstRectangle.style'
-import StyledSecondRectangle from './SecondRectangle.style'
-import DonationContent from './DonationContent.style'
+import Adress from './Adress'
+import {
+  StyledDonation,
+  DonationContainer,
+  DonationContent,
+  DonationButton,
+  StyledDogs,
+  DonationFlex,
+} from './Donation.style'
 
 function Donation() {
   return (
-    <section>
-      <Container paddingtop="45px" paddingbottom="175px">
+    <StyledDonation>
+      <DonationContainer>
         <DonationContent>
           <Flex direction="column" align="center">
             <TitleH2>Безпечний донат</TitleH2>
-            <Flex gap="24px" width="100%">
+            <DonationFlex gap="24px" width="100%">
               <DonationCard>
                 <div>
                   <TitleH3>Разовий внесок</TitleH3>
@@ -32,29 +31,26 @@ function Donation() {
                   </span>
                 </div>
                 <Amounts />
-                <Button>Зробити внесок</Button>
+                <DonationButton>Зробити внесок</DonationButton>
               </DonationCard>
               <DonationCard>
                 <div>
                   <TitleH3>Негрошова допомога</TitleH3>
                   <p>
                     Існує багато способів допомоги – оберіть свій!
-                    <br /> Допомога вуличним собакам не обмежується лише фінансами.
-                    <br /> Ми постійно потребуємо кормів, медикаментів,
-                    <br />
-                    розповсюдження інформації тощо.
+                    <br /> Допомога вуличним собакам не обмежується лише фінансами. Ми
+                    постійно потребуємо кормів, медикаментів, розповсюдження інформації
+                    тощо.
                   </p>
                 </div>
-                <StyledAdress />
+                <Adress />
               </DonationCard>
-            </Flex>
+            </DonationFlex>
           </Flex>
         </DonationContent>
-        <StyledFirstRectangle src={FirstRectangle} />
-        <StyledSecondRectangle src={SecondRectangle} />
         <StyledDogs src={Dogs} />
-      </Container>
-    </section>
+      </DonationContainer>
+    </StyledDonation>
   )
 }
 

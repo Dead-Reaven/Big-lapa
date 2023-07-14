@@ -9,6 +9,11 @@ describe('User test App.e2e.ts', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({ headless: 'new' })
     page = await browser.newPage()
+    await page.setViewport({
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 1,
+    })
   })
   afterAll(async () => await browser.close())
 
@@ -25,7 +30,7 @@ describe('User test App.e2e.ts', () => {
       link?.click()
       await page.waitForNavigation()
       const currentURL = page.url()
-      expect(currentURL).toBe('http://localhost:3000/Big-lapa/')
+      expect(currentURL).toBe('http://localhost:3000/Big-lapa/#/')
     })
 
     it('should navigate to the dogs page', async () => {
@@ -33,7 +38,7 @@ describe('User test App.e2e.ts', () => {
       link?.click()
       await page.waitForNavigation()
       const currentURL = page.url()
-      expect(currentURL).toBe('http://localhost:3000/Big-lapa/dogs')
+      expect(currentURL).toBe('http://localhost:3000/Big-lapa/#/dogs')
     })
 
     it('should navigate to the about page', async () => {
@@ -41,7 +46,7 @@ describe('User test App.e2e.ts', () => {
       link?.click()
       await page.waitForNavigation()
       const currentURL = page.url()
-      expect(currentURL).toBe('http://localhost:3000/Big-lapa/about')
+      expect(currentURL).toBe('http://localhost:3000/Big-lapa/#/about')
     })
 
     it('should navigate to the contacts page', async () => {
@@ -49,16 +54,16 @@ describe('User test App.e2e.ts', () => {
       link?.click()
       await page.waitForNavigation()
       const currentURL = page.url()
-      expect(currentURL).toBe('http://localhost:3000/Big-lapa/contacts')
+      expect(currentURL).toBe('http://localhost:3000/Big-lapa/#/contacts')
     })
     it('should navigate to the 404 page', async () => {
-      await page.goto('http://localhost:3000/Big-lapa/mistakepage')
+      await page.goto('http://localhost:3000/Big-lapa/#/mistakepage')
       await page.waitForSelector('[data-testid="not-found-page"]')
       const text = await page.$eval(
         '[data-testid="not-found-page"]',
         (e) => e.textContent,
       )
-      expect(text).toContain('404 NotFound')
+      expect(text).toContain('404')
     })
   })
 })

@@ -1,28 +1,48 @@
-import { NavLink } from 'react-router-dom'
-import Flex from '../../styles/Flex.styles'
-import NavItem from './NavItem.style'
+import { StyledNavBar, NavFlex } from './Header.style'
+import NavItem from './NavItem'
 
-const NavBar = () => {
+interface Props {
+  setExtendNavbar?: any
+}
+
+const navItems = [
+  {
+    id: Math.random().toString(),
+    title: 'Про притулок',
+    to: 'about',
+    testId: 'about-link',
+  },
+  {
+    id: Math.random().toString(),
+    title: 'Наші хвости',
+    to: 'dogs',
+    testId: 'dogs-link',
+  },
+  {
+    id: Math.random().toString(),
+    title: 'Контакти',
+    to: 'contacts',
+    testId: 'contacts-link',
+  },
+]
+
+const NavBar = ({ setExtendNavbar }: Props) => {
   return (
-    <nav>
-      <Flex gap="20px">
-        <NavItem>
-          <NavLink to="about" end data-testid="about-link">
-            Про притулок
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="dogs" data-testid="dogs-link">
-            Наші хвости
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="contacts" data-testid="contacts-link">
-            Контакти
-          </NavLink>
-        </NavItem>
-      </Flex>
-    </nav>
+    <StyledNavBar>
+      <ul>
+        <NavFlex gap="20px">
+          {navItems.map((item) => (
+            <NavItem
+              title={item.title}
+              key={item.id}
+              to={item.to}
+              testId={item.testId}
+              setExtendNavbar={setExtendNavbar}
+            />
+          ))}
+        </NavFlex>
+      </ul>
+    </StyledNavBar>
   )
 }
 

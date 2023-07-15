@@ -1,5 +1,4 @@
 import { styled } from 'styled-components'
-
 import { ReactComponent as FbIcon } from './svgs-footer/fb.svg'
 import { ReactComponent as InstaIcon } from './svgs-footer/insta.svg'
 

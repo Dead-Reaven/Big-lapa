@@ -1,7 +1,4 @@
-import dogS from '../img/contact-us/dogS2x.png'
 import dogM from '../img/contact-us/dogM2x.png'
-import dogL from '../img/contact-us/dogL2x.png'
-import dogXL from '../img/contact-us/dogXL2x.png'
 import { ReactComponent as IcoPhone } from '../img/contact-us/phone.svg'
 import { ReactComponent as IcoMail } from '../img/contact-us/mail.svg'
 import { ReactComponent as IcoMap } from '../img/contact-us/map.svg'
@@ -32,13 +29,8 @@ function ContactUs() {
         <StyledTitleH2>Контакти</StyledTitleH2>
         <SectionWrapper>
           <StyledContactsDiv>
-            <picture>
-              <source srcSet={dogS} media="(max-width: 766px)" />
-              <source srcSet={dogM} media="(min-width: 767px)" />
-              <source srcSet={dogL} media="(min-width: 1279px)" />
-              <source srcSet={dogXL} media="(min-width: 1439px)" />
-              <StyledImage src={dogS} alt="cute dog" />
-            </picture>
+            <StyledImage src={dogM} alt="cute dog" />
+
             <StyledContactsList>
               <StyledListItem>
                 <IcoPhone /> <p>+38 063 628 6630</p>

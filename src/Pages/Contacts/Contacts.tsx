@@ -1,14 +1,14 @@
 import ContactUs from './Components/ContactUs'
 import Slider from './Components/Slider'
-import { GridContainer, StyledHome } from './Contacts.style'
+import { GridContainer, StyledContacts } from './Contacts.style'
 function Contacts() {
   return (
-    <StyledHome data-testid="contacts-page">
+    <StyledContacts data-testid="contacts-page">
       <GridContainer>
         <Slider />
         <ContactUs />
       </GridContainer>
-    </StyledHome>
+    </StyledContacts>
   )
 }
 

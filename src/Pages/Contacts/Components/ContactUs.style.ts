@@ -27,6 +27,7 @@ const StyledImage = styled.img`
   }
   @media (min-width: 1279px) {
     width: 100%;
+    max-height: 356px;
   }
 `
 const StyledContactsList = styled.ul`

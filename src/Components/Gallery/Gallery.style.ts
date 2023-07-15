@@ -1,12 +1,77 @@
-import { styled } from 'styled-components'
-import { theme } from '../../../../Components/UI/Theme.styles'
-import TitleH2 from '../../../../Components/UI/TitleH2.styles'
+import { styled, css } from 'styled-components'
+import { theme } from '../UI/Theme.styles'
+import TitleH2 from '../UI/TitleH2.styles'
+import Container from '../UI/Container.style'
+import Flex from '../UI/Flex.styles'
+import Button from '../UI/Button.styles'
 
-const StyledGallery = styled.section`
+interface Props {
+  admin?: boolean
+}
+
+const StyledGallery = styled.section<Props>`
   padding: 110px 0;
 
   @media (max-width: 1279px) {
     padding: 80px 0;
+  }
+
+  ${({ admin }) =>
+    admin &&
+    css`
+      padding: 0 !important;
+
+      ${Container} {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+      }
+
+      ${Flex} {
+        align-items: end;
+      }
+
+      ${DogsCards} {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+
+        @media (max-width: 1279px) {
+          gap: 20px;
+        }
+
+        @media (max-width: 767px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      ${StyledDogCard} {
+        p {
+          margin-bottom: 20px;
+        }
+
+        button {
+          width: 100%;
+        }
+
+        &:hover {
+          all: unset;
+          text-align: left;
+
+          svg {
+            display: none;
+          }
+        }
+      }
+    `}
+`
+
+const AdminGalleryButton = styled(Button)`
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 80px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 40px;
   }
 `
 
@@ -111,6 +176,7 @@ const PaginationNav = styled.ul`
 
 export {
   StyledGallery,
+  AdminGalleryButton,
   GalleryTitle,
   DogsCards,
   StyledDogCard,

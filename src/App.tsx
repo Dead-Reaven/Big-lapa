@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router'
-import { BrowserRouter, HashRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './Components/UI/Theme.styles'
 import MainLayout from './Layout/MainLayout'

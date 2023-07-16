@@ -1,28 +1,34 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import usePost from './usePost'
 
-const data = {
-  // other data
-  contacts: {
-    phone1: '+38 068 000 7777',
-    phone2: '+38  095 111 1447',
-    mail: 'test@gmail.com',
-  },
-  type: 'post',
+interface Contacts {
+  email: string
+  first_phoneNumber: string
+  second_phoneNumber: string
 }
 
-function useApi() {
-  const [State, setState] = useState(data)
-  useEffect(() => {
-    fetch('https://big-lapa-api-production.up.railway.app/api/test')
-      .then((res) => res.json())
-      .then((res) => {
-        setState(res)
-      })
-      .catch((error) => console.log(error))
-  }, [])
-  console.log(State)
+type Select = 'contacts'
+type Type = 'get' | 'post'
 
-  return <div>useApi</div>
+function useApi(select: Select, type: Type) {
+  const [state, setState] = useState<Contacts>()
+
+  useEffect(() => {
+    if (select === 'contacts') {
+      if (type === 'get') {
+        const getData = async (handleSetState: React.Dispatch<Contacts>) => {
+          const response = await fetch(
+            'https://big-lapa-api-production.up.railway.app/api/main/get',
+          )
+          const data = await response.json()
+          handleSetState(data)
+        }
+        getData(setState)
+      }
+    }
+  }, [])
+
+  return state
 }
 
 export default useApi

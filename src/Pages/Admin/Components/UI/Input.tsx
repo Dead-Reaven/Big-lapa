@@ -1,7 +1,7 @@
 import { Label, StyledInput } from './Input.style'
 
 interface Props {
-  placeholder: string
+  placeholder: string | undefined
   label: string
 }
 
@@ -11,7 +11,7 @@ function Input(props: Props) {
   return (
     <>
       <Label>{label}</Label>
-      <StyledInput placeholder={placeholder} />
+      <StyledInput placeholder={placeholder || ''} />
     </>
   )
 }

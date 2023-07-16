@@ -1,6 +1,6 @@
 import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/Form.style'
 import Input from '../../Components/UI/Input'
-import useApi from '../../../../API/useApi'
+import useApi from '../../../../API/useGet'
 import usePost from '../../../../API/usePost'
 
 function Contacts() {

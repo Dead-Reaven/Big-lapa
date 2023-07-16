@@ -59,5 +59,6 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton'],
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 }

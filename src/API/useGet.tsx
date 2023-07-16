@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import usePost from './usePost'
 
 interface Contacts {
   email: string

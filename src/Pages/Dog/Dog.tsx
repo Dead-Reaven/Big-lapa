@@ -2,6 +2,7 @@ import Container from '../../Components/UI/Container.style'
 import TitleH2 from '../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../Components/UI/TitleH3.styles'
 import Label from './Label'
+import DogSlider from './Components/DogSlider/DogSlider'
 import { ReactComponent as FemaleIco } from './img/female.svg'
 import { ReactComponent as MaleIco } from './img/male.svg'
 import { ReactComponent as BreedIco } from './img/breed.svg'
@@ -18,6 +19,7 @@ import {
   DogText,
   HiddenDogText,
 } from './Dog.style'
+import mockImages from '../Dog/Components/DogSlider/mockImages'
 
 function Dog() {
   const data = {
@@ -43,7 +45,9 @@ function Dog() {
               <TitleH3 marginBottom="24px">Про тваринку:</TitleH3>
               <p>{description}</p>
             </HiddenDogText>
-            <Slider>Slider</Slider>
+            <Slider>
+              <DogSlider images={mockImages} />
+            </Slider>
             <DogContent>
               <DogTitle>
                 <TitleH2>{name}</TitleH2>

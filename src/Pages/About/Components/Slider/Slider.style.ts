@@ -10,10 +10,12 @@ const SliderStyled = styled.div`
   justify-content: center;
   color: ${theme.colors.background};
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%),
-    url(${mainPhoto});
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    url(${mainPhoto}) center/cover no-repeat;
+
+  @media screen and (max-width: 767px) {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
+      url(${mainPhoto}) center/cover no-repeat;
+  }
 
   ${Container} {
     height: calc(100vh - 96px);
@@ -33,8 +35,17 @@ const SliderContent = styled.div`
     flex: 0 0 48%;
   }
   @media screen and (max-width: 767px) {
-    gap: 20px;
+    height: 65%;
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 100%;
     text-align: center;
+    align-items: center;
+    justify-content: space-between;
     h1 {
       text-align: center;
     }
@@ -63,10 +74,6 @@ const SliderButton = styled.button`
   &:disabled {
     opacity: 0.6;
   }
-
-  @media (max-width: 767px) {
-    display: none;
-  }
 `
 
 const BulletIco = styled(Bullet)`
@@ -75,7 +82,7 @@ const BulletIco = styled(Bullet)`
   z-index: 1;
   @media screen and (max-width: 767px) {
     left: 50%;
-    bottom: 85px;
+    bottom: 130px;
     transform: translate(-50%);
   }
 `

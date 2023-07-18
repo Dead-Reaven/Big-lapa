@@ -9,11 +9,9 @@ function Slider() {
         <SliderContent>
           <TitleH1>Підтримай друга, врятуй тварину!</TitleH1>
           <SliderButton>Детальніше</SliderButton>
-
         </SliderContent>
         <Bullet />
       </Container>
-
     </SliderStyled>
   )
 }

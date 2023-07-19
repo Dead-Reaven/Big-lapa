@@ -34,7 +34,7 @@ function Footer() {
               <NavLink to="about">Про притулок</NavLink>
             </ListItem>
             <ListItem>
-              <NavLink to="dogs">Наші хвостики</NavLink>
+              <NavLink to="dogs">Наші хвости</NavLink>
             </ListItem>
             <ListItem>
               <AbsoluteLink href="path/to/confdentiality/agreement" target="_blank">

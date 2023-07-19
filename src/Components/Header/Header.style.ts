@@ -131,6 +131,7 @@ const StyledHeaderRight = styled(Flex)<HeaderRightProps>`
   }
 
   @media (max-width: 767px) {
+    width: 240px;
     ${({ extendNavbar }) => extendNavbar && 'flex-direction: row-reverse;'}
   }
 `
@@ -145,7 +146,15 @@ const HeaderButton = styled(Button)<HeaderButtonProps>`
     font-size: ${({ theme }) => theme.fontSizes.mobileButtonText};
   }
   @media (max-width: 767px) {
-    ${({ extendNavbar }) => extendNavbar && 'display: none;'}
+    padding: 12.5px 23px;
+    span {
+      display: none;
+    }
+    &::after {
+      content: 'Підтримати';
+    }
+
+    ${({ extendNavbar }) => extendNavbar && 'display: none;'};
   }
 `
 

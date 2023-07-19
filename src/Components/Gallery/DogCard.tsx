@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ReactComponent as IcoPaws } from './img/Paws.svg'
-import { StyledDogCard } from './Gallery.style'
+import { ReactComponent as DeleteIco } from './img/delete.svg'
+import { Buttons, StyledDogCard } from './Gallery.style'
 import TitleH3 from '../UI/TitleH3.styles'
 import Button from '../UI/Button.styles'
 
@@ -36,7 +37,12 @@ function DogCard({ dog, admin }: Props) {
           <p>
             {sex}, {age}
           </p>
-          <Button>Редагувати</Button>
+          <Buttons>
+            <Button>Редагувати</Button>
+            <Button>
+              <DeleteIco />
+            </Button>
+          </Buttons>
         </div>
       )}
     </StyledDogCard>

@@ -56,10 +56,6 @@ const StyledGallery = styled.section<Props>`
         &:hover {
           all: unset;
           text-align: left;
-
-          svg {
-            display: none;
-          }
         }
       }
     `}
@@ -123,6 +119,21 @@ const StyledDogCard = styled.div`
   }
 `
 
+const Buttons = styled.div`
+  display: flex;
+  gap: 12px;
+
+  :nth-child(2) {
+    max-width: 56px;
+    padding: 16px;
+
+    svg {
+      position: relative;
+      display: block;
+    }
+  }
+`
+
 const Pagination = styled.div`
   width: 100%;
   display: flex;
@@ -180,6 +191,7 @@ export {
   GalleryTitle,
   DogsCards,
   StyledDogCard,
+  Buttons,
   Pagination,
   PaginationButton,
   PaginationNav,

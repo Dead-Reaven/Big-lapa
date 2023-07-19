@@ -1,7 +1,7 @@
 import { theme } from '../../../../Components/UI/Theme.styles'
 import styled from 'styled-components'
 import mainPhoto from './img/main_photo.png'
-import { ReactComponent as Bullet } from './img/bullet_first.svg'
+import { ReactComponent as Bullet } from './img/bullet_second.svg'
 import Container from '../../../../Components/UI/Container.style'
 
 const SliderStyled = styled.div`

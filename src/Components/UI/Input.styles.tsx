@@ -20,15 +20,15 @@ const StyledInput = styled(Input)<Props>`
   background-color: ${({ theme }) => theme.colors.background};
   caret-color: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.dark};
-  &:focus {
-    border: 2px solid ${({ theme }) => theme.colors.yellow};
-  }
   ${({ withSvg }) =>
     !withSvg &&
     css`
       padding: ${({ theme }) => theme.paddings.input};
       border: 1px solid ${({ theme }) => theme.colors.yellow};
       border-radius: 4px;
+      &:focus {
+        border: 2px solid ${({ theme }) => theme.colors.yellow};
+      }
     `}
 `
 

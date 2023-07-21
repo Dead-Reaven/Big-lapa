@@ -29,17 +29,22 @@ const StyledGallery = styled.section<Props>`
 
       ${Flex} {
         align-items: end;
+
+        @media (max-width: 1439px) {
+          align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+          align-items: end;
+        }
       }
 
       ${DogsCards} {
         grid-template-columns: repeat(3, 1fr);
         gap: 40px;
 
-        @media (max-width: 1279px) {
-          gap: 20px;
-        }
-
-        @media (max-width: 767px) {
+        @media (max-width: 1439px) {
+          gap: 17px;
           grid-template-columns: repeat(2, 1fr);
         }
       }
@@ -51,6 +56,10 @@ const StyledGallery = styled.section<Props>`
 
         button {
           width: 100%;
+
+          @media (max-width: 1279px) {
+            padding: 17px 2px;
+          }
         }
 
         &:hover {
@@ -123,13 +132,25 @@ const Buttons = styled.div`
   display: flex;
   gap: 12px;
 
+  @media (max-width: 1279px) {
+    gap: 8px;
+  }
+
   :nth-child(2) {
     max-width: 56px;
     padding: 16px;
 
+    @media (max-width: 1279px) {
+      padding: 16px 2px;
+    }
+
     svg {
-      position: relative;
+      /* align-self: center;
+      position: relative; */
       display: block;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
     }
   }
 `

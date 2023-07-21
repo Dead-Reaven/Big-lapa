@@ -31,7 +31,7 @@ function DogCard({ dog, admin }: Props) {
         </Link>
       )}
       {admin && (
-        <div>
+        <Link to="/admin/dog-card">
           <img src={src} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>
@@ -43,7 +43,7 @@ function DogCard({ dog, admin }: Props) {
               <DeleteIco />
             </Button>
           </Buttons>
-        </div>
+        </Link>
       )}
     </StyledDogCard>
   )

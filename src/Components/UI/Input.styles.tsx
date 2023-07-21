@@ -2,19 +2,11 @@ import styled, { css } from 'styled-components'
 
 interface Props {
   type?: string
-  placeholder?: string
-  className?: string
   withSvg?: boolean
   width?: string
 }
 
-function Input({ type, placeholder, className }: Props) {
-  return (
-    <input type={type || 'text'} placeholder={placeholder || ''} className={className} />
-  )
-}
-
-const StyledInput = styled(Input)<Props>`
+const StyledInput = styled.input<Props>`
   width: ${({ width }) => width || '80%'};
   padding: ${({ theme }) => theme.paddings.input};
   background-color: ${({ theme }) => theme.colors.background};
@@ -24,10 +16,10 @@ const StyledInput = styled(Input)<Props>`
     !withSvg &&
     css`
       padding: ${({ theme }) => theme.paddings.input};
-      border: 1px solid ${({ theme }) => theme.colors.yellow};
+      outline: 1px solid ${({ theme }) => theme.colors.yellow};
       border-radius: 4px;
       &:focus {
-        border: 2px solid ${({ theme }) => theme.colors.yellow};
+        outline: 2px solid ${({ theme }) => theme.colors.yellow};
       }
     `}
 `

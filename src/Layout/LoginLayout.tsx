@@ -1,11 +1,16 @@
+import { Outlet } from 'react-router'
+import { Footer, Header } from '../Components'
+import Cookies from '../Components/Cookies/Cookies'
 import ResetStyles from '../Components/UI/Global.styles'
-import Login from '../Pages/Login/Login'
 
 const LoginLayout = () => {
   return (
     <>
       <ResetStyles />
-      <Login />
+      <Header />
+      <Outlet />
+      <Cookies />
+      <Footer />
     </>
   )
 }

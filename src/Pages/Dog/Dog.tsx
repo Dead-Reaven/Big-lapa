@@ -19,7 +19,6 @@ import {
   DogText,
   HiddenDogText,
 } from './Dog.style'
-import mockImages from '../Dog/Components/DogSlider/mockImages'
 
 function Dog() {
   const data = {
@@ -46,7 +45,7 @@ function Dog() {
               <p>{description}</p>
             </HiddenDogText>
             <Slider>
-              <DogSlider images={mockImages} />
+              <DogSlider />
             </Slider>
             <DogContent>
               <DogTitle>

@@ -1,67 +1,86 @@
 import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { Navigation, Thumbs } from 'swiper/modules'
-import {
-  StyledThumbWrapper,
-  StyledImg,
-  StyledThumbImg,
-  StyledSwiperSlide,
-  StyledSwiper,
-} from './DogSlider.style'
-
 import { useState } from 'react'
+import {
+  StyledThumbs,
+  ThumbsWrapper,
+  StyledMainImage,
+  MainImageWrapper,
+  StyledThumbsDiv,
+  StyledThumbsBtnsContainer,
+  StyledNextButton,
+  StyledPrevButton,
+} from './DogSlider.style'
+import { ReactComponent as IcoPrevBtn } from '../DogSlider/img/PrevButton.svg'
+import { ReactComponent as IcoNextBtn } from '../DogSlider/img/NextButton.svg'
+function DogSlider() {
+  const images = [
+    {
+      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog1.png',
+      title: 'dog 1',
+      id: 0,
+    },
+    {
+      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog2.png',
+      title: 'dog 2',
+      id: 1,
+    },
+    {
+      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog3.png',
+      title: 'dog 3',
+      id: 2,
+    },
+    {
+      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog4.png',
+      title: 'dog 4',
+      id: 3,
+    },
+    {
+      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog5.png',
+      title: 'dog 5',
+      id: 4,
+    },
+    {
+      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog5.png',
+      title: 'dog 5',
+      id: 5,
+    },
+  ]
 
-interface DogImage {
-  image: string
-  title: string
-  id: string
-}
+  const [slide, setSlide] = useState(0)
 
-interface DogSliderProps {
-  images: DogImage[]
-}
-function DogSlider({ images }: DogSliderProps) {
-  const [thumbsSwiper, setThumbsSwiper] = useState()
+  const handleClick = (imageIndex: number) => {
+    setSlide(imageIndex)
+  }
 
+  const onPrevClick = () => {
+    setSlide(slide === 0 ? images.length - 1 : slide - 1)
+  }
+  const onNextClick = () => {
+    setSlide(slide === images.length - 1 ? 0 : slide + 1)
+  }
+
+  const sliderData = images[slide]
   return (
-    <>
-      <Swiper
-        loop={true}
-        modules={[Navigation, Thumbs]}
-        thumbs={{ swiper: thumbsSwiper }}
-        grabCursor={true}
-        spaceBetween={6}
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        {images.map((image) => (
-          <SwiperSlide key={image.id}>
-            <StyledImg src={image.image} alt={image.title} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      <StyledSwiper
-        loop={true}
-        navigation={true}
-        modules={[Navigation, Thumbs]}
-        spaceBetween={6}
-        slidesPerView={4}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={setThumbsSwiper}
-      >
-        {images.map((image) => (
-          <StyledSwiperSlide key={image.id}>
-            <StyledThumbWrapper>
-              <StyledThumbImg src={image.image} alt={image.title} />
-            </StyledThumbWrapper>
-          </StyledSwiperSlide>
-        ))}
-      </StyledSwiper>
-    </>
+    <div>
+      <MainImageWrapper>
+        <StyledMainImage src={sliderData.image} alt={sliderData.title} />
+      </MainImageWrapper>
+      <StyledThumbsBtnsContainer>
+        <StyledPrevButton onClick={onPrevClick}>
+          <IcoPrevBtn />
+        </StyledPrevButton>
+        <StyledNextButton onClick={onNextClick}>
+          <IcoNextBtn />
+        </StyledNextButton>
+        <ThumbsWrapper>
+          {images.map(({ id, image, title }, index) => (
+            <StyledThumbsDiv key={id} isActive={slide === index}>
+              <StyledThumbs src={image} onClick={() => handleClick(index)} alt={title} />
+            </StyledThumbsDiv>
+          ))}
+        </ThumbsWrapper>
+      </StyledThumbsBtnsContainer>
+    </div>
   )
 }
 

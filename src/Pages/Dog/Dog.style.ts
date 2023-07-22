@@ -46,7 +46,6 @@ const DogFlex = styled(Flex)`
 
 const Slider = styled.div`
   flex: 1;
-  background-color: #fff;
 `
 
 const DogContent = styled.div`

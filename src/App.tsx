@@ -3,7 +3,7 @@ import { HashRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './Components/UI/Theme.styles'
 import MainLayout from './Layout/MainLayout'
-import { Home, Dogs, About, Contacts, NotFound } from './Pages'
+import { Home, Dogs, About, Contacts, NotFound, Dog } from './Pages'
 import Admin from './Pages/Admin/Admin'
 import AdminLayout from './Layout/AdminLayout'
 
@@ -16,6 +16,7 @@ function App() {
             {/* Default route and test route */}
             <Route index path="/" element={<Home />} />
             <Route path="dogs" element={<Dogs />} />
+            <Route path="dog" element={<Dog />} />
             <Route path="about" element={<About />} />
             <Route path="contacts" element={<Contacts />}></Route>
             {/* not found route */}

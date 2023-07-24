@@ -5,14 +5,14 @@ import { SearchInput, StyledDogSearch } from './DogSearch.style'
 import { ReactComponent as IcoSearch } from './icons/search_ico.svg'
 import { ReactComponent as IcoSettings } from './icons/settings_ico.svg'
 import CheckBoxItem from './CheckBoxItem'
-
 import { DogTypes } from '../../API/types'
 
-function DogSearch(props: DogTypes | null) {
-  if (!props || !props.data) {
-    // Обработка случая, когда props равен null или не содержит свойства data
-    return null
-  }
+interface DogSearchProps {
+  data: DogTypes | null
+}
+
+function DogSearch({ data }: DogSearchProps) {
+  console.log(data)
 
   const [isOpen, setIsOpen] = useState(false)
   const [genders, setGenders] = useState({

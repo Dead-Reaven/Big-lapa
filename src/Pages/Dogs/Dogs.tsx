@@ -6,11 +6,12 @@ import Slider from './Components/Slider/Slider'
 import { DogsStyled } from './Dogs.style'
 
 function Dogs() {
-  const data: DogTypes | null = useGet('dogs', 'get')
+  const fetchedData = useGet('dogs', 'get') as DogTypes | null
+
   return (
     <DogsStyled data-testid="dogs-page">
       <Slider />
-      <DogSearch data={data} />
+      <DogSearch data={fetchedData} />
       <Gallery />
     </DogsStyled>
   )

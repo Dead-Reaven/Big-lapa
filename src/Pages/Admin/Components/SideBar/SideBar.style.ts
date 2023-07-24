@@ -8,11 +8,14 @@ const StyledSideBar = styled.div`
   height: calc(100vh - 96px);
   padding: 40px 17px 0 0;
   border-right: 1px solid #cdcdcd66;
-  @media screen and (max-width: 1279px) {
-    position: fixed;
+  /* overflow-y: auto; */
+
+  position: sticky;
+  @media screen and (max-width: 767px) {
     display: block;
     padding: none;
     width: 40px;
+    max-width: 40px;
   }
 `
 export { StyledSideBar }

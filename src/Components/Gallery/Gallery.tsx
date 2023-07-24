@@ -13,6 +13,7 @@ import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
 
 import DogCard from './DogCard'
+import { Link } from 'react-router-dom'
 
 interface Props {
   admin?: boolean
@@ -67,7 +68,11 @@ function Gallery({ admin }: Props) {
     <StyledGallery admin={admin}>
       <Container>
         <Flex direction="column" align="center">
-          {admin && <AdminGalleryButton>Додати нову картку</AdminGalleryButton>}
+          {admin && (
+            <AdminGalleryButton>
+              <Link to="/admin/dog-card">Додати нову картку</Link>
+            </AdminGalleryButton>
+          )}
           {!admin && <GalleryTitle>Наші хвости</GalleryTitle>}
           <DogsCards>
             {dogsList.map((dog) => (

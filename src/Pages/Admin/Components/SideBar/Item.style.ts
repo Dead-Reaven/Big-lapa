@@ -7,7 +7,7 @@ const Text = styled.span`
   font-weight: 600;
   line-height: 140%;
   text-align: left;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1279px) {
     font-size: 0;
   }
 `

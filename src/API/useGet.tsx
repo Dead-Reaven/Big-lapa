@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import DogsJson from './testDogs.json'
+import { Contacts, DogTypes } from './types'
 
-interface Contacts {
-  email: string
-  first_phoneNumber: string
-  second_phoneNumber: string
-}
+type Select = 'contacts' | 'dogs'
+type Type = 'get'
 
-type Select = 'contacts'
-type Type = 'get' | 'post'
-
-function useApi(select: Select, type: Type) {
-  const [state, setState] = useState<Contacts>()
+function useGet(select: Select, type: Type) {
+  const [contacts, setContacts] = useState<Contacts | null>(null)
+  const [dogs, setDogs] = useState<DogTypes | null>(null)
 
   useEffect(() => {
     if (select === 'contacts') {
@@ -22,12 +19,21 @@ function useApi(select: Select, type: Type) {
           const data = await response.json()
           handleSetState(data)
         }
-        getData(setState)
+        getData(setContacts)
+      }
+    }
+
+    if (select === 'dogs') {
+      if (type === 'get') {
+        const getData = async (handleSetState: React.Dispatch<DogTypes>) => {
+          const res: DogTypes = DogsJson
+          handleSetState(res)
+        }
+        getData(setDogs)
       }
     }
   }, [])
 
-  return state
+  return select === 'contacts' ? contacts : dogs
 }
-
-export default useApi
+export default useGet

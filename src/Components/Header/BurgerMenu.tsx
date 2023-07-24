@@ -1,5 +1,4 @@
 import NavBar from './NavBar'
-import DogSearch from './DogSearch'
 import { StyledBurgerMenu } from './Header.style'
 
 interface Props {
@@ -18,7 +17,6 @@ function BurgerMenu({ className, extendNavbar, setExtendNavbar }: Props) {
       extendNavbar={extendNavbar}
     >
       <NavBar setExtendNavbar={setExtendNavbar} />
-      <DogSearch />
     </StyledBurgerMenu>
   )
 }

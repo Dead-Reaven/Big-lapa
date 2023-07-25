@@ -32,7 +32,7 @@ function DogCard({ dog, src, admin }: Props) {
         </Link>
       )}
       {admin && (
-        <Link to="/admin/dog-card">
+        <Link to="/admin/edit-card">
           <img src={src} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>

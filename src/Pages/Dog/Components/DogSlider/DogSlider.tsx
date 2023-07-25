@@ -12,37 +12,43 @@ import {
   ThumbsContainer,
   SliderContainer,
 } from './DogSlider.style'
+
+import dog1 from './img/dog1.png'
+import dog2 from './img/dog2.png'
+import dog3 from './img/dog3.png'
+import dog4 from './img/dog4.png'
+import dog5 from './img/dog5.png'
 import { ReactComponent as IcoPrevBtn } from '../DogSlider/img/PrevButton.svg'
 import { ReactComponent as IcoNextBtn } from '../DogSlider/img/NextButton.svg'
 function DogSlider() {
   const images = [
     {
-      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog1.png',
+      image: dog1,
       title: 'dog 1',
       id: 0,
     },
     {
-      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog2.png',
+      image: dog2,
       title: 'dog 2',
       id: 1,
     },
     {
-      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog3.png',
+      image: dog3,
       title: 'dog 3',
       id: 2,
     },
     {
-      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog4.png',
+      image: dog4,
       title: 'dog 4',
       id: 3,
     },
     {
-      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog5.png',
+      image: dog5,
       title: 'dog 5',
       id: 4,
     },
     {
-      image: '/Big-lapa/src/Pages/Dog/Components/DogSlider/img/dog5.png',
+      image: dog3,
       title: 'dog 5',
       id: 5,
     },

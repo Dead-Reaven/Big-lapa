@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+
 import {
   Characteristic,
   CharacteristicItem,
@@ -18,6 +19,9 @@ import {
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
 import StyledInput from '../../../../../Components/UI/Input.styles'
 import Button from '../../../../../Components/UI/Button.styles'
+import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
+
+import dog1 from '../../../../Dog/Components/DogSlider/img/dog1.png'
 import {
   PhotoIco,
   ArrowIco,
@@ -27,11 +31,27 @@ import {
   BreedIco,
   ChipIco,
 } from './img/DogCardIcons'
-import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
 
-function DogCard() {
+interface Props {
+  newCard?: boolean
+}
+
+function DogCard({ newCard }: Props) {
+  const data = {
+    name: 'Джулі',
+    age: '10 місяців',
+    sex: 'Дівчинка',
+    size: 'Великий',
+    breed: 'Лабрадор',
+    chip: 'Так',
+    description: `Джулі - чарівна та енергійна собачка, яка відмінно ладнає з іншими собаками і людьми. Вона обожнює прогулянки і гратися з м'ячиком.\n
+    Джулі має певні медичні проблеми, і для підтримки її здоров'я їй потрібні регулярні ліки та спеціальний догляд. Незважаючи на свої проблеми, Джулі є надзвичайно лагідною та люблячою собакою.\n
+    Ваші пожертви допоможуть нам забезпечити Джулі необхідними ліками, медичним та спеціальним доглядом.
+    Ваша підтримка дозволить нам зробити все можливе для поліпшення її стану і забезпечити їй комфортні умови проживання.`,
+  }
+
   return (
-    <DogCardContainer>
+    <DogCardContainer newCard={newCard}>
       <StyledLink>
         <Link to="/admin">
           <ArrowIco />
@@ -39,15 +59,31 @@ function DogCard() {
         </Link>
       </StyledLink>
       <DogCardContent>
-        <TitleH2>Створення нової картки</TitleH2>
+        <TitleH2>{newCard ? 'Створення нової картки' : 'Редагування'}</TitleH2>
         <Photos>
           <MainPhoto>
-            <PhotoIco />
-            <TitleH3>Завантажити фото</TitleH3>
+            {newCard ? (
+              <>
+                <PhotoIco />
+                <TitleH3>Завантажити фото</TitleH3>
+              </>
+            ) : (
+              <img src={dog1} alt="dog1" />
+            )}
           </MainPhoto>
+
           <SidePhotosContainer>
             <SidePhotos>
-              <SidePhoto></SidePhoto>
+              <SidePhoto>
+                {newCard ? (
+                  <></>
+                ) : (
+                  <>
+                    <img src={dog1} alt="dog1" />
+                    <button />
+                  </>
+                )}
+              </SidePhoto>
               <SidePhoto></SidePhoto>
               <SidePhoto></SidePhoto>
               <SidePhoto></SidePhoto>
@@ -59,17 +95,25 @@ function DogCard() {
         <Inputs>
           <Input>
             <label htmlFor="dog-name">Кличка собаки:</label>
-            <StyledInput type="text" placeholder="Введіть кличку собаки" id="dog-name" />
+            <StyledInput
+              type="text"
+              placeholder={newCard ? 'Введіть кличку собаки' : data.name}
+              id="dog-name"
+            />
           </Input>
           <Input>
             <label htmlFor="dog-age">Вік собаки:</label>
-            <StyledInput type="text" placeholder="Введіть вік собаки" id="dog-age" />
+            <StyledInput
+              type="text"
+              placeholder={newCard ? 'Введіть вік собаки' : data.age}
+              id="dog-age"
+            />
           </Input>
         </Inputs>
         <Characteristics>
           <Characteristic>
             <CharacteristicItem>
-              <input type="radio" name="sex" />
+              <input type="radio" name="sex" defaultChecked={!newCard} />
               <span>
                 <FemaleIco /> Дівчинка
               </span>
@@ -84,7 +128,7 @@ function DogCard() {
           </Characteristic>
           <Characteristic>
             <CharacteristicItem>
-              <input type="radio" name="size" />
+              <input type="radio" name="size" defaultChecked={!newCard} />
               <span>
                 <SizeIco />
                 Великий
@@ -107,7 +151,7 @@ function DogCard() {
           </Characteristic>
           <Characteristic>
             <CharacteristicItem>
-              <input type="radio" name="breed" />
+              <input type="radio" name="breed" defaultChecked={!newCard} />
               <span>
                 <BreedIco />
                 Без породи
@@ -117,13 +161,16 @@ function DogCard() {
               <input type="radio" name="breed" />
               <span>
                 <BreedIco />
-                <input type="text" placeholder="Введіть породу" />
+                <input
+                  type="text"
+                  placeholder={newCard ? 'Введіть вік собаки' : data.breed}
+                />
               </span>
             </CharacteristicItem>
           </Characteristic>
           <Characteristic>
             <CharacteristicItem>
-              <input type="radio" name="chip" />
+              <input type="radio" name="chip" defaultChecked={!newCard} />
               <span>
                 <ChipIco />
                 Так
@@ -140,9 +187,13 @@ function DogCard() {
         </Characteristics>
         <Description>
           <label htmlFor="dog-about">Про тваринку:</label>
-          <textarea placeholder="Опишіть тваринку" id="dog-about" />
+          <textarea
+            placeholder="Опишіть тваринку"
+            id="dog-about"
+            defaultValue={newCard ? '' : data.description}
+          ></textarea>
         </Description>
-        <Button>Додати картку</Button>
+        <Button>{newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
       </DogCardContent>
     </DogCardContainer>
   )

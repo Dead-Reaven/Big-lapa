@@ -1,11 +1,16 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 import { theme } from '../../../../../Components/UI/Theme.styles'
 import Button from '../../../../../Components/UI/Button.styles'
 import PhotoIco from './img/photoIco.svg'
+import CrossIco from './img/Cross.svg'
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
 
-const DogCardContainer = styled.div`
+interface Props {
+  newCard?: boolean
+}
+
+const DogCardContainer = styled.div<Props>`
   padding-bottom: 80px;
 
   ${TitleH2} {
@@ -14,6 +19,39 @@ const DogCardContainer = styled.div`
       text-align: center;
     }
   }
+
+  ${({ newCard }) =>
+    !newCard &&
+    css`
+      ${MainPhoto} {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      ${SidePhoto} {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        button {
+          position: absolute;
+          background: ${theme.colors.background} url(${CrossIco}) center / 14px no-repeat;
+          top: 4px;
+          right: 4px;
+          width: 18px;
+          height: 18px;
+          border-radius: 4px;
+        }
+      }
+
+      ${Input} {
+      }
+    `}
 `
 
 const StyledLink = styled.div`
@@ -239,7 +277,7 @@ const Description = styled.div`
     height: 330px;
     background-color: ${({ theme }) => theme.colors.background};
     caret-color: ${({ theme }) => theme.colors.yellow};
-    color: ${({ theme }) => theme.colors.dark};
+    color: ${({ theme }) => theme.colors.grey};
     padding: ${({ theme }) => theme.paddings.input};
     border: 1px solid ${({ theme }) => theme.colors.yellow};
     border-radius: 4px;

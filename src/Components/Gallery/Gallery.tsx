@@ -30,7 +30,7 @@ function Gallery({ admin, state }: Props) {
         <Flex direction="column" align="center">
           {admin && (
             <AdminGalleryButton>
-              <Link to="/admin/dog-card">Додати нову картку</Link>
+              <Link to="/admin/new-card">Додати нову картку</Link>
             </AdminGalleryButton>
           )}
           {!admin && <GalleryTitle>Наші хвости</GalleryTitle>}

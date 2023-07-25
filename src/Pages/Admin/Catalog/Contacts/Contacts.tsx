@@ -2,9 +2,10 @@ import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/For
 import Input from '../../Components/UI/Input'
 import useGet from '../../../../API/useGet'
 import usePost from '../../../../API/usePost'
+import { ContactTypes } from '../../../../API/types'
 
 function Contacts() {
-  const contacts = useGet('contacts', 'get')
+  const contacts = useGet('contacts') as ContactTypes
 
   const onSubmitHadler = () => {
     const data = {
@@ -12,7 +13,7 @@ function Contacts() {
       second_phoneNumber: '+380 068 777 777',
       email: 'email@one.com',
     }
-    useGet(data)
+    usePost('contacts', data)
   }
 
   return (

@@ -1,4 +1,4 @@
-interface Contacts {
+interface ContactTypes {
   email: string
   first_phoneNumber: string
   second_phoneNumber: string
@@ -17,4 +17,4 @@ interface DogTypes {
   }[]
 }
 
-export type { Contacts, DogTypes }
+export type { ContactTypes, DogTypes }

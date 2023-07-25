@@ -6,7 +6,7 @@ import Slider from './Components/Slider/Slider'
 import { DogsStyled } from './Dogs.style'
 
 function Dogs() {
-  const fetchedData = useGet('dogs', 'get') as DogTypes | null
+  const fetchedData = useGet('dogs') as DogTypes | null
 
   return (
     <DogsStyled data-testid="dogs-page">

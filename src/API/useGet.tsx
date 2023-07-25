@@ -25,11 +25,16 @@ function useGet(select: Select) {
         const res: DogTypes = DogsJson
         handleSetState(res)
       }
-      getData(setDogs)
+      const timeoutId = window.setTimeout(() => {
+        getData(setDogs)
+      }, 1000)
+
+      // Cleanup the timeout on component unmount (optional but recommended)
+      return () => window.clearTimeout(timeoutId)
     }
   }, [])
 
-  if (select === 'contacts') return contacts
-  if (select === 'dogs') return dogs
+  if (select === 'contacts') return contacts as ContactTypes | null
+  if (select === 'dogs') return dogs as DogTypes | null
 }
 export default useGet

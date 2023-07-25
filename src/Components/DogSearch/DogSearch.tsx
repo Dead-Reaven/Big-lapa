@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Container from '../UI/Container.style'
 import { Menu } from './CheckBox.styles'
 import { SearchInput, StyledDogSearch } from './DogSearch.style'
@@ -8,12 +8,21 @@ import CheckBoxItem from './CheckBoxItem'
 import { DogTypes } from '../../API/types'
 
 interface DogSearchProps {
-  data: DogTypes | null
+  state: DogTypes | null
+  setState: (state: DogTypes) => DogTypes | void
+  readonly options: DogTypes | null
 }
 
-function DogSearch({ data }: DogSearchProps) {
-  console.log(data)
+function DogSearch({ options, state, setState }: DogSearchProps) {
+  useEffect(() => {
+    // update state
+    if (options) setState(options)
+  }, [options])
 
+  //searching by name
+  const [searchInput, setSearchInput] = useState('')
+
+  //state for check boxes
   const [isOpen, setIsOpen] = useState(false)
   const [genders, setGenders] = useState({
     male: true,
@@ -34,12 +43,26 @@ function DogSearch({ data }: DogSearchProps) {
   })
 
   const onClickHandler = (current: boolean) => setIsOpen(!current)
+  const searchHandler = (searchingName: string) => {
+    const filtered = options?.data.filter(({ name }) =>
+      name.toLowerCase().includes(searchingName.toLowerCase()),
+    )
+    if (filtered) {
+      setSearchInput(searchingName)
+      setState({ data: filtered })
+    }
+  }
 
   return (
     <Container>
       <StyledDogSearch>
         <IcoSearch />
-        <SearchInput type="text" placeholder="Пошук собаки за кличкою" />
+        <SearchInput
+          type="text"
+          placeholder="Пошук собаки за кличкою"
+          value={searchInput}
+          onChange={(e: any) => searchHandler(e.target.value)}
+        />
         <IcoSettings
           type="button"
           onClick={() => onClickHandler(isOpen)}

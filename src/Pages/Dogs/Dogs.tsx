@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { DogTypes } from '../../API/types'
 import useGet from '../../API/useGet'
 import DogSearch from '../../Components/DogSearch/DogSearch'
@@ -7,11 +8,15 @@ import { DogsStyled } from './Dogs.style'
 
 function Dogs() {
   const fetchedData = useGet('dogs') as DogTypes | null
+  const [state, setState] = useState<DogTypes | null>(fetchedData)
+
+  console.log('options:', fetchedData)
+  console.log('state:', state)
 
   return (
     <DogsStyled data-testid="dogs-page">
       <Slider />
-      <DogSearch data={fetchedData} />
+      <DogSearch state={state} setState={setState} options={fetchedData} />
       <Gallery />
     </DogsStyled>
   )

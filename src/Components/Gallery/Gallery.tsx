@@ -7,63 +7,23 @@ import {
   PaginationNav,
   StyledGallery,
 } from './Gallery.style'
-import dog from './img/Dog_photo.png'
+import dogImage from './img/Dog_photo.png'
 import { ReactComponent as Refresh } from './img/refresh.svg'
 import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
 
 import DogCard from './DogCard'
 import { Link } from 'react-router-dom'
+import { DogTypes } from '../../API/types'
 
 interface Props {
   admin?: boolean
+  state?: DogTypes | null
 }
 
-function Gallery({ admin }: Props) {
-  const dogsList = [
-    {
-      id: 1,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 2,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 3,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 4,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 5,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 6,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-  ]
+function Gallery({ admin, state }: Props) {
+  const dogsList = state?.data
+
   return (
     <StyledGallery admin={admin}>
       <Container>
@@ -75,8 +35,8 @@ function Gallery({ admin }: Props) {
           )}
           {!admin && <GalleryTitle>Наші хвости</GalleryTitle>}
           <DogsCards>
-            {dogsList.map((dog) => (
-              <DogCard dog={dog} key={dog.id} admin={admin} />
+            {dogsList?.map((dog) => (
+              <DogCard dog={dog} src={dogImage} key={dog.id} admin={admin} />
             ))}
           </DogsCards>
 

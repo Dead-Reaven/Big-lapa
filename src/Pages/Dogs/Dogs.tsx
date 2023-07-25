@@ -17,7 +17,7 @@ function Dogs() {
     <DogsStyled data-testid="dogs-page">
       <Slider />
       <DogSearch state={state} setState={setState} options={fetchedData} />
-      <Gallery />
+      <Gallery state={state} />
     </DogsStyled>
   )
 }

@@ -7,7 +7,7 @@ import LoginLayout from './Layout/LoginLayout'
 import MainLayout from './Layout/MainLayout'
 import { About, Contacts, Dog, Dogs, Home, NotFound } from './Pages'
 import Admin from './Pages/Admin/Admin'
-import Login from './Pages/Login/Login'
+import Login from './Pages/Login'
 
 function App() {
   return (

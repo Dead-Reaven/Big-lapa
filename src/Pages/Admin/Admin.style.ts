@@ -5,9 +5,12 @@ const StyledAdmin = styled.div`
   height: calc(100vh - 96px);
   padding: 40px;
 
-  @media screen and (max-width: 767px) {
-    margin-left: 40px;
+  @media screen and (max-width: 1279px) {
     padding: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 20px 16px;
   }
 `
 

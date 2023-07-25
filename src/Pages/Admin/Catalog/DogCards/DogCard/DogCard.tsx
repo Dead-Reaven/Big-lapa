@@ -12,6 +12,7 @@ import {
   Photos,
   SidePhoto,
   SidePhotos,
+  SidePhotosContainer,
   StyledLink,
 } from './DogCard.style'
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
@@ -38,13 +39,13 @@ function DogCard() {
         </Link>
       </StyledLink>
       <DogCardContent>
-        <TitleH2 marginBottom="0px">Створення нової картки</TitleH2>
+        <TitleH2>Створення нової картки</TitleH2>
         <Photos>
           <MainPhoto>
             <PhotoIco />
             <TitleH3>Завантажити фото</TitleH3>
           </MainPhoto>
-          <div>
+          <SidePhotosContainer>
             <SidePhotos>
               <SidePhoto></SidePhoto>
               <SidePhoto></SidePhoto>
@@ -53,7 +54,7 @@ function DogCard() {
               <SidePhoto></SidePhoto>
               <SidePhoto></SidePhoto>
             </SidePhotos>
-          </div>
+          </SidePhotosContainer>
         </Photos>
         <Inputs>
           <Input>

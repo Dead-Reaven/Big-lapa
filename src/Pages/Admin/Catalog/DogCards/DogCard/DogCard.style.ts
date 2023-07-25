@@ -2,12 +2,17 @@ import { styled } from 'styled-components'
 import { theme } from '../../../../../Components/UI/Theme.styles'
 import Button from '../../../../../Components/UI/Button.styles'
 import PhotoIco from './img/photoIco.svg'
+import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
+import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
 
 const DogCardContainer = styled.div`
   padding-bottom: 80px;
 
-  @media (max-width: 1279px) {
-    padding: 0 20px 80px;
+  ${TitleH2} {
+    margin-bottom: 0;
+    @media (max-width: 767px) {
+      text-align: center;
+    }
   }
 `
 
@@ -37,35 +42,80 @@ const DogCardContent = styled.div`
   ${Button} {
     width: 400px;
   }
+
+  @media (max-width: 767px) {
+    gap: 40px;
+
+    ${Button} {
+      width: 100%;
+    }
+  }
 `
 
 const Photos = styled.div`
   max-width: 700px;
-  height: 600px;
+  width: 100%;
   align-self: start;
   display: flex;
   gap: 24px;
+
+  @media (max-width: 1279px) {
+    gap: 18px;
+  }
+
+  @media (max-width: 500px) {
+    height: 262px;
+    align-self: center;
+    gap: 16px;
+  }
 `
 
 const MainPhoto = styled.div`
   background-color: #fff;
-  width: 476px;
+  width: 68%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
+
+  aspect-ratio: 4.76 / 6;
+
+  @media (max-width: 767px) {
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+    ${TitleH3} {
+      font-size: 16px;
+    }
+  }
+`
+
+const SidePhotosContainer = styled.div`
+  width: 28%;
 `
 
 const SidePhotos = styled.div`
+  width: 90%;
+  max-width: 194px;
+  max-height: 312px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 50% 50%;
   gap: 24px;
+
+  @media (max-width: 1279px) {
+    gap: 18px;
+  }
+
+  @media (max-width: 767px) {
+    gap: 16px;
+  }
 `
 
 const SidePhoto = styled.div`
-  height: 88px;
-  width: 88px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background: #fff url(${PhotoIco}) center / 20px no-repeat;
 `
 
@@ -89,6 +139,10 @@ const Input = styled.div`
     width: 100%;
     padding: 14px;
   }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `
 
 const Characteristics = styled.div`
@@ -101,7 +155,8 @@ const Characteristics = styled.div`
   }
 
   @media (max-width: 1279px) {
-    gap: 50px;
+    column-gap: 124px;
+    row-gap: 40px;
     flex-wrap: wrap;
   }
 `
@@ -110,6 +165,12 @@ const Characteristic = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media (max-width: 1279px) {
+    &:nth-of-type(1) {
+      margin-right: 63px;
+    }
+  }
 `
 
 const CharacteristicItem = styled.label`
@@ -130,6 +191,14 @@ const CharacteristicItem = styled.label`
     svg {
       min-width: 40px;
       min-height: 40px;
+    }
+
+    @media (max-width: 767px) {
+      font-size: ${theme.fontSizes.mobileButtonText};
+      svg {
+        min-width: 32px;
+        min-height: 32px;
+      }
     }
   }
 
@@ -186,6 +255,7 @@ export {
   StyledLink,
   Photos,
   MainPhoto,
+  SidePhotosContainer,
   SidePhotos,
   SidePhoto,
   Inputs,

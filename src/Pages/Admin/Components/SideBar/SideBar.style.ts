@@ -11,7 +11,7 @@ const StyledSideBar = styled.div`
   /* overflow-y: auto; */
 
   position: sticky;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1279px) {
     display: block;
     padding: none;
     width: 40px;

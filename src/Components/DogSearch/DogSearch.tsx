@@ -1,81 +1,119 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Container from '../UI/Container.style'
-import { Menu, Title, Item } from './Menu.style'
+import { Menu } from './CheckBox.styles'
 import { SearchInput, StyledDogSearch } from './DogSearch.style'
 import { ReactComponent as IcoSearch } from './icons/search_ico.svg'
 import { ReactComponent as IcoSettings } from './icons/settings_ico.svg'
+import CheckBoxItem from './CheckBoxItem'
+import { DogTypes } from '../../API/types'
 
-function DogSearch() {
+interface DogSearchProps {
+  state: DogTypes | null
+  setState: (state: DogTypes) => DogTypes | void
+  readonly options: DogTypes | null
+}
+
+function DogSearch({ options, state, setState }: DogSearchProps) {
+  useEffect(() => {
+    // update state
+    if (options) setState(options)
+  }, [options])
+
+  //searching by name
+  const [searchInput, setSearchInput] = useState('')
+
+  //state for check boxes
   const [isOpen, setIsOpen] = useState(false)
+  const [genders, setGenders] = useState({
+    male: true,
+    female: true,
+  })
+  const [sizes, setSizes] = useState({
+    small: true,
+    medium: true,
+    big: true,
+  })
+  const [chips, setChips] = useState({
+    hasChip: true,
+    noChip: true,
+  })
+  const [breeds, setBreeds] = useState({
+    hasBreed: true,
+    noBreed: true,
+  })
 
-  const onClickHendler = (current: boolean) => setIsOpen(!current)
+  const onClickHandler = (current: boolean) => setIsOpen(!current)
+  const searchHandler = (searchingName: string) => {
+    const filtered = options?.data.filter(({ name }) =>
+      name.toLowerCase().includes(searchingName.toLowerCase()),
+    )
+    if (filtered) {
+      setSearchInput(searchingName)
+      setState({ data: filtered })
+    }
+  }
 
   return (
     <Container>
       <StyledDogSearch>
         <IcoSearch />
-        <SearchInput type="text" placeholder="Пошук собаки за кличкою" />
+        <SearchInput
+          type="text"
+          placeholder="Пошук собаки за кличкою"
+          value={searchInput}
+          onChange={(e: any) => searchHandler(e.target.value)}
+        />
         <IcoSettings
           type="button"
-          onClick={() => onClickHendler(isOpen)}
+          onClick={() => onClickHandler(isOpen)}
           style={{ cursor: 'pointer' }}
         />
       </StyledDogSearch>
       <div>
-        {isOpen ? (
+        {isOpen && (
           <Menu>
-            <Item>
-              <Title>Стать</Title>
-              <div>
-                <input type="checkbox" name="male" defaultChecked />
-                <label htmlFor="male">Хлопець</label>
-              </div>
-              <div>
-                <input type="checkbox" name="female" defaultChecked />
-                <label htmlFor="female">Дівчина</label>
-              </div>
-            </Item>
-
-            <Item>
-              <Title>Розмір</Title>
-              <div>
-                <input type="checkbox" name="small" defaultChecked />
-                <label htmlFor="small">Маленька</label>
-              </div>
-              <div>
-                <input type="checkbox" name="medium" defaultChecked />
-                <label htmlFor="medium">Середня</label>
-              </div>
-              <div>
-                <input type="checkbox" name="big" defaultChecked />
-                <label htmlFor="big">Велика</label>
-              </div>
-            </Item>
-            <Item>
-              <Title>Наявність чипу</Title>
-              <div>
-                <input type="checkbox" name="hasChip" defaultChecked />
-                <label htmlFor="haschip">Так</label>
-              </div>
-              <div>
-                <input type="checkbox" name="noChip" defaultChecked />
-                <label htmlFor="nochip">Ні</label>
-              </div>
-            </Item>
-            <Item>
-              <Title>Наявність породи</Title>
-              <div>
-                <input type="checkbox" name="hasBreed" defaultChecked />
-                <label htmlFor="hasBreed">Так</label>
-              </div>
-              <div>
-                <input type="checkbox" name="hasBreed" defaultChecked />
-                <label htmlFor="hasBreed">Ні</label>
-              </div>
-            </Item>
+            <CheckBoxItem
+              title="Стать"
+              options={[
+                { name: 'male', label: 'Хлопець', checked: genders.male },
+                { name: 'female', label: 'Дівчина', checked: genders.female },
+              ]}
+              onChange={(name, checked) =>
+                setGenders((prev) => ({ ...prev, [name]: checked }))
+              }
+            />
+            <CheckBoxItem
+              title="Розмір"
+              options={[
+                { name: 'small', label: 'Маленька', checked: sizes.small },
+                { name: 'medium', label: 'Середня', checked: sizes.medium },
+                { name: 'big', label: 'Велика', checked: sizes.big },
+              ]}
+              onChange={(name, checked) =>
+                setSizes((prev) => ({ ...prev, [name]: checked }))
+              }
+            />
+            <CheckBoxItem
+              title="Наявність чипу"
+              options={[
+                { name: 'hasChip', label: 'Так', checked: chips.hasChip },
+                { name: 'noChip', label: 'Ні', checked: chips.noChip },
+              ]}
+              onChange={(name, checked) =>
+                setChips((prev) => ({ ...prev, [name]: checked }))
+              }
+            />
+            <CheckBoxItem
+              title="Наявність породи"
+              options={[
+                { name: 'hasBreed', label: 'Так', checked: breeds.hasBreed },
+                { name: 'noBreed', label: 'Ні', checked: breeds.noBreed },
+              ]}
+              onChange={(name, checked) =>
+                setBreeds((prev) => ({ ...prev, [name]: checked }))
+              }
+            />
           </Menu>
-        ) : (
-          <></>
         )}
       </div>
     </Container>

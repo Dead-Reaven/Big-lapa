@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "src": "./testPhoto.png",
+      "name": "Скай",
+      "sex": "Хлопчик",
+      "age": "2 роки",
+      "haschip": false,
+      "hasbreed": true,
+      "size": "medium"
+    },
+    {
+      "id": 1,
+      "src": "./testPhoto.png",
+      "name": "Скай",
+      "sex": "Хлопчик",
+      "age": "2 роки",
+      "haschip": false,
+      "hasbreed": true,
+      "size": "medium"
+    },
+    {
+      "id": 2,
+      "src": "./testPhoto.png",
+      "name": "Белла",
+      "sex": "Дівчинка",
+      "age": "3 роки",
+      "haschip": true,
+      "hasbreed": true,
+      "size": "small"
+    },
+    {
+      "id": 3,
+      "src": "./testPhoto.png",
+      "name": "Макс",
+      "sex": "Хлопчик",
+      "age": "1 рік",
+      "haschip": true,
+      "hasbreed": true,
+      "size": "small"
+    },
+    {
+      "id": 4,
+      "src": "./testPhoto.png",
+      "name": "Люсі",
+      "sex": "Дівчинка",
+      "age": "3 рік",
+      "haschip": true,
+      "hasbreed": true,
+      "size": "big"
+    },
+    {
+      "id": 5,
+      "src": "./testPhoto.png",
+      "name": "Бобік",
+      "sex": "Дівчинка",
+      "age": "5 рік",
+      "haschip": true,
+      "hasbreed": true,
+      "size": "big"
+    }
+  ]
+}

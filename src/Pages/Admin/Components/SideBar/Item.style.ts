@@ -10,7 +10,7 @@ const Text = styled.span`
   overflow: visible;
   margin-left: 40px;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1279px) {
     font-size: 0;
     margin-left: 0px;
   }

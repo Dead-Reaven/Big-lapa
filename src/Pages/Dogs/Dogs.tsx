@@ -13,8 +13,8 @@ function Dogs() {
   return (
     <DogsStyled data-testid="dogs-page">
       <Slider />
-      <DogSearch options={fetchedData} setState={setState} />
-      <Gallery />
+      <DogSearch setState={setState} options={fetchedData} />
+      <Gallery state={state} />
     </DogsStyled>
   )
 }

@@ -7,7 +7,8 @@ import {
   Reports,
   Contacts,
   Settings,
-  DogCard,
+  NewCard,
+  EditCard,
 } from './Catalog'
 import NotFound from '../NotFound/NotFound'
 
@@ -16,7 +17,8 @@ function Admin() {
     <StyledAdmin>
       <Routes>
         <Route index path="/" element={<DogCards />} />
-        <Route path="/dog-card" element={<DogCard />} />
+        <Route path="/new-card" element={<NewCard />} />
+        <Route path="/edit-card" element={<EditCard />} />
         <Route path="/partners" element={<Partners />} />
         <Route path="/sliders" element={<Sliders />} />
         <Route path="/reports" element={<Reports />} />

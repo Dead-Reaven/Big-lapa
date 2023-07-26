@@ -13,11 +13,12 @@ interface Dog {
 }
 interface Props {
   dog: Dog
+  src?: any
   admin?: boolean
 }
 
-function DogCard({ dog, admin }: Props) {
-  const { src, name, sex, age } = dog
+function DogCard({ dog, src, admin }: Props) {
+  const { name, sex, age } = dog
   return (
     <StyledDogCard>
       {!admin && (
@@ -31,7 +32,7 @@ function DogCard({ dog, admin }: Props) {
         </Link>
       )}
       {admin && (
-        <Link to="/admin/dog-card">
+        <Link to="/admin/edit-card">
           <img src={src} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>

@@ -4,7 +4,7 @@ interface StyledThumbsProps {
   $isActive: boolean
 }
 interface ThumbWrapperProps {
-  left: number
+  $left: number
 }
 const StyledThumbs = styled.img`
   cursor: pointer;
@@ -50,11 +50,13 @@ const ThumbsWrapper = styled.div<ThumbWrapperProps>`
   height: 100%;
   position: absolute;
   top: 0;
-  left: ${(props) => -props.left * 50}px;
+  left: ${(props) => -props.$left * 30}px;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  transition: all ease 0.3s;
   @media (min-width: 768px) {
     gap: 8px;
+    left: ${(props) => -props.$left * 38}px;
   }
 `
 

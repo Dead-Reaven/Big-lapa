@@ -83,7 +83,7 @@ function DogSlider({ src }: Props) {
           <IcoPrevBtn />
         </StyledPrevButton>
         <ThumbsContainer>
-          <ThumbsWrapper left={slide}>
+          <ThumbsWrapper $left={slide}>
             {images.map(({ id, image, title }, index) => (
               <StyledThumbsDiv key={id} $isActive={slide === index}>
                 <StyledThumbs

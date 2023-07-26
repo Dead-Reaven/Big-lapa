@@ -7,7 +7,7 @@
       "sex": "Хлопчик",
       "age": "2 роки",
       "haschip": false,
-      "hasbreed": true,
+      "hasbreed": false,
       "size": "medium"
     },
     {
@@ -37,7 +37,7 @@
       "sex": "Хлопчик",
       "age": "1 рік",
       "haschip": true,
-      "hasbreed": true,
+      "hasbreed": false,
       "size": "small"
     },
     {

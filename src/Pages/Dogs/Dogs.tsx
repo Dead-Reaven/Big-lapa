@@ -9,14 +9,11 @@ import { DogsStyled } from './Dogs.style'
 function Dogs() {
   const fetchedData = useGet('dogs') as DogTypes | null
   const [state, setState] = useState<DogTypes | null>(fetchedData)
-
-  console.log('options:', fetchedData)
-  console.log('state:', state)
-
+  console.log(state)
   return (
     <DogsStyled data-testid="dogs-page">
       <Slider />
-      <DogSearch state={state} setState={setState} options={fetchedData} />
+      <DogSearch setState={setState} options={fetchedData} />
       <Gallery state={state} />
     </DogsStyled>
   )

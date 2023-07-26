@@ -8,6 +8,7 @@
       "age": "2 роки",
       "haschip": false,
       "hasbreed": false,
+      "breed": "",
       "size": "medium"
     },
     {
@@ -18,6 +19,7 @@
       "age": "2 роки",
       "haschip": false,
       "hasbreed": true,
+      "breed": "Лабрадор",
       "size": "medium"
     },
     {
@@ -28,6 +30,7 @@
       "age": "3 роки",
       "haschip": true,
       "hasbreed": true,
+      "breed": "Мопс",
       "size": "small"
     },
     {
@@ -38,6 +41,7 @@
       "age": "1 рік",
       "haschip": true,
       "hasbreed": false,
+      "breed": "",
       "size": "small"
     },
     {
@@ -48,6 +52,7 @@
       "age": "3 рік",
       "haschip": true,
       "hasbreed": true,
+      "breed": "Коргі",
       "size": "big"
     },
     {
@@ -58,6 +63,7 @@
       "age": "5 рік",
       "haschip": true,
       "hasbreed": true,
+      "breed": "Бульдог",
       "size": "big"
     }
   ]

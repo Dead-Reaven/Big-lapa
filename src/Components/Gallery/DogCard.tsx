@@ -6,6 +6,7 @@ import TitleH3 from '../UI/TitleH3.styles'
 import Button from '../UI/Button.styles'
 
 interface Dog {
+  id: number
   src: string
   name: string
   sex: string
@@ -18,11 +19,11 @@ interface Props {
 }
 
 function DogCard({ dog, src, admin }: Props) {
-  const { name, sex, age } = dog
+  const { id, name, sex, age } = dog
   return (
     <StyledDogCard>
       {!admin && (
-        <Link to="/dog">
+        <Link to={`/dog/${id}/${name}`}>
           <img src={src} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>

@@ -1,3 +1,5 @@
+import { useParams } from 'react-router'
+
 import Container from '../../Components/UI/Container.style'
 import TitleH2 from '../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../Components/UI/TitleH3.styles'
@@ -19,22 +21,21 @@ import {
   DogText,
   HiddenDogText,
 } from './Dog.style'
+import useGet from '../../API/useGet'
+import { DogTypes } from '../../API/types'
 
 function Dog() {
-  const data = {
-    name: 'Джулі',
-    age: '10 місяців',
-    sex: 'Дівчинка',
-    size: 'Великий',
-    breed: 'Без породи',
-    chip: 'Так',
-    description: `Джулі - чарівна та енергійна собачка, яка відмінно ладнає з іншими собаками і людьми. Вона обожнює прогулянки і гратися з м'ячиком.\n
-    Джулі має певні медичні проблеми, і для підтримки її здоров'я їй потрібні регулярні ліки та спеціальний догляд. Незважаючи на свої проблеми, Джулі є надзвичайно лагідною та люблячою собакою.\n
-    Ваші пожертви допоможуть нам забезпечити Джулі необхідними ліками, медичним та спеціальним доглядом.
-    Ваша підтримка дозволить нам зробити все можливе для поліпшення її стану і забезпечити їй комфортні умови проживання.`,
-  }
+  const fetchedData = useGet('dogs') as DogTypes | null
 
-  const { name, age, sex, breed, size, chip, description } = data
+  const { id } = useParams()
+  const index = id ? +id : 0
+
+  const dog = fetchedData?.data[index]
+
+  const { name, age, sex, size, hasbreed, breed, haschip } = dog || {}
+
+  const src =
+    'https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*'
   return (
     <DogStyled data-testid="dogs-page">
       <Container>
@@ -42,10 +43,22 @@ function Dog() {
           <DogFlex>
             <HiddenDogText>
               <TitleH3 marginBottom="24px">Про тваринку:</TitleH3>
-              <p>{description}</p>
+              <p>
+                {name} - чарівна та енергійна собачка, яка відмінно ладнає з іншими
+                собаками і людьми. Вона обожнює прогулянки і гратися з м&apos;ячиком.{' '}
+                <br />
+                <br /> {name} має певні медичні проблеми, і для підтримки її здоров&apos;я
+                їй потрібні регулярні ліки та спеціальний догляд. Незважаючи на свої
+                проблеми, {name} є надзвичайно лагідною та люблячою собакою.
+                <br />
+                <br /> Ваші пожертви допоможуть нам забезпечити {name} необхідними ліками,
+                медичним та спеціальним доглядом. Ваша підтримка дозволить нам зробити все
+                можливе для поліпшення її стану і забезпечити їй комфортні умови
+                проживання.
+              </p>
             </HiddenDogText>
             <Slider>
-              <DogSlider />
+              <DogSlider src={src} />
             </Slider>
             <DogContent>
               <DogTitle>
@@ -56,19 +69,32 @@ function Dog() {
                 <Label text="Стать" value={sex}>
                   {sex === 'Дівчинка' ? <FemaleIco /> : <MaleIco />}
                 </Label>
-                <Label text="Порода" value={breed}>
+                <Label text="Порода" value={hasbreed ? breed : 'Без породи'}>
                   <BreedIco />
                 </Label>
                 <Label text="Розмір" value={size}>
                   <SizeIco />
                 </Label>
-                <Label text="Наявність чіпа" value={chip}>
+                <Label text="Наявність чіпа" value={haschip ? 'Так' : 'Ні'}>
                   <ChipIco />
                 </Label>
               </Lables>
               <DogText>
                 <TitleH3 marginBottom="24px">Про тваринку:</TitleH3>
-                <p>{description}</p>
+                <p>
+                  {name} - чарівна та енергійна собачка, яка відмінно ладнає з іншими
+                  собаками і людьми. Вона обожнює прогулянки і гратися з м&apos;ячиком.{' '}
+                  <br />
+                  <br /> {name} має певні медичні проблеми, і для підтримки її
+                  здоров&apos;я їй потрібні регулярні ліки та спеціальний догляд.
+                  Незважаючи на свої проблеми, {name} є надзвичайно лагідною та люблячою
+                  собакою.
+                  <br />
+                  <br /> Ваші пожертви допоможуть нам забезпечити {name} необхідними
+                  ліками, медичним та спеціальним доглядом. Ваша підтримка дозволить нам
+                  зробити все можливе для поліпшення її стану і забезпечити їй комфортні
+                  умови проживання.
+                </p>
               </DogText>
             </DogContent>
           </DogFlex>

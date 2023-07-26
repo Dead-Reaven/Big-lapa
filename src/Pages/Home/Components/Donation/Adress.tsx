@@ -6,7 +6,7 @@ import { StyledAdress } from './Donation.style'
 function Adress() {
   return (
     <StyledAdress>
-      <Flex justify="space-between" align="flex-start">
+      <Flex $justify="space-between" $align="flex-start">
         <div>
           <p>Наше відділення для посилок:</p>
           <p>

@@ -10,9 +10,9 @@ interface Props {
 function BurgerMenu({ className, extendNavbar, setExtendNavbar }: Props) {
   return (
     <StyledBurgerMenu
-      align="center"
-      justify="space-between"
-      gap="10px"
+      $align="center"
+      $justify="space-between"
+      $gap="10px"
       className={className}
       $extendNavbar={extendNavbar}
     >

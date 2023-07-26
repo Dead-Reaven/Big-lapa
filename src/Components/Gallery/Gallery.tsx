@@ -25,9 +25,9 @@ function Gallery({ admin, state }: Props) {
   const dogsList = state?.data
 
   return (
-    <StyledGallery admin={admin}>
+    <StyledGallery $admin={admin}>
       <Container>
-        <Flex direction="column" align="center">
+        <Flex $direction="column" $align="center">
           {admin && (
             <AdminGalleryButton>
               <Link to="/admin/new-card">Додати нову картку</Link>

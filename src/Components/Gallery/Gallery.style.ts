@@ -6,7 +6,7 @@ import Flex from '../UI/Flex.styles'
 import Button from '../UI/Button.styles'
 
 interface Props {
-  admin?: boolean
+  $admin?: boolean
 }
 
 const StyledGallery = styled.section<Props>`
@@ -16,8 +16,8 @@ const StyledGallery = styled.section<Props>`
     padding: 80px 0;
   }
 
-  ${({ admin }) =>
-    admin &&
+  ${({ $admin }) =>
+    $admin &&
     css`
       padding: 0 !important;
 

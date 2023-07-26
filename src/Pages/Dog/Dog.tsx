@@ -42,7 +42,7 @@ function Dog() {
         <DogContainer>
           <DogFlex>
             <HiddenDogText>
-              <TitleH3 marginBottom="24px">Про тваринку:</TitleH3>
+              <TitleH3 $marginBottom="24px">Про тваринку:</TitleH3>
               <p>
                 {name} - чарівна та енергійна собачка, яка відмінно ладнає з іншими
                 собаками і людьми. Вона обожнює прогулянки і гратися з м&apos;ячиком.{' '}
@@ -80,7 +80,7 @@ function Dog() {
                 </Label>
               </Lables>
               <DogText>
-                <TitleH3 marginBottom="24px">Про тваринку:</TitleH3>
+                <TitleH3 $marginBottom="24px">Про тваринку:</TitleH3>
                 <p>
                   {name} - чарівна та енергійна собачка, яка відмінно ладнає з іншими
                   собаками і людьми. Вона обожнює прогулянки і гратися з м&apos;ячиком.{' '}

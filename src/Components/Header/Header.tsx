@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <Container>
-        <Flex justify="space-between" align="center" gap="20px">
+        <Flex $justify="space-between" $align="center" $gap="20px">
           <NavLink to="." end data-testid="home-link">
             <Logo />
           </NavLink>

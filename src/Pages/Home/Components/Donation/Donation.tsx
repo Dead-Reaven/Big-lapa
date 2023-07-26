@@ -20,9 +20,9 @@ function Donation() {
     <StyledDonation>
       <DonationContainer>
         <DonationContent>
-          <Flex direction="column" align="center">
+          <Flex $direction="column" $align="center">
             <TitleH2>Безпечний донат</TitleH2>
-            <DonationFlex gap="24px" width="100%">
+            <DonationFlex $gap="24px" $width="100%">
               <DonationCard>
                 <div>
                   <TitleH3>Разовий внесок</TitleH3>

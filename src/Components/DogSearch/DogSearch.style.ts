@@ -1,5 +1,4 @@
 import { styled } from 'styled-components'
-
 const SearchInput = styled.input`
   height: 56px;
   padding: 0 8px;
@@ -10,8 +9,6 @@ const StyledDogSearch = styled.form`
   width: 100%;
   height: 80px;
   padding: 0 8px;
-  margin: 120px 0 0 0;
-
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -81,7 +81,7 @@ function DogSearch({ options, setState }: DogSearchProps) {
   }, [searchInput, genders, sizes, chips, breeds, options])
 
   return (
-    <Container>
+    <>
       <StyledDogSearch>
         <IcoSearch />
         <SearchInput
@@ -141,7 +141,7 @@ function DogSearch({ options, setState }: DogSearchProps) {
           />
         </Menu>
       )}
-    </Container>
+    </>
   )
 }
 

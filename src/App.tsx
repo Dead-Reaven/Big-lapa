@@ -16,7 +16,7 @@ function App() {
             {/* Default route and test route */}
             <Route index path="/" element={<Home />} />
             <Route path="dogs" element={<Dogs />} />
-            <Route path="dog" element={<Dog />} />
+            <Route path="dog/:id/:name" element={<Dog />} />
             <Route path="about" element={<About />} />
             <Route path="contacts" element={<Contacts />}></Route>
             {/* not found route */}

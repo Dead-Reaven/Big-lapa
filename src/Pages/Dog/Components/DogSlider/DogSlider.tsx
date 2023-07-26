@@ -13,17 +13,22 @@ import {
   SliderContainer,
 } from './DogSlider.style'
 
-import dog1 from './img/dog1.png'
+// import dog1 from './img/dog1.png'
 import dog2 from './img/dog2.png'
 import dog3 from './img/dog3.png'
 import dog4 from './img/dog4.png'
 import dog5 from './img/dog5.png'
 import { ReactComponent as IcoPrevBtn } from '../DogSlider/img/PrevButton.svg'
 import { ReactComponent as IcoNextBtn } from '../DogSlider/img/NextButton.svg'
-function DogSlider() {
+
+interface Props {
+  src?: string
+}
+
+function DogSlider({ src }: Props) {
   const images = [
     {
-      image: dog1,
+      image: src,
       title: 'dog 1',
       id: 0,
     },

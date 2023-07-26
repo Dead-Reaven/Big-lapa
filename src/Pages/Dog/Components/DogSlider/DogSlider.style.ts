@@ -3,6 +3,9 @@ import { styled } from 'styled-components'
 interface StyledThumbsProps {
   isActive: boolean
 }
+interface ThumbWrapperProps {
+  left: number
+}
 const StyledThumbs = styled.img`
   cursor: pointer;
   border-radius: 3px;
@@ -40,14 +43,14 @@ const ThumbsContainer = styled.div`
   }
 `
 
-const ThumbsWrapper = styled.div`
+const ThumbsWrapper = styled.div<ThumbWrapperProps>`
   display: flex;
   gap: 6px;
   justify-content: center;
   height: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: ${(props) => -props.left * 50}px;
   overflow-x: hidden;
   scroll-behavior: smooth;
   @media (min-width: 768px) {

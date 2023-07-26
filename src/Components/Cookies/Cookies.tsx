@@ -8,7 +8,7 @@ function Cookies() {
   const [isShow, setIsShow] = useState(true)
 
   return (
-    <StyledCookies isShow={isShow}>
+    <StyledCookies $isShow={isShow}>
       <Container>
         <Flex align="center" justify="space-between" gap="30px">
           <p>

@@ -2,16 +2,15 @@ import { StyledNavItem } from './Header.style'
 import { NavLink } from 'react-router-dom'
 
 interface Props {
-  key: string
   title: string
   to: string
   testId: string
   setExtendNavbar: any
 }
 
-function NavItem({ key, title, to, testId, setExtendNavbar }: Props) {
+function NavItem({ title, to, testId, setExtendNavbar }: Props) {
   return (
-    <StyledNavItem key={key}>
+    <StyledNavItem>
       <NavLink
         to={to}
         end

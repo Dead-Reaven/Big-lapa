@@ -16,7 +16,7 @@ const StyledHeader = styled.header`
 
 interface BurgerMenuProps {
   className?: string
-  extendNavbar?: boolean
+  $extendNavbar?: boolean
 }
 
 const StyledBurgerMenu = styled(Flex)<BurgerMenuProps>`
@@ -33,7 +33,7 @@ const StyledBurgerMenu = styled(Flex)<BurgerMenuProps>`
     max-width: 380px;
     height: 384px;
     background-color: ${({ theme }) => theme.colors.background};
-    right: ${({ extendNavbar }) => (extendNavbar ? '0' : '-100%')};
+    right: ${({ $extendNavbar }) => ($extendNavbar ? '0' : '-100%')};
     top: 98px;
     padding: 44px 40px 78px;
     overflow: auto;
@@ -92,37 +92,8 @@ const StyledNavItem = styled.li`
   }
 `
 
-interface DogSearchProps {
-  direction?: string
-  align?: string
-  justify?: string
-  gap?: string
-  height?: string
-}
-
-const StyledDogSearch = styled.form<DogSearchProps>`
-  padding: ${({ theme }) => theme.paddings.input};
-  border: 1px solid ${({ theme }) => theme.colors.yellow};
-  border-radius: 4px;
-  width: 40%;
-  max-width: 300px;
-
-  @media (max-width: 1279px) {
-    width: 100%;
-  }
-
-  input {
-    padding: 0;
-  }
-
-  input:focus + button svg {
-    transition: ${({ theme }) => theme.transitions.long};
-    stroke: ${({ theme }) => theme.colors.green};
-  }
-`
-
 interface HeaderRightProps {
-  extendNavbar?: boolean
+  $extendNavbar?: boolean
 }
 
 const StyledHeaderRight = styled(Flex)<HeaderRightProps>`
@@ -132,12 +103,11 @@ const StyledHeaderRight = styled(Flex)<HeaderRightProps>`
 
   @media (max-width: 767px) {
     width: 240px;
-    ${({ extendNavbar }) => extendNavbar && 'flex-direction: row-reverse;'}
+    ${({ $extendNavbar }) => $extendNavbar && 'flex-direction: row-reverse;'}
   }
 `
-
 interface HeaderButtonProps {
-  extendNavbar?: boolean
+  $extendNavbar?: boolean
 }
 
 const HeaderButton = styled(Button)<HeaderButtonProps>`
@@ -154,12 +124,12 @@ const HeaderButton = styled(Button)<HeaderButtonProps>`
       content: 'Підтримати';
     }
 
-    ${({ extendNavbar }) => extendNavbar && 'display: none;'};
+    ${({ $extendNavbar }) => $extendNavbar && 'display: none;'};
   }
 `
 
 interface BurgerBtnProps {
-  isActive?: boolean
+  $isActive?: boolean
 }
 
 const StyledBurgerBtn = styled.button<BurgerBtnProps>`
@@ -197,8 +167,8 @@ const StyledBurgerBtn = styled.button<BurgerBtnProps>`
       top: calc(50% - 2px);
     }
 
-    ${({ isActive }) =>
-      isActive &&
+    ${({ $isActive }) =>
+      $isActive &&
       css`
         span {
           width: 0;
@@ -222,7 +192,6 @@ export {
   StyledBurgerMenu,
   StyledHeaderRight,
   HeaderButton,
-  StyledDogSearch,
   StyledNavBar,
   NavFlex,
   StyledNavItem,

@@ -13,7 +13,7 @@ function HeaderRight({ className, children, extendNavbar }: Props) {
       justify="space-between"
       align="center"
       className={className}
-      extendNavbar={extendNavbar}
+      $extendNavbar={extendNavbar}
     >
       {children}
     </StyledHeaderRight>

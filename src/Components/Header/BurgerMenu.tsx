@@ -14,7 +14,7 @@ function BurgerMenu({ className, extendNavbar, setExtendNavbar }: Props) {
       justify="space-between"
       gap="10px"
       className={className}
-      extendNavbar={extendNavbar}
+      $extendNavbar={extendNavbar}
     >
       <NavBar setExtendNavbar={setExtendNavbar} />
     </StyledBurgerMenu>

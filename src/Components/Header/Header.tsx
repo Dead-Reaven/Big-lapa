@@ -20,7 +20,7 @@ const Header = () => {
           </NavLink>
           <BurgerMenu extendNavbar={extendNavbar} setExtendNavbar={setExtendNavbar} />
           <HeaderRight extendNavbar={extendNavbar}>
-            <HeaderButton extendNavbar={extendNavbar}>
+            <HeaderButton $extendNavbar={extendNavbar}>
               <span>Підтримати притулок</span>
             </HeaderButton>
             <StyledBurgerBtn

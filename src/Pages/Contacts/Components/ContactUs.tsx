@@ -51,7 +51,7 @@ function ContactUs() {
             </IconsDiv>
           </StyledContactsDiv>
           <StyledFormDiv>
-            <TitleH2 marginBottom="24px">Зв`яжіться з нами</TitleH2>
+            <TitleH2 $marginBottom="24px">Зв`яжіться з нами</TitleH2>
             <p>Якщо залишилися питання, напишіть нам</p>
             <form>
               <StyledInputsDiv>

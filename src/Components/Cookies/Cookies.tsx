@@ -8,9 +8,9 @@ function Cookies() {
   const [isShow, setIsShow] = useState(true)
 
   return (
-    <StyledCookies isShow={isShow}>
+    <StyledCookies $isShow={isShow}>
       <Container>
-        <Flex align="center" justify="space-between" gap="30px">
+        <Flex $align="center" $justify="space-between" $gap="30px">
           <p>
             Цей сайт використовує файли cookies для правильної роботи і покращення
             сервісу. <br />

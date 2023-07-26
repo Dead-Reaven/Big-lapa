@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface Props {
-  marginBottom?: string
+  $marginBottom?: string
 }
 
 const TitleH1 = styled.h1<Props>`

@@ -14,13 +14,13 @@ const Header = () => {
   return (
     <StyledHeader>
       <Container>
-        <Flex justify="space-between" align="center" gap="20px">
+        <Flex $justify="space-between" $align="center" $gap="20px">
           <NavLink to="." end data-testid="home-link">
             <Logo />
           </NavLink>
           <BurgerMenu extendNavbar={extendNavbar} setExtendNavbar={setExtendNavbar} />
           <HeaderRight extendNavbar={extendNavbar}>
-            <HeaderButton extendNavbar={extendNavbar}>
+            <HeaderButton $extendNavbar={extendNavbar}>
               <span>Підтримати притулок</span>
             </HeaderButton>
             <StyledBurgerBtn

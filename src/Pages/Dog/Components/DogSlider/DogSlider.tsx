@@ -85,7 +85,7 @@ function DogSlider({ src }: Props) {
         <ThumbsContainer>
           <ThumbsWrapper left={slide}>
             {images.map(({ id, image, title }, index) => (
-              <StyledThumbsDiv key={id} isActive={slide === index}>
+              <StyledThumbsDiv key={id} $isActive={slide === index}>
                 <StyledThumbs
                   src={image}
                   onClick={() => handleClick(index)}

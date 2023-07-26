@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 interface StyledThumbsProps {
-  isActive: boolean
+  $isActive: boolean
 }
 interface ThumbWrapperProps {
   left: number
@@ -18,7 +18,7 @@ const StyledThumbsDiv = styled.div<StyledThumbsProps>`
   aspect-ratio: 1 / 1;
   min-height: 100%;
 
-  border: ${(props) => (props.isActive ? '2px solid white' : '1px solid transparent')};
+  border: ${(props) => (props.$isActive ? '2px solid white' : '1px solid transparent')};
   border-radius: 3px;
   @media (min-width: 768px) {
     min-height: 100%;

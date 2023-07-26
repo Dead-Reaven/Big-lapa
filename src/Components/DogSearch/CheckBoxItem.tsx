@@ -10,15 +10,15 @@ const CheckBoxItem = ({ title, options, onChange }: ItemProps) => {
   return (
     <Item>
       <Title>{title}</Title>
-      {options.map((option) => (
-        <div key={option.name}>
+      {options.map(({ label, name, checked }) => (
+        <div key={name}>
           <input
             type="checkbox"
-            name={option.name}
-            checked={option.checked}
-            onChange={(e) => onChange(option.name, e.target.checked)}
+            name={name}
+            checked={checked}
+            onChange={(e) => onChange(name, e.target.checked)}
           />
-          <label htmlFor={option.name}>{option.label}</label>
+          <label htmlFor={name}>{label}</label>
         </div>
       ))}
     </Item>

@@ -9,7 +9,7 @@ function DogCards() {
   const [state, setState] = useState<DogTypes | null>(fetchedData)
   return (
     <div>
-      <DogSearch state={state} setState={setState} options={fetchedData} />
+      <DogSearch setState={setState} options={fetchedData} />
       <Gallery state={state} admin={true} />
     </div>
   )

@@ -39,7 +39,6 @@ const StyledDogSearch = styled.form`
   @media screen and (max-width: 767px) {
     height: auto;
     font-size: 16px;
-    margin: 100px 0 0 0;
     svg {
       height: 24px;
       width: 24px;
@@ -51,7 +50,6 @@ const StyledDogSearch = styled.form`
   }
   @media screen and (max-width: 393px) {
     font-size: 4vw;
-    margin: 80px 0 0 0;
   }
 `
 

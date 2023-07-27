@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   ModalContainer,
   ModalOverlay,
@@ -15,10 +14,11 @@ interface ModalProps {
   body?: string
   isOpen?: boolean
   onCancel(): any
-  onSubmit(): any
+  onSubmit(id: number): any
+  id: number
 }
 
-function Modal({ title, body, isOpen, onCancel, onSubmit }: ModalProps) {
+function Modal({ title, body, isOpen, onCancel, onSubmit, id }: ModalProps) {
   return (
     <>
       {isOpen && (
@@ -31,7 +31,7 @@ function Modal({ title, body, isOpen, onCancel, onSubmit }: ModalProps) {
               </ModalText>
               <ModalActions>
                 <Button onClick={onCancel}>Ні</Button>
-                <Button onClick={onSubmit}>Так</Button>
+                <Button onClick={() => onSubmit(id)}>Так</Button>
               </ModalActions>
             </StyledModal>
           </ModalOverlay>

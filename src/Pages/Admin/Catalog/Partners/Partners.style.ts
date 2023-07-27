@@ -37,19 +37,25 @@ const PartnersItems = styled.div`
   flex-wrap: wrap;
 `
 
-const PartnersItem = styled.div`
+const PartnersItemStyled = styled.div`
+  padding: 26px 10px;
   height: 100px;
-  width: 260px;
-  background-color: salmon;
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+  }
 
   button {
+    z-index: 2;
     position: absolute;
     right: 0;
     top: 0;
   }
 `
 
-const AddPartner = styled.div`
+const AddPartnerStyled = styled.div`
   label {
     cursor: pointer;
     display: flex;
@@ -82,7 +88,7 @@ export {
   PartnersLogos,
   NoPartners,
   PartnersItems,
-  PartnersItem,
-  AddPartner,
+  PartnersItemStyled,
+  AddPartnerStyled,
   PartnersButton,
 }

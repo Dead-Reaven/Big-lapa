@@ -3,7 +3,7 @@ import { Item, Title } from './CheckBox.styles'
 interface ItemProps {
   title: string
   options: { name: string; label: string; checked?: boolean }[]
-  onChange: (name: string, checked: boolean) => void
+  onChange: (value: { [key: string]: boolean }) => void
 }
 
 const CheckBoxItem = ({ title, options, onChange }: ItemProps) => {
@@ -16,7 +16,16 @@ const CheckBoxItem = ({ title, options, onChange }: ItemProps) => {
             type="checkbox"
             name={name}
             checked={checked}
-            onChange={(e) => onChange(name, e.target.checked)}
+            onChange={(e) => {
+              const updatedValue: { [key: string]: boolean } = {
+                ...options.reduce((acc, { name: optionName, checked: optionChecked }) => {
+                  acc[optionName] = optionChecked || false
+                  return acc
+                }, {} as { [key: string]: boolean }),
+                [name]: e.target.checked,
+              }
+              onChange(updatedValue)
+            }}
           />
           <label htmlFor={name}>{label}</label>
         </div>

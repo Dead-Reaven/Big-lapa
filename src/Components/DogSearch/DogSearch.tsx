@@ -1,40 +1,24 @@
-import { useState, useEffect } from 'react'
-import Container from '../UI/Container.style'
+import { useEffect } from 'react'
 import { Menu } from './CheckBox.styles'
 import { SearchInput, StyledDogSearch } from './DogSearch.style'
 import { ReactComponent as IcoSearch } from './icons/search_ico.svg'
 import { ReactComponent as IcoSettings } from './icons/settings_ico.svg'
 import CheckBoxItem from './CheckBoxItem'
 import { DogTypes } from '../../API/types'
+import useQuery from './useParams'
 
 interface DogSearchProps {
-  setState: (state: DogTypes) => DogTypes | void
+  setState: (state: DogTypes) => void
   readonly options: DogTypes | null
 }
 
 function DogSearch({ options, setState }: DogSearchProps) {
   //searching by name
-  const [searchInput, setSearchInput] = useState('')
 
-  //state for check boxes
-  const [isOpen, setIsOpen] = useState(false)
-  const [genders, setGenders] = useState({
-    male: true,
-    female: true,
-  })
-  const [sizes, setSizes] = useState({
-    small: true,
-    medium: true,
-    big: true,
-  })
-  const [chips, setChips] = useState({
-    hasChip: true,
-    noChip: true,
-  })
-  const [breeds, setBreeds] = useState({
-    hasBreed: true,
-    noBreed: true,
-  })
+  const [
+    { breeds, chips, genders, isOpen, sizes, searchInput },
+    { setBreeds, setChips, setGenders, setIsOpen, setSizes, setSearchInput },
+  ] = useQuery() // Destructure the state object
 
   const onClickHandler = (current: boolean) => setIsOpen(!current)
 
@@ -74,7 +58,6 @@ function DogSearch({ options, setState }: DogSearchProps) {
       setState({ data: filtered })
     }
   }
-
   useEffect(() => {
     if (options) setState(options)
     filterState()
@@ -104,10 +87,9 @@ function DogSearch({ options, setState }: DogSearchProps) {
               { name: 'male', label: 'Хлопець', checked: genders.male },
               { name: 'female', label: 'Дівчина', checked: genders.female },
             ]}
-            onChange={(name, checked) => {
-              setGenders((prev) => ({ ...prev, [name]: checked }))
-            }}
+            onChange={setGenders}
           />
+
           <CheckBoxItem
             title="Розмір"
             options={[
@@ -115,9 +97,7 @@ function DogSearch({ options, setState }: DogSearchProps) {
               { name: 'medium', label: 'Середня', checked: sizes.medium },
               { name: 'big', label: 'Велика', checked: sizes.big },
             ]}
-            onChange={(name, checked) =>
-              setSizes((prev) => ({ ...prev, [name]: checked }))
-            }
+            onChange={setSizes}
           />
           <CheckBoxItem
             title="Наявність чипу"
@@ -125,9 +105,7 @@ function DogSearch({ options, setState }: DogSearchProps) {
               { name: 'hasChip', label: 'Так', checked: chips.hasChip },
               { name: 'noChip', label: 'Ні', checked: chips.noChip },
             ]}
-            onChange={(name, checked) =>
-              setChips((prev) => ({ ...prev, [name]: checked }))
-            }
+            onChange={setChips}
           />
           <CheckBoxItem
             title="Наявність породи"
@@ -135,9 +113,7 @@ function DogSearch({ options, setState }: DogSearchProps) {
               { name: 'hasBreed', label: 'Так', checked: breeds.hasBreed },
               { name: 'noBreed', label: 'Ні', checked: breeds.noBreed },
             ]}
-            onChange={(name, checked) =>
-              setBreeds((prev) => ({ ...prev, [name]: checked }))
-            }
+            onChange={setBreeds}
           />
         </Menu>
       )}

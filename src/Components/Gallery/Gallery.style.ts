@@ -1,26 +1,27 @@
 import { styled, css } from 'styled-components'
 import { theme } from '../UI/Theme.styles'
-import TitleH2 from '../UI/TitleH2.styles'
 import Container from '../UI/Container.style'
+import TitleH3 from '../UI/TitleH3.styles'
 import Flex from '../UI/Flex.styles'
-import Button from '../UI/Button.styles'
 
 interface Props {
   $admin?: boolean
 }
 
 const StyledGallery = styled.section<Props>`
-  padding: 110px 0;
+  margin-bottom: 110px;
 
   @media (max-width: 1279px) {
-    padding: 80px 0;
+    margin-bottom: 80px;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 60px;
   }
 
   ${({ $admin }) =>
     $admin &&
     css`
-      padding: 0 !important;
-
       ${Container} {
         padding: 0;
         margin: 0;
@@ -37,6 +38,10 @@ const StyledGallery = styled.section<Props>`
         @media (max-width: 1024px) {
           align-items: end;
         }
+      }
+
+      ${DogsAmount} {
+        align-self: flex-end;
       }
 
       ${DogsCards} {
@@ -70,22 +75,17 @@ const StyledGallery = styled.section<Props>`
     `}
 `
 
-const AdminGalleryButton = styled(Button)`
-  max-width: 400px;
-  width: 100%;
-  margin-bottom: 80px;
-
-  @media (max-width: 767px) {
-    margin-bottom: 40px;
+const DogsAmount = styled(TitleH3)`
+  align-self: start;
+  margin-bottom: 40px;
+  span {
+    color: ${theme.colors.grey};
   }
-`
-
-const GalleryTitle = styled(TitleH2)`
-  margin-bottom: 60px;
 `
 
 const DogsCards = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 24px;
   row-gap: 40px;
@@ -208,8 +208,7 @@ const PaginationNav = styled.ul`
 
 export {
   StyledGallery,
-  AdminGalleryButton,
-  GalleryTitle,
+  DogsAmount,
   DogsCards,
   StyledDogCard,
   Buttons,

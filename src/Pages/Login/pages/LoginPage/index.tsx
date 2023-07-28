@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useLogin from '../../../../API/useLogin'
 import {
   Form,
   FormButton,
@@ -9,13 +11,34 @@ import Input from '../../../Admin/Components/UI/Input'
 import { ForgotButton } from '../ForgotPage/ForgotPage.style'
 
 const LoginComponent = () => {
+  const [loginUser, setLoginUser] = useState('')
+  const [passwordUser, setPasswordUser] = useState('')
+  const onHandlerSubmit = () => {
+    const data = {
+      login: loginUser,
+      password: passwordUser,
+    }
+    useLogin(data)
+    setLoginUser('')
+    setPasswordUser('')
+  }
   return (
     <>
-      <Form>
+      <Form onSubmit={() => onHandlerSubmit()}>
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
-          <Input label="Електронна пошта адміністратора:" placeholder="email@gmail.com" />
-          <Input label="Пароль адміністратора:" placeholder="********" />
+          <Input
+            value={loginUser}
+            onChange={(e) => setLoginUser(e.target.value)}
+            label="Електронна пошта адміністратора:"
+            placeholder="email@gmail.com"
+          />
+          <Input
+            value={passwordUser}
+            onChange={(e) => setPasswordUser(e.target.value)}
+            label="Пароль адміністратора:"
+            placeholder="********"
+          />
           <Link to="authorization">
             <ForgotButton>Забули пароль?</ForgotButton>
           </Link>

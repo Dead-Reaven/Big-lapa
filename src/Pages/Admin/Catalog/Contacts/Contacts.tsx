@@ -14,7 +14,12 @@ function Contacts() {
   })
 
   useEffect(() => {
-    if (contacts) setFieldsState(contacts)
+    if (contacts)
+      setFieldsState({
+        email: contacts.email,
+        first_phoneNumber: contacts.first_phoneNumber,
+        second_phoneNumber: contacts.second_phoneNumber,
+      })
   }, [contacts])
 
   return (

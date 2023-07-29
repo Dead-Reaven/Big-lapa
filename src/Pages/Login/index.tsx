@@ -11,7 +11,6 @@ const Login = () => {
     <StyledLogin>
       <Routes>
         <Route index path="/" element={<LoginComponent />} />
-
         <Route element={<RouteGuard />}>
           <Route path="/authorization" element={<ForgotComponent />} />
           <Route path="authorization/confirmation" element={<ConfirmationComponent />} />

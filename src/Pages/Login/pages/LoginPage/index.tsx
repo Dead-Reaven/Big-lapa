@@ -29,13 +29,13 @@ const LoginComponent = () => {
         <FormContainer>
           <Input
             state={loginUser}
-            onChange={(e) => setLoginUser(e.target.value)}
+            onChange={(newValue) => setLoginUser(newValue)}
             label="Електронна пошта адміністратора:"
             placeholder="email@gmail.com"
           />
           <Input
             state={passwordUser}
-            onChange={(e) => setPasswordUser(e.target.value)}
+            onChange={(newValue) => setPasswordUser(newValue)}
             label="Пароль адміністратора:"
             placeholder="********"
           />

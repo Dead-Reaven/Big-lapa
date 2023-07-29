@@ -6,19 +6,11 @@ interface Props {
   className?: string
   withSvg?: boolean
   width?: string
-  onChange?: (e: any) => void
-  value?: string
 }
 
-function Input({ type, placeholder, className, onChange, value }: Props) {
+function Input({ type, placeholder, className }: Props) {
   return (
-    <input
-      type={type || 'text'}
-      onChange={onChange}
-      value={value}
-      placeholder={placeholder || ''}
-      className={className}
-    />
+    <input type={type || 'text'} placeholder={placeholder || ''} className={className} />
   )
 }
 

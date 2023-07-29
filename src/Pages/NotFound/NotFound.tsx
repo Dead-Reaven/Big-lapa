@@ -7,7 +7,7 @@ import { ReactComponent as Arrow } from './img/Arrow.svg'
 function NotFound() {
   return (
     <StyledNotFound data-testid="not-found-page">
-      <Flex align="center" direction="column">
+      <Flex $align="center" $direction="column">
         <ErrorCode>404</ErrorCode>
         <TitleH3>Page not found</TitleH3>
         <p>

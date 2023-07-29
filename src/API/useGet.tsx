@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from 'react'
+import DogsJson from './testDogs.json'
+import { ContactTypes, DogTypes } from './types'
 
-interface Contacts {
-  email: string
-  first_phoneNumber: string
-  second_phoneNumber: string
-}
+type Select = 'contacts' | 'dogs'
 
-type Select = 'contacts'
-type Type = 'get' | 'post'
-
-function useApi(select: Select, type: Type) {
-  const [state, setState] = useState<Contacts>()
+function useGet(select: Select) {
+  const [contacts, setContacts] = useState<ContactTypes | null>(null)
+  const [dogs, setDogs] = useState<DogTypes | null>(null)
 
   useEffect(() => {
     if (select === 'contacts') {
-      if (type === 'get') {
-        const getData = async (handleSetState: React.Dispatch<Contacts>) => {
-          const response = await fetch(
-            'https://big-lapa-api-production.up.railway.app/api/main/get',
-          )
-          const data = await response.json()
-          handleSetState(data)
-        }
-        getData(setState)
+      const getData = async (handleSetState: React.Dispatch<ContactTypes>) => {
+        const response = await fetch(
+          'https://big-lapa-api-production.up.railway.app/api/main/get',
+        )
+        const data = await response.json()
+        handleSetState(data)
       }
+      getData(setContacts)
+    }
+
+    if (select === 'dogs') {
+      const getData = async (handleSetState: React.Dispatch<DogTypes>) => {
+        const res: DogTypes = DogsJson
+        handleSetState(res)
+      }
+      const timeoutId = window.setTimeout(() => {
+        getData(setDogs)
+      }, 1000)
+
+      // Cleanup the timeout on component unmount (optional but recommended)
+      return () => window.clearTimeout(timeoutId)
     }
   }, [])
 
-  return state
+  if (select === 'contacts') return contacts as ContactTypes | null
+  if (select === 'dogs') return dogs as DogTypes | null
 }
-
-export default useApi
+export default useGet

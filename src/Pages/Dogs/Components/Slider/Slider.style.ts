@@ -10,6 +10,15 @@ const SliderStyled = styled.div`
   justify-content: center;
   color: ${theme.colors.background};
   background-color: ${theme.colors.green};
+  margin-bottom: 120px;
+
+  @media (max-width: 1279px) {
+    margin-bottom: 80px;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 60px;
+  }
 `
 
 const Flex = styled.div`

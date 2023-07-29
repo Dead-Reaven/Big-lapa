@@ -1,97 +1,53 @@
 import {
   DogsCards,
-  GalleryTitle,
-  AdminGalleryButton,
   Pagination,
   PaginationButton,
   PaginationNav,
   StyledGallery,
+  DogsAmount,
 } from './Gallery.style'
-import dog from './img/Dog_photo.png'
+import dogImage from './img/Dog_photo.png'
 import { ReactComponent as Refresh } from './img/refresh.svg'
 import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
-
 import DogCard from './DogCard'
+import { DogTypes } from '../../API/types'
 
 interface Props {
   admin?: boolean
+  state?: DogTypes | null
 }
 
-function Gallery({ admin }: Props) {
-  const dogsList = [
-    {
-      id: 1,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 2,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 3,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 4,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 5,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-    {
-      id: 6,
-      src: dog,
-      name: 'Скай',
-      sex: 'Хлопчик',
-      age: '2 роки',
-    },
-  ]
+function Gallery({ admin, state }: Props) {
+  const dogsList = state?.data
+
   return (
-    <StyledGallery admin={admin}>
+    <StyledGallery $admin={admin}>
       <Container>
-        <Flex direction="column" align="center">
-          {admin && <AdminGalleryButton>Додати нову картку</AdminGalleryButton>}
-          {!admin && <GalleryTitle>Наші хвости</GalleryTitle>}
+        <Flex $direction="column" $align="center">
+          <DogsAmount>
+            <span>Знайдено:</span> {dogsList?.length} собак
+          </DogsAmount>
           <DogsCards>
-            {dogsList.map((dog) => (
-              <DogCard dog={dog} key={dog.id} admin={admin} />
+            {dogsList?.map((dog) => (
+              <DogCard dog={dog} src={dogImage} key={dog.id} admin={admin} />
             ))}
           </DogsCards>
-
-          {!admin && (
-            <Pagination>
-              <PaginationButton>
-                <Refresh />
-                Показати ще
-              </PaginationButton>
-              <PaginationNav>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>...</li>
-                <li>16</li>
-              </PaginationNav>
-            </Pagination>
-          )}
+          <Pagination>
+            <PaginationButton>
+              <Refresh />
+              Показати ще
+            </PaginationButton>
+            <PaginationNav>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>...</li>
+              <li>16</li>
+            </PaginationNav>
+          </Pagination>
         </Flex>
       </Container>
     </StyledGallery>

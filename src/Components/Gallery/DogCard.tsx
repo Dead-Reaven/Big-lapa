@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ReactComponent as IcoPaws } from './img/Paws.svg'
-import { StyledDogCard } from './Gallery.style'
+import { ReactComponent as DeleteIco } from './img/delete.svg'
+import { Buttons, StyledDogCard } from './Gallery.style'
 import TitleH3 from '../UI/TitleH3.styles'
 import Button from '../UI/Button.styles'
 
 interface Dog {
+  id: number
   src: string
   name: string
   sex: string
@@ -12,15 +14,16 @@ interface Dog {
 }
 interface Props {
   dog: Dog
+  src?: any
   admin?: boolean
 }
 
-function DogCard({ dog, admin }: Props) {
-  const { src, name, sex, age } = dog
+function DogCard({ dog, src, admin }: Props) {
+  const { id, name, sex, age } = dog
   return (
     <StyledDogCard>
       {!admin && (
-        <Link to="/dog">
+        <Link to={`/dog/${id}/${name}`}>
           <img src={src} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>
@@ -30,14 +33,19 @@ function DogCard({ dog, admin }: Props) {
         </Link>
       )}
       {admin && (
-        <div>
+        <Link to="/admin/edit-card">
           <img src={src} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>
             {sex}, {age}
           </p>
-          <Button>Редагувати</Button>
-        </div>
+          <Buttons>
+            <Button>Редагувати</Button>
+            <Button>
+              <DeleteIco />
+            </Button>
+          </Buttons>
+        </Link>
       )}
     </StyledDogCard>
   )

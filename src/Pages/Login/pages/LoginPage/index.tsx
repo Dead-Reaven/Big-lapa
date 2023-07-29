@@ -28,13 +28,13 @@ const LoginComponent = () => {
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
           <Input
-            value={loginUser}
+            state={loginUser}
             onChange={(e) => setLoginUser(e.target.value)}
             label="Електронна пошта адміністратора:"
             placeholder="email@gmail.com"
           />
           <Input
-            value={passwordUser}
+            state={passwordUser}
             onChange={(e) => setPasswordUser(e.target.value)}
             label="Пароль адміністратора:"
             placeholder="********"

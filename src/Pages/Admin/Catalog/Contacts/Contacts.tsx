@@ -1,27 +1,52 @@
+import { useEffect, useState } from 'react'
 import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/Form.style'
 import Input from '../../Components/UI/Input'
-import useApi from '../../../../API/useGet'
+import useGet from '../../../../API/useGet'
 import usePost from '../../../../API/usePost'
+import { ContactTypes } from '../../../../API/types'
 
 function Contacts() {
-  const contacts = useApi('contacts', 'get')
+  const contacts = useGet('contacts') as ContactTypes
+  const [fieldsState, setFieldsState] = useState<ContactTypes>({
+    email: '',
+    first_phoneNumber: '',
+    second_phoneNumber: '',
+  })
 
-  const onSubmitHadler = () => {
-    const data = {
-      first_phoneNumber: '+380 068 123 111',
-      second_phoneNumber: '+380 068 777 777',
-      email: 'email@one.com',
-    }
-    usePost(data)
-  }
+  useEffect(() => {
+    if (contacts) setFieldsState(contacts)
+  }, [contacts])
 
   return (
-    <Form onSubmit={() => onSubmitHadler()}>
+    <Form
+      onSubmit={() => {
+        usePost('contacts', fieldsState)
+      }}
+    >
       <FormH2>Телефони та електронна пошта</FormH2>
       <FormContainer>
-        <Input label="Перший номер телефону" placeholder={contacts?.first_phoneNumber} />
-        <Input label="Другий номер телефону" placeholder={contacts?.second_phoneNumber} />
-        <Input label="Електронна пошта" placeholder={contacts?.email} />
+        <Input
+          state={fieldsState.first_phoneNumber}
+          onChange={(newValue) =>
+            setFieldsState({ ...fieldsState, first_phoneNumber: newValue })
+          }
+          label="Перший номер телефону"
+          placeholder={fieldsState?.first_phoneNumber}
+        />
+        <Input
+          state={fieldsState.second_phoneNumber}
+          label="Другий номер телефону"
+          placeholder={fieldsState?.second_phoneNumber}
+          onChange={(newValue) =>
+            setFieldsState({ ...fieldsState, second_phoneNumber: newValue })
+          }
+        />
+        <Input
+          state={fieldsState.email}
+          label="Електронна пошта"
+          placeholder={fieldsState?.email}
+          onChange={(newValue) => setFieldsState({ ...fieldsState, email: newValue })}
+        />
         <FormButton type="submit">Оновити</FormButton>
       </FormContainer>
     </Form>

@@ -18,9 +18,9 @@ function App() {
             {/* Default route and test route */}
             <Route index path="/" element={<Home />} />
             <Route path="dogs" element={<Dogs />} />
+            <Route path="dog/:id/:name" element={<Dog />} />
             <Route path="about" element={<About />} />
             <Route path="contacts" element={<Contacts />}></Route>
-            <Route path="dog" element={<Dog />} />
             {/* not found route */}
             <Route path="*" element={<NotFound />} />
           </Route>

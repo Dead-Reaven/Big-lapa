@@ -9,7 +9,7 @@ interface Props {
 function DonationCard(props: Props) {
   return (
     <StyledDonationCard>
-      <Flex direction="column" align="center" gap="35px">
+      <Flex $direction="column" $align="center" $gap="35px">
         {props.children}
       </Flex>
     </StyledDonationCard>

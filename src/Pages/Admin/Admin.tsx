@@ -1,6 +1,15 @@
 import { Route, Routes } from 'react-router'
 import { StyledAdmin } from './Admin.style'
-import { DogCards, Partners, Sliders, Reports, Contacts, Settings } from './Catalog'
+import {
+  DogCards,
+  Partners,
+  Sliders,
+  Reports,
+  Contacts,
+  Settings,
+  NewCard,
+  EditCard,
+} from './Catalog'
 import NotFound from '../NotFound/NotFound'
 
 function Admin() {
@@ -8,6 +17,8 @@ function Admin() {
     <StyledAdmin>
       <Routes>
         <Route index path="/" element={<DogCards />} />
+        <Route path="/new-card" element={<NewCard />} />
+        <Route path="/edit-card" element={<EditCard />} />
         <Route path="/partners" element={<Partners />} />
         <Route path="/sliders" element={<Sliders />} />
         <Route path="/reports" element={<Reports />} />

@@ -2,10 +2,12 @@ import { Route, Routes } from 'react-router'
 import { HashRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './Components/UI/Theme.styles'
-import MainLayout from './Layout/MainLayout'
-import { Home, Dogs, About, Contacts, NotFound, Dog } from './Pages'
-import Admin from './Pages/Admin/Admin'
 import AdminLayout from './Layout/AdminLayout'
+import LoginLayout from './Layout/LoginLayout'
+import MainLayout from './Layout/MainLayout'
+import { About, Contacts, Dog, Dogs, Home, NotFound } from './Pages'
+import Admin from './Pages/Admin/Admin'
+import Login from './Pages/Login'
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
           </Route>
           <Route element={<AdminLayout />}>
             <Route path="admin/*" element={<Admin />}></Route>
+          </Route>
+          <Route element={<LoginLayout />}>
+            <Route path="login/*" element={<Login />}></Route>
           </Route>
         </Routes>
       </HashRouter>

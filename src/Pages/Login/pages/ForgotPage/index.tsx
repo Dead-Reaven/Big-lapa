@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import {
   Form,
@@ -9,6 +10,7 @@ import Input from '../../../Admin/Components/UI/Input'
 import { FormP } from './ForgotPage.style'
 
 const ForgotComponent = () => {
+  const [forgotState, setForgotState] = useState('')
   return (
     <Form>
       <FormH2>Забули пароль?</FormH2>
@@ -16,7 +18,12 @@ const ForgotComponent = () => {
         <FormP>
           Введіть адресу електронної пошти, і ми надішлемо вам код для зміни пароля
         </FormP>
-        <Input label="Електронна пошта адміністратора:" placeholder="email@gmail.com" />
+        <Input
+          state={forgotState}
+          onChange={(newValue) => setForgotState(newValue)}
+          label="Електронна пошта адміністратора:"
+          placeholder="email@gmail.com"
+        />
         <NavLink to="confirmation">
           <FormButton type="submit">Надіслати</FormButton>
         </NavLink>

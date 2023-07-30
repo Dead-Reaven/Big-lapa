@@ -8,34 +8,64 @@ import {
   FormH2,
 } from '../../../Admin/Components/UI/Form.style'
 import Input from '../../../Admin/Components/UI/Input'
+import useValidForm from '../../useValidForm'
 import { ForgotButton } from '../ForgotPage/ForgotPage.style'
 
+const validationHook = (initialState: any, validations: any) => {
+  const [value, setStateUser] = useState(initialState)
+  const [isDirty, setIsDirty] = useState(false)
+  const valid = useValidForm({ value, validations })
+
+  const onChange = (newValue: any) => {
+    setStateUser(newValue)
+  }
+
+  const onBlur = () => {
+    setIsDirty(true)
+  }
+
+  return {
+    value,
+    isDirty,
+    onChange,
+    onBlur,
+    ...valid,
+  }
+}
+
 const LoginComponent = () => {
-  const [loginUser, setLoginUser] = useState('')
-  const [passwordUser, setPasswordUser] = useState('')
+  const loginUser = validationHook('', { isEmpty: false, minLength: 4 })
+  const passwordUser = validationHook('', { isEmpty: false, minLength: 5 })
+
   const onHandlerSubmit = () => {
     const data = {
-      login: loginUser,
-      password: passwordUser,
+      login: loginUser.value,
+      password: passwordUser.value,
     }
     useLogin(data)
-    setLoginUser('')
-    setPasswordUser('')
   }
   return (
     <>
       <Form onSubmit={() => onHandlerSubmit()}>
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
+          {loginUser.isDirty && loginUser.isEmpty && (
+            <div style={{ color: 'red' }}>Поле пустое</div>
+          )}
           <Input
-            state={loginUser}
-            onChange={(newValue) => setLoginUser(newValue)}
+            state={loginUser.value}
+            onChange={(newValue) => loginUser.onChange(newValue)}
+            onBlur={loginUser.onBlur}
             label="Електронна пошта адміністратора:"
             placeholder="email@gmail.com"
           />
+          {passwordUser.isDirty && loginUser.isEmpty && (
+            <div style={{ color: 'red' }}>Поле пустое</div>
+          )}
           <Input
-            state={passwordUser}
-            onChange={(newValue) => setPasswordUser(newValue)}
+            state={passwordUser.value}
+            onChange={(newValue) => passwordUser.onChange(newValue)}
+            onBlur={passwordUser.onBlur}
             label="Пароль адміністратора:"
             placeholder="********"
           />

@@ -1,8 +1,10 @@
 import { ContactTypes } from './types'
 
-type select = 'contacts'
+type select = 'contacts' | 'partners'
 
-function usePost(select: select, data: ContactTypes) {
+type IMGFile = File
+
+function usePost(select: select, data: ContactTypes | IMGFile) {
   const postData = async () => {
     if (select === 'contacts') {
       try {
@@ -26,6 +28,28 @@ function usePost(select: select, data: ContactTypes) {
       } catch (error) {
         console.error('Error:', error)
       }
+    }
+
+    if (select === 'partners') {
+      const description = 'Optional description here'
+      const category = 'Logo'
+      const url = 'https://big-lapa-api-production.up.railway.app/api/images'
+
+      const formData = new FormData()
+      formData.append('image', data as IMGFile)
+      formData.append('description', description)
+      formData.append('category', category)
+
+      console.log({ data })
+
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      console.log({ response })
     }
   }
 

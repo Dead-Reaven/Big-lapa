@@ -4,6 +4,12 @@ interface ContactTypes {
   second_phoneNumber: string
 }
 
+interface PartnerTypes {
+  id: string
+  src: string | File
+  encodedBase64?: string
+}
+
 interface DogTypes {
   data: {
     id: number
@@ -18,4 +24,4 @@ interface DogTypes {
   }[]
 }
 
-export type { ContactTypes, DogTypes }
+export type { ContactTypes, PartnerTypes, DogTypes }

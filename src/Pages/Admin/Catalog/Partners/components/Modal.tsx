@@ -10,15 +10,15 @@ import {
 import Button from '../../../../../Components/UI/Button.styles'
 
 interface ModalProps {
+  logoId: string
   title?: string
   body?: string
   isOpen?: boolean
-  onCancel(): any
-  onSubmit(id: number): any
-  id: number
+  onCancel(): void
+  onSubmit(id: string): void
 }
 
-function Modal({ title, body, isOpen, onCancel, onSubmit, id }: ModalProps) {
+function Modal({ title, body, isOpen, onCancel, onSubmit, logoId }: ModalProps) {
   return (
     <>
       {isOpen && (
@@ -31,7 +31,7 @@ function Modal({ title, body, isOpen, onCancel, onSubmit, id }: ModalProps) {
               </ModalText>
               <ModalActions>
                 <Button onClick={onCancel}>Ні</Button>
-                <Button onClick={() => onSubmit(id)}>Так</Button>
+                <Button onClick={() => onSubmit(logoId)}>Так</Button>
               </ModalActions>
             </StyledModal>
           </ModalOverlay>

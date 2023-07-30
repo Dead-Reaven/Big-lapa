@@ -1,29 +1,25 @@
+import { PartnerTypes } from '../../../../../API/types'
 import { PartnersItemStyled } from '../Partners.style'
 import { CloseIco } from '../img/icons'
 
-interface Partner {
-  id: number
-  src: string
-}
-
 interface PartnerItem {
-  partner: Partner
-  setId: React.Dispatch<React.SetStateAction<number>>
+  partner: PartnerTypes
+  setDeleteLogoId: React.Dispatch<React.SetStateAction<string>>
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function PartnersItem({ setIsModalOpen, partner, setId }: PartnerItem) {
+function PartnersItem({ setIsModalOpen, partner, setDeleteLogoId }: PartnerItem) {
   const openModal = () => {
     setIsModalOpen(true)
-    setId(partner.id)
+    setDeleteLogoId(partner.id)
   }
 
   return (
     <PartnersItemStyled>
-      <button onClick={openModal}>
+      <button type="button" onClick={openModal}>
         <CloseIco />
       </button>
-      <img src={partner.src} alt="partner" />
+      <img src={partner?.encodedBase64 ?? (partner.src as string)} alt="partner" />
     </PartnersItemStyled>
   )
 }

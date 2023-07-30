@@ -1,13 +1,9 @@
 import { AddPartnerStyled } from '../Partners.style'
 import { PlusIco } from '../img/icons'
-
-interface Partner {
-  id: number
-  src: string
-}
+import { PartnerTypes } from '../../../../../API/types'
 
 interface AddPartnerProps {
-  setPartners: React.Dispatch<React.SetStateAction<Array<Partner>>>
+  setPartners: React.Dispatch<React.SetStateAction<PartnerTypes[]>>
 }
 
 function AddPartner({ setPartners }: AddPartnerProps) {
@@ -15,14 +11,17 @@ function AddPartner({ setPartners }: AddPartnerProps) {
     const selectedFile = e.target.files?.[0]
 
     if (selectedFile) {
-      const fileUrl = URL.createObjectURL(selectedFile)
-
-      const newPartner: Partner = {
-        id: Date.now(),
-        src: fileUrl,
+      const reader = new FileReader()
+      reader.onload = function (event) {
+        const base64String = event.target?.result
+        const newPartner: PartnerTypes = {
+          id: Date.now().toString(),
+          src: selectedFile,
+          encodedBase64: base64String as string,
+        }
+        setPartners((partners) => [...(partners as PartnerTypes[]), newPartner])
       }
-
-      setPartners((partners) => [...partners, newPartner])
+      reader.readAsDataURL(selectedFile)
 
       e.target.value = ''
     }

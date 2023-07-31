@@ -3,7 +3,7 @@ interface AdminLogin {
   password: string
 }
 
-function useLogin(data: AdminLogin) {
+const useLogin = (data: AdminLogin) => {
   const postData = async () => {
     try {
       const response = await fetch(
@@ -16,19 +16,17 @@ function useLogin(data: AdminLogin) {
           body: JSON.stringify(data),
         },
       )
-
       if (response.ok) {
         const responseData = await response.json()
         localStorage.setItem('access_token', responseData.access_token)
         console.log(responseData)
-      } else {
+      } else if (!response.ok) {
         console.error('Error:', response.status)
       }
     } catch (error) {
       console.error('Error:', error)
     }
   }
-
   postData()
   return
 }

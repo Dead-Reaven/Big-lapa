@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import {
   Form,
@@ -8,12 +9,23 @@ import {
 import Input from '../../../Admin/Components/UI/Input'
 
 const RecoveryPage = () => {
+  const [recoveryPass, setRecoveryPass] = useState('')
   return (
     <Form>
       <FormH2>Відновлення паролю</FormH2>
       <FormContainer>
-        <Input label="Введіть новий пароль" placeholder="********" />
-        <Input label="Підтвердіть пароль" placeholder="********" />
+        <Input
+          state={recoveryPass}
+          onChange={(newValue) => setRecoveryPass(newValue)}
+          label="Введіть новий пароль"
+          placeholder="********"
+        />
+        <Input
+          state={recoveryPass}
+          onChange={(newValue) => setRecoveryPass(newValue)}
+          label="Підтвердіть пароль"
+          placeholder="********"
+        />
         <NavLink to="/login">
           <FormButton type="submit">Підтвердити</FormButton>
         </NavLink>

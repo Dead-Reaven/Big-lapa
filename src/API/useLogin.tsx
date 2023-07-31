@@ -1,9 +1,6 @@
-interface AdminLogin {
-  login: string
-  password: string
-}
+import { AdminLogin } from './adminTypes'
 
-const useLogin = (data: AdminLogin) => {
+function useLogin(data: AdminLogin) {
   const postData = async () => {
     try {
       const response = await fetch(
@@ -19,12 +16,11 @@ const useLogin = (data: AdminLogin) => {
       if (response.ok) {
         const responseData = await response.json()
         localStorage.setItem('access_token', responseData.access_token)
-        console.log(responseData)
       } else if (!response.ok) {
-        console.error('Error:', response.status)
+        console.log(response.status)
       }
     } catch (error) {
-      console.error('Error:', error)
+      console.log('123', error)
     }
   }
   postData()

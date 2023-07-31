@@ -49,12 +49,14 @@ function useGet(select: Select) {
 
   useEffect(() => {
     if (partnersID.length > 0) {
-      partnersID.forEach((id) => fetchImage(id))
+      Promise.all(partnersID.map((id) => getPartner(id)))
+        .then((resolved) => setPartners(resolved))
+        .catch((error) => console.log(error))
     }
   }, [partnersID])
 
-  const fetchImage = async (id: string) => {
-    console.log('fetchImage')
+  const getPartner = async (id: string): Promise<PartnerTypes> => {
+    console.log('fetched partner img', { id })
     const response = await fetch(
       `https://big-lapa-api-production.up.railway.app/api/images/${id}`,
     )
@@ -67,16 +69,12 @@ function useGet(select: Select) {
     const base64 = btoa(
       new Uint8Array(data).reduce((data, byte) => data + String.fromCharCode(byte), ''),
     )
-    const newImg = `data:image/png;base64, ${base64}`
-
-    const convertedImges = []
-    for (let i = 0; i < partnersID.length; i++) {
-      convertedImges.push({
-        id: partnersID[i],
-        src: newImg,
-      })
+    const base64Img = `data:image/png;base64, ${base64}`
+    return {
+      id: id,
+      src: base64Img as string,
+      encodedBase64: base64Img,
     }
-    setPartners(convertedImges)
   }
 
   if (select === 'contacts') return contacts as ContactTypes | null

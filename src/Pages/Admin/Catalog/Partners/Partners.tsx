@@ -18,29 +18,36 @@ import AddPartner from './components/AddPartner'
 import usePost from '../../../../API/usePost'
 
 function Partners() {
-  const fetchedPartners = useGet('partners') as PartnerTypes[] | null
-  useEffect(() => {
-    if (fetchedPartners) setPartners(fetchedPartners)
-  }, [fetchedPartners])
+  const fetchedPartners = useGet('partners') as PartnerTypes[]
 
-  const [partners, setPartners] = useState<PartnerTypes[]>([])
+  const [partnersState, setPartnersState] = useState<PartnerTypes[]>(fetchedPartners)
   const [selectedId, setModalDeleteId] = useState<string>('')
   const [IsModalOpen, setIsModalOpen] = useState(false)
-  console.log(partners)
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
+  useEffect(() => {
+    if (fetchedPartners) setPartnersState(fetchedPartners)
+  }, [fetchedPartners])
+
+  console.log('result:', partnersState)
+  console.log({ selectedFile })
 
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)
   }
 
   const modalSubmitHandler = (modalId: string) => {
-    setPartners((partners) => {
-      return partners?.filter(({ id }) => id !== modalId)
-    })
+    usePost('partners', modalId, 'delete')
+    setPartnersState((partners) => partners?.filter(({ id }) => id !== modalId))
     setIsModalOpen((curr) => !curr)
+    setSelectedFile(null)
   }
 
   const onSubmitFormHandler = () => {
-    usePost('partners', partners[partners.length - 1].src as File)
+    if (selectedFile instanceof File) {
+      usePost('partners', selectedFile)
+      setSelectedFile(null)
+    } else console.log('unexpected file type')
   }
 
   return (
@@ -56,14 +63,14 @@ function Partners() {
       <PartnersStyled>
         <PartnersLogos>
           <TitleH2>Лого партнерів</TitleH2>
-          {partners?.length === 0 && (
+          {partnersState?.length === 0 && (
             <NoPartners>
               <TitleH3>На жаль, у притулку ще немає партнерів</TitleH3>
               <SadIco />
             </NoPartners>
           )}
           <PartnersItems>
-            {partners?.map((partner) => (
+            {partnersState?.map((partner) => (
               <PartnersItem
                 setIsModalOpen={setIsModalOpen}
                 key={partner.id}
@@ -71,10 +78,14 @@ function Partners() {
                 setDeleteLogoId={setModalDeleteId}
               />
             ))}
-            <AddPartner setPartners={setPartners} />
+            <AddPartner
+              selectedFile={selectedFile}
+              setPartners={setPartnersState}
+              setSelectedFile={setSelectedFile}
+            />
           </PartnersItems>
         </PartnersLogos>
-        <PartnersButton type="submit">Оновити</PartnersButton>
+        {selectedFile && <PartnersButton type="submit">Відправити</PartnersButton>}
       </PartnersStyled>
     </form>
   )

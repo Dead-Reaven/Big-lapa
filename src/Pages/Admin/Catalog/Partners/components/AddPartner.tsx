@@ -3,10 +3,12 @@ import { PlusIco } from '../img/icons'
 import { PartnerTypes } from '../../../../../API/types'
 
 interface AddPartnerProps {
+  selectedFile: File | null
   setPartners: React.Dispatch<React.SetStateAction<PartnerTypes[]>>
+  setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>
 }
 
-function AddPartner({ setPartners }: AddPartnerProps) {
+function AddPartner({ selectedFile, setPartners, setSelectedFile }: AddPartnerProps) {
   const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
 
@@ -19,23 +21,32 @@ function AddPartner({ setPartners }: AddPartnerProps) {
           src: selectedFile,
           encodedBase64: base64String as string,
         }
+        setSelectedFile(selectedFile)
         setPartners((partners) => [...(partners as PartnerTypes[]), newPartner])
       }
       reader.readAsDataURL(selectedFile)
-
       e.target.value = ''
     }
+    setSelectedFile(null)
   }
 
-  return (
-    <AddPartnerStyled>
-      <input type="file" name="partner" id="partner" onChange={fileChangeHandler} />
-      <label htmlFor="partner">
-        <PlusIco />
-        <p>Додати лого</p>
-      </label>
-    </AddPartnerStyled>
-  )
+  if (!selectedFile)
+    return (
+      <AddPartnerStyled>
+        <input
+          type="file"
+          accept="image/*"
+          name="partner"
+          id="partner"
+          onChange={fileChangeHandler}
+        />
+        <label htmlFor="partner">
+          <PlusIco />
+          <p>Додати лого</p>
+        </label>
+      </AddPartnerStyled>
+    )
+  return <></>
 }
 
 export default AddPartner

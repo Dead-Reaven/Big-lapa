@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import useGet from '../../../API/useGet'
+import { ContactTypes } from '../../../API/types'
 import dogM from '../img/contact-us/dogM2x.png'
 import { ReactComponent as IcoPhone } from '../img/contact-us/phone.svg'
 import { ReactComponent as IcoMail } from '../img/contact-us/mail.svg'
@@ -23,6 +26,18 @@ import {
 import TitleH2 from '../../../Components/UI/TitleH2.styles'
 
 function ContactUs() {
+  const [contactsState, setContactsState] = useState<ContactTypes>({
+    email: '',
+    first_phoneNumber: '',
+    second_phoneNumber: '',
+  })
+
+  useGet({
+    category: 'contacts',
+    state: contactsState,
+    setState: setContactsState,
+  }) as ContactTypes
+
   return (
     <StyledSection>
       <Container>
@@ -33,13 +48,20 @@ function ContactUs() {
 
             <StyledContactsList>
               <StyledListItem>
-                <IcoPhone /> <p>+38 063 628 6630</p>
+                <IcoPhone />
+                <a href={`tel:${contactsState?.first_phoneNumber}`}>
+                  {contactsState?.first_phoneNumber}
+                </a>
               </StyledListItem>
               <StyledListItem>
-                <IcoPhone /> <p>+38 063 628 6630</p>
+                <IcoPhone />
+                <a href={`tel:${contactsState?.second_phoneNumber}`}>
+                  {contactsState?.second_phoneNumber}
+                </a>
               </StyledListItem>
               <StyledListItem>
-                <IcoMail /> <p>elektronna@poshta.com</p>
+                <IcoMail />
+                <a href={`mailto:${contactsState?.email}`}>{contactsState?.email}</a>
               </StyledListItem>
               <StyledListItem>
                 <IcoMap /> <p>Адреса: місто Львів, вул. Городоцька, 397</p>

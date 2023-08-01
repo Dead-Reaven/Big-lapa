@@ -23,6 +23,12 @@ const PartnersFlex = styled(Flex)`
   row-gap: 20px;
   column-gap: 60px;
   flex-wrap: wrap;
+
+  img {
+    max-height: 100px;
+    object-fit: contain;
+    vertical-align: bottom;
+  }
 `
 
 export { PartnersSection, PartnersTitle, PartnersFlex }

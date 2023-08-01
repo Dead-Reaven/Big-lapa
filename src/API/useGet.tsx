@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react'
 import DogsJson from './testDogs.json'
 import { ContactTypes, DogTypes, PartnerTypes } from './types'
 
-type Select = 'contacts' | 'dogs' | 'partners'
+interface Props {
+  category: 'contacts' | 'dogs' | 'partners'
+  state: ContactTypes | DogTypes | PartnerTypes[]
+  setState: React.Dispatch<React.SetStateAction<any>>
+}
 
-function useGet(select: Select) {
-  const [contacts, setContacts] = useState<ContactTypes | null>(null)
-  const [dogs, setDogs] = useState<DogTypes | null>(null)
-
-  const [partners, setPartners] = useState<PartnerTypes[]>([])
+function useGet({ category, state, setState }: Props) {
   const [partnersID, setPartnersID] = useState<string[]>([])
 
   useEffect(() => {
-    if (select === 'contacts') {
+    if (category === 'contacts') {
+      console.log('contacts api called')
       const getData = async (handleSetState: React.Dispatch<ContactTypes>) => {
         const response = await fetch(
           'https://big-lapa-api-production.up.railway.app/api/main/get',
@@ -20,22 +21,24 @@ function useGet(select: Select) {
         const data = await response.json()
         handleSetState(data)
       }
-      getData(setContacts)
+      getData(setState as React.Dispatch<ContactTypes>)
     }
 
-    if (select === 'dogs') {
+    if (category === 'dogs') {
+      console.log('dogs api called')
       const getData = async (handleSetState: React.Dispatch<DogTypes>) => {
         const res: DogTypes = DogsJson
         handleSetState(res)
       }
       const timeoutId = window.setTimeout(() => {
-        getData(setDogs)
+        getData(setState as React.Dispatch<DogTypes>)
       }, 1000)
 
       // Cleanup the timeout on component unmount (optional but recommended)
       return () => window.clearTimeout(timeoutId)
     }
-    if (select === 'partners') {
+    if (category === 'partners') {
+      console.log('partners api called')
       const getPartnersId = async () => {
         const response = await fetch(
           `https://big-lapa-api-production.up.railway.app/api/images/category/Logo`,
@@ -50,7 +53,7 @@ function useGet(select: Select) {
   useEffect(() => {
     if (partnersID.length > 0) {
       Promise.all(partnersID.map((id) => getPartner(id)))
-        .then((resolved) => setPartners(resolved))
+        .then((resolved) => setState(resolved))
         .catch((error) => console.log(error))
     }
   }, [partnersID])
@@ -77,8 +80,8 @@ function useGet(select: Select) {
     }
   }
 
-  if (select === 'contacts') return contacts as ContactTypes | null
-  if (select === 'dogs') return dogs as DogTypes | null
-  if (select === 'partners') return partners as PartnerTypes[] | null
+  if (category === 'contacts') return state as ContactTypes | null
+  if (category === 'dogs') return state as DogTypes | null
+  if (category === 'partners') return state as PartnerTypes[] | null
 }
 export default useGet

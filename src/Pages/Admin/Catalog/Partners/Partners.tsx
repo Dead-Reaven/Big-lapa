@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PartnerTypes } from '../../../../API/types'
 import useGet from '../../../../API/useGet'
 
@@ -18,19 +18,19 @@ import AddPartner from './components/AddPartner'
 import usePost from '../../../../API/usePost'
 
 function Partners() {
-  const fetchedPartners = useGet('partners') as PartnerTypes[]
+  const [partnersState, setPartnersState] = useState<PartnerTypes[]>([])
 
-  const [partnersState, setPartnersState] = useState<PartnerTypes[]>(fetchedPartners)
+  useGet({
+    category: 'partners',
+    state: partnersState,
+    setState: setPartnersState,
+  }) as PartnerTypes[]
+
+  console.log({ partnersState })
+
   const [selectedId, setModalDeleteId] = useState<string>('')
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
-
-  useEffect(() => {
-    if (fetchedPartners) setPartnersState(fetchedPartners)
-  }, [fetchedPartners])
-
-  console.log('result:', partnersState)
-  console.log({ selectedFile })
 
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)

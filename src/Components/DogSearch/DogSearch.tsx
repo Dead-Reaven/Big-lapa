@@ -8,6 +8,7 @@ import { DogTypes } from '../../API/types'
 import useQuery from './useParams'
 
 interface DogSearchProps {
+  state: DogTypes
   setState: (state: DogTypes) => void
   readonly options: DogTypes | null
 }

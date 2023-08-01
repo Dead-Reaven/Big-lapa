@@ -7,15 +7,26 @@ import { AdminGalleryButton, StyledDogCards } from './DogCards.style'
 import { Link } from 'react-router-dom'
 
 function DogCards() {
-  const fetchedData = useGet('dogs') as DogTypes | null
-  const [state, setState] = useState<DogTypes | null>(fetchedData)
+  const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })
+  useGet({
+    category: 'dogs',
+    state: dogsState,
+    setState: setDogsState,
+  }) as DogTypes
+
+  const [filteredDogsState, setFilteredDogsState] = useState<DogTypes>(dogsState)
+
   return (
     <StyledDogCards>
       <AdminGalleryButton>
         <Link to="/admin/new-card">Додати нову картку</Link>
       </AdminGalleryButton>
-      <DogSearch setState={setState} options={fetchedData} />
-      <Gallery state={state} admin={true} />
+      <DogSearch
+        state={filteredDogsState}
+        setState={setFilteredDogsState}
+        options={dogsState as DogTypes}
+      />
+      <Gallery state={filteredDogsState as DogTypes} admin={true} />
     </StyledDogCards>
   )
 }

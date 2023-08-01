@@ -8,15 +8,26 @@ import { DogsStyled } from './Dogs.style'
 import Container from '../../Components/UI/Container.style'
 
 function Dogs() {
-  const fetchedData = useGet('dogs') as DogTypes | null
-  const [state, setState] = useState<DogTypes | null>(fetchedData)
+  const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })
+  useGet({
+    category: 'dogs',
+    state: dogsState,
+    setState: setDogsState,
+  }) as DogTypes
+
+  const [filteredDogsState, setFilteredDogsState] = useState<DogTypes>(dogsState)
+
   return (
     <DogsStyled data-testid="dogs-page">
       <Slider />
       <Container>
-        <DogSearch setState={setState} options={fetchedData} />
+        <DogSearch
+          state={filteredDogsState}
+          setState={setFilteredDogsState}
+          options={dogsState as DogTypes}
+        />
       </Container>
-      <Gallery state={state} />
+      <Gallery state={filteredDogsState} />
     </DogsStyled>
   )
 }

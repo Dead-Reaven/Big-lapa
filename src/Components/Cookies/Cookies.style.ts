@@ -1,12 +1,7 @@
 import { styled } from 'styled-components'
 import Button from '../UI/Button.styles'
 
-interface Props {
-  $isShow: boolean
-}
-
-const StyledCookies = styled.div<Props>`
-  ${({ $isShow }) => !$isShow && 'display: none;'}
+const StyledCookies = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   width: 100%;
   padding: 48px 0;

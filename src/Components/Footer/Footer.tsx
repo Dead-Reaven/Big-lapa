@@ -1,4 +1,6 @@
-import React from 'react'
+import { useState } from 'react'
+import useGet from '../../API/useGet'
+import { ContactTypes } from '../../API/types'
 import { NavLink } from 'react-router-dom'
 import {
   FooterSection,
@@ -23,6 +25,18 @@ import { theme } from '../UI/Theme.styles'
 import Container from '../UI/Container.style'
 
 function Footer() {
+  const [contactsState, setContactsState] = useState<ContactTypes>({
+    email: '',
+    first_phoneNumber: '',
+    second_phoneNumber: '',
+  })
+
+  useGet({
+    category: 'contacts',
+    state: contactsState,
+    setState: setContactsState,
+  }) as ContactTypes
+
   return (
     <FooterSection>
       <Container>
@@ -56,15 +70,25 @@ function Footer() {
           <StyledContactsList>
             <ContactListItem>
               <PhoneIcon />
-              <ContactItem>+38 063 628 6630</ContactItem>
+              <ContactItem>
+                <a href={`tel:${contactsState?.first_phoneNumber}`}>
+                  {contactsState?.first_phoneNumber}
+                </a>
+              </ContactItem>
             </ContactListItem>
             <ContactListItem>
               <PhoneIcon />
-              <ContactItem>+38 067 568 1788</ContactItem>
+              <ContactItem>
+                <a href={`tel:${contactsState?.second_phoneNumber}`}>
+                  {contactsState?.second_phoneNumber}
+                </a>
+              </ContactItem>
             </ContactListItem>
             <ContactListItem>
               <EmailIcon />
-              <ContactItem>biglapa@gmail.com</ContactItem>
+              <ContactItem>
+                <a href={`mailto:${contactsState?.email}`}>{contactsState?.email}</a>
+              </ContactItem>
             </ContactListItem>
 
             <ContactListItem>

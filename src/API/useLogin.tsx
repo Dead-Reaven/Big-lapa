@@ -1,6 +1,6 @@
 import { AdminLogin } from './adminTypes'
 
-function useLogin(data: AdminLogin) {
+const useLogin = (data: AdminLogin) => {
   const postData = async () => {
     try {
       const response = await fetch(

@@ -48,6 +48,9 @@ body {
   background-color: ${({ theme }) => theme.colors.background};
   scroll-behavior: smooth;
 }
+html {
+	overflow-x: hidden;
+}
 button,
 input {
 	font-weight: inherit;

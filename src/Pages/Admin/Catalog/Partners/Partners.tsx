@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { PartnerTypes } from '../../../../API/types'
+import { useEffect, useState } from 'react'
+import { PartnerTypes, RequestStatusTypes } from '../../../../API/types'
 import useGet from '../../../../API/useGet'
 
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
@@ -20,12 +20,12 @@ import usePost from '../../../../API/usePost'
 function Partners() {
   const [partnersState, setPartnersState] = useState<PartnerTypes[]>([])
 
-  useGet({
+  const status = useGet({
     category: 'partners',
     state: partnersState,
     setState: setPartnersState,
-  }) as PartnerTypes[]
-
+  }) as RequestStatusTypes
+  console.log({ status })
   console.log({ partnersState })
 
   const [selectedId, setModalDeleteId] = useState<string>('')
@@ -63,12 +63,17 @@ function Partners() {
       <PartnersStyled>
         <PartnersLogos>
           <TitleH2>Лого партнерів</TitleH2>
-          {partnersState?.length === 0 && (
-            <NoPartners>
-              <TitleH3>На жаль, у притулку ще немає партнерів</TitleH3>
-              <SadIco />
-            </NoPartners>
-          )}
+
+          <NoPartners>
+            {status.pending && <TitleH3> Будь-ласка зачекайте...</TitleH3>}
+            {partnersState.length === 0 && !status.pending && (
+              <>
+                <TitleH3>На жаль, у притулку ще немає партнерів</TitleH3>
+                <SadIco />
+              </>
+            )}
+          </NoPartners>
+
           <PartnersItems>
             {partnersState?.map((partner) => (
               <PartnersItem
@@ -85,6 +90,7 @@ function Partners() {
             />
           </PartnersItems>
         </PartnersLogos>
+        <TitleH3>{status.reject && status.massage}</TitleH3>
         {selectedFile && <PartnersButton type="submit">Відправити</PartnersButton>}
       </PartnersStyled>
     </form>

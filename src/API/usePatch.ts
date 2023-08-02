@@ -1,6 +1,6 @@
 interface AdminPatch {
-  passwordOld: string
-  passwordNew: string
+  oldPassword: string
+  newPassword: string
 }
 
 function usePatch(updateData: AdminPatch) {

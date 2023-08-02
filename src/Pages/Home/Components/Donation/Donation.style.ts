@@ -6,6 +6,7 @@ import Container from '../../../../Components/UI/Container.style'
 import Button from '../../../../Components/UI/Button.styles'
 
 const StyledDonation = styled.section`
+  scroll-margin-top: 96px;
   background-image: url(${firstGreenRectangle}), url(${secondGreenRectangle});
   background-repeat: no-repeat;
   background-position: left top, right bottom;

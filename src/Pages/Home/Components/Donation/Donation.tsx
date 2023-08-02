@@ -17,7 +17,7 @@ import {
 
 function Donation() {
   return (
-    <StyledDonation>
+    <StyledDonation id="donation">
       <DonationContainer>
         <DonationContent>
           <Flex $direction="column" $align="center">

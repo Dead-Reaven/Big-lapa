@@ -25,6 +25,7 @@ function Partners() {
     state: partnersState,
     setState: setPartnersState,
   }) as RequestStatusTypes
+
   console.log({ status })
   console.log({ partnersState })
 

@@ -46,6 +46,7 @@ body {
 	line-height: 1.4;
   color: ${({ theme }) => theme.colors.dark};
   background-color: ${({ theme }) => theme.colors.background};
+  scroll-behavior: smooth;
 }
 html {
 	overflow-x: hidden;

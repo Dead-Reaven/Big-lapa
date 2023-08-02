@@ -8,11 +8,13 @@ import MainLayout from './Layout/MainLayout'
 import { About, Contacts, Dog, Dogs, Home, NotFound } from './Pages'
 import Admin from './Pages/Admin/Admin'
 import Login from './Pages/Login'
+import ScrollToTop from './Components/Helpers/ScrollToTop'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <HashRouter basename="/">
+        <ScrollToTop />
         <Routes>
           <Route element={<MainLayout />}>
             {/* Default route and test route */}

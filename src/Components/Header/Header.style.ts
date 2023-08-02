@@ -72,6 +72,10 @@ const StyledNavItem = styled.li`
     color: ${({ theme }) => theme.colors.green};
   }
 
+  a.active {
+    color: ${({ theme }) => theme.colors.green};
+  }
+
   @media (max-width: 1279px) {
     width: 100%;
     text-align: start;

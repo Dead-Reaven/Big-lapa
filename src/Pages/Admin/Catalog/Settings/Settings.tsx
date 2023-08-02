@@ -4,13 +4,13 @@ import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/For
 import Input from '../../Components/UI/Input'
 
 function Settings() {
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
+  const [passwordOld, setPasswordOld] = useState('')
+  const [passwordNew, setPasswordNew] = useState('')
 
   const handlerPatch = () => {
     const patchReq = {
-      passwordOld: oldPassword,
-      passwordNew: newPassword,
+      oldPassword: passwordOld,
+      newPassword: passwordNew,
     }
     usePatch(patchReq)
   }
@@ -20,20 +20,20 @@ function Settings() {
       <p style={{ fontWeight: '700', marginBottom: '20px' }}>Змінити пароль</p>
       <FormContainer>
         <Input
-          state={oldPassword}
-          onChange={(newValue) => setOldPassword(newValue)}
+          state={passwordOld}
+          onChange={(newValue) => setPasswordOld(newValue)}
           label="Введіть старий пароль"
           placeholder="*********"
         />
         <Input
-          state={newPassword}
-          onChange={(newValue) => setNewPassword(newValue)}
+          state={passwordNew}
+          onChange={(newValue) => setPasswordNew(newValue)}
           label="Введіть новий пароль"
           placeholder="*********"
         />
         <Input
-          state={newPassword}
-          onChange={(newValue) => setNewPassword(newValue)}
+          state={passwordNew}
+          onChange={(newValue) => setPasswordNew(newValue)}
           label="Підтвердіть новий пароль"
           placeholder="*********"
         />

@@ -4,15 +4,18 @@ interface AdminPatch {
 }
 
 function usePatch(updateData: AdminPatch) {
-  const token = localStorage.getItem('access_token')
+
+
   const patchData = async () => {
     try {
+    const token = localStorage.getItem('access_token')
+
       const response = await fetch(
         'https://big-lapa-api-production.up.railway.app/api/auth/change-password',
         {
           method: 'PATCH',
           headers: {
-            Authorization: 'Bearer ' + token,
+            'Authorization': `Bearer ${token}` ,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(updateData),

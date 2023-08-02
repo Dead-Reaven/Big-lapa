@@ -1,10 +1,13 @@
 module.exports = {
   semi: false,
   trailingComma: 'all',
+  singleQuote: preserve,
   singleQuote: true,
   printWidth: 90,
   tabWidth: 2,
   endOfLine: 'auto',
+  proseWrap: "preserve",
+
 }
 
 // {

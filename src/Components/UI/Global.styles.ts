@@ -47,6 +47,9 @@ body {
   color: ${({ theme }) => theme.colors.dark};
   background-color: ${({ theme }) => theme.colors.background};
 }
+html {
+	overflow-x: hidden;
+}
 button,
 input {
 	font-weight: inherit;

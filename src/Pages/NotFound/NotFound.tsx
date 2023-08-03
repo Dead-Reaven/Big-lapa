@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Button from '../../Components/UI/Button.styles'
 import Flex from '../../Components/UI/Flex.styles'
 import TitleH3 from '../../Components/UI/TitleH3.styles'
@@ -15,10 +16,12 @@ function NotFound() {
           помилка або сторінка була видалена. Будь ласка, перевірте правильність
           URL-адреси або спробуйте інше посилання.
         </p>
-        <Button>
-          <Arrow />
-          Назад
-        </Button>
+        <Link to=".">
+          <Button>
+            <Arrow />
+            Назад
+          </Button>
+        </Link>
       </Flex>
     </StyledNotFound>
   )

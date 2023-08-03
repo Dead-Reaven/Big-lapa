@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import DogsJson from './testDogs.json'
 import { ContactTypes, DogTypes, PartnerTypes, RequestStatusTypes } from './types'
-import getPartner from './promises/getPartnerImg'
+import getPartner from './fetchers/getPartnerImg'
 
 interface Props {
   category: 'contacts' | 'dogs' | 'partners'

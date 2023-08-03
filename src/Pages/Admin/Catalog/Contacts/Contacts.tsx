@@ -18,7 +18,7 @@ const initialState = {
 }
 function Contacts() {
   const [contactsInputState, setContactsInputState] = useState<ContactTypes>(initialState)
-  useQuery({
+  const { isSuccess } = useQuery({
     queryKey: ['contacts'],
     initialData: initialState,
     queryFn: fetchContacts,

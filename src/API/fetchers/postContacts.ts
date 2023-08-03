@@ -9,7 +9,7 @@ const postContacts = (data: ContactTypes): Promise<any> =>
       },
     })
     .then((res) => {
-      console.log('Post succeseful called')
+      console.log('Post successfully called')
       res.data
     })
 

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router'
-
+import { useState } from 'react'
 import Container from '../../Components/UI/Container.style'
 import TitleH2 from '../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../Components/UI/TitleH3.styles'
@@ -25,12 +25,17 @@ import useGet from '../../API/useGet'
 import { DogTypes } from '../../API/types'
 
 function Dog() {
-  const fetchedData = useGet('dogs') as DogTypes | null
+  const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })
+  useGet({
+    category: 'dogs',
+    state: dogsState,
+    setState: setDogsState,
+  }) as DogTypes
 
   const { id } = useParams()
   const index = id ? +id : 0
 
-  const dog = fetchedData?.data[index]
+  const dog = dogsState?.data[index]
 
   const { name, age, sex, size, hasbreed, breed, haschip } = dog || {}
 

@@ -2,17 +2,26 @@ import { StyledAmount } from './Donation.style'
 
 interface Props {
   text?: string
+  value?: string
   className?: string
   isInput?: boolean
 }
 
-function Amount({ text, isInput }: Props) {
+function Amount({ text, value, isInput }: Props) {
   return (
     <StyledAmount>
-      <input type="radio" name="radio" />
+      <input type="radio" name="radio" value={value} />
       <span>
         {!isInput && <span>{text}</span>}
-        {isInput && <input type="text" placeholder="Інша сума, UAH" />}
+        {isInput && (
+          <input
+            type="number"
+            placeholder="Інша сума, UAH"
+            onKeyDown={(evt) =>
+              ['e', 'E', '+', '-'].includes(evt.key) && evt.preventDefault()
+            }
+          />
+        )}
       </span>
     </StyledAmount>
   )

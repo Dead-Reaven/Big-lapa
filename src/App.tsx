@@ -3,12 +3,13 @@ import { HashRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './Components/UI/Theme.styles'
 import AdminLayout from './Layout/AdminLayout'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import LoginLayout from './Layout/LoginLayout'
 import MainLayout from './Layout/MainLayout'
 import { About, Contacts, Dog, Dogs, Home, NotFound } from './Pages'
 import Admin from './Pages/Admin/Admin'
 import Login from './Pages/Login'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import ScrollToTop from './Components/Helpers/ScrollToTop'
 
 const queryClient = new QueryClient()
 
@@ -17,6 +18,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <HashRouter basename="/">
+          <ScrollToTop />
           <Routes>
             <Route element={<MainLayout />}>
               {/* Default route and test route */}

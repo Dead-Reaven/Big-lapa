@@ -21,7 +21,11 @@ function Partners() {
             <PartnersTitle>Партнери</PartnersTitle>
             <PartnersFlex>
               {partnersState.map((partner) => (
-                <img src={partner.src.toString()} key={partner.id} alt="partner" />
+                <img
+                  src={partner?.encodedBase64 ?? (partner.src as string)}
+                  key={partner.id}
+                  alt="partner"
+                />
               ))}
             </PartnersFlex>
           </Container>

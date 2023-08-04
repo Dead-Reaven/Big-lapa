@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link'
 import { ReactComponent as Logo } from './img/logo_header.svg'
 import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
@@ -20,9 +21,11 @@ const Header = () => {
           </NavLink>
           <BurgerMenu extendNavbar={extendNavbar} setExtendNavbar={setExtendNavbar} />
           <HeaderRight extendNavbar={extendNavbar}>
-            <HeaderButton $extendNavbar={extendNavbar}>
-              <span>Підтримати притулок</span>
-            </HeaderButton>
+            <Link smooth to="/#donation">
+              <HeaderButton $extendNavbar={extendNavbar}>
+                <span>Підтримати притулок</span>
+              </HeaderButton>
+            </Link>
             <StyledBurgerBtn
               isActive={extendNavbar}
               onClick={() => {

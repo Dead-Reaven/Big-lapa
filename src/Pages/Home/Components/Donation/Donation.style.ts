@@ -85,16 +85,11 @@ const StyledDonationCard = styled.div`
   }
 `
 
-interface GridProps {
-  direction?: string
-  align?: string
-  justify?: string
-  gap?: string
-  height?: string
-  width?: string
-}
+const DonationText = styled.div`
+  text-align: center;
+`
 
-const Grid = styled.div<GridProps>`
+const Grid = styled.div`
   display: grid;
   grid-gap: 20px 40px;
   grid-template-columns: repeat(2, 1fr);
@@ -139,7 +134,8 @@ const StyledAmount = styled.label`
     position: absolute;
     white-space: nowrap;
 
-    &:checked + span {
+    &:checked + span,
+    &:checked + input[type='number'] {
       background-color: ${({ theme }) => theme.colors.lightGreen};
       z-index: 1;
     }
@@ -152,6 +148,8 @@ const StyledAmount = styled.label`
       margin: 0;
     }
     width: 100%;
+    height: 100%;
+    padding: 15px 37px;
     background-color: transparent;
     display: block;
     text-align: center;
@@ -174,7 +172,9 @@ const StyledAmount = styled.label`
 `
 
 const DonationButton = styled(Button)`
+  max-width: 194px;
   @media (max-width: 500px) {
+    max-width: 100%;
     width: 100%;
   }
 `
@@ -239,6 +239,7 @@ export {
   DonationContent,
   DonationFlex,
   StyledDonationCard,
+  DonationText,
   Grid,
   StyledAmount,
   DonationButton,

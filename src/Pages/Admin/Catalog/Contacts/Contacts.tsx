@@ -10,6 +10,7 @@ import fetchContacts from '../../../../API/fetchers/fetchContacts'
 import postContacts from '../../../../API/fetchers/postContacts'
 
 import Input from '../../Components/UI/Input'
+import Message from '../../Components/UI/Message'
 
 const initialState = {
   email: '',
@@ -18,7 +19,7 @@ const initialState = {
 }
 function Contacts() {
   const [contactsInputState, setContactsInputState] = useState<ContactTypes>(initialState)
-  const { isSuccess } = useQuery({
+  useQuery({
     queryKey: ['contacts'],
     initialData: initialState,
     queryFn: fetchContacts,
@@ -29,15 +30,20 @@ function Contacts() {
 
   const queryClient = useQueryClient()
 
-  const { mutate } = useMutation(() => postContacts(contactsInputState), {
+  const { mutate, isSuccess } = useMutation(() => postContacts(contactsInputState), {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ['contacts'] })
     },
   })
 
+  const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    mutate()
+  }
+
   return (
-    <Form onSubmit={() => mutate()}>
+    <Form onSubmit={onSubmitForm}>
       <FormH2>Телефони та електронна пошта</FormH2>
       <FormContainer>
         <Input
@@ -66,6 +72,7 @@ function Contacts() {
         />
         <FormButton type="submit">Оновити</FormButton>
       </FormContainer>
+      {isSuccess && <Message mode="green">Успіх! ✔️</Message>}
     </Form>
   )
 }

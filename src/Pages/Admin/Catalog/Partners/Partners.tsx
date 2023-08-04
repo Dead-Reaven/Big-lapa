@@ -61,13 +61,6 @@ function Partners() {
     isError: isDeleteError,
   } = useMutation(deletePartner)
 
-  const onSubmitForm = () => {
-    if (selectedFile instanceof File) {
-      postSelectedFile(selectedFile)
-      setSelectedFile(null)
-    } else console.log('unexpected file type')
-  }
-
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)
   }
@@ -77,6 +70,13 @@ function Partners() {
     setPartnersState((partners) => partners?.filter(({ id }) => id !== modalId))
     setIsModalOpen((curr) => !curr)
     setSelectedFile(null)
+  }
+  const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (selectedFile instanceof File) {
+      postSelectedFile(selectedFile)
+      setSelectedFile(null)
+    } else console.log('unexpected file type')
   }
 
   return (

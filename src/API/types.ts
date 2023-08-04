@@ -1,3 +1,10 @@
+interface RequestStatusTypes {
+  pending: boolean
+  resolve: boolean
+  reject: boolean
+  massage: string
+}
+
 interface ContactTypes {
   email: string
   first_phoneNumber: string
@@ -24,4 +31,4 @@ interface DogTypes {
   }[]
 }
 
-export type { ContactTypes, PartnerTypes, DogTypes }
+export type { ContactTypes, PartnerTypes, DogTypes, RequestStatusTypes }

@@ -5,6 +5,12 @@ interface RequestStatusTypes {
   massage: string
 }
 
+interface ReportTypes {
+  id: string
+  src: File | null
+  name: string
+}
+
 interface ContactTypes {
   email: string
   first_phoneNumber: string
@@ -31,4 +37,4 @@ interface DogTypes {
   }[]
 }
 
-export type { ContactTypes, PartnerTypes, DogTypes, RequestStatusTypes }
+export type { ContactTypes, PartnerTypes, DogTypes, ReportTypes, RequestStatusTypes }

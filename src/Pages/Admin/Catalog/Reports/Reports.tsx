@@ -42,6 +42,7 @@ function Partners() {
       // fetch files
       fetchReportFile(reports)
     },
+    refetchOnWindowFocus: false,
   })
 
   const getAllReports = (reports: ReportTypes[]) =>

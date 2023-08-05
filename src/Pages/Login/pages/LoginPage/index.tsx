@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import useLogin from '../../../../API/useLogin'
+import useLogin from '../../../../API/fetchers/postLogin'
 import {
   Form,
   FormButton,
@@ -36,11 +36,13 @@ const validationHook = (initialState: any, validations: any) => {
 const LoginComponent = () => {
   const loginUser = validationHook('', { isEmpty: false, minLength: 4 })
   const passwordUser = validationHook('', { isEmpty: false, minLength: 5 })
+  const [worning, setWorning] = useState('')
 
   const onHandlerSubmit = () => {
     const data = {
       login: loginUser.value,
       password: passwordUser.value,
+      setWorning,
     }
     useLogin(data)
   }
@@ -49,6 +51,7 @@ const LoginComponent = () => {
       <Form onSubmit={() => onHandlerSubmit()}>
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
+          {worning && <h1 style={{ color: 'red' }}>Error: {worning}</h1>}
           {loginUser.isDirty && loginUser.isEmpty && (
             <div style={{ color: 'red' }}>Поле пустое</div>
           )}

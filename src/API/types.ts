@@ -37,4 +37,24 @@ interface DogTypes {
   }[]
 }
 
-export type { ContactTypes, PartnerTypes, DogTypes, ReportTypes, RequestStatusTypes }
+interface LoginType {
+  login: string
+  password: string
+  setWorning?: any
+}
+
+interface changePassType {
+  oldPassword: string
+  newPassword: string
+  setWorning?: any
+}
+
+export type {
+  ContactTypes,
+  DogTypes,
+  LoginType,
+  PartnerTypes,
+  ReportTypes,
+  RequestStatusTypes,
+  changePassType,
+}

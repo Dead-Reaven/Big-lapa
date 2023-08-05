@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
-import { PartnerTypes, RequestStatusTypes } from '../../../../API/types'
-import useGet from '../../../../API/useGet'
+import { useState } from 'react'
 
+import usePost from '../../../../API/usePost'
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
-import TitleH3 from '../../../../Components/UI/TitleH3.styles'
 import {
   NoPartners as NoReports,
   PartnersButton as ReportsButton,
@@ -11,10 +9,9 @@ import {
   PartnersLogos as ReportsLogos,
   PartnersStyled as ReportsStyled,
 } from '../Partners/Partners.style'
+import AddFile from '../Partners/components/AddPartner'
 import Modal from '../Partners/components/Modal'
 import ReportFile from '../Partners/components/PartnersItem'
-import AddFile from '../Partners/components/AddPartner'
-import usePost from '../../../../API/usePost'
 
 function Partners() {
   const [reportsState, setReportsState] = useState<any[]>([])

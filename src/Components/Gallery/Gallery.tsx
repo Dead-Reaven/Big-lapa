@@ -1,17 +1,17 @@
+import { DogTypes } from '../../API/types/types'
+import Container from '../UI/Container.style'
+import Flex from '../UI/Flex.styles'
+import DogCard from './DogCard'
 import {
+  DogsAmount,
   DogsCards,
   Pagination,
   PaginationButton,
   PaginationNav,
   StyledGallery,
-  DogsAmount,
 } from './Gallery.style'
 import dogImage from './img/Dog_photo.png'
 import { ReactComponent as Refresh } from './img/refresh.svg'
-import Container from '../UI/Container.style'
-import Flex from '../UI/Flex.styles'
-import DogCard from './DogCard'
-import { DogTypes } from '../../API/types'
 
 interface Props {
   admin?: boolean

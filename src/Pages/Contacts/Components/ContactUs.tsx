@@ -1,29 +1,29 @@
 import { useState } from 'react'
+import { ContactTypes } from '../../../API/types/types'
 import useGet from '../../../API/useGet'
-import { ContactTypes } from '../../../API/types'
+import Container from '../../../Components/UI/Container.style'
+import TitleH2 from '../../../Components/UI/TitleH2.styles'
 import dogM from '../img/contact-us/dogM2x.png'
-import { ReactComponent as IcoPhone } from '../img/contact-us/phone.svg'
 import { ReactComponent as IcoMail } from '../img/contact-us/mail.svg'
 import { ReactComponent as IcoMap } from '../img/contact-us/map.svg'
-import Container from '../../../Components/UI/Container.style'
+import { ReactComponent as IcoPhone } from '../img/contact-us/phone.svg'
 import {
-  StyledTitleH2,
-  StyledImage,
-  StyledContactsList,
-  StyledListItem,
   IconsDiv,
+  RestyledInput,
+  SectionWrapper,
+  StyledButton,
+  StyledContactsDiv,
+  StyledContactsList,
+  StyledFormDiv,
   StyledIcoFb,
   StyledIcoInsta,
-  StyledContactsDiv,
-  SectionWrapper,
-  StyledSection,
-  StyledFormDiv,
+  StyledImage,
   StyledInputsDiv,
+  StyledListItem,
+  StyledSection,
   StyledTextArea,
-  RestyledInput,
-  StyledButton,
+  StyledTitleH2,
 } from './ContactUs.style'
-import TitleH2 from '../../../Components/UI/TitleH2.styles'
 
 function ContactUs() {
   const [contactsState, setContactsState] = useState<ContactTypes>({

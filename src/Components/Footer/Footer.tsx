@@ -1,28 +1,28 @@
 import { useState } from 'react'
-import useGet from '../../API/useGet'
-import { ContactTypes } from '../../API/types'
 import { NavLink } from 'react-router-dom'
+import { ContactTypes } from '../../API/types/types'
+import useGet from '../../API/useGet'
 import {
+  AbsoluteLink,
+  ContactItem,
+  ContactListItem,
+  FlexList,
+  FlexWrapper,
   FooterSection,
   ListItem,
   Paragraph,
-  AbsoluteLink,
-  FlexWrapper,
-  FlexList,
-  ContactListItem,
   SocialIcons,
+  StyledContactsList,
   StyledIcon,
   StyledInstaIcon,
   StyledLinksList,
-  StyledContactsList,
-  ContactItem,
 } from './Footer.style'
+import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 import { ReactComponent as LogoIcon } from './svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from './svgs-footer/phone.svg'
-import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 
-import { theme } from '../UI/Theme.styles'
 import Container from '../UI/Container.style'
+import { theme } from '../UI/Theme.styles'
 
 function Footer() {
   const [contactsState, setContactsState] = useState<ContactTypes>({

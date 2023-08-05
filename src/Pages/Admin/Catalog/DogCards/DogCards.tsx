@@ -1,10 +1,10 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { DogTypes } from '../../../../API/types/types'
 import useGet from '../../../../API/useGet'
 import DogSearch from '../../../../Components/DogSearch/DogSearch'
 import Gallery from '../../../../Components/Gallery/Gallery'
-import { DogTypes } from '../../../../API/types'
 import { AdminGalleryButton, StyledDogCards } from './DogCards.style'
-import { Link } from 'react-router-dom'
 
 function DogCards() {
   const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })

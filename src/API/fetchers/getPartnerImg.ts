@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { PartnerTypes } from '../types'
+import { PartnerTypes } from '../types/types'
 
 const url = 'https://big-lapa-api-production.up.railway.app/api/images/'
 

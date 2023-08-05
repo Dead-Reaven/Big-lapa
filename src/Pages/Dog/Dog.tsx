@@ -1,28 +1,28 @@
-import { useParams } from 'react-router'
 import { useState } from 'react'
+import { useParams } from 'react-router'
+import { DogTypes } from '../../API/types/types'
+import useGet from '../../API/useGet'
 import Container from '../../Components/UI/Container.style'
 import TitleH2 from '../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../Components/UI/TitleH3.styles'
-import Label from './Label'
 import DogSlider from './Components/DogSlider/DogSlider'
-import { ReactComponent as FemaleIco } from './img/female.svg'
-import { ReactComponent as MaleIco } from './img/male.svg'
+import {
+  DogContainer,
+  DogContent,
+  DogFlex,
+  DogStyled,
+  DogText,
+  DogTitle,
+  HiddenDogText,
+  Lables,
+  Slider,
+} from './Dog.style'
+import Label from './Label'
 import { ReactComponent as BreedIco } from './img/breed.svg'
 import { ReactComponent as ChipIco } from './img/chip.svg'
+import { ReactComponent as FemaleIco } from './img/female.svg'
+import { ReactComponent as MaleIco } from './img/male.svg'
 import { ReactComponent as SizeIco } from './img/size.svg'
-import {
-  DogStyled,
-  DogContainer,
-  DogFlex,
-  Slider,
-  DogContent,
-  DogTitle,
-  Lables,
-  DogText,
-  HiddenDogText,
-} from './Dog.style'
-import useGet from '../../API/useGet'
-import { DogTypes } from '../../API/types'
 
 function Dog() {
   const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })

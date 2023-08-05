@@ -1,6 +1,6 @@
+import { PartnerTypes } from '../../../../../API/types/types'
 import { AddPartnerStyled } from '../Partners.style'
 import { PlusIco } from '../img/icons'
-import { PartnerTypes } from '../../../../../API/types'
 
 interface AddPartnerProps {
   selectedFile: File | null

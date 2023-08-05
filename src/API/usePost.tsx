@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ContactTypes } from './types'
+import { ContactTypes } from './types/types'
 
 type select = 'contacts' | 'partners'
 type data = ContactTypes | IMGFile | string

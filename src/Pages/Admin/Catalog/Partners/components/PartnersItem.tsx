@@ -1,4 +1,4 @@
-import { PartnerTypes } from '../../../../../API/types'
+import { PartnerTypes } from '../../../../../API/types/types'
 import { PartnersItemStyled } from '../Partners.style'
 import { CloseIco } from '../img/icons'
 

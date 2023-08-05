@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { DogTypes } from '../../API/types'
+import { DogTypes } from '../../API/types/types'
 import useGet from '../../API/useGet'
 import DogSearch from '../../Components/DogSearch/DogSearch'
 import Gallery from '../../Components/Gallery/Gallery'
+import Container from '../../Components/UI/Container.style'
 import Slider from './Components/Slider/Slider'
 import { DogsStyled } from './Dogs.style'
-import Container from '../../Components/UI/Container.style'
 
 function Dogs() {
   const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })

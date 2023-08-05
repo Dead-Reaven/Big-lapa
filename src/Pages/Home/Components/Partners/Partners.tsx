@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { PartnerTypes } from '../../../../API/types'
+import { PartnerTypes } from '../../../../API/types/types'
 import useGet from '../../../../API/useGet'
 import Container from '../../../../Components/UI/Container.style'
-import { PartnersSection, PartnersTitle, PartnersFlex } from './Partners.style'
+import { PartnersFlex, PartnersSection, PartnersTitle } from './Partners.style'
 
 function Partners() {
   const [partnersState, setPartnersState] = useState<PartnerTypes[]>([])

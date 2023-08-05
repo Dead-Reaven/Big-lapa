@@ -1,8 +1,13 @@
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
-import { useQuery, useMutation } from '@tanstack/react-query'
-import { PartnerTypes } from '../../../../API/types'
+import deletePartner from '../../../../API/fetchers/deletePartner'
+import getPartner from '../../../../API/fetchers/getPartnerImg'
+import getPartnersId from '../../../../API/fetchers/getPartnersId'
+import postPartners from '../../../../API/fetchers/postPartners'
+import { PartnerTypes } from '../../../../API/types/types'
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../../../Components/UI/TitleH3.styles'
+import Message from '../../Components/UI/Message'
 import {
   NoPartners,
   PartnersButton,
@@ -10,15 +15,10 @@ import {
   PartnersLogos,
   PartnersStyled,
 } from './Partners.style'
-import Modal from './components/Modal'
-import { SadIco } from './img/icons'
-import PartnersItem from './components/PartnersItem'
 import AddPartner from './components/AddPartner'
-import getPartnersId from '../../../../API/fetchers/getPartnersId'
-import getPartner from '../../../../API/fetchers/getPartnerImg'
-import postPartners from '../../../../API/fetchers/postPartners'
-import Message from '../../Components/UI/Message'
-import deletePartner from '../../../../API/fetchers/deletePartner'
+import Modal from './components/Modal'
+import PartnersItem from './components/PartnersItem'
+import { SadIco } from './img/icons'
 
 function Partners() {
   const [partnersState, setPartnersState] = useState<PartnerTypes[]>([])

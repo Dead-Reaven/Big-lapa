@@ -1,10 +1,10 @@
 import { useState } from 'react'
 // react query
-import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 // UI
 import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/Form.style'
 // api types
-import { ContactTypes } from '../../../../API/types'
+import { ContactTypes } from '../../../../API/types/types'
 // fetchers
 import fetchContacts from '../../../../API/fetchers/fetchContacts'
 import postContacts from '../../../../API/fetchers/postContacts'

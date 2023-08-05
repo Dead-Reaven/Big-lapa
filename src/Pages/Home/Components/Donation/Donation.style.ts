@@ -145,7 +145,13 @@ const StyledAmount = styled.label`
     }
   }
 
-  input[type='text'] {
+  input[type='number'] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    width: 100%;
     background-color: transparent;
     display: block;
     text-align: center;
@@ -156,6 +162,13 @@ const StyledAmount = styled.label`
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.dark};
+    }
+
+    &:focus {
+      background-color: ${({ theme }) => theme.colors.lightGreen};
+      &::placeholder {
+        color: transparent;
+      }
     }
   }
 `

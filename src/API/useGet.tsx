@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import DogsJson from './testDogs.json'
-import { ContactTypes, DogTypes, PartnerTypes } from './types'
+import { ContactTypes, DogTypes, PartnerTypes, RequestStatusTypes } from './types'
+import getPartner from './fetchers/getPartnerImg'
 
 interface Props {
   category: 'contacts' | 'dogs' | 'partners'
@@ -10,6 +11,12 @@ interface Props {
 
 function useGet({ category, state, setState }: Props) {
   const [partnersID, setPartnersID] = useState<string[]>([])
+  const [status, setStatus] = useState<RequestStatusTypes>({
+    pending: false,
+    resolve: false,
+    reject: false,
+    massage: '',
+  })
 
   useEffect(() => {
     if (category === 'contacts') {
@@ -51,37 +58,30 @@ function useGet({ category, state, setState }: Props) {
   }, [])
 
   useEffect(() => {
-    if (partnersID.length > 0) {
-      Promise.all(partnersID.map((id) => getPartner(id)))
-        .then((resolved) => setState(resolved))
-        .catch((error) => console.log(error))
-    }
+    if (category === 'partners')
+      if (partnersID.length && !status.pending) {
+        console.log('useEffect: [partnersID] called', partnersID.length)
+        Promise.all(partnersID.map((id) => getPartner(id)))
+          .then((resolved) => {
+            console.log({ resolved })
+            setState(resolved)
+            setStatus({
+              ...status,
+              pending: false,
+              resolve: true,
+              massage: 'Лого партнерів успішно завантажені',
+            })
+          })
+          .catch((error) => {
+            console.log(error)
+            setStatus({ ...status, pending: false, reject: true, massage: error })
+          })
+        setStatus({ ...status, pending: true, resolve: true })
+      }
   }, [partnersID])
-
-  const getPartner = async (id: string): Promise<PartnerTypes> => {
-    console.log('fetched partner img', { id })
-    const response = await fetch(
-      `https://big-lapa-api-production.up.railway.app/api/images/${id}`,
-    )
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok: fetchImage failed')
-    }
-
-    const data = await response.arrayBuffer()
-    const base64 = btoa(
-      new Uint8Array(data).reduce((data, byte) => data + String.fromCharCode(byte), ''),
-    )
-    const base64Img = `data:image/png;base64, ${base64}`
-    return {
-      id: id,
-      src: base64Img as string,
-      encodedBase64: base64Img,
-    }
-  }
 
   if (category === 'contacts') return state as ContactTypes | null
   if (category === 'dogs') return state as DogTypes | null
-  if (category === 'partners') return state as PartnerTypes[] | null
+  if (category === 'partners') return status
 }
 export default useGet

@@ -1,55 +1,78 @@
 import { useState } from 'react'
+// react query
+import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
+// UI
 import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/Form.style'
-import Input from '../../Components/UI/Input'
-import useGet from '../../../../API/useGet'
-import usePost from '../../../../API/usePost'
+// api types
 import { ContactTypes } from '../../../../API/types'
+// fetchers
+import fetchContacts from '../../../../API/fetchers/fetchContacts'
+import postContacts from '../../../../API/fetchers/postContacts'
 
+import Input from '../../Components/UI/Input'
+import Message from '../../Components/UI/Message'
+
+const initialState = {
+  email: '',
+  first_phoneNumber: '',
+  second_phoneNumber: '',
+}
 function Contacts() {
-  const [contactsState, setContactsState] = useState<ContactTypes>({
-    email: '',
-    first_phoneNumber: '',
-    second_phoneNumber: '',
+  const [contactsInputState, setContactsInputState] = useState<ContactTypes>(initialState)
+  useQuery({
+    queryKey: ['contacts'],
+    initialData: initialState,
+    queryFn: fetchContacts,
+    onSuccess: (data) => {
+      setContactsInputState(data)
+    },
   })
 
-  useGet({
-    category: 'contacts',
-    state: contactsState,
-    setState: setContactsState,
-  }) as ContactTypes
+  const queryClient = useQueryClient()
+
+  const { mutate, isSuccess } = useMutation(() => postContacts(contactsInputState), {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['contacts'] })
+    },
+  })
+
+  const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    mutate()
+  }
 
   return (
-    <Form
-      onSubmit={() => {
-        usePost('contacts', contactsState)
-      }}
-    >
+    <Form onSubmit={onSubmitForm}>
       <FormH2>Телефони та електронна пошта</FormH2>
       <FormContainer>
         <Input
-          state={contactsState.first_phoneNumber}
+          state={contactsInputState.first_phoneNumber}
           onChange={(newValue) =>
-            setContactsState({ ...contactsState, first_phoneNumber: newValue })
+            setContactsInputState({ ...contactsInputState, first_phoneNumber: newValue })
           }
           label="Перший номер телефону"
-          placeholder={contactsState?.first_phoneNumber}
+          placeholder={'+380'}
         />
         <Input
-          state={contactsState.second_phoneNumber}
+          state={contactsInputState.second_phoneNumber}
           label="Другий номер телефону"
-          placeholder={contactsState?.second_phoneNumber}
+          placeholder={'+380'}
           onChange={(newValue) =>
-            setContactsState({ ...contactsState, second_phoneNumber: newValue })
+            setContactsInputState({ ...contactsInputState, second_phoneNumber: newValue })
           }
         />
         <Input
-          state={contactsState.email}
+          state={contactsInputState.email}
           label="Електронна пошта"
-          placeholder={contactsState?.email}
-          onChange={(newValue) => setContactsState({ ...contactsState, email: newValue })}
+          placeholder={'example@mail.com'}
+          onChange={(newValue) =>
+            setContactsInputState({ ...contactsInputState, email: newValue })
+          }
         />
         <FormButton type="submit">Оновити</FormButton>
       </FormContainer>
+      {isSuccess && <Message mode="green">Успіх! ✔️</Message>}
     </Form>
   )
 }

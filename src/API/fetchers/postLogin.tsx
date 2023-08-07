@@ -6,21 +6,17 @@ const headers = {
   'Content-Type': 'application/json',
 }
 
-const useLogin = (data: LoginType) => {
-  const postData = async () => {
-    await axios
-      .post(url, data, { headers })
-      .then((res) => {
-        console.log(res.data)
-        localStorage.setItem('access_token', res.data.access_token)
-      })
-      .catch((error) => {
-        console.log('Error: ', error)
-        data.setWorning(error.message)
-      })
-  }
-  postData()
-  return
+const useLogin = async (data: LoginType): Promise<any> => {
+  await axios
+    .post(url, data, { headers })
+    .then((res) => {
+      console.log(res.data)
+      localStorage.setItem('access_token', res.data.access_token)
+    })
+    .catch((error) => {
+      console.log('Error: ', error)
+      data.setIsError(error.message)
+    })
 }
 
 export default useLogin

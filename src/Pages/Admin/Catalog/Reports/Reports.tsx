@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
-import TitleH3 from '../../../../Components/UI/TitleH3.styles'
+// import TitleH3 from '../../../../Components/UI/TitleH3.styles'
 import {
   AddPartnerStyled as AddReportStyled,
-  NoPartners as NoReports,
+  // NoPartners as NoReports,
   PartnersButton as ReportsButton,
   PartnersItems as ReportsItems,
   PartnersLogos as ReportsLogos,
@@ -17,7 +17,7 @@ import { ReportFileStyled } from './Report.styled'
 import { ReportTypes } from '../../../../API/types'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import getReportsId from '../../../../API/fetchers/getReportsID'
-import getReportFile from '../../../../API/fetchers/getReportFile'
+// import getReportFile from '../../../../API/fetchers/getReportFile'
 import postReport from '../../../../API/fetchers/postReport'
 import deleteReport from '../../../../API/fetchers/deleteReport'
 import Message from '../../Components/UI/Message'

@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useLogin from '../../../../API/fetchers/postLogin'
@@ -11,13 +12,18 @@ import Input from '../../../Admin/Components/UI/Input'
 import useValidForm from '../../useValidForm'
 import { ForgotButton } from '../ForgotPage/ForgotPage.style'
 
-const validationHook = (initialState: any, validations: any) => {
+const validationHook = (initialState: string, validations: any) => {
   const [value, setStateUser] = useState(initialState)
   const [isDirty, setIsDirty] = useState(false)
   const valid = useValidForm({ value, validations })
 
-  const onChange = (newValue: any) => {
+  const onChange = (newValue: string) => {
     setStateUser(newValue)
+  }
+
+  const handleClear = (e: any) => {
+    e.preventDefault()
+    setStateUser('')
   }
 
   const onBlur = () => {
@@ -28,30 +34,42 @@ const validationHook = (initialState: any, validations: any) => {
     value,
     isDirty,
     onChange,
+    handleClear,
     onBlur,
     ...valid,
   }
 }
 
 const LoginComponent = () => {
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation(useLogin, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['auth'] })
+    },
+  })
+
   const loginUser = validationHook('', { isEmpty: false, minLength: 4 })
   const passwordUser = validationHook('', { isEmpty: false, minLength: 5 })
-  const [worning, setWorning] = useState('')
+  const [isError, setIsError] = useState('')
 
-  const onHandlerSubmit = () => {
+  const onHandlerSubmit = (e: any) => {
     const data = {
       login: loginUser.value,
       password: passwordUser.value,
-      setWorning,
+      setIsError: setIsError,
     }
-    useLogin(data)
+    mutate(data)
+    loginUser.handleClear(e)
+    passwordUser.handleClear(e)
   }
+
   return (
     <>
-      <Form onSubmit={() => onHandlerSubmit()}>
+      <Form onSubmit={onHandlerSubmit}>
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
-          {worning && <h1 style={{ color: 'red' }}>Error: {worning}</h1>}
+          {isError && <h1 style={{ color: 'red' }}>Error: {isError}</h1>}
           {loginUser.isDirty && loginUser.isEmpty && (
             <div style={{ color: 'red' }}>Поле пустое</div>
           )}

@@ -18,6 +18,11 @@ import { ReportTypes } from '../../../../API/types'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import getReportsId from '../../../../API/fetchers/getReportsID'
 import getReportFile from '../../../../API/fetchers/getReportFile'
+import postReport from '../../../../API/fetchers/postReport'
+import deleteReport from '../../../../API/fetchers/deleteReport'
+import Message from '../../Components/UI/Message'
+
+const url = 'https://big-lapa-api-production.up.railway.app/api/images/documents/'
 
 function Partners() {
   const [reportsState, setReportsState] = useState<ReportTypes[]>([])
@@ -25,42 +30,46 @@ function Partners() {
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
-  useQuery({
+  const { isError: isErrorLoadReports, isLoading: isLoadingReports } = useQuery({
     queryKey: ['reportsId'],
     initialData: [],
     queryFn: getReportsId,
     onSuccess: (data) => {
       const reports = data.map((id) => {
+        // getReportFile(id)
         return {
           id: id, // get ID from queryId
-          name: '',
+          name: id,
           src: null,
         }
       })
-      //set reports
       setReportsState(reports)
-      // fetch files
-      fetchReportFile(reports)
     },
     refetchOnWindowFocus: false,
   })
 
-  const getAllReports = (reports: ReportTypes[]) =>
-    Promise.all(reports.map((report) => getReportFile(report.id)))
-
-  const { mutate: fetchReportFile } = useMutation(getAllReports, {
-    onSuccess: (data: any) => {
-      console.log({ data })
-      // setReportsState(data)
+  const {
+    mutate: mutatePostReport,
+    isError: isErrorPost,
+    isSuccess: isSuccessPost,
+  } = useMutation(postReport, {
+    onError: (error) => {
+      console.log(error)
     },
   })
+
+  const {
+    mutate: mutateDeleteReport,
+    isError: isErrorDeleteReport,
+    isSuccess: isSuccessDeleteReport,
+  } = useMutation(deleteReport)
 
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)
   }
 
   const onDeleteReport = (modalId: string) => {
-    // usePost('partners', modalId, 'delete')
+    mutateDeleteReport(selectedId)
     setReportsState((partners) => partners?.filter(({ id }) => id !== modalId))
     setIsModalOpen((curr) => !curr)
     setSelectedFile(null)
@@ -88,7 +97,8 @@ function Partners() {
   const onPostReport = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (selectedFile instanceof File) {
-      // usePost('partners', selectedFile)
+      console.log('Posted', selectedFile)
+      mutatePostReport(selectedFile)
       setSelectedFile(null)
     } else console.log('unexpected file type')
   }
@@ -96,7 +106,7 @@ function Partners() {
   return (
     <form onSubmit={onPostReport} style={{ height: '100%' }}>
       <Modal
-        title="Ви справді хочете видалити лого?"
+        title="Ви справді хочете видалити звіт?"
         body="Повернути дію буде неможливо"
         isOpen={IsModalOpen}
         onCancel={cancelHandler}
@@ -107,15 +117,13 @@ function Partners() {
         <ReportsLogos>
           <TitleH2>Звітність</TitleH2>
           <ReportsItems>
-            {reportsState.map((report) => (
-              <ReportFileStyled key={report.id}>
-                <IcoReport id="ico-report" />
-                <p>
-                  {report.name.length < 60
-                    ? report.name
-                    : report.name.slice(0, 60 - 3) + '... '}
-                </p>
-                <button type="button" onClick={() => openModal(report.id)}>
+            {reportsState.map(({ id, name }) => (
+              <ReportFileStyled key={id}>
+                <a href={url + id}>
+                  <IcoReport id="ico-report" />
+                  <p>{name.length < 60 ? name : name.slice(0, 60 - 3) + '... '}</p>
+                </a>
+                <button type="button" onClick={() => openModal(id)}>
                   <CloseIco />
                 </button>
               </ReportFileStyled>
@@ -138,6 +146,22 @@ function Partners() {
         </ReportsLogos>
         {selectedFile && <ReportsButton type="submit">Відправити</ReportsButton>}
       </ReportsStyled>
+
+      {isLoadingReports && <Message mode="green">Будь ласка зачекайте ⌛</Message>}
+      {isErrorLoadReports && <Message mode="red">Схоже, сталася помилка ⛔</Message>}
+      {isSuccessPost && <Message mode="green">Звіт успішно завантажився! ✔️</Message>}
+      {isErrorPost && (
+        <Message mode="red" delay={250000}>
+          <div>
+            Схоже, не вдалося завантажити файл ⛔ <br />
+            Можливо формат файлу не підходить чи файл занадто великий
+          </div>
+        </Message>
+      )}
+      {isSuccessDeleteReport && <Message mode="green">Звіт успішно видалився ✔️</Message>}
+      {isErrorDeleteReport && (
+        <Message mode="red"> Не вдалося видалити вказаний звіт ⛔</Message>
+      )}
     </form>
   )
 }

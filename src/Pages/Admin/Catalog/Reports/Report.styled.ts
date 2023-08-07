@@ -12,6 +12,9 @@ const ReportFileStyled = styled.div`
   word-break: break-all;
   text-align: center;
   text-decoration: underline;
+
+  /* cursor: pointer; */
+
   button {
     position: absolute;
     right: 0px;
@@ -19,6 +22,12 @@ const ReportFileStyled = styled.div`
   }
   svg {
     margin-bottom: 15px;
+  }
+
+  a:active {
+    border: none;
+    appearance: none;
+    background: none;
   }
 `
 

@@ -10,7 +10,6 @@ const getReportFile = (id: string): Promise<File> =>
     })
     .then((res) => {
       console.log('getReportFile api called')
-      console.log({ res })
       return res.data
     })
 

@@ -34,8 +34,9 @@ interface MessageProps {
   children: React.ReactNode
   mode: 'green' | 'red'
   delay?: number
+  hasButton?: boolean
 }
-const Message = ({ children, mode, delay = 3000 }: MessageProps) => {
+const Message = ({ children, mode, hasButton, delay = 3000 }: MessageProps) => {
   const [show, setShow] = useState(true)
 
   const handleClose = () => {
@@ -55,7 +56,7 @@ const Message = ({ children, mode, delay = 3000 }: MessageProps) => {
   return show ? (
     <MessageContainer mode={mode}>
       {children}
-      <button onClick={handleClose}>OK</button>
+      {delay !== 3000 && <button onClick={handleClose}>OK</button>}
     </MessageContainer>
   ) : null
 }

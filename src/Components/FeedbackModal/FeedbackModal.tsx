@@ -38,7 +38,7 @@ function FeedbackModal({ title, body, image, isOpen, onClose }: Props) {
                   <ModalBody>{body}</ModalBody>
                 </ModalText>
                 <Link to="/">
-                  <Button>На головну</Button>
+                  <Button onClick={onClose}>На головну</Button>
                 </Link>
                 <Subheadline>
                   Натисніть на кнопку, якщо бажаєте повернутися на головну

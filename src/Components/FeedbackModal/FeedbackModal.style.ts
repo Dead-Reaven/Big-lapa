@@ -30,6 +30,7 @@ const StyledModal = styled.div`
   max-width: 1056px;
   height: 800px;
   max-height: 80vh;
+  font-size: ${theme.fontSizes.bodyText};
 
   @media (max-width: 1279px) {
     max-width: 768px;
@@ -39,13 +40,12 @@ const StyledModal = styled.div`
   }
 
   @media (max-width: 767px) {
-    max-width: 768px;
-    height: 100%;
+    max-width: 393px;
+    padding-top: 0;
+    height: 608px;
     max-height: 100%;
     justify-content: center;
-    flex-direction: column;
-    padding-top: 31px;
-
+    font-size: ${theme.fontSizes.mobileBodyText};
     a {
       width: 100%;
     }
@@ -95,12 +95,16 @@ const ModalContent = styled.div`
 `
 
 const ModalText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
   text-align: center;
+  margin-bottom: 60px;
 `
 
 const ModalTitle = styled(TitleH1)`
   text-align: center;
-  margin-bottom: 60px;
 
   @media (max-width: 1279px) {
     font-size: ${theme.fontSizes.h1};
@@ -108,10 +112,18 @@ const ModalTitle = styled(TitleH1)`
 
   @media (max-width: 767px) {
     font-size: ${theme.fontSizes.mobileH1};
+    max-width: 206px;
   }
 `
 
-const ModalBody = styled.div``
+const ModalBody = styled.div`
+  max-width: 540px;
+  text-align: left;
+
+  @media (max-width: 767px) {
+    text-align: center;
+  }
+`
 
 const Subheadline = styled.p`
   color: ${theme.colors.grey};

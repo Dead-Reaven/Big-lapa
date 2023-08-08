@@ -6,6 +6,7 @@ function About() {
   return (
     <AboutStyled data-testid="about-page">
       <Slider />
+
       <AboutContent />
     </AboutStyled>
   )

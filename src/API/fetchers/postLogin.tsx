@@ -7,16 +7,10 @@ const headers = {
 }
 
 const useLogin = async (data: LoginType): Promise<any> => {
-  await axios
-    .post(url, data, { headers })
-    .then((res) => {
-      console.log(res.data)
-      localStorage.setItem('access_token', res.data.access_token)
-    })
-    .catch((error) => {
-      console.log('Error: ', error)
-      data.setIsError(error.message)
-    })
+  await axios.post(url, data, { headers }).then((res) => {
+    localStorage.setItem('access_token', res.data.access_token)
+    return res.data
+  })
 }
 
 export default useLogin

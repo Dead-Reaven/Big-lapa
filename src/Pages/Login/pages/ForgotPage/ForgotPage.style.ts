@@ -20,6 +20,7 @@ const ForgotButton = styled.button`
   line-height: 140%;
   margin-left: 265px;
   bottom: 25px;
+  margin-top: 35px;
 `
 const MyStyled = styled(FormH2)`
   color: red;

@@ -40,13 +40,11 @@ interface DogTypes {
 interface LoginType {
   login: string
   password: string
-  setIsError: (value: string) => void
 }
 
 interface changePassType {
   oldPassword: string
   newPassword: string
-  setIsError: (value: string) => void
 }
 
 interface ValidationsType {

@@ -6,9 +6,11 @@ interface Props {
   onChange: (e: any) => void
   state: string
   onBlur?: () => void
+  iserror?: boolean | string
+  changecolor?: boolean
 }
 function Input(props: Props) {
-  const { placeholder, label, onChange, state, onBlur } = props
+  const { placeholder, label, onChange, state, onBlur, iserror, changecolor } = props
 
   return (
     <>
@@ -18,6 +20,8 @@ function Input(props: Props) {
         onChange={(e: any) => onChange(e.target.value)}
         value={state}
         onBlur={onBlur}
+        iserror={iserror?.toString()}
+        changecolor={changecolor}
       />
     </>
   )

@@ -1,15 +1,21 @@
 import { theme } from '../../../../Components/UI/Theme.styles'
 import styled from 'styled-components'
-import mainPhoto from './img/main_photo.png'
 import { ReactComponent as Bullet } from './img/bullet_first.svg'
+import webpImage from '../../../../Assets/Sliders/1.webp'
 
 const SliderStyled = styled.div`
   height: calc(100vh - 96px);
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   color: ${theme.colors.background};
-  background-color: ${theme.colors.green};
+  background: url(${webpImage}) no-repeat center top;
+  background-size: cover;
+
+  * {
+    text-align: center;
+  }
 `
 
 const Flex = styled.div`
@@ -22,57 +28,24 @@ const Flex = styled.div`
   }
 `
 
-const TextContainer = styled.div`
-  flex: 0 0 60%;
-  max-width: 624px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-
-  @media screen and (max-width: 1279px) {
-    flex: 0 0 48%;
-  }
-  @media screen and (max-width: 767px) {
-    gap: 20px;
-    text-align: center;
-    h1 {
-      text-align: center;
-    }
-  }
-`
-
-const YellowBlock = styled.div`
-  flex: 0 1 50%;
-  aspect-ratio: 1/1;
-  max-height: 70vh;
-  background: ${theme.colors.yellow} url(${mainPhoto}) bottom no-repeat;
-  background-size: contain;
-  border-radius: 3%;
-  z-index: 0;
-
-  @media screen and (max-width: 1279px) {
-    aspect-ratio: 1/1.1;
-  }
-
-  @media screen and (max-width: 767px) {
-    width: 80%;
-    max-height: 45vh;
-  }
-
-  @media screen and (max-width: 550px) {
-    width: 100%;
-  }
-`
+const TextContainer = styled.div``
 
 const BulletIco = styled(Bullet)`
   position: absolute;
-  bottom: 0;
   z-index: 1;
-  @media screen and (max-width: 767px) {
-    left: 50%;
-    bottom: 14px;
-    transform: translate(-50%);
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 25px;
+
+  @media screen and (min-width: 768px) {
+    bottom: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    bottom: 60px;
+  }
+  @media screen and (min-width: 1440px) {
+    bottom: 68.5px;
   }
 `
 
-export { SliderStyled, YellowBlock, TextContainer, Flex, BulletIco as Bullet }
+export { SliderStyled, TextContainer, Flex, BulletIco as Bullet }

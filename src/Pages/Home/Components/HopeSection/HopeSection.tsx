@@ -1,7 +1,7 @@
-import dog1 from './img/dog1.png'
-import dog2 from './img/dog2.png'
-import dog3 from './img/dog3.png'
-import dog4 from './img/dog4.png'
+import dog1 from '../../../../Assets/Home/dog-1.webp'
+import dog2 from '../../../../Assets/Home/dog-2.webp'
+import dog3 from '../../../../Assets/Home/dog-3.webp'
+import dog4 from '../../../../Assets/Home/dog-4.webp'
 // import Container from '../../../../styles/Container.style'
 
 import {

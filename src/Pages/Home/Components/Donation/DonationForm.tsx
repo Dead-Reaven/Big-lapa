@@ -8,7 +8,11 @@ declare global {
   }
 }
 
-function DonationForm() {
+interface Props {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function DonationForm({ setIsModalOpen }: Props) {
   const [amount, setAmount] = useState(0)
   const [checked, setChecked] = useState(false)
 
@@ -24,19 +28,23 @@ function DonationForm() {
     setChecked(true)
   }
 
-  function createOrder(amount: number, order_desc: string) {
-    const button = window.$ipsp.get('button')
-    button.setMerchantId(1397120)
-    button.setAmount(amount, 'UAH')
-    button.setResponseUrl('http://example.com/result/')
-    button.setHost('pay.fondy.eu')
-    button.addField({
-      label: 'Призначення оплати',
-      name: 'order_desc',
-      value: order_desc,
-    })
-    window.location.href = button.getUrl()
+  const handleSubmit = () => {
+    setIsModalOpen(true)
   }
+
+  // function createOrder(amount: number, order_desc: string) {
+  //   const button = window.$ipsp.get('button')
+  //   button.setMerchantId(1397120)
+  //   button.setAmount(amount, 'UAH')
+  //   button.setResponseUrl('http://example.com/result/')
+  //   button.setHost('pay.fondy.eu')
+  //   button.addField({
+  //     label: 'Призначення оплати',
+  //     name: 'order_desc',
+  //     value: order_desc,
+  //   })
+  //   window.location.href = button.getUrl()
+  // }
   return (
     <Flex $direction="column" $align="center" $gap="35px">
       <Grid>
@@ -66,13 +74,7 @@ function DonationForm() {
           />
         </StyledAmount>
       </Grid>
-      <DonationButton
-        onClick={() => {
-          createOrder(amount, 'Допомога песикам')
-        }}
-      >
-        Зробити внесок
-      </DonationButton>
+      <DonationButton onClick={handleSubmit}>Зробити внесок</DonationButton>
     </Flex>
   )
 }

@@ -25,7 +25,11 @@ import {
 } from './ContactUs.style'
 import TitleH2 from '../../../Components/UI/TitleH2.styles'
 
-function ContactUs() {
+interface Props {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function ContactUs({ setIsModalOpen }: Props) {
   const [contactsState, setContactsState] = useState<ContactTypes>({
     email: '',
     first_phoneNumber: '',
@@ -37,6 +41,11 @@ function ContactUs() {
     state: contactsState,
     setState: setContactsState,
   }) as ContactTypes
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsModalOpen(true)
+  }
 
   return (
     <StyledSection>
@@ -75,7 +84,7 @@ function ContactUs() {
           <StyledFormDiv>
             <TitleH2 $marginBottom="24px">Зв`яжіться з нами</TitleH2>
             <p>Якщо залишилися питання, напишіть нам</p>
-            <form>
+            <form onSubmit={handleSubmit}>
               <StyledInputsDiv>
                 <RestyledInput className="name" placeholder="Ім’я" />
                 <RestyledInput type="email" className="email" placeholder="Пошта" />

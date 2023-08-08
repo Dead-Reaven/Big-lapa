@@ -3,7 +3,7 @@ import FeedbackModal from '../../Components/FeedbackModal/FeedbackModal'
 import ContactUs from './Components/ContactUs'
 import Slider from './Components/Slider'
 import { GridContainer, StyledContacts } from './Contacts.style'
-import PhotoModal from './img/ModalPhoto.png'
+import PhotoModal from './img/ModalPhoto.webp'
 function Contacts() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   return (

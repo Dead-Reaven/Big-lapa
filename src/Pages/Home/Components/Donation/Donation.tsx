@@ -15,7 +15,7 @@ import {
 } from './Donation.style'
 import DonationForm from './DonationForm'
 import FeedbackModal from '../../../../Components/FeedbackModal/FeedbackModal'
-import PhotoModal from './img/photo_modal.png'
+import PhotoModal from './img/photoModal.webp'
 import { useState } from 'react'
 
 function Donation() {

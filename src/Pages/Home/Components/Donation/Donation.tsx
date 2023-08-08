@@ -1,7 +1,7 @@
 import Flex from '../../../../Components/UI/Flex.styles'
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../../../Components/UI/TitleH3.styles'
-import Dogs from './img/Dogs_donation.png'
+import Dogs from '../../../../Assets/Home/dogs donation.webp'
 import NovaPoshta from './img/Nova_Poshta.png'
 import {
   StyledDonation,

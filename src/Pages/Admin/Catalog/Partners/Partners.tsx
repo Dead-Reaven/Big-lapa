@@ -93,6 +93,7 @@ function Partners() {
         <PartnersLogos>
           <TitleH2>Лого партнерів</TitleH2>
           <NoPartners>
+            {isLoading && <TitleH3>Будь ласка зачекайте ⌛</TitleH3>}
             {isGetSuccess && partnersState.length === 0 && (
               <>
                 <TitleH3>Схоже, у притулку поки що немає партнерів</TitleH3>
@@ -120,7 +121,6 @@ function Partners() {
         {selectedFile && <PartnersButton type="submit">Відправити</PartnersButton>}
       </PartnersStyled>
 
-      {isLoading && <Message mode="green">Будь ласка зачекайте ⌛</Message>}
       {isGetError && <Message mode="red">Схоже, сталася помилка ⛔</Message>}
       {isPostSuccess && <Message mode="green">Лого успішно завантажилось! ✔️</Message>}
       {isPostError && (

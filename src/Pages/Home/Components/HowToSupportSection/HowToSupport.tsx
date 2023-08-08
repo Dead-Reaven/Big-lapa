@@ -1,5 +1,5 @@
-import pic1 from './img/pic1.png'
-import pic2 from './img/pic2.png'
+import pic1 from '../../../../Assets/Home/financial-support.webp'
+import pic2 from '../../../../Assets/Home/other-support_1.webp'
 import Container from '../../../../Components/UI/Container.style'
 
 import {

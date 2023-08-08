@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ReportTypes } from '../types'
+// import { ReportTypes } from '../types'
 
 const url = 'https://big-lapa-api-production.up.railway.app/api/images/documents/'
 
@@ -10,7 +10,6 @@ const getReportFile = (id: string): Promise<File> =>
     })
     .then((res) => {
       console.log('getReportFile api called')
-      console.log({ res })
       return res.data
     })
 

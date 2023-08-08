@@ -21,7 +21,7 @@ describe('User test App.e2e.ts', () => {
     await page.goto('http://localhost:3000')
     await page.waitForSelector('[data-testid="home-page"]')
     const text = await page.$eval('[data-testid="home-page"]', (e) => e.textContent)
-    expect(text).toContain('Подаруй другу шанс')
+    expect(text).toContain('Притулок')
   })
 
   describe('Test header navigate to other pages', () => {

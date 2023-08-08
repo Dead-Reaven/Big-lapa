@@ -40,13 +40,18 @@ interface DogTypes {
 interface LoginType {
   login: string
   password: string
-  setWorning?: any
+  setIsError: (value: string) => void
 }
 
 interface changePassType {
   oldPassword: string
   newPassword: string
-  setWorning?: any
+  setIsError: (value: string) => void
+}
+
+interface ValidationsType {
+  value: string
+  validations: boolean | any
 }
 
 export type {
@@ -56,5 +61,6 @@ export type {
   PartnerTypes,
   ReportTypes,
   RequestStatusTypes,
+  ValidationsType,
   changePassType,
 }

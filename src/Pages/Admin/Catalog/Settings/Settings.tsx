@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import usePatch from '../../../../API/fetchers/patchPatch'
 import { Form, FormButton, FormContainer, FormH2 } from '../../Components/UI/Form.style'
@@ -6,22 +7,32 @@ import Input from '../../Components/UI/Input'
 function Settings() {
   const [passwordOld, setPasswordOld] = useState('')
   const [passwordNew, setPasswordNew] = useState('')
-  const [worning, setWorning] = useState('')
+  const [isError, setIsError] = useState('')
+
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation(usePatch, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['patch'] })
+    },
+  })
 
   const handlerPatch = () => {
     const updateData = {
       oldPassword: passwordOld,
       newPassword: passwordNew,
-      setWorning,
+      setIsError: setIsError,
     }
-    usePatch(updateData)
+    mutate(updateData)
+    setPasswordOld('')
+    setPasswordNew('')
   }
   return (
     <Form onSubmit={() => handlerPatch()}>
       <FormH2>Налаштування</FormH2>
       <p style={{ fontWeight: '700', marginBottom: '20px' }}>Змінити пароль</p>
       <FormContainer>
-        {worning && <h1 style={{ color: 'red' }}>Error: {worning}</h1>}
+        {isError && <h1 style={{ color: 'red' }}>Error: {isError}</h1>}
 
         <Input
           state={passwordOld}

@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import slide1 from '../MainSlider/images/1441.png'
+import slide2 from '../MainSlider/images/1442.png'
+import slide3 from '../MainSlider/images/1443.png'
+import slide4 from '../MainSlider/images/1444.png'
 import {
   CarouselDiv,
   StyledImageItem,
@@ -6,31 +10,62 @@ import {
   StyledNextArrow,
   StyledBullets,
   Bullet,
+  StyledTitle,
+  StyledTextContainer,
+  StyledParagraph,
 } from '../../Components/MainSlider/MainSlider.style'
 
-interface MainSliderProps {
-  data: {
-    image: string
-    title: string
-    id: number
-  }[]
-}
-function MainSlider({ data }: MainSliderProps) {
+function MainSlider() {
+  const images = [
+    {
+      image: slide1,
+      title: 'dog 1',
+      heading: 'Big Lapa - притулок для собак',
+      paragraph: 'Знайдіть свого вірного хвоста у нашому притулку',
+      id: 0,
+    },
+    {
+      image: slide2,
+      title: 'dog 2',
+      heading: 'Наша місія',
+      paragraph: 'Дізнайтеся більше про притулок та його діяльність',
+      id: 1,
+    },
+    {
+      image: slide3,
+      title: 'dog 3',
+      heading: 'Хвости шукають люблячий дім',
+      paragraph: 'Познайомтеся з нашими чудовими мешканцями',
+      id: 2,
+    },
+    {
+      image: slide4,
+      title: 'dog 4',
+      heading: 'Зв’яжіться з нами',
+      paragraph:
+        'Напишіть нам, якщо у вас залишилися питання, а також дізнайтеся адресу притулку',
+      id: 3,
+    },
+  ]
   const [slide, setSlide] = useState(0)
 
   const nextSlide = () => {
-    setSlide(slide === data.length - 1 ? 0 : slide + 1)
+    setSlide(slide === images.length - 1 ? 0 : slide + 1)
   }
 
   const prevSlide = () => {
-    setSlide(slide === 0 ? data.length - 1 : slide - 1)
+    setSlide(slide === 0 ? images.length - 1 : slide - 1)
   }
   return (
     <CarouselDiv>
+      <StyledTextContainer>
+        <StyledTitle>{images[slide].heading}</StyledTitle>
+        <StyledParagraph>{images[slide].paragraph}</StyledParagraph>
+      </StyledTextContainer>
       <button onClick={prevSlide}>
         <StyledPrevArrow />
       </button>
-      {data.map((item, idx) => {
+      {images.map((item, idx) => {
         return (
           <StyledImageItem
             src={item.image}
@@ -43,8 +78,9 @@ function MainSlider({ data }: MainSliderProps) {
       <button onClick={nextSlide}>
         <StyledNextArrow />
       </button>
+
       <StyledBullets>
-        {data.map((_, idx) => {
+        {images.map((_, idx) => {
           return (
             <Bullet
               key={idx}

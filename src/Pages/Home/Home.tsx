@@ -4,14 +4,14 @@ import { GridContainer, StyledHome } from './Home.styles'
 import HopeSection from './Components/HopeSection/HopeSection'
 import HowToSupport from './Components/HowToSupportSection/HowToSupport'
 import Partners from './Components/Partners/Partners'
-import slides from '../../API/mainSliderImg'
+
 import MainSlider from '../../Components/MainSlider/MainSlider'
 
 function Home() {
   return (
     <StyledHome data-testid="home-page">
       <GridContainer>
-        <MainSlider data={slides} />
+        <MainSlider />
         <HopeSection />
         <HowToSupport />
         <Donation />

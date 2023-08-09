@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { ReactComponent as IcoPrev } from '../MainSlider/images/prev.svg'
 import { ReactComponent as IcoNext } from '../MainSlider/images/next.svg'
+import TitleH1 from '../UI/TitleH1.style'
 
 interface StyledSlideProp {
   $isActive: boolean
@@ -65,6 +66,26 @@ const Bullet = styled.button<StyledBulletProp>`
     display: none;
   }
 `
+const StyledTextContainer = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 16px;
+`
+const StyledTitle = styled(TitleH1)`
+  color: ${({ theme }) => theme.colors.background};
+  position: absolute;
+  z-index: 6;
+`
+const StyledParagraph = styled.p`
+  color: ${({ theme }) => theme.colors.background};
+  position: absolute;
+  z-index: 6;
+  top: 1000%;
+`
 export {
   CarouselDiv,
   StyledImageItem,
@@ -72,4 +93,7 @@ export {
   StyledNextArrow,
   StyledBullets,
   Bullet,
+  StyledTitle,
+  StyledTextContainer,
+  StyledParagraph,
 }

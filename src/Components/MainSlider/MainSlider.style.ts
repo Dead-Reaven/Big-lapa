@@ -1,31 +1,69 @@
 import styled from 'styled-components'
 import { ReactComponent as IcoPrev } from '../MainSlider/images/prev.svg'
 import { ReactComponent as IcoNext } from '../MainSlider/images/next.svg'
-import TitleH1 from '../UI/TitleH1.style'
+import Container from '../UI/Container.style'
 
-interface StyledSlideProp {
+interface isActiveProp {
   $isActive: boolean
 }
-interface StyledBulletProp {
-  $isActive: boolean
-}
+
 const CarouselDiv = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: calc(100vh - 96px);
+  user-select: none;
+  color: white;
 `
-const StyledImageItem = styled.img<StyledSlideProp>`
+interface styledImageItemPros {
+  $isActive: boolean
+  $background: any
+}
+const WrapperSliders = styled.div`
+  height: 100%;
+  width: 100%;
+`
+const TextContainer = styled(Container)`
+  /* padding: 25px; */
+`
+
+const StyledSlider = styled.div<styledImageItemPros>`
   width: 100%;
   height: 100%;
-  display: ${(props) => (props.$isActive ? 'flex' : 'none')};
+  display: ${({ $isActive }) => ($isActive ? `flex` : `none`)};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: ${({ $background, $isActive }) =>
+    $isActive ? `url(${$background}) no-repeat` : `none`};
+
+  background-size: cover;
+  background-position: center top;
+
+  @media screen and (max-width: 400px) {
+    background-position: center;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-align: center;
+    padding: 0px 30px;
+    @media screen and (max-width: 900px) {
+      padding: 0px;
+    }
+  }
 `
+
 const StyledPrevArrow = styled(IcoPrev)`
   position: absolute;
   z-index: 5;
-  left: 93px;
+  left: calc(4%);
+  @media screen and (max-width: 900px) {
+    left: calc(20%);
+    bottom: 15%;
+  }
   &:hover {
     cursor: pointer;
   }
@@ -33,7 +71,11 @@ const StyledPrevArrow = styled(IcoPrev)`
 const StyledNextArrow = styled(IcoNext)`
   position: absolute;
   z-index: 5;
-  right: 93px;
+  right: calc(4%);
+  @media screen and (max-width: 900px) {
+    right: calc(20%);
+    bottom: 15%;
+  }
   &:hover {
     cursor: pointer;
   }
@@ -41,10 +83,19 @@ const StyledNextArrow = styled(IcoNext)`
 const StyledBullets = styled.span`
   position: absolute;
   display: flex;
-  bottom: 2rem;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+
+  @media screen and (min-width: 768px) {
+    bottom: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    bottom: 60px;
+  }
 `
 
-const Bullet = styled.button<StyledBulletProp>`
+const Bullet = styled.button<isActiveProp>`
   position: relative;
   background-color: ${(props) => (props.$isActive ? '#f9f9f9' : 'transparent')};
   height: 17px;
@@ -54,6 +105,7 @@ const Bullet = styled.button<StyledBulletProp>`
   outline: none;
   cursor: pointer;
   margin-left: 40px;
+
   &::after {
     content: ' ';
     position: absolute;
@@ -65,35 +117,18 @@ const Bullet = styled.button<StyledBulletProp>`
   &:last-child::after {
     display: none;
   }
+  &:first-child {
+    margin-left: 0;
+  }
 `
-const StyledTextContainer = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 16px;
-`
-const StyledTitle = styled(TitleH1)`
-  color: ${({ theme }) => theme.colors.background};
-  position: absolute;
-  z-index: 6;
-`
-const StyledParagraph = styled.p`
-  color: ${({ theme }) => theme.colors.background};
-  position: absolute;
-  z-index: 6;
-  top: 1000%;
-`
+
 export {
   CarouselDiv,
-  StyledImageItem,
+  StyledSlider,
+  TextContainer,
   StyledPrevArrow,
   StyledNextArrow,
   StyledBullets,
   Bullet,
-  StyledTitle,
-  StyledTextContainer,
-  StyledParagraph,
+  WrapperSliders,
 }

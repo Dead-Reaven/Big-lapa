@@ -1,94 +1,56 @@
-import React, { useState } from 'react'
-import slide1 from '../MainSlider/images/1441.png'
-import slide2 from '../MainSlider/images/1442.png'
-import slide3 from '../MainSlider/images/1443.png'
-import slide4 from '../MainSlider/images/1444.png'
+import { useState } from 'react'
+import SlidersData from './content'
+
 import {
   CarouselDiv,
-  StyledImageItem,
   StyledPrevArrow,
   StyledNextArrow,
   StyledBullets,
   Bullet,
-  StyledTitle,
-  StyledTextContainer,
-  StyledParagraph,
+  StyledSlider,
+  WrapperSliders,
+  TextContainer,
 } from '../../Components/MainSlider/MainSlider.style'
+import TitleH1 from '../UI/TitleH1.style'
+import TitleH3 from '../UI/TitleH3.styles'
 
 function MainSlider() {
-  const images = [
-    {
-      image: slide1,
-      title: 'dog 1',
-      heading: 'Big Lapa - притулок для собак',
-      paragraph: 'Знайдіть свого вірного хвоста у нашому притулку',
-      id: 0,
-    },
-    {
-      image: slide2,
-      title: 'dog 2',
-      heading: 'Наша місія',
-      paragraph: 'Дізнайтеся більше про притулок та його діяльність',
-      id: 1,
-    },
-    {
-      image: slide3,
-      title: 'dog 3',
-      heading: 'Хвости шукають люблячий дім',
-      paragraph: 'Познайомтеся з нашими чудовими мешканцями',
-      id: 2,
-    },
-    {
-      image: slide4,
-      title: 'dog 4',
-      heading: 'Зв’яжіться з нами',
-      paragraph:
-        'Напишіть нам, якщо у вас залишилися питання, а також дізнайтеся адресу притулку',
-      id: 3,
-    },
-  ]
-  const [slide, setSlide] = useState(0)
+  const [sliderNumber, setSliderNumber] = useState(0)
 
   const nextSlide = () => {
-    setSlide(slide === images.length - 1 ? 0 : slide + 1)
+    setSliderNumber(sliderNumber === SlidersData.length - 1 ? 0 : sliderNumber + 1)
   }
 
   const prevSlide = () => {
-    setSlide(slide === 0 ? images.length - 1 : slide - 1)
+    setSliderNumber(sliderNumber === 0 ? SlidersData.length - 1 : sliderNumber - 1)
   }
   return (
     <CarouselDiv>
-      <StyledTextContainer>
-        <StyledTitle>{images[slide].heading}</StyledTitle>
-        <StyledParagraph>{images[slide].paragraph}</StyledParagraph>
-      </StyledTextContainer>
-      <button onClick={prevSlide}>
-        <StyledPrevArrow />
-      </button>
-      {images.map((item, idx) => {
-        return (
-          <StyledImageItem
-            src={item.image}
-            alt={item.title}
+      <WrapperSliders>
+        {SlidersData.map((slider, idx) => (
+          <StyledSlider
             key={idx}
-            $isActive={slide === idx}
-          />
-        )
-      })}
-      <button onClick={nextSlide}>
-        <StyledNextArrow />
-      </button>
+            $isActive={sliderNumber === idx}
+            $background={slider.image}
+          >
+            <StyledPrevArrow type="button" onClick={prevSlide} />
+            <TextContainer>
+              <TitleH1>{slider.heading}</TitleH1>
+              <TitleH3>{slider.paragraph}</TitleH3>
+            </TextContainer>
+            <StyledNextArrow type="button" onClick={nextSlide} />
+          </StyledSlider>
+        ))}
+      </WrapperSliders>
 
       <StyledBullets>
-        {images.map((_, idx) => {
-          return (
-            <Bullet
-              key={idx}
-              $isActive={slide === idx}
-              onClick={() => setSlide(idx)}
-            ></Bullet>
-          )
-        })}
+        {SlidersData.map((_, idx) => (
+          <Bullet
+            key={idx}
+            $isActive={sliderNumber === idx}
+            onClick={() => setSliderNumber(idx)}
+          />
+        ))}
       </StyledBullets>
     </CarouselDiv>
   )

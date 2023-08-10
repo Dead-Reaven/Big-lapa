@@ -24,6 +24,9 @@ interface styledImageItemPros {
 const WrapperSliders = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
+  overflow-x: hidden; /* Hide the default scrollbar */
+  scroll-behavior: smooth; /* Enable smooth scrolling */
 `
 const TextContainer = styled(Container)`
   /* padding: 25px; */
@@ -32,13 +35,10 @@ const TextContainer = styled(Container)`
 const StyledSlider = styled.div<styledImageItemPros>`
   width: 100%;
   height: 100%;
-  display: ${({ $isActive }) => ($isActive ? `flex` : `none`)};
-  flex-direction: column;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ $background, $isActive }) =>
-    $isActive ? `url(${$background}) no-repeat` : `none`};
-
+  background: ${({ $background }) => `url(${$background}) no-repeat`};
   background-size: cover;
   background-position: center top;
 
@@ -106,6 +106,7 @@ const Bullet = styled.button<isActiveProp>`
   outline: none;
   cursor: pointer;
   margin-left: 40px;
+  transition: background-color 0.3s; /* Add transition for smooth effect */
 
   &::after {
     content: ' ';

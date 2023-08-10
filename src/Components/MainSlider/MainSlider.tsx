@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import SlidersData from './content'
 
 import {
@@ -17,31 +17,43 @@ import TitleH3 from '../UI/TitleH3.styles'
 function MainSlider() {
   const [sliderNumber, setSliderNumber] = useState(0)
 
-  const nextSlide = () => {
+  const nextSlide = () =>
     setSliderNumber(sliderNumber === SlidersData.length - 1 ? 0 : sliderNumber + 1)
-  }
 
-  const prevSlide = () => {
+  const prevSlide = () =>
     setSliderNumber(sliderNumber === 0 ? SlidersData.length - 1 : sliderNumber - 1)
-  }
+
+  useEffect(() => {
+    const wrapper = document.querySelector('#wrapper')
+    const sliderWidth = window.innerWidth //px
+
+    console.log('swipe')
+    wrapper?.scrollTo({
+      top: 0,
+      left: sliderWidth * sliderNumber,
+      behavior: 'smooth',
+    })
+    window.scrollTo(0, 0)
+  }, [sliderNumber])
+
   return (
     <CarouselDiv>
-      <WrapperSliders>
+      <StyledPrevArrow type="button" onClick={prevSlide} />
+      <WrapperSliders id="wrapper">
         {SlidersData.map((slider, idx) => (
           <StyledSlider
             key={idx}
             $isActive={sliderNumber === idx}
             $background={slider.image}
           >
-            <StyledPrevArrow type="button" onClick={prevSlide} />
             <TextContainer>
               <TitleH1>{slider.heading}</TitleH1>
               <TitleH3>{slider.paragraph}</TitleH3>
             </TextContainer>
-            <StyledNextArrow type="button" onClick={nextSlide} />
           </StyledSlider>
         ))}
       </WrapperSliders>
+      <StyledNextArrow type="button" onClick={nextSlide} />
 
       <StyledBullets>
         {SlidersData.map((_, idx) => (

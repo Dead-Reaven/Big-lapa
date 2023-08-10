@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useLogin from '../../../../API/fetchers/postLogin'
+import { useAuth } from '../../../../AuthHoc/useAuth'
 import {
   ErrorValid,
   Form,
@@ -42,8 +43,14 @@ const validationHook = (initialState: string, validations: any) => {
 }
 
 const LoginComponent = () => {
+  const token = localStorage.getItem('access_token')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { signin }: any = useAuth()
+  const fromPage = location.state?.from?.pathname || '/admin'
+
   const queryClient = useQueryClient()
-  const { mutate, isError } = useMutation(useLogin, {
+  const { mutate, isError, isSuccess } = useMutation(useLogin, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['auth'] })
     },
@@ -65,6 +72,11 @@ const LoginComponent = () => {
     loginUser.handleClear(e)
     passwordUser.handleClear(e)
   }
+  useEffect(() => {
+    if (token) {
+      signin(token, () => navigate(fromPage, { replace: true }))
+    }
+  }, [token])
 
   return (
     <>

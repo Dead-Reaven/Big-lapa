@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SlidersData from './content'
 
 import {
@@ -16,6 +16,7 @@ import TitleH3 from '../UI/TitleH3.styles'
 
 function MainSlider() {
   const [sliderNumber, setSliderNumber] = useState(0)
+  const [sliderWidth, setSliderWidth] = useState(window.innerWidth)
 
   const nextSlide = () =>
     setSliderNumber(sliderNumber === SlidersData.length - 1 ? 0 : sliderNumber + 1)
@@ -25,7 +26,6 @@ function MainSlider() {
 
   useEffect(() => {
     const wrapper = document.querySelector('#wrapper')
-    const sliderWidth = window.innerWidth //px
 
     console.log('swipe')
     wrapper?.scrollTo({
@@ -34,7 +34,20 @@ function MainSlider() {
       behavior: 'smooth',
     })
     window.scrollTo(0, 0)
-  }, [sliderNumber])
+  }, [sliderNumber, sliderWidth])
+
+  useEffect(() => {
+    // Update sliderWidth when the viewport is resized
+    const handleResize = () => {
+      setSliderWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <CarouselDiv>

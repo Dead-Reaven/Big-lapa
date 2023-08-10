@@ -30,11 +30,15 @@ const WrapperSliders = styled.div`
 `
 const TextContainer = styled(Container)`
   /* padding: 25px; */
+  max-width: none;
 `
 
 const StyledSlider = styled.div<styledImageItemPros>`
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  
   display: flex;
   align-items: center;
   justify-content: center;

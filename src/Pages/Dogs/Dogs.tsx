@@ -18,7 +18,6 @@ function Dogs() {
 
   return (
     <DogsStyled data-testid="dogs-page">
-      <br />
       <Container>
         <DogSearch
           state={filteredDogsState}
@@ -26,6 +25,7 @@ function Dogs() {
           options={dogsState as DogTypes}
         />
       </Container>
+      <br />
       <Gallery state={filteredDogsState} />
     </DogsStyled>
   )

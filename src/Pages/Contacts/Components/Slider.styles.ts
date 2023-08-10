@@ -3,15 +3,8 @@ import styled from 'styled-components'
 import TitleH1 from '../../../Components/UI/TitleH1.style'
 
 import { NavLink } from 'react-router-dom'
-import lapaS from '../img/slider/lapasS.png'
-import lapaM1 from '../img/slider/lapaM12x.png'
-import lapaM2 from '../img/slider/lapaM22x.png'
-import lapaL1 from '../img/slider/lapaL12x.png'
-import lapaL2 from '../img/slider/lapaL22x.png'
-import lapaXL1 from '../img/slider/lapaXL12x.png'
-import lapaXL2 from '../img/slider/lapaXL22x.png'
+
 const StyledSection = styled.section`
-  background-image: url(${lapaS});
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: contain;
@@ -21,7 +14,6 @@ const StyledSection = styled.section`
   padding-bottom: 18px;
 
   @media (min-width: 767px) {
-    background-image: url(${lapaM1}), url(${lapaM2});
     background-repeat: no-repeat;
     background-position: 10% 0, 90% 100%;
     background-size: 60%;
@@ -29,7 +21,6 @@ const StyledSection = styled.section`
     padding-bottom: 32px;
   }
   @media (min-width: 1279px) {
-    background-image: url(${lapaL1}), url(${lapaL2});
     background-repeat: no-repeat;
     background-position: 10% 0, 90% 100%;
     background-size: 60%;
@@ -37,7 +28,6 @@ const StyledSection = styled.section`
     padding-bottom: 52px;
   }
   @media (min-width: 1439px) {
-    background-image: url(${lapaXL1}), url(${lapaXL2});
     background-repeat: no-repeat;
     background-position: 0 0, 100% 100%;
     background-size: 60%;

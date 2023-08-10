@@ -3,7 +3,6 @@ import { DogTypes } from '../../API/types'
 import useGet from '../../API/useGet'
 import DogSearch from '../../Components/DogSearch/DogSearch'
 import Gallery from '../../Components/Gallery/Gallery'
-import Slider from './Components/Slider/Slider'
 import { DogsStyled } from './Dogs.style'
 import Container from '../../Components/UI/Container.style'
 
@@ -19,7 +18,7 @@ function Dogs() {
 
   return (
     <DogsStyled data-testid="dogs-page">
-      <Slider />
+      <br />
       <Container>
         <DogSearch
           state={filteredDogsState}

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
-import { theme } from '../../../../Components/UI/Theme.styles'
-import TitleH2 from '../../../../Components/UI/TitleH2.styles'
-import TitleH3 from '../../../../Components/UI/TitleH3.styles'
+import { theme } from '../../Components/UI/Theme.styles'
+import TitleH2 from '../../Components/UI/TitleH2.styles'
+import TitleH3 from '../../Components/UI/TitleH3.styles'
 
 const AboutStyled = styled.section`
   padding: 105px 0 110px;
@@ -16,7 +16,7 @@ const AboutStyled = styled.section`
 `
 
 const AboutTitle = styled(TitleH2)`
-  max-width: 624px;
+  text-align: center;
   margin-bottom: 70px;
 
   @media (max-width: 1023px) {

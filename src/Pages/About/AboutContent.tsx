@@ -13,9 +13,9 @@ import firstImg from './img/01.png'
 import secondImg from './img/02.png'
 import thirdImg from './img/03.png'
 import { ReactComponent as PawIco } from './img/pawIco.svg'
-import { ReactComponent as AdressIco } from '../../../Contacts/img/contact-us/map.svg'
-import TitleH3 from '../../../../Components/UI/TitleH3.styles'
-import Container from '../../../../Components/UI/Container.style'
+import { ReactComponent as AdressIco } from '../Contacts/img/contact-us/map.svg'
+import TitleH3 from '../../Components/UI/TitleH3.styles'
+import Container from '../../Components/UI/Container.style'
 
 function AboutContent() {
   return (

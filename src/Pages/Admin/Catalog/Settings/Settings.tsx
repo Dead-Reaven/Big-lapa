@@ -6,7 +6,11 @@ import Input from '../../Components/UI/Input'
 
 function Settings() {
   const [passwordOld, setPasswordOld] = useState('')
+
   const [passwordNew, setPasswordNew] = useState('')
+
+  const [confPasswordNew, setConfPasswordNew] = useState('')
+
   const [isError, setIsError] = useState('')
 
   const queryClient = useQueryClient()

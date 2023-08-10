@@ -21,4 +21,13 @@ const StyledHeader = styled.header`
 `
 const Icon = styled(Logo)``
 
-export { StyledHeader, Icon }
+const NamePosition = styled.p`
+  margin-left: auto;
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+`
+
+export { Icon, NamePosition, StyledHeader }

@@ -11,12 +11,15 @@ interface MainPhotoProps {
 
 function SidePhotos({ setDogData, dogData }: MainPhotoProps) {
   const [IsModalOpen, setIsModalOpen] = useState(false)
-  const [selectedId, setSelectedId] = useState<string>('')
+  const [selectedSrc, setSelectedSrc] = useState<string>('')
 
   const sidePhotosAmount = [1, 2, 3, 4, 5, 6]
 
   const deletePhotoHandler = (id: string) => {
-    setDogData({ ...dogData, photos: dogData.photos?.filter((photo) => photo.id !== id) })
+    setDogData({
+      ...dogData,
+      photos: dogData.photos?.filter((photo) => photo.src !== id),
+    })
     setIsModalOpen((curr) => !curr)
   }
 
@@ -28,7 +31,7 @@ function SidePhotos({ setDogData, dogData }: MainPhotoProps) {
         isOpen={IsModalOpen}
         onCancel={() => setIsModalOpen(false)}
         onSubmit={deletePhotoHandler}
-        id={selectedId}
+        id={selectedSrc}
       />
       <SidePhotosContainer>
         <SidePhotosStyled>
@@ -39,7 +42,7 @@ function SidePhotos({ setDogData, dogData }: MainPhotoProps) {
               setDogData={setDogData}
               dogData={dogData}
               setIsModalOpen={setIsModalOpen}
-              setDeletePhotoId={setSelectedId}
+              setDeletePhotoSrc={setSelectedSrc}
             />
           ))}
         </SidePhotosStyled>

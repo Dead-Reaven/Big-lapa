@@ -41,7 +41,6 @@ interface Props {
 }
 
 const initialState = {
-  id: 0,
   mainPhoto: '',
   photos: [],
   name: '',

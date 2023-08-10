@@ -6,7 +6,7 @@ import { SingleDogType } from '../../../../../API/types'
 interface SidePhotoProps {
   setDogData: React.Dispatch<React.SetStateAction<SingleDogType>>
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setDeletePhotoId: React.Dispatch<React.SetStateAction<string>>
+  setDeletePhotoSrc: React.Dispatch<React.SetStateAction<string>>
   dogData: SingleDogType
   photoNum: number
 }
@@ -14,7 +14,7 @@ interface SidePhotoProps {
 function SidePhoto({
   setDogData,
   setIsModalOpen,
-  setDeletePhotoId,
+  setDeletePhotoSrc,
   dogData,
   photoNum,
 }: SidePhotoProps) {
@@ -22,7 +22,7 @@ function SidePhoto({
 
   const openModal = () => {
     setIsModalOpen(true)
-    setDeletePhotoId(photo.id)
+    setDeletePhotoSrc(photo.src.toString())
   }
 
   return (

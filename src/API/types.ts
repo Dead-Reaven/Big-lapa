@@ -39,7 +39,7 @@ interface DogTypes {
 }
 
 interface SingleDogType {
-  id: number
+  id?: number
   mainPhoto: string
   photos: DogPhotoType[]
   name: string
@@ -53,7 +53,6 @@ interface SingleDogType {
 }
 
 interface DogPhotoType {
-  id: string
   src: string | File
   encodedBase64?: string
 }

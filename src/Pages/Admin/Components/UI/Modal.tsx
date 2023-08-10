@@ -7,18 +7,19 @@ import {
   ModalBody,
   ModalActions,
 } from './Modal.style'
-import Button from '../../../../../Components/UI/Button.styles'
+import Button from '../../../../Components/UI/Button.styles'
 
 interface ModalProps {
-  logoId: string
+  id?: string
   title?: string
   body?: string
-  isOpen?: boolean
+  isOpen: boolean
+  logoId?: string
   onCancel(): void
   onSubmit(id: string): void
 }
 
-function Modal({ title, body, isOpen, onCancel, onSubmit, logoId }: ModalProps) {
+function Modal({ title, body, isOpen, onCancel, onSubmit, id }: ModalProps) {
   return (
     <>
       {isOpen && (
@@ -31,7 +32,7 @@ function Modal({ title, body, isOpen, onCancel, onSubmit, logoId }: ModalProps) 
               </ModalText>
               <ModalActions>
                 <Button onClick={onCancel}>Ні</Button>
-                <Button onClick={() => onSubmit(logoId)}>Так</Button>
+                {id && <Button onClick={() => onSubmit(id)}>Так</Button>}
               </ModalActions>
             </StyledModal>
           </ModalOverlay>

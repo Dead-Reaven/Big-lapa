@@ -10,7 +10,7 @@ import {
   PartnersLogos as ReportsLogos,
   PartnersStyled as ReportsStyled,
 } from '../Partners/Partners.style'
-import Modal from '../Partners/components/Modal'
+import Modal from '../../Components/UI/Modal'
 import { CloseIco, PlusIco } from '../Partners/img/icons'
 import { ReactComponent as IcoReport } from './img/ReportIIco.svg'
 import { ReportFileStyled } from './Report.styled'
@@ -111,7 +111,7 @@ function Partners() {
         isOpen={IsModalOpen}
         onCancel={cancelHandler}
         onSubmit={onDeleteReport}
-        logoId={selectedId}
+        id={selectedId}
       />
       <ReportsStyled>
         <ReportsLogos>

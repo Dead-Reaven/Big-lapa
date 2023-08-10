@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
-import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
-import { theme } from '../../../../../Components/UI/Theme.styles'
-import Button from '../../../../../Components/UI/Button.styles'
+import TitleH3 from '../../../../Components/UI/TitleH3.styles'
+import { theme } from '../../../../Components/UI/Theme.styles'
+import Button from '../../../../Components/UI/Button.styles'
 
 const ModalContainer = styled.div`
   z-index: 10;
@@ -48,7 +48,7 @@ const ModalActions = styled.div`
   gap: 40px;
 
   ${Button} {
-    width: 150px;
+    width: 150px !important;
   }
 
   @media (max-width: 767px) {

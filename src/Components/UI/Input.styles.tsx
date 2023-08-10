@@ -4,6 +4,7 @@ interface Props {
   type?: string
   withSvg?: boolean
   width?: string
+  onChange?: (e: any) => void
 }
 
 const StyledInput = styled.input<Props>`

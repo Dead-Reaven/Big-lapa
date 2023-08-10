@@ -12,6 +12,7 @@ const CarouselDiv = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 96px;
   height: calc(100vh - 96px);
   user-select: none;
   color: white;

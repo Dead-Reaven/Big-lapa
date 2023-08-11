@@ -4,7 +4,7 @@ interface IProps {
   children: any
 }
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }: IProps) => {
   const [auth, setAuth] = useState(null)
@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }: IProps) => {
     setAuth(token)
     cb()
   }
-  console.log(name)
   const signout = (cb: any) => {
     setAuth(null)
     cb()

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { LoginType } from '../types'
 
-const url = 'https://big-lapa-api-production.up.railway.app/api/auth/login'
+const url = 'https://sore-tan-perch-tutu.cyclic.app/api/auth/login'
 const headers = {
   'Content-Type': 'application/json',
 }

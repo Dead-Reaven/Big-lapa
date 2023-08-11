@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const url =
-  'https://big-lapa-api-production.up.railway.app/api/images/documents/category/Doc'
+const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/category/document'
 
 const getReportsId = (): Promise<string[]> =>
   axios.get(url).then((res) => {

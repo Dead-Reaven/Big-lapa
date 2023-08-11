@@ -1,7 +1,7 @@
 import Flex from '../../../../Components/UI/Flex.styles'
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../../../Components/UI/TitleH3.styles'
-import Dogs from './img/Dogs_donation.png'
+import Dogs from '../../../../Assets/Home/dogs donation.webp'
 import NovaPoshta from './img/Nova_Poshta.png'
 import {
   StyledDonation,
@@ -14,10 +14,21 @@ import {
   DonationText,
 } from './Donation.style'
 import DonationForm from './DonationForm'
+import FeedbackModal from '../../../../Components/FeedbackModal/FeedbackModal'
+import PhotoModal from './img/photoModal.webp'
+import { useState } from 'react'
 
 function Donation() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <StyledDonation id="donation">
+      <FeedbackModal
+        title="Дякуємо за донат!"
+        body="Завдяки вашій підтримці, ми маємо змогу забезпечити собак необхідною кількістю їжі, медикаментів та засобів для догляду. Дякуємо, що піклуєтеся про наших хвостиків!"
+        image={PhotoModal}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
       <DonationContainer>
         <DonationContent>
           <Flex $direction="column" $align="center">
@@ -31,7 +42,7 @@ function Donation() {
                       Нагодуй пса вже сьогодні –<br /> твоя допомога важлива!
                     </span>
                   </DonationText>
-                  <DonationForm />
+                  <DonationForm setIsModalOpen={setIsModalOpen} />
                 </Flex>
               </StyledDonationCard>
               <StyledDonationCard>

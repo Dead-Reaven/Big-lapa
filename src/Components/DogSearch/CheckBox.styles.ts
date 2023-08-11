@@ -8,7 +8,7 @@ const StyledBurger = styled.div`
 
 const Menu = styled.div`
   width: auto;
-  margin-top: 10px;
+  margin: 20px 0px 40px 0px;
   padding: 20px;
   text-align: justify;
   z-index: 2;

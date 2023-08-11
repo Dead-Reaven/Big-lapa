@@ -1,23 +1,18 @@
 import TitleH1 from '../../../../Components/UI/TitleH1.style'
 import Container from '../../../../Components/UI/Container.style'
-import { SliderStyled, YellowBlock, TextContainer, Flex, Bullet } from './Slider.style'
+import { SliderStyled, TextContainer, Bullet } from './Slider.style'
+import TitleH3 from '../../../../Components/UI/TitleH3.styles'
 
 function Slider() {
   return (
     <SliderStyled>
       <Container>
-        <Flex>
-          <TextContainer>
-            <TitleH1>Подаруй другу шанс, врятуй тварину!</TitleH1>
-            <p>
-              Допоможи домашнім тваринам повернутся додому. Ми розділяємо щастя,
-              об&apos;єднуючи тварин та їх господарів.
-            </p>
-          </TextContainer>
-          <YellowBlock />
-          <Bullet />
-        </Flex>
+        <TextContainer>
+          <TitleH1>Притулок для тварин</TitleH1> <br />
+          <TitleH3>Знайдіть свого вірного хвоста у нашому притулку</TitleH3>
+        </TextContainer>
       </Container>
+      <Bullet />
     </SliderStyled>
   )
 }

@@ -50,7 +50,7 @@ const LoginComponent = () => {
   const fromPage = location.state?.from?.pathname || '/admin'
 
   const queryClient = useQueryClient()
-  const { mutate, isError, isSuccess } = useMutation(useLogin, {
+  const { mutate, isError } = useMutation(useLogin, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['auth'] })
     },

@@ -24,7 +24,7 @@ const Icon = styled(Logo)``
 const NamePosition = styled.p`
   margin-left: auto;
 
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: 140%;

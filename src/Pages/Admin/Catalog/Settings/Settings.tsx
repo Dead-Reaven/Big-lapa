@@ -11,11 +11,9 @@ function Settings() {
 
   const [confPasswordNew, setConfPasswordNew] = useState('')
 
-  const [isError, setIsError] = useState('')
-
   const queryClient = useQueryClient()
 
-  const { mutate } = useMutation(usePatch, {
+  const { mutate, isError } = useMutation(usePatch, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['patch'] })
     },
@@ -25,7 +23,6 @@ function Settings() {
     const updateData = {
       oldPassword: passwordOld,
       newPassword: passwordNew,
-      setIsError: setIsError,
     }
     mutate(updateData)
     setPasswordOld('')

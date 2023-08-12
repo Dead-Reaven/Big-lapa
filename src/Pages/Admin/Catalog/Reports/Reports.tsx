@@ -30,13 +30,17 @@ function Partners() {
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
-  const { isError: isErrorLoadReports, isLoading: isLoadingReports } = useQuery({
+  const {
+    data: dataReports,
+    refetch: refetchGetReportAll,
+    isError: isErrorLoadReports,
+    isLoading: isLoadingReports,
+  } = useQuery({
     queryKey: ['reportsId'],
     initialData: [],
     queryFn: getReportAll,
     onSuccess: (data) => {
       const reports = data.map((document) => {
-        // getReportFile(id)
         return {
           id: document.Url, // get ID from queryId
           name: document.name,
@@ -56,22 +60,29 @@ function Partners() {
     onError: (error) => {
       console.log(error)
     },
+    onSuccess: () => {
+      refetchGetReportAll()
+    },
   })
 
   const {
     mutate: mutateDeleteReport,
     isError: isErrorDeleteReport,
     isSuccess: isSuccessDeleteReport,
-  } = useMutation(deleteReport)
+  } = useMutation(deleteReport, {
+    onSuccess: () => refetchGetReportAll(),
+  })
 
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)
   }
 
   const onDeleteReport = (modalId: string) => {
-    mutateDeleteReport(selectedId)
+    if (dataReports.find((rep) => rep.Url === modalId)) {
+      mutateDeleteReport(selectedId)
+    }
     setReportsState((partners) => partners?.filter(({ id }) => id !== modalId))
-    setIsModalOpen((curr) => !curr)
+    setIsModalOpen(false)
     setSelectedFile(null)
   }
 

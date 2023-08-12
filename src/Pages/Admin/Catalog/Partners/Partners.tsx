@@ -26,7 +26,7 @@ function Partners() {
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
-  useQuery({
+  const { data: idPartners, refetch: refetchGetPartners } = useQuery({
     queryKey: ['partnersId'],
     initialData: [],
     queryFn: getPartnersId,
@@ -54,34 +54,27 @@ function Partners() {
     isSuccess: isPostSuccess,
     isError: isPostError,
   } = useMutation(postPartners, {
-    onSuccess: () => {
-      getPartnersId().then((res) => {
-        const mapped = res.map((id, index) => {
-          return {
-            id: id,
-            src: partnersState[index].src,
-            encodedBase64: partnersState[index]?.encodedBase64,
-          }
-        })
-        console.log({ mapped })
-
-        setPartnersState(mapped)
-      })
-    },
+    onSuccess: () => refetchGetPartners(),
   })
 
   const {
     mutate: deleteSelectedPartner,
     isSuccess: isDeleteSuccess,
     isError: isDeleteError,
-  } = useMutation(deletePartner)
+  } = useMutation(deletePartner, {
+    onSuccess: () => {
+      refetchGetPartners()
+    },
+  })
 
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)
   }
 
   const onDeleteLogo = (modalId: string) => {
-    deleteSelectedPartner(modalId)
+    if (idPartners.find((id) => id === modalId)) {
+      deleteSelectedPartner(modalId)
+    }
     setPartnersState((partners) => partners?.filter(({ id }) => id !== modalId))
     setIsModalOpen((curr) => !curr)
     setSelectedFile(null)

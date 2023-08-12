@@ -1,12 +1,10 @@
 import axios from 'axios'
 
-const url = ' https://big-lapa-api-production.up.railway.app/api/images/documents'
+const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/documents'
 
 const postReport = (data: File): Promise<any> => {
   const formData = new FormData()
   formData.append('document', data)
-  formData.append('description', File.name)
-  formData.append('category', 'Doc')
 
   return axios
     .post(url, formData, {

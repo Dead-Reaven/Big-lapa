@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'https://big-lapa-api-production.up.railway.app/api/images/documents/'
+const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/'
 
 const deleteReport = (id: string): Promise<any> => {
   return axios.delete(url + id).then((res) => {

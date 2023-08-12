@@ -53,7 +53,22 @@ function Partners() {
     mutate: postSelectedFile,
     isSuccess: isPostSuccess,
     isError: isPostError,
-  } = useMutation(postPartners)
+  } = useMutation(postPartners, {
+    onSuccess: () => {
+      getPartnersId().then((res) => {
+        const mapped = res.map((id, index) => {
+          return {
+            id: id,
+            src: partnersState[index].src,
+            encodedBase64: partnersState[index]?.encodedBase64,
+          }
+        })
+        console.log({ mapped })
+
+        setPartnersState(mapped)
+      })
+    },
+  })
 
   const {
     mutate: deleteSelectedPartner,

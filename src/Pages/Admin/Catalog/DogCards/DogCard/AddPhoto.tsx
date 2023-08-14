@@ -1,7 +1,7 @@
 import React from 'react'
 import { AddPhotoStyled } from './DogCard.style'
 import { PhotoIco } from './img/DogCardIcons'
-import { DogPhotoType, SingleDogType } from '../../../../../API/types'
+import { SingleDogType } from '../../../../../API/types'
 
 interface AddPhotoProps {
   setDogData: React.Dispatch<React.SetStateAction<SingleDogType>>
@@ -16,15 +16,12 @@ function AddPhoto({ setDogData, side, main }: AddPhotoProps) {
     if (selectedFile) {
       const fileUrl = URL.createObjectURL(selectedFile)
 
-      const newPhoto: DogPhotoType = {
-        id: Date.now().toString(),
-        src: fileUrl,
-      }
+      const newPhoto = fileUrl
 
       if (isMain) {
         setDogData((prevDogData) => ({
           ...prevDogData,
-          mainPhoto: newPhoto.src.toString(),
+          mainPhoto: newPhoto,
         }))
       } else {
         setDogData((prevDogData) => ({

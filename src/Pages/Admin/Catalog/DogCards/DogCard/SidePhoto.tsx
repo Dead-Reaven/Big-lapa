@@ -22,7 +22,7 @@ function SidePhoto({
 
   const openModal = () => {
     setIsModalOpen(true)
-    setDeletePhotoSrc(photo.src.toString())
+    setDeletePhotoSrc(photo)
   }
 
   return (
@@ -30,7 +30,7 @@ function SidePhoto({
       {dogData.photos.length >= photoNum && (
         <>
           <button type="button" onClick={openModal} />
-          <img src={photo?.src.toString()} alt="dog" />
+          <img src={photo} alt="dog" />
         </>
       )}
       <AddPhoto setDogData={setDogData} side={true} />

@@ -27,7 +27,7 @@ interface DogTypes {
   data: {
     id: number
     mainPhoto: string
-    photos: DogPhotoType[]
+    photos: string[]
     name: string
     sex: string
     age: string
@@ -41,7 +41,7 @@ interface DogTypes {
 interface SingleDogType {
   id?: number
   mainPhoto: string
-  photos: DogPhotoType[]
+  photos: string[]
   name: string
   sex: string
   age: string
@@ -50,11 +50,6 @@ interface SingleDogType {
   breed?: string
   size: string
   description?: string
-}
-
-interface DogPhotoType {
-  src: string | File
-  encodedBase64?: string
 }
 
 interface LoginType {
@@ -78,7 +73,6 @@ export type {
   ContactTypes,
   DogTypes,
   SingleDogType,
-  DogPhotoType,
   LoginType,
   PartnerTypes,
   ReportTypes,

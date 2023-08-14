@@ -23,6 +23,8 @@ function AddPartner({ selectedFile, setPartners, setSelectedFile }: AddPartnerPr
         }
         setSelectedFile(selectedFile)
         setPartners((partners) => [...(partners as PartnerTypes[]), newPartner])
+
+        console.log(newPartner)
       }
       reader.readAsDataURL(selectedFile)
       e.target.value = ''

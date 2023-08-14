@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ValidationsType } from '../../../API/types'
+import { ValidationsType } from '../../API/types'
 
 const useValidForm = (props: ValidationsType) => {
   const { value, validations } = props

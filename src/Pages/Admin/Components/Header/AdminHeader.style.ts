@@ -3,7 +3,7 @@ import { theme } from '../../../../Components/UI/Theme.styles'
 import { ReactComponent as Logo } from './Logo.svg'
 
 const StyledHeader = styled.header`
-  width: 100%;
+  width: 97%;
   height: 96px;
   padding: 24px 0;
   border-bottom: 1px solid #cdcdcd66;
@@ -21,4 +21,13 @@ const StyledHeader = styled.header`
 `
 const Icon = styled(Logo)``
 
-export { StyledHeader, Icon }
+const NamePosition = styled.p`
+  margin-left: auto;
+
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+`
+
+export { Icon, NamePosition, StyledHeader }

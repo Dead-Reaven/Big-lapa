@@ -5,6 +5,8 @@ interface Props {
   withSvg?: boolean
   width?: string
   onChange?: (e: any) => void
+  iserror?: boolean | string
+  changecolor?: boolean
 }
 
 const StyledInput = styled.input<Props>`
@@ -13,6 +15,7 @@ const StyledInput = styled.input<Props>`
   background-color: ${({ theme }) => theme.colors.background};
   caret-color: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.dark};
+
   ${({ withSvg }) =>
     !withSvg &&
     css`
@@ -22,6 +25,20 @@ const StyledInput = styled.input<Props>`
       &:focus {
         outline: 2px solid ${({ theme }) => theme.colors.yellow};
       }
+    `}
+  ${({ iserror }) =>
+    iserror &&
+    css`
+      border-radius: 4px;
+      border: 2px solid #ff4141;
+      background: #ffebeb;
+    `}
+    ${({ changecolor }) =>
+    !changecolor &&
+    css`
+      border-radius: 4px;
+      border: 2px solid #e8b535;
+      background: #f9f9f9;
     `}
 `
 

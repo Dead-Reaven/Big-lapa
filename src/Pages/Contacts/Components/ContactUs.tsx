@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import useGet from '../../../API/useGet'
 import { ContactTypes } from '../../../API/types'
-import dogM from '../img/contact-us/dogM2x.png'
+import dogM from '../../../Assets/Contacts/contacts photo.webp'
 import { ReactComponent as IcoPhone } from '../img/contact-us/phone.svg'
 import { ReactComponent as IcoMail } from '../img/contact-us/mail.svg'
 import { ReactComponent as IcoMap } from '../img/contact-us/map.svg'

@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useLogin from '../../../../API/fetchers/postLogin'
+import { useAuth } from '../../../../AuthHoc/useAuth'
 import {
+  ErrorValid,
   Form,
   FormButton,
   FormContainer,
@@ -41,59 +43,103 @@ const validationHook = (initialState: string, validations: any) => {
 }
 
 const LoginComponent = () => {
-  const queryClient = useQueryClient()
+  const token = localStorage.getItem('access_token')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { signin }: any = useAuth()
+  const fromPage = location.state?.from?.pathname || '/admin'
 
-  const { mutate } = useMutation(useLogin, {
+  const queryClient = useQueryClient()
+  const { mutate, isError } = useMutation(useLogin, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['auth'] })
     },
   })
 
-  const loginUser = validationHook('', { isEmpty: false, minLength: 4 })
-  const passwordUser = validationHook('', { isEmpty: false, minLength: 5 })
-  const [isError, setIsError] = useState('')
+  const loginUser = validationHook('', {
+    isEmpty: false,
+    minLength: 8,
+    emailError: false,
+  })
+  const passwordUser = validationHook('', { isEmpty: false, minLength: 8, maxLength: 12 })
 
   const onHandlerSubmit = (e: any) => {
     const data = {
       login: loginUser.value,
       password: passwordUser.value,
-      setIsError: setIsError,
     }
     mutate(data)
     loginUser.handleClear(e)
     passwordUser.handleClear(e)
   }
+  useEffect(() => {
+    if (token) {
+      signin(token, () => navigate(fromPage, { replace: true }))
+    }
+  }, [token])
 
   return (
     <>
       <Form onSubmit={onHandlerSubmit}>
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
-          {isError && <h1 style={{ color: 'red' }}>Error: {isError}</h1>}
-          {loginUser.isDirty && loginUser.isEmpty && (
-            <div style={{ color: 'red' }}>Поле пустое</div>
+          {isError && loginUser.emailError && (
+            <ErrorValid>Введіть дійсний email</ErrorValid>
           )}
-          <Input
-            state={loginUser.value}
-            onChange={(newValue) => loginUser.onChange(newValue)}
-            onBlur={loginUser.onBlur}
-            label="Електронна пошта адміністратора:"
-            placeholder="email@gmail.com"
-          />
-          {passwordUser.isDirty && loginUser.isEmpty && (
-            <div style={{ color: 'red' }}>Поле пустое</div>
+          {isError ? (
+            <Input
+              state={loginUser.value}
+              onChange={(newValue) => loginUser.onChange(newValue)}
+              onBlur={loginUser.onBlur}
+              label="Електронна пошта адміністратора:"
+              placeholder="email@gmail.com"
+              iserror={isError}
+              changecolor={loginUser.emailError}
+            />
+          ) : (
+            <Input
+              state={loginUser.value}
+              onChange={(newValue) => loginUser.onChange(newValue)}
+              onBlur={loginUser.onBlur}
+              label="Електронна пошта адміністратора:"
+              placeholder="email@gmail.com"
+            />
           )}
-          <Input
-            state={passwordUser.value}
-            onChange={(newValue) => passwordUser.onChange(newValue)}
-            onBlur={passwordUser.onBlur}
-            label="Пароль адміністратора:"
-            placeholder="********"
-          />
+          {isError ? (
+            <Input
+              state={passwordUser.value}
+              onChange={(newValue) => passwordUser.onChange(newValue)}
+              onBlur={passwordUser.onBlur}
+              label="Пароль адміністратора:"
+              placeholder="********"
+              iserror={isError}
+              changecolor={passwordUser.minLengthError || passwordUser.maxLengthError}
+            />
+          ) : (
+            <Input
+              state={passwordUser.value}
+              onChange={(newValue) => passwordUser.onChange(newValue)}
+              onBlur={passwordUser.onBlur}
+              label="Пароль адміністратора:"
+              placeholder="********"
+            />
+          )}
+          {isError && <ErrorValid>Пошта або пароль не існують</ErrorValid>}
+          {passwordUser.isDirty && passwordUser.minLengthError && (
+            <ErrorValid>Пароль має містити мінімум 8 символів</ErrorValid>
+          )}
+          {passwordUser.isDirty && passwordUser.maxLengthError && (
+            <ErrorValid>Пароль має містити максимум 12 символів</ErrorValid>
+          )}
           <Link to="authorization">
             <ForgotButton>Забули пароль?</ForgotButton>
           </Link>
-          <FormButton type="submit">Увійти</FormButton>
+          <FormButton
+            type="submit"
+            disabled={!loginUser.inputDisabled || !passwordUser.inputDisabled}
+          >
+            Увійти
+          </FormButton>
         </FormContainer>
       </Form>
     </>

@@ -6,12 +6,14 @@ import Input from '../../Components/UI/Input'
 
 function Settings() {
   const [passwordOld, setPasswordOld] = useState('')
+
   const [passwordNew, setPasswordNew] = useState('')
-  const [isError, setIsError] = useState('')
+
+  const [confPasswordNew, setConfPasswordNew] = useState('')
 
   const queryClient = useQueryClient()
 
-  const { mutate } = useMutation(usePatch, {
+  const { mutate, isError } = useMutation(usePatch, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['patch'] })
     },
@@ -21,7 +23,6 @@ function Settings() {
     const updateData = {
       oldPassword: passwordOld,
       newPassword: passwordNew,
-      setIsError: setIsError,
     }
     mutate(updateData)
     setPasswordOld('')

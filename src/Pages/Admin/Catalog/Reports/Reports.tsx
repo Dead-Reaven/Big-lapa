@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 // import TitleH3 from '../../../../Components/UI/TitleH3.styles'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { ReportTypes } from '../../../../API/types'
 import {
   AddPartnerStyled as AddReportStyled,
   // NoPartners as NoReports,
@@ -12,17 +14,15 @@ import {
 } from '../Partners/Partners.style'
 import Modal from '../../Components/UI/Modal'
 import { CloseIco, PlusIco } from '../Partners/img/icons'
-import { ReactComponent as IcoReport } from './img/ReportIIco.svg'
 import { ReportFileStyled } from './Report.styled'
-import { ReportTypes } from '../../../../API/types'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import getReportsId from '../../../../API/fetchers/getReportsID'
+import { ReactComponent as IcoReport } from './img/ReportIIco.svg'
 // import getReportFile from '../../../../API/fetchers/getReportFile'
-import postReport from '../../../../API/fetchers/postReport'
 import deleteReport from '../../../../API/fetchers/deleteReport'
+import getReportAll from '../../../../API/fetchers/getReportAll'
+import postReport from '../../../../API/fetchers/postReport'
 import Message from '../../Components/UI/Message'
 
-const url = 'https://big-lapa-api-production.up.railway.app/api/images/documents/'
+const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/document/'
 
 function Partners() {
   const [reportsState, setReportsState] = useState<ReportTypes[]>([])
@@ -30,16 +30,20 @@ function Partners() {
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
-  const { isError: isErrorLoadReports, isLoading: isLoadingReports } = useQuery({
+  const {
+    data: dataReports,
+    refetch: refetchGetReportAll,
+    isError: isErrorLoadReports,
+    isLoading: isLoadingReports,
+  } = useQuery({
     queryKey: ['reportsId'],
     initialData: [],
-    queryFn: getReportsId,
+    queryFn: getReportAll,
     onSuccess: (data) => {
-      const reports = data.map((id) => {
-        // getReportFile(id)
+      const reports = data.map((document) => {
         return {
-          id: id, // get ID from queryId
-          name: id,
+          id: document.Url, // get ID from queryId
+          name: document.name,
           src: null,
         }
       })
@@ -56,22 +60,29 @@ function Partners() {
     onError: (error) => {
       console.log(error)
     },
+    onSuccess: () => {
+      refetchGetReportAll()
+    },
   })
 
   const {
     mutate: mutateDeleteReport,
     isError: isErrorDeleteReport,
     isSuccess: isSuccessDeleteReport,
-  } = useMutation(deleteReport)
+  } = useMutation(deleteReport, {
+    onSuccess: () => refetchGetReportAll(),
+  })
 
   const cancelHandler = () => {
     setIsModalOpen((curr) => !curr)
   }
 
   const onDeleteReport = (modalId: string) => {
-    mutateDeleteReport(selectedId)
+    if (dataReports.find((rep) => rep.Url === modalId)) {
+      mutateDeleteReport(selectedId)
+    }
     setReportsState((partners) => partners?.filter(({ id }) => id !== modalId))
-    setIsModalOpen((curr) => !curr)
+    setIsModalOpen(false)
     setSelectedFile(null)
   }
 

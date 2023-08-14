@@ -21,11 +21,13 @@ function DogCards() {
       <AdminGalleryButton>
         <Link to="/admin/new-card">Додати нову картку</Link>
       </AdminGalleryButton>
-      <DogSearch
-        state={filteredDogsState}
-        setState={setFilteredDogsState}
-        options={dogsState as DogTypes}
-      />
+      <div>
+        <DogSearch
+          state={filteredDogsState}
+          setState={setFilteredDogsState}
+          options={dogsState as DogTypes}
+        />
+      </div>
       <Gallery state={filteredDogsState as DogTypes} admin={true} />
     </StyledDogCards>
   )

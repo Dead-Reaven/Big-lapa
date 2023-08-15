@@ -8,7 +8,6 @@ function AdminHeader() {
       <NavLink to="." end>
         <Icon />
       </NavLink>
-      Адміністративна панель
       <NamePosition>{userName}</NamePosition>
     </StyledHeader>
   )

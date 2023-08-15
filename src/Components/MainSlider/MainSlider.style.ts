@@ -22,6 +22,7 @@ interface styledImageItemPros {
   $background: any
 }
 const WrapperSliders = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
@@ -38,7 +39,7 @@ const StyledSlider = styled.div<styledImageItemPros>`
   height: 100%;
   max-width: 100%;
   max-height: 100%;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,29 +61,77 @@ const StyledSlider = styled.div<styledImageItemPros>`
     }
   }
 `
-
-const StyledPrevArrow = styled(IcoPrev)`
+const StyledPrevArrowContainer = styled.div`
   position: absolute;
-  z-index: 5;
   left: calc(4%);
+  z-index: 8;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border-radius: 4px;
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
   @media screen and (max-width: 900px) {
     left: calc(20%);
     bottom: 15%;
+    height: 24px;
+    width: 24px;
   }
+`
+const StyledPrevArrow = styled(IcoPrev)`
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  z-index: 5;
   &:hover {
     cursor: pointer;
+  }
+  @media screen and (max-width: 900px) {
+    height: 18px;
+    left: -2px;
+    top: 2px;
+  }
+`
+
+const StyledNextArrowContainer = styled.div`
+  position: absolute;
+  right: calc(4%);
+  z-index: 8;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border-radius: 4px;
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  @media screen and (max-width: 900px) {
+    right: calc(20%);
+    bottom: 15%;
+    height: 24px;
+    width: 24px;
   }
 `
 const StyledNextArrow = styled(IcoNext)`
   position: absolute;
-  z-index: 5;
-  right: calc(4%);
-  @media screen and (max-width: 900px) {
-    right: calc(20%);
-    bottom: 15%;
-  }
+  top: 6px;
+  left: 12px;
+  z-index: 6;
   &:hover {
     cursor: pointer;
+  }
+  @media screen and (max-width: 900px) {
+    height: 18px;
+    left: -1px;
+    top: 2px;
   }
 `
 const StyledBullets = styled.span`
@@ -118,7 +167,7 @@ const Bullet = styled.button<isActiveProp>`
     width: 17px;
     height: 1px;
     background-color: #f9f9f9;
-    left: 150%;
+    left: 180%;
   }
   &:last-child::after {
     display: none;
@@ -137,4 +186,6 @@ export {
   StyledBullets,
   Bullet,
   WrapperSliders,
+  StyledNextArrowContainer,
+  StyledPrevArrowContainer,
 }

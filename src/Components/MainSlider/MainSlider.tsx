@@ -10,6 +10,8 @@ import {
   StyledSlider,
   WrapperSliders,
   TextContainer,
+  StyledNextArrowContainer,
+  StyledPrevArrowContainer,
 } from '../../Components/MainSlider/MainSlider.style'
 import TitleH1 from '../UI/TitleH1.style'
 import TitleH3 from '../UI/TitleH3.styles'
@@ -51,7 +53,9 @@ function MainSlider() {
 
   return (
     <CarouselDiv>
-      <StyledPrevArrow type="button" onClick={prevSlide} />
+      <StyledPrevArrowContainer>
+        <StyledPrevArrow type="button" onClick={prevSlide} />
+      </StyledPrevArrowContainer>
       <WrapperSliders id="wrapper">
         {SlidersData.map((slider, idx) => (
           <StyledSlider
@@ -66,7 +70,9 @@ function MainSlider() {
           </StyledSlider>
         ))}
       </WrapperSliders>
-      <StyledNextArrow type="button" onClick={nextSlide} />
+      <StyledNextArrowContainer>
+        <StyledNextArrow type="button" onClick={nextSlide} />
+      </StyledNextArrowContainer>
 
       <StyledBullets>
         {SlidersData.map((_, idx) => (

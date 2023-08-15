@@ -1,13 +1,16 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import getPartner from './fetchers/getPartnerImg'
 import DogsJson from './testDogs.json'
 import { ContactTypes, DogTypes, PartnerTypes, RequestStatusTypes } from './types'
-import getPartner from './fetchers/getPartnerImg'
 
 interface Props {
   category: 'contacts' | 'dogs' | 'partners'
   state: ContactTypes | DogTypes | PartnerTypes[]
   setState: React.Dispatch<React.SetStateAction<any>>
 }
+
+type GetPartnersIdResponse = { Url: string; name: string }
 
 function useGet({ category, state, setState }: Props) {
   const [partnersID, setPartnersID] = useState<string[]>([])
@@ -22,11 +25,11 @@ function useGet({ category, state, setState }: Props) {
     if (category === 'contacts') {
       console.log('contacts api called')
       const getData = async (handleSetState: React.Dispatch<ContactTypes>) => {
-        const response = await fetch(
-          'https://big-lapa-api-production.up.railway.app/api/main/get',
-        )
-        const data = await response.json()
-        handleSetState(data)
+        await axios
+          .get(`https://sore-tan-perch-tutu.cyclic.app/api/main/get`)
+          .then((res) => {
+            return handleSetState(res.data)
+          })
       }
       getData(setState as React.Dispatch<ContactTypes>)
     }
@@ -47,11 +50,14 @@ function useGet({ category, state, setState }: Props) {
     if (category === 'partners') {
       console.log('partners api called')
       const getPartnersId = async () => {
-        const response = await fetch(
-          `https://big-lapa-api-production.up.railway.app/api/images/category/Logo`,
-        )
-        const partnersId = await response.json()
-        setPartnersID(partnersId)
+        await axios
+          .get(`https://sore-tan-perch-tutu.cyclic.app/api/files/category/Logo`)
+          .then((res) => {
+            const mappedIds: string[] = res.data.map(
+              (el: GetPartnersIdResponse) => el.Url,
+            )
+            return mappedIds
+          })
       }
       getPartnersId()
     }

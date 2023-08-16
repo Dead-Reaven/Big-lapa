@@ -51,8 +51,39 @@ function MainSlider() {
     }
   }, [])
 
+  const [touchPosition, setTouchPosition] = useState(null)
+
+  const handleTouchStart = (e: any) => {
+    const touchDown = e.touches[0].clientX
+    setTouchPosition(touchDown)
+  }
+
+  const handleTouchMove = (e: any) => {
+    const touchDown = touchPosition
+
+    if (touchDown === null) {
+      return
+    }
+
+    const currentTouch = e.touches[0].clientX
+    const diff = touchDown - currentTouch
+
+    if (diff > 5) {
+      setSliderNumber((prevIndex) =>
+        prevIndex === SlidersData.length - 1 ? 0 : prevIndex + 1,
+      )
+    }
+
+    if (diff < -5) {
+      setSliderNumber((prevIndex) =>
+        prevIndex === 0 ? SlidersData.length - 1 : prevIndex - 1,
+      )
+    }
+
+    setTouchPosition(null)
+  }
   return (
-    <CarouselDiv>
+    <CarouselDiv onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
       <StyledPrevArrowContainer>
         <StyledPrevArrow type="button" onClick={prevSlide} />
       </StyledPrevArrowContainer>

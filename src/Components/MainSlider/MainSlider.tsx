@@ -16,15 +16,25 @@ import {
 import TitleH1 from '../UI/TitleH1.style'
 import TitleH3 from '../UI/TitleH3.styles'
 
-function MainSlider() {
-  const [sliderNumber, setSliderNumber] = useState(0)
+interface MainSliderProps {
+  initialSliderNumber: number
+  setInitialSliderNumber: React.Dispatch<React.SetStateAction<number>>
+}
+
+function MainSlider({ initialSliderNumber, setInitialSliderNumber }: MainSliderProps) {
+  if (initialSliderNumber === -1) return null
+
   const [sliderWidth, setSliderWidth] = useState(window.innerWidth)
 
   const nextSlide = () =>
-    setSliderNumber(sliderNumber === SlidersData.length - 1 ? 0 : sliderNumber + 1)
+    setInitialSliderNumber(
+      initialSliderNumber === SlidersData.length - 1 ? 0 : initialSliderNumber + 1,
+    )
 
   const prevSlide = () =>
-    setSliderNumber(sliderNumber === 0 ? SlidersData.length - 1 : sliderNumber - 1)
+    setInitialSliderNumber(
+      initialSliderNumber === 0 ? SlidersData.length - 1 : initialSliderNumber - 1,
+    )
 
   useEffect(() => {
     const wrapper = document.querySelector('#wrapper')
@@ -32,11 +42,11 @@ function MainSlider() {
     console.log('swipe')
     wrapper?.scrollTo({
       top: 0,
-      left: sliderWidth * sliderNumber,
+      left: sliderWidth * initialSliderNumber,
       behavior: 'smooth',
     })
     window.scrollTo(0, 0)
-  }, [sliderNumber, sliderWidth])
+  }, [initialSliderNumber, sliderWidth])
 
   useEffect(() => {
     // Update sliderWidth when the viewport is resized
@@ -69,13 +79,13 @@ function MainSlider() {
     const diff = touchDown - currentTouch
 
     if (diff > 5) {
-      setSliderNumber((prevIndex) =>
+      setInitialSliderNumber((prevIndex) =>
         prevIndex === SlidersData.length - 1 ? 0 : prevIndex + 1,
       )
     }
 
     if (diff < -5) {
-      setSliderNumber((prevIndex) =>
+      setInitialSliderNumber((prevIndex) =>
         prevIndex === 0 ? SlidersData.length - 1 : prevIndex - 1,
       )
     }
@@ -91,7 +101,7 @@ function MainSlider() {
         {SlidersData.map((slider, idx) => (
           <StyledSlider
             key={idx}
-            $isActive={sliderNumber === idx}
+            $isActive={initialSliderNumber === idx}
             $background={slider.image}
           >
             <TextContainer>
@@ -109,8 +119,8 @@ function MainSlider() {
         {SlidersData.map((_, idx) => (
           <Bullet
             key={idx}
-            $isActive={sliderNumber === idx}
-            onClick={() => setSliderNumber(idx)}
+            $isActive={initialSliderNumber === idx}
+            onClick={() => setInitialSliderNumber(idx)}
           />
         ))}
       </StyledBullets>

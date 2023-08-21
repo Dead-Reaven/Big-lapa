@@ -12,7 +12,7 @@ import {
   ThumbsContainer,
   SliderContainer,
 } from './DogSlider.style'
-
+import useSwipe from '../../../../hooks/useSwipe'
 // import dog1 from './img/dog1.png'
 import dog2 from './img/dog2.png'
 import dog3 from './img/dog3.png'
@@ -73,8 +73,17 @@ function DogSlider({ src }: Props) {
   }
 
   const sliderData = images[slide]
+  const handleSwipe = (direction: any) => {
+    if (direction === 'next') {
+      setSlide((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+    } else if (direction === 'prev') {
+      setSlide((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+    }
+  }
+
+  const { onTouchStart, onTouchMove } = useSwipe(handleSwipe)
   return (
-    <SliderContainer>
+    <SliderContainer onTouchStart={onTouchStart} onTouchMove={onTouchMove}>
       <MainImageWrapper>
         <StyledMainImage src={sliderData.image} alt={sliderData.title} />
       </MainImageWrapper>

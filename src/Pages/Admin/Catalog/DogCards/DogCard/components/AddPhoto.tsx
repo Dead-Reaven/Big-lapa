@@ -1,33 +1,38 @@
 import React from 'react'
-import { AddPhotoStyled } from './DogCard.style'
-import { PhotoIco } from './img/DogCardIcons'
-import { SingleDogType } from '../../../../../API/types'
+import { AddPhotoStyled } from '../DogCard.style'
+import { PhotoIco } from '../img/DogCardIcons'
+import { DogType } from '../../../../../../API/types'
 
 interface AddPhotoProps {
-  setDogData: React.Dispatch<React.SetStateAction<SingleDogType>>
-  side?: boolean
+  setDogData: React.Dispatch<React.SetStateAction<DogType>>
+  setMainPhoto?: React.Dispatch<React.SetStateAction<File | null>>
+  setSidePhotos?: React.Dispatch<React.SetStateAction<File[]>>
   main?: boolean
 }
 
-function AddPhoto({ setDogData, side, main }: AddPhotoProps) {
-  const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, isMain: boolean) => {
+function AddPhoto({ setDogData, setMainPhoto, setSidePhotos, main }: AddPhotoProps) {
+  const fileChangeHandler = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    isMain: boolean,
+  ) => {
     const selectedFile = e.target.files?.[0]
+    console.log(selectedFile)
 
     if (selectedFile) {
       const fileUrl = URL.createObjectURL(selectedFile)
 
-      const newPhoto = fileUrl
-
       if (isMain) {
         setDogData((prevDogData) => ({
           ...prevDogData,
-          mainPhoto: newPhoto,
+          mainPhoto: fileUrl,
         }))
+        setMainPhoto(selectedFile)
       } else {
         setDogData((prevDogData) => ({
           ...prevDogData,
-          photos: [...prevDogData.photos, newPhoto],
+          photos: [...prevDogData.photos, fileUrl],
         }))
+        setSidePhotos((prevSidePhotos) => [...prevSidePhotos, selectedFile])
       }
 
       e.target.value = ''
@@ -51,7 +56,7 @@ function AddPhoto({ setDogData, side, main }: AddPhotoProps) {
         </>
       )}
 
-      {side && (
+      {!main && (
         <>
           <input
             type="file"

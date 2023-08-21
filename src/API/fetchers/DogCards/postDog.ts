@@ -1,16 +1,16 @@
 import axios from 'axios'
-import { SingleDogType } from '../../types'
+import { DogType } from '../../types'
 
-const postDog = (data: SingleDogType): Promise<any> =>
+const postDog = (data: DogType): Promise<any> =>
   axios
-    .post('https://big-lapa-api-production.up.railway.app/api/dog-cards', data, {
+    .post('https://sore-tan-perch-tutu.cyclic.app/api/dog-cards', data, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
     .then((res) => {
-      console.log('Post successfully called')
-      res.data
+      console.log('Post dog successfully called')
+      return res.data
     })
 
 export default postDog

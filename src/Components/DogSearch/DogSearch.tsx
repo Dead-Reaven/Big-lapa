@@ -4,13 +4,13 @@ import { SearchInput, StyledDogSearch } from './DogSearch.style'
 import { ReactComponent as IcoSearch } from './icons/search_ico.svg'
 import { ReactComponent as IcoSettings } from './icons/settings_ico.svg'
 import CheckBoxItem from './CheckBoxItem'
-import { DogTypes } from '../../API/types'
+import { DogType } from '../../API/types'
 import useQuery from './useParams'
 
 interface DogSearchProps {
-  state: DogTypes
-  setState: (state: DogTypes) => void
-  readonly options: DogTypes | null
+  state: DogType[]
+  setState: (state: DogType[]) => void
+  readonly options: DogType[] | null
 }
 
 function DogSearch({ options, setState }: DogSearchProps) {
@@ -24,8 +24,8 @@ function DogSearch({ options, setState }: DogSearchProps) {
   const onClickHandler = (current: boolean) => setIsOpen(!current)
 
   const filterState = () => {
-    if (options?.data) {
-      const filtered = options?.data
+    if (options) {
+      const filtered = options
         .filter(({ sex }) => {
           if (genders.female && genders.male) return true
           if (genders.male) return sex.includes('Хлопчик')
@@ -34,15 +34,15 @@ function DogSearch({ options, setState }: DogSearchProps) {
         .filter(({ size }) => {
           if (sizes.small && sizes.medium && sizes.big) return true
           if (sizes.small && sizes.medium)
-            return size.includes('small') || size.includes('medium')
+            return size.includes('Маленький') || size.includes('Середній')
           if (sizes.small && sizes.big)
-            return size.includes('small') || size.includes('big')
+            return size.includes('Маленький') || size.includes('Великий')
           if (sizes.medium && sizes.big)
-            return size.includes('medium') || size.includes('big')
+            return size.includes('Середній') || size.includes('Великий')
 
-          if (sizes.small) return size.includes('small')
-          if (sizes.medium) return size.includes('medium')
-          if (sizes.big) return size.includes('big')
+          if (sizes.small) return size.includes('Маленький')
+          if (sizes.medium) return size.includes('Середній')
+          if (sizes.big) return size.includes('Великий')
         })
         .filter(({ haschip }) => {
           if (chips.hasChip && chips.noChip) return true
@@ -56,7 +56,7 @@ function DogSearch({ options, setState }: DogSearchProps) {
         }) // searching by name
         .filter(({ name }) => name.toLowerCase().includes(searchInput.toLowerCase()))
 
-      setState({ data: filtered })
+      setState(filtered)
     }
   }
   useEffect(() => {

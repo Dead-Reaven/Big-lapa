@@ -1,16 +1,22 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-// react query
+import React, { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router'
+import { Link, redirect } from 'react-router-dom'
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
-// api types
-import { SingleDogType } from '../../../../../API/types'
-// fetchers
-import postDog from '../../../../../API/fetchers/DogCards/postDog'
-//components
+
+import { DogType } from '../../../../../API/types'
+
+import {
+  getDog,
+  patchDog,
+  postDog,
+  postDogImages,
+  deleteDogImage,
+  getDogImages,
+} from '../../../../../API/fetchers/DogCards/dogFetchers'
+
 import Modal from '../../../Components/UI/Modal'
-import MainPhoto from './MainPhoto'
-import SidePhotos from './SidePhotos'
-//styles
+import Message from '../../../Components/UI/Message'
+
 import {
   Characteristic,
   CharacteristicItem,
@@ -20,9 +26,9 @@ import {
   DogCardContent,
   Input,
   Inputs,
-  Photos,
   StyledLink,
 } from './DogCard.style'
+
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
 import StyledInput from '../../../../../Components/UI/Input.styles'
 import Button from '../../../../../Components/UI/Button.styles'
@@ -35,12 +41,15 @@ import {
   BreedIco,
   ChipIco,
 } from './img/DogCardIcons'
+import Photos from './components/Photos'
 
+// Props interface
 interface Props {
   $newCard?: boolean
 }
 
-const initialState = {
+// Initial state for the dog card data
+const initialState: DogType = {
   mainPhoto: '',
   photos: [],
   name: '',
@@ -48,43 +57,153 @@ const initialState = {
   age: '',
   haschip: false,
   hasbreed: false,
+  breed: '',
   size: '',
-  description: ``,
+  description: '',
 }
 
 function DogCard({ $newCard }: Props) {
-  const [dogData, setDogData] = useState<SingleDogType>(initialState)
+  // State management
+  const [dogData, setDogData] = useState<DogType>(initialState)
+  const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>(dogData.photos)
+  const [sidePhotos, setSidePhotos] = useState<File[]>([])
+  const [mainPhoto, setMainPhoto] = useState<File | null>(null)
   const [IsModalOpen, setIsModalOpen] = useState(false)
+  const [canPost, setCanPost] = useState(false)
 
-  // useQuery({
-  //   queryKey: ['dog'],
-  //   initialData: initialState,
-  //   queryFn
-  // })
+  // Get dog ID from URL params
+  const { _id } = useParams<{ _id: string }>()
+  const isFirstRender = useRef(0)
 
-  // useQuery({
-  //   queryKey: ['dog'],
-  //   initialData: initialState,
-  //   queryFn: fetchDog,
-  //   onSuccess: (data) => {
-  //     setDogData(data)
-  //   },
-  // })
-
-  // const queryClient = useQueryClient()
-
-  // const { mutate, isSuccess } = useMutation(() => postDog(dogData), {
-  //   onSuccess: () => {
-  //     // Invalidate and refetch
-  //     queryClient.invalidateQueries({ queryKey: ['dog'] })
-  //   },
-  // })
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(dogData)
+  // Fetch dog data if not creating a new card
+  if (!$newCard) {
+    useQuery(['dog', _id], {
+      initialData: dogData,
+      queryFn: () => (_id ? getDog(_id) : Promise.resolve(null)),
+      onSuccess: (data) => {
+        if (_id && data !== null) {
+          setDogData(data)
+          setInitialSidePhotos(data.photos)
+        }
+      },
+      refetchOnWindowFocus: false,
+    })
   }
 
+  // Query client for managing data
+  const queryClient = useQueryClient()
+
+  // Mutations for posting and patching dog data
+  const { mutate: postDogData, isSuccess: isSuccessPost } = useMutation(
+    () => postDog(dogData),
+    {
+      onSuccess: (data) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ['dog'] })
+        console.log('Post dog data success:', data)
+      },
+    },
+  )
+
+  const { mutate: patchDogData, isSuccess: isSuccessPatch } = useMutation(
+    () => (_id ? patchDog(dogData, _id) : Promise.resolve()),
+    {
+      onSuccess: (data) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ['dog'] })
+        console.log('Patch dog data success:', data)
+      },
+    },
+  )
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      const imageData = await processImagesAndData()
+      await updateDogImages(imageData)
+    } catch (error) {
+      console.error('Error uploading photos:', error)
+    }
+  }
+
+  // Process uploaded images and data
+  const processImagesAndData = async () => {
+    let updatedData = { mainPhoto: dogData.mainPhoto, photos: dogData.photos }
+    if (mainPhoto) {
+      const mainPhotoResponse = await uploadImage(mainPhoto, 'main-photo')
+      updatedData = {
+        ...updatedData,
+        mainPhoto: formatPhotoUrl(mainPhotoResponse[0]),
+      }
+    }
+
+    if (sidePhotos[0]) {
+      const sidePhotoResponse = await uploadImage(sidePhotos, 'side-photo')
+      updatedData = {
+        ...updatedData,
+        photos: [...sidePhotoResponse.map(formatPhotoUrl)],
+      }
+    }
+
+    return updatedData
+  }
+
+  // Upload an image
+  const uploadImage = async (imageData: any, type: string): Promise<string[]> => {
+    try {
+      const response = await postDogImages(imageData, type)
+      return response
+    } catch (error) {
+      console.error(`Error uploading ${type} photo:`, error)
+      return []
+    }
+  }
+
+  // Update dog data with new images
+  const updateDogImages = async (updatedData: Partial<DogType>) => {
+    await setDogData((prevDogData) => ({
+      ...prevDogData,
+      ...updatedData,
+    }))
+    setCanPost(true)
+  }
+
+  // Format photo URL
+  const formatPhotoUrl = (url: string): string =>
+    `https://sore-tan-perch-tutu.cyclic.app/api/files/document/${url}`
+
+  // Handle posting or patching data based on mode
+  const handlePostOrPatch = () => {
+    if ($newCard) {
+      postDogData()
+    } else {
+      patchDogData()
+    }
+    return redirect('/admin/')
+  }
+
+  // Effect to handle posting or patching data
+  useEffect(() => {
+    if (isFirstRender.current < 2) {
+      //TODO зв'ясувати чому canPost змінюється
+      isFirstRender.current++
+      return
+    }
+    handlePostOrPatch()
+  }, [canPost])
+
+  // const deleteDogPhotos = async () => {
+  //   const sideImages = await getDogImages('main-photo')
+  //   console.log(sideImages)
+  //   sideImages.forEach((image) => {
+  //     deleteDogImage(image)
+  //   })
+  //   console.log(sideImages)
+  // }
+
+  // Component rendering
   return (
     <DogCardContainer>
       <Modal
@@ -100,29 +219,36 @@ function DogCard({ $newCard }: Props) {
           Назад
         </Link>
       </StyledLink>
+      {/* <button onClick={deleteDogPhotos}>delete all photos</button> */}
       <DogCardContent onSubmit={handleSubmit}>
         <TitleH2>{$newCard ? 'Створення нової картки' : 'Редагування'}</TitleH2>
-        <Photos>
-          <MainPhoto setDogData={setDogData} dogData={dogData} />
-          <SidePhotos setDogData={setDogData} dogData={dogData} />
-        </Photos>
+        <Photos
+          setDogData={setDogData}
+          setMainPhoto={setMainPhoto}
+          setSidePhotos={setSidePhotos}
+          dogData={dogData}
+        />
         <Inputs>
           <Input>
             <label htmlFor="dog-name">Кличка собаки:</label>
             <StyledInput
               type="text"
-              placeholder={$newCard ? 'Введіть кличку собаки' : dogData.name}
+              placeholder={'Введіть кличку собаки'}
+              value={dogData.name}
               id="dog-name"
               onChange={(event) => setDogData({ ...dogData, name: event.target.value })}
+              required
             />
           </Input>
           <Input>
             <label htmlFor="dog-age">Вік собаки:</label>
             <StyledInput
               type="text"
-              placeholder={$newCard ? 'Введіть вік собаки' : dogData.age}
+              placeholder={'Введіть вік собаки'}
+              value={dogData.age}
               id="dog-age"
               onChange={(event) => setDogData({ ...dogData, age: event.target.value })}
+              required
             />
           </Input>
         </Inputs>
@@ -133,7 +259,7 @@ function DogCard({ $newCard }: Props) {
                 type="radio"
                 name="sex"
                 value="Дівчинка"
-                defaultChecked={dogData.sex === 'Дівчинка'}
+                checked={dogData.sex === 'Дівчинка'}
                 onChange={(event) => setDogData({ ...dogData, sex: event.target.value })}
               />
               <span>
@@ -145,7 +271,7 @@ function DogCard({ $newCard }: Props) {
                 type="radio"
                 name="sex"
                 value="Хлопчик"
-                defaultChecked={dogData.sex === 'Хлопчик'}
+                checked={dogData.sex === 'Хлопчик'}
                 onChange={(event) => setDogData({ ...dogData, sex: event.target.value })}
               />
               <span>
@@ -160,7 +286,7 @@ function DogCard({ $newCard }: Props) {
                 type="radio"
                 name="size"
                 value="Великий"
-                defaultChecked={dogData.size === 'Великий'}
+                checked={dogData.size === 'Великий'}
                 onChange={(event) => setDogData({ ...dogData, size: event.target.value })}
               />
               <span>
@@ -173,7 +299,7 @@ function DogCard({ $newCard }: Props) {
                 type="radio"
                 name="size"
                 value="Середній"
-                defaultChecked={dogData.size === 'Середній'}
+                checked={dogData.size === 'Середній'}
                 onChange={(event) => setDogData({ ...dogData, size: event.target.value })}
               />
               <span>
@@ -186,7 +312,7 @@ function DogCard({ $newCard }: Props) {
                 type="radio"
                 name="size"
                 value="Маленький"
-                defaultChecked={dogData.size === 'Маленький'}
+                checked={dogData.size === 'Маленький'}
                 onChange={(event) => setDogData({ ...dogData, size: event.target.value })}
               />
               <span>
@@ -200,8 +326,8 @@ function DogCard({ $newCard }: Props) {
               <input
                 type="radio"
                 name="breed"
-                defaultChecked={!dogData.hasbreed}
-                onChange={() => setDogData({ ...dogData, hasbreed: false })}
+                checked={!dogData.hasbreed}
+                onChange={() => setDogData({ ...dogData, hasbreed: false, breed: '' })}
               />
               <span>
                 <BreedIco />
@@ -221,10 +347,12 @@ function DogCard({ $newCard }: Props) {
                 <BreedIco />
                 <input
                   type="text"
-                  placeholder={dogData.breed ? dogData.breed : 'Введіть породу'}
+                  placeholder={'Введіть породу'}
+                  value={dogData.breed}
                   onChange={(event) =>
                     setDogData({ ...dogData, breed: event.target.value, hasbreed: true })
                   }
+                  required={dogData.hasbreed}
                 />
               </span>
             </CharacteristicItem>
@@ -234,7 +362,7 @@ function DogCard({ $newCard }: Props) {
               <input
                 type="radio"
                 name="chip"
-                defaultChecked={dogData.haschip}
+                checked={dogData.haschip}
                 onChange={() => setDogData({ ...dogData, haschip: true })}
               />
               <span>
@@ -246,7 +374,7 @@ function DogCard({ $newCard }: Props) {
               <input
                 type="radio"
                 name="chip"
-                defaultChecked={!dogData.haschip}
+                checked={!dogData.haschip}
                 onChange={() => setDogData({ ...dogData, haschip: false })}
               />
               <span>
@@ -268,6 +396,8 @@ function DogCard({ $newCard }: Props) {
           ></textarea>
         </Description>
         <Button type="submit">{$newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
+        {isSuccessPost && <Message mode="green">Успіх! post✔️</Message>}
+        {isSuccessPatch && <Message mode="green">Успіх! patch✔️</Message>}
       </DogCardContent>
     </DogCardContainer>
   )

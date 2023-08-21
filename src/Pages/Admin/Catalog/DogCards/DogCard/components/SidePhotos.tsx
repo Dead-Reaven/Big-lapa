@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import { SidePhotosContainer, SidePhotosStyled } from './DogCard.style'
+import { SidePhotosContainer, SidePhotosStyled } from '../DogCard.style'
 import SidePhoto from './SidePhoto'
-import Modal from '../../../Components/UI/Modal'
-import { SingleDogType } from '../../../../../API/types'
+import Modal from '../../../../Components/UI/Modal'
+import { DogType } from '../../../../../../API/types'
 
-interface MainPhotoProps {
-  setDogData: React.Dispatch<React.SetStateAction<SingleDogType>>
-  dogData: SingleDogType
+interface SidePhotosProps {
+  setDogData: React.Dispatch<React.SetStateAction<DogType>>
+  setSidePhotos: React.Dispatch<React.SetStateAction<File[]>>
+  dogData: DogType
 }
 
-function SidePhotos({ setDogData, dogData }: MainPhotoProps) {
+function SidePhotos({ setDogData, setSidePhotos, dogData }: SidePhotosProps) {
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedSrc, setSelectedSrc] = useState<string>('')
 
@@ -18,7 +19,7 @@ function SidePhotos({ setDogData, dogData }: MainPhotoProps) {
   const deletePhotoHandler = (id: string) => {
     setDogData({
       ...dogData,
-      photos: dogData.photos?.filter((photo) => photo.src !== id),
+      photos: dogData.photos?.filter((photo) => photo !== id),
     })
     setIsModalOpen((curr) => !curr)
   }
@@ -41,6 +42,7 @@ function SidePhotos({ setDogData, dogData }: MainPhotoProps) {
               photoNum={photo}
               setDogData={setDogData}
               dogData={dogData}
+              setSidePhotos={setSidePhotos}
               setIsModalOpen={setIsModalOpen}
               setDeletePhotoSrc={setSelectedSrc}
             />

@@ -1,18 +1,20 @@
 import React from 'react'
-import { SidePhotoStyled } from './DogCard.style'
+import { SidePhotoStyled } from '../DogCard.style'
 import AddPhoto from './AddPhoto'
-import { SingleDogType } from '../../../../../API/types'
+import { DogType } from '../../../../../../API/types'
 
 interface SidePhotoProps {
-  setDogData: React.Dispatch<React.SetStateAction<SingleDogType>>
+  setDogData: React.Dispatch<React.SetStateAction<DogType>>
+  setSidePhotos: React.Dispatch<React.SetStateAction<File[]>>
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
   setDeletePhotoSrc: React.Dispatch<React.SetStateAction<string>>
-  dogData: SingleDogType
+  dogData: DogType
   photoNum: number
 }
 
 function SidePhoto({
   setDogData,
+  setSidePhotos,
   setIsModalOpen,
   setDeletePhotoSrc,
   dogData,
@@ -33,7 +35,7 @@ function SidePhoto({
           <img src={photo} alt="dog" />
         </>
       )}
-      <AddPhoto setDogData={setDogData} side={true} />
+      <AddPhoto setDogData={setDogData} setSidePhotos={setSidePhotos} />
     </SidePhotoStyled>
   )
 }

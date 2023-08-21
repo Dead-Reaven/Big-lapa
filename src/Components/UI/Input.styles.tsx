@@ -37,7 +37,7 @@ const StyledInput = styled.input<Props>`
     !changecolor &&
     css`
       border-radius: 4px;
-      border: 2px solid #e8b535;
+      /* border: 2px solid #e8b535; */
       background: #f9f9f9;
     `}
 `

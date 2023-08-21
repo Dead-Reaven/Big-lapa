@@ -1,20 +1,40 @@
 import { useState } from 'react'
-import useGet from '../../../../API/useGet'
+// react query
+import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
 import DogSearch from '../../../../Components/DogSearch/DogSearch'
 import Gallery from '../../../../Components/Gallery/Gallery'
-import { DogTypes } from '../../../../API/types'
+import { DogType } from '../../../../API/types'
 import { AdminGalleryButton, StyledDogCards } from './DogCards.style'
 import { Link } from 'react-router-dom'
+import getDogs from '../../../../API/fetchers/DogCards/getDogs'
+import deleteDog from '../../../../API/fetchers/DogCards/deleteDog'
 
 function DogCards() {
-  const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })
-  useGet({
-    category: 'dogs',
-    state: dogsState,
-    setState: setDogsState,
-  }) as DogTypes
+  const [dogsState, setDogsState] = useState<DogType[]>([])
+  const [filteredDogsState, setFilteredDogsState] = useState<DogType[]>([])
 
-  const [filteredDogsState, setFilteredDogsState] = useState<DogTypes>(dogsState)
+  const { refetch: refetchGetDogs } = useQuery({
+    queryKey: ['dogs'],
+    initialData: dogsState,
+    queryFn: getDogs,
+    onSuccess: (data) => {
+      setDogsState(data)
+    },
+    refetchOnWindowFocus: false,
+  })
+
+  const {
+    mutate: deleteSelectedDog,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useMutation((dogId: any) => deleteDog(dogId), {
+    onSuccess: () => {
+      refetchGetDogs()
+      console.log('dog card deleted')
+    },
+  })
+
+  // const [filteredDogsState, setFilteredDogsState] = useState<DogType[]>(dogsState)
 
   return (
     <StyledDogCards>
@@ -25,10 +45,14 @@ function DogCards() {
         <DogSearch
           state={filteredDogsState}
           setState={setFilteredDogsState}
-          options={dogsState as DogTypes}
+          options={dogsState as DogType[]}
         />
       </div>
-      <Gallery state={filteredDogsState as DogTypes} admin={true} />
+      <Gallery
+        dogsList={filteredDogsState}
+        admin={true}
+        onDeleteDog={deleteSelectedDog}
+      />
     </StyledDogCards>
   )
 }

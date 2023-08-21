@@ -4,27 +4,40 @@ import { ReactComponent as DeleteIco } from './img/delete.svg'
 import { Buttons, StyledDogCard } from './Gallery.style'
 import TitleH3 from '../UI/TitleH3.styles'
 import Button from '../UI/Button.styles'
-
-interface Dog {
-  id: number
-  src: string
-  name: string
-  sex: string
-  age: string
-}
+import { DogType } from '../../API/types'
+import { UseMutateFunction } from '@tanstack/react-query'
+import Modal from '../../Pages/Admin/Components/UI/Modal'
+import { useState } from 'react'
 interface Props {
-  dog: Dog
-  src?: any
+  dog: DogType
   admin?: boolean
+  onDeleteDog?: UseMutateFunction<void, unknown, string, unknown>
 }
 
-function DogCard({ dog, src, admin }: Props) {
-  const { id, name, sex, age } = dog
+function DogCard({ dog, admin, onDeleteDog }: Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { _id, name, sex, age, mainPhoto } = dog
+
+  const deleteHandler = () => {
+    if (_id && onDeleteDog) {
+      onDeleteDog(_id)
+      console.log('delete')
+    }
+  }
+
   return (
     <StyledDogCard>
+      <Modal
+        title="Ви справді хочете видалити картку собаки?"
+        body="Повернути дію буде неможливо"
+        isOpen={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        onSubmit={deleteHandler}
+        id={_id}
+      />
       {!admin && (
-        <Link to={`/dog/${id}/${name}`}>
-          <img src={src} alt="/dog" />
+        <Link to={`/dog/${_id}/${name}`}>
+          <img src={mainPhoto} alt="/dog" />
           <TitleH3>{name}</TitleH3>
           <p>
             {sex}, {age}
@@ -33,19 +46,23 @@ function DogCard({ dog, src, admin }: Props) {
         </Link>
       )}
       {admin && (
-        <Link to="/admin/edit-card">
-          <img src={src} alt="/dog" />
-          <TitleH3>{name}</TitleH3>
-          <p>
-            {sex}, {age}
-          </p>
+        <>
+          <Link to={`/admin/edit-card/${_id}`}>
+            <img src={mainPhoto} alt="/dog" />
+            <TitleH3>{name}</TitleH3>
+            <p>
+              {sex}, {age}
+            </p>
+          </Link>
           <Buttons>
-            <Button>Редагувати</Button>
-            <Button>
+            <Link to={`/admin/edit-card/${_id}`}>
+              <Button>Редагувати</Button>
+            </Link>
+            <Button onClick={() => setIsModalOpen(true)}>
               <DeleteIco />
             </Button>
           </Buttons>
-        </Link>
+        </>
       )}
     </StyledDogCard>
   )

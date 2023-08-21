@@ -52,7 +52,7 @@ const DogCardContent = styled.form`
   }
 `
 
-const Photos = styled.div`
+const PhotosStyled = styled.div`
   max-width: 700px;
   width: 100%;
   align-self: start;
@@ -328,7 +328,7 @@ export {
   DogCardContainer,
   DogCardContent,
   StyledLink,
-  Photos,
+  PhotosStyled,
   AddPhotoStyled,
   MainPhotoStyled,
   SidePhotosContainer,

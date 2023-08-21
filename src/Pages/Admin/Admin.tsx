@@ -18,7 +18,7 @@ function Admin() {
       <Routes>
         <Route index path="/" element={<DogCards />} />
         <Route path="/new-card" element={<NewCard />} />
-        <Route path="/edit-card" element={<EditCard />} />
+        <Route path="/edit-card/:_id" element={<EditCard />} />
         <Route path="/partners" element={<Partners />} />
         <Route path="/sliders" element={<Sliders />} />
         <Route path="/reports" element={<Reports />} />

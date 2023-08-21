@@ -1,20 +1,25 @@
 import { useState } from 'react'
-import { DogTypes } from '../../API/types'
-import useGet from '../../API/useGet'
+import { DogType } from '../../API/types'
+import { useQuery } from '@tanstack/react-query'
 import DogSearch from '../../Components/DogSearch/DogSearch'
 import Gallery from '../../Components/Gallery/Gallery'
 import { DogsStyled } from './Dogs.style'
 import Container from '../../Components/UI/Container.style'
+import getDogs from '../../API/fetchers/DogCards/getDogs'
 
 function Dogs() {
-  const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })
-  useGet({
-    category: 'dogs',
-    state: dogsState,
-    setState: setDogsState,
-  }) as DogTypes
+  const [dogsState, setDogsState] = useState<DogType[]>([])
+  const [filteredDogsState, setFilteredDogsState] = useState<DogType[]>(dogsState)
 
-  const [filteredDogsState, setFilteredDogsState] = useState<DogTypes>(dogsState)
+  useQuery<DogType[]>({
+    queryKey: ['dogs'],
+    initialData: dogsState,
+    queryFn: getDogs,
+    onSuccess: (data: DogType[]) => {
+      setDogsState(data)
+      console.log(data)
+    },
+  })
 
   return (
     <DogsStyled data-testid="dogs-page">
@@ -22,11 +27,11 @@ function Dogs() {
         <DogSearch
           state={filteredDogsState}
           setState={setFilteredDogsState}
-          options={dogsState as DogTypes}
+          options={dogsState as DogType[]}
         />
       </Container>
       <br />
-      <Gallery state={filteredDogsState} />
+      <Gallery dogsList={filteredDogsState} />
     </DogsStyled>
   )
 }

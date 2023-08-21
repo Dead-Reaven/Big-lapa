@@ -7,9 +7,9 @@ const RouteGuard = ({ children }: Props) => {
   const location = useLocation()
   const { auth }: any = useAuth()
 
-  if (!auth) {
-    return <Navigate to="/login" state={{ from: location }} />
-  }
+  // if (!auth) {
+  //   return <Navigate to="/login" state={{ from: location }} />
+  // }
   return children
 }
 

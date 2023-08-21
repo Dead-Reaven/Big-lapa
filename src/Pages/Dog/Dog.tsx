@@ -43,7 +43,7 @@ function Dog() {
 
   const dog = dogState
 
-  const { name, age, sex, size, hasbreed, breed, haschip, photos } = dog || {}
+  const { name, age, sex, size, hasbreed, breed, haschip, photos, mainPhoto } = dog || {}
 
   return (
     <DogStyled data-testid="dogs-page">
@@ -68,7 +68,7 @@ function Dog() {
             </HiddenDogText>
             {photos && (
               <Slider>
-                <DogSlider photos={photos} />
+                <DogSlider photos={mainPhoto ? [mainPhoto, ...photos] : photos} />
               </Slider>
             )}
 

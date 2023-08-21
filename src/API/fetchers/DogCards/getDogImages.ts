@@ -1,6 +1,7 @@
 import axios from 'axios'
+import domen from '../../domen'
 
-const url = `https://sore-tan-perch-tutu.cyclic.app/api/files/category/`
+const url = `${domen}/api/files/category/`
 
 type GetDogImageResponse = { Url: string; name: string }
 

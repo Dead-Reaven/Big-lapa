@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { DogType } from '../../types'
+import domen from '../../domen'
 
-const url = `https://sore-tan-perch-tutu.cyclic.app/api/dog-cards`
+const url = `${domen}/api/dog-cards`
 
 const getDogs = (): Promise<DogType[]> =>
   axios.get(url).then((res) => {

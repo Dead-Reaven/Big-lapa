@@ -7,10 +7,16 @@ import { DogType } from '../../../../../../API/types'
 interface SidePhotosProps {
   setDogData: React.Dispatch<React.SetStateAction<DogType>>
   setSidePhotos: React.Dispatch<React.SetStateAction<File[]>>
+  setDeletedPhotos: React.Dispatch<React.SetStateAction<string[]>>
   dogData: DogType
 }
 
-function SidePhotos({ setDogData, setSidePhotos, dogData }: SidePhotosProps) {
+function SidePhotos({
+  setDogData,
+  setSidePhotos,
+  setDeletedPhotos,
+  dogData,
+}: SidePhotosProps) {
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [selectedSrc, setSelectedSrc] = useState<string>('')
 
@@ -21,6 +27,7 @@ function SidePhotos({ setDogData, setSidePhotos, dogData }: SidePhotosProps) {
       ...dogData,
       photos: dogData.photos?.filter((photo) => photo !== id),
     })
+    setDeletedPhotos((deletedPhotos) => [...deletedPhotos, id])
     setIsModalOpen((curr) => !curr)
   }
 

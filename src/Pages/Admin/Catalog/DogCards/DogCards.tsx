@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // react query
-import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import DogSearch from '../../../../Components/DogSearch/DogSearch'
 import Gallery from '../../../../Components/Gallery/Gallery'
 import { DogType } from '../../../../API/types'
@@ -33,8 +33,6 @@ function DogCards() {
       console.log('dog card deleted')
     },
   })
-
-  // const [filteredDogsState, setFilteredDogsState] = useState<DogType[]>(dogsState)
 
   return (
     <StyledDogCards>

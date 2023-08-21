@@ -2,6 +2,7 @@ import React from 'react'
 import { SidePhotoStyled } from '../DogCard.style'
 import AddPhoto from './AddPhoto'
 import { DogType } from '../../../../../../API/types'
+import domen from '../../../../../../API/domen'
 
 interface SidePhotoProps {
   setDogData: React.Dispatch<React.SetStateAction<DogType>>
@@ -32,7 +33,10 @@ function SidePhoto({
       {dogData.photos.length >= photoNum && (
         <>
           <button type="button" onClick={openModal} />
-          <img src={photo} alt="dog" />
+          <img
+            src={photo.includes('blob') ? photo : `${domen}/api/files/${photo}`}
+            alt="dog"
+          />
         </>
       )}
       <AddPhoto setDogData={setDogData} setSidePhotos={setSidePhotos} />

@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { DogType } from '../../types'
+import domen from '../../domen'
 
 const postDog = (data: DogType): Promise<any> =>
   axios
-    .post('https://sore-tan-perch-tutu.cyclic.app/api/dog-cards', data, {
+    .post(`${domen}/api/dog-cards`, data, {
       headers: {
         'Content-Type': 'application/json',
       },

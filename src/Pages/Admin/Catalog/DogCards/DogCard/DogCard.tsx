@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
 
 import { DogType } from '../../../../../API/types'
@@ -66,11 +66,13 @@ function DogCard({ $newCard }: Props) {
   // State management
   const [dogData, setDogData] = useState<DogType>(initialState)
   const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>(dogData.photos)
+  const [deletedPhotos, setDeletedPhotos] = useState<string[]>([])
   const [sidePhotos, setSidePhotos] = useState<File[]>([])
   const [mainPhoto, setMainPhoto] = useState<File | null>(null)
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [canPost, setCanPost] = useState(false)
 
+  const navigate = useNavigate()
   // Get dog ID from URL params
   const { _id } = useParams<{ _id: string }>()
   const isFirstRender = useRef(0)
@@ -101,6 +103,7 @@ function DogCard({ $newCard }: Props) {
         // Invalidate and refetch
         queryClient.invalidateQueries({ queryKey: ['dog'] })
         console.log('Post dog data success:', data)
+        navigate('/admin/')
       },
     },
   )
@@ -111,7 +114,9 @@ function DogCard({ $newCard }: Props) {
       onSuccess: (data) => {
         // Invalidate and refetch
         queryClient.invalidateQueries({ queryKey: ['dog'] })
+        deletedPhotos.forEach((photo) => deleteDogImage(photo))
         console.log('Patch dog data success:', data)
+        navigate('/admin/')
       },
     },
   )
@@ -135,7 +140,7 @@ function DogCard({ $newCard }: Props) {
       const mainPhotoResponse = await uploadImage(mainPhoto, 'main-photo')
       updatedData = {
         ...updatedData,
-        mainPhoto: formatPhotoUrl(mainPhotoResponse[0]),
+        mainPhoto: mainPhotoResponse[0],
       }
     }
 
@@ -143,7 +148,7 @@ function DogCard({ $newCard }: Props) {
       const sidePhotoResponse = await uploadImage(sidePhotos, 'side-photo')
       updatedData = {
         ...updatedData,
-        photos: [...sidePhotoResponse.map(formatPhotoUrl)],
+        photos: [...sidePhotoResponse],
       }
     }
 
@@ -170,10 +175,6 @@ function DogCard({ $newCard }: Props) {
     setCanPost(true)
   }
 
-  // Format photo URL
-  const formatPhotoUrl = (url: string): string =>
-    `https://sore-tan-perch-tutu.cyclic.app/api/files/document/${url}`
-
   // Handle posting or patching data based on mode
   const handlePostOrPatch = () => {
     if ($newCard) {
@@ -181,7 +182,6 @@ function DogCard({ $newCard }: Props) {
     } else {
       patchDogData()
     }
-    return redirect('/admin/')
   }
 
   // Effect to handle posting or patching data
@@ -226,6 +226,7 @@ function DogCard({ $newCard }: Props) {
           setDogData={setDogData}
           setMainPhoto={setMainPhoto}
           setSidePhotos={setSidePhotos}
+          setDeletedPhotos={setDeletedPhotos}
           dogData={dogData}
         />
         <Inputs>

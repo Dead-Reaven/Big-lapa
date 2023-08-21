@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { DogType } from '../../types'
+import domen from '../../domen'
 
-const baseUrl = `https://sore-tan-perch-tutu.cyclic.app/api/dog-cards`
+const baseUrl = `${domen}/api/dog-cards`
 
 const patchDog = (data: DogType, id: string): Promise<any> =>
   axios

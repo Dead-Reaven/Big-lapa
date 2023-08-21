@@ -15,6 +15,7 @@ import {
 
 import { ReactComponent as IcoPrevBtn } from '../DogSlider/img/PrevButton.svg'
 import { ReactComponent as IcoNextBtn } from '../DogSlider/img/NextButton.svg'
+import domen from '../../../../API/domen'
 
 interface Props {
   photos: string[]
@@ -34,7 +35,7 @@ function DogSlider({ photos }: Props) {
     setSlide(slide === photos.length - 1 ? 0 : slide + 1)
   }
 
-  const sliderData = photos[slide]
+  const sliderData = `${domen}/api/files/${photos[slide]}`
   return (
     <>
       {photos[0] && (
@@ -52,7 +53,7 @@ function DogSlider({ photos }: Props) {
                   {photos.map((image, index) => (
                     <StyledThumbsDiv key={image} $isActive={slide === index}>
                       <StyledThumbs
-                        src={image}
+                        src={`${domen}/api/files/${image}`}
                         onClick={() => handleClick(index)}
                         alt="dog"
                       />

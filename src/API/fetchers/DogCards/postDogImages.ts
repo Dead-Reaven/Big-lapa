@@ -1,6 +1,7 @@
 import axios from 'axios'
+import domen from '../../domen'
 
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/images'
+const url = `${domen}/api/files/images`
 
 const postDogImages = async (data: File[] | File, category: string) => {
   const formData = new FormData()

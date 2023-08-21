@@ -1,6 +1,7 @@
 import axios from 'axios'
+import domen from '../../domen'
 //В разработке Api
-const url = `https://sore-tan-perch-tutu.cyclic.app/api/files/`
+const url = `${domen}/api/files/`
 
 const deleteDogImage = (id: string) =>
   axios

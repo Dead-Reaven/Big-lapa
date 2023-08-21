@@ -8,6 +8,9 @@ import { DogType } from '../../API/types'
 import { UseMutateFunction } from '@tanstack/react-query'
 import Modal from '../../Pages/Admin/Components/UI/Modal'
 import { useState } from 'react'
+import domen from '../../API/domen'
+import deleteDogImage from '../../API/fetchers/DogCards/deleteDogImage'
+
 interface Props {
   dog: DogType
   admin?: boolean
@@ -16,10 +19,14 @@ interface Props {
 
 function DogCard({ dog, admin, onDeleteDog }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { _id, name, sex, age, mainPhoto } = dog
+  const { _id, name, sex, age, mainPhoto, photos } = dog
 
   const deleteHandler = () => {
     if (_id && onDeleteDog) {
+      deleteDogImage(mainPhoto)
+      photos.forEach((photo) => {
+        deleteDogImage(photo)
+      })
       onDeleteDog(_id)
       console.log('delete')
     }
@@ -37,7 +44,12 @@ function DogCard({ dog, admin, onDeleteDog }: Props) {
       />
       {!admin && (
         <Link to={`/dog/${_id}/${name}`}>
-          <img src={mainPhoto} alt="/dog" />
+          <img
+            src={
+              mainPhoto.includes('blob') ? mainPhoto : `${domen}/api/files/${mainPhoto}`
+            }
+            alt="/dog"
+          />
           <TitleH3>{name}</TitleH3>
           <p>
             {sex}, {age}
@@ -48,7 +60,12 @@ function DogCard({ dog, admin, onDeleteDog }: Props) {
       {admin && (
         <>
           <Link to={`/admin/edit-card/${_id}`}>
-            <img src={mainPhoto} alt="/dog" />
+            <img
+              src={
+                mainPhoto.includes('blob') ? mainPhoto : `${domen}/api/files/${mainPhoto}`
+              }
+              alt="/dog"
+            />
             <TitleH3>{name}</TitleH3>
             <p>
               {sex}, {age}

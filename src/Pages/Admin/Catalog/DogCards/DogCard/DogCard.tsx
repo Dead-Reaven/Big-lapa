@@ -15,6 +15,8 @@ import {
 
 import Modal from '../../../Components/UI/Modal'
 import Message from '../../../Components/UI/Message'
+import Photos from './components/Photos'
+import ValidationMessage from './components/ValidationMessage'
 
 import {
   Characteristic,
@@ -40,7 +42,6 @@ import {
   BreedIco,
   ChipIco,
 } from './img/DogCardIcons'
-import Photos from './components/Photos'
 
 // Props interface
 interface Props {
@@ -70,6 +71,8 @@ function DogCard({ $newCard }: Props) {
   const [mainPhoto, setMainPhoto] = useState<File | null>(null)
   const [IsModalOpen, setIsModalOpen] = useState(false)
   const [canPost, setCanPost] = useState(false)
+  const [isValidationFailed, setIsValidationFailed] = useState(false)
+  const [validationMessage, setValidationMessage] = useState('')
 
   const navigate = useNavigate()
   // Get dog ID from URL params
@@ -98,10 +101,9 @@ function DogCard({ $newCard }: Props) {
   const { mutate: postDogData, isSuccess: isSuccessPost } = useMutation(
     () => postDog(dogData),
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         // Invalidate and refetch
         queryClient.invalidateQueries({ queryKey: ['dog'] })
-        console.log('Post dog data success:', data)
         navigate('/admin/')
       },
     },
@@ -110,26 +112,27 @@ function DogCard({ $newCard }: Props) {
   const { mutate: patchDogData, isSuccess: isSuccessPatch } = useMutation(
     () => (_id ? patchDog(dogData, _id) : Promise.resolve()),
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         // Invalidate and refetch
         queryClient.invalidateQueries({ queryKey: ['dog'] })
         deletedPhotos.forEach((photo) => deleteDogImage(photo))
-        console.log('Patch dog data success:', data)
         navigate('/admin/')
       },
     },
   )
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    try {
-      const imageData = await processImagesAndData()
-      await updateDogImages(imageData)
-    } catch (error) {
-      console.error('Error uploading photos:', error)
+  const validateImages = () => {
+    if (dogData.mainPhoto === '') {
+      setValidationMessage('Завантажте головне фото')
+      return true
     }
+
+    if (dogData.photos.length === 0) {
+      setValidationMessage('Завантажте принаймні одне додаткове фото')
+      return true
+    }
+
+    return false
   }
 
   // Process uploaded images and data
@@ -192,6 +195,26 @@ function DogCard({ $newCard }: Props) {
     }
     handlePostOrPatch()
   }, [canPost])
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const validationFailed = validateImages()
+    setIsValidationFailed(validationFailed)
+
+    if (validationFailed) {
+      console.log('Validation failed')
+      return
+    } else {
+      try {
+        const imageData = await processImagesAndData()
+        await updateDogImages(imageData)
+      } catch (error) {
+        console.error('Error uploading photos:', error)
+      }
+    }
+  }
 
   // Component rendering
   return (
@@ -387,8 +410,11 @@ function DogCard({ $newCard }: Props) {
           ></textarea>
         </Description>
         <Button type="submit">{$newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
-        {isSuccessPost && <Message mode="green">Успіх! post✔️</Message>}
-        {isSuccessPatch && <Message mode="green">Успіх! patch✔️</Message>}
+        {isSuccessPost && <Message mode="green">Картка собаки успішно додана✔️</Message>}
+        {isSuccessPatch && (
+          <Message mode="green">Картка собаки успішно оновлена✔️</Message>
+        )}
+        {isValidationFailed && <ValidationMessage message={validationMessage} />}
       </DogCardContent>
     </DogCardContainer>
   )

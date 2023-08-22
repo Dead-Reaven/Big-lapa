@@ -11,7 +11,8 @@ import {
   FormH2,
 } from '../../../Admin/Components/UI/Form.style'
 import Input from '../../../Admin/Components/UI/Input'
-import useValidForm from '../../useValidForm'
+import Message from '../../../Admin/Components/UI/Message'
+import useValidForm from '../../../useValidForm'
 import { ForgotButton } from '../ForgotPage/ForgotPage.style'
 
 const validationHook = (initialState: string, validations: any) => {
@@ -50,7 +51,7 @@ const LoginComponent = () => {
   const fromPage = location.state?.from?.pathname || '/admin'
 
   const queryClient = useQueryClient()
-  const { mutate, isError, isSuccess } = useMutation(useLogin, {
+  const { mutate, isSuccess, isError } = useMutation(useLogin, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['auth'] })
     },
@@ -100,7 +101,6 @@ const LoginComponent = () => {
             <Input
               state={loginUser.value}
               onChange={(newValue) => loginUser.onChange(newValue)}
-              onBlur={loginUser.onBlur}
               label="Електронна пошта адміністратора:"
               placeholder="email@gmail.com"
             />
@@ -119,7 +119,6 @@ const LoginComponent = () => {
             <Input
               state={passwordUser.value}
               onChange={(newValue) => passwordUser.onChange(newValue)}
-              onBlur={passwordUser.onBlur}
               label="Пароль адміністратора:"
               placeholder="********"
             />
@@ -141,6 +140,7 @@ const LoginComponent = () => {
             Увійти
           </FormButton>
         </FormContainer>
+        {isSuccess && <Message mode="green">Успіх! ✔️</Message>}
       </Form>
     </>
   )

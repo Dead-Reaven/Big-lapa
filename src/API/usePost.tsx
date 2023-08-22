@@ -11,7 +11,7 @@ function usePost(select: select, data: data, action: action = 'post') {
     if (select === 'contacts') {
       try {
         const response = await fetch(
-          'https://big-lapa-api-production.up.railway.app/api/main/create',
+          'https://sore-tan-perch-tutu.cyclic.app/api/main/create',
           {
             method: 'POST',
             headers: {
@@ -33,7 +33,7 @@ function usePost(select: select, data: data, action: action = 'post') {
     }
 
     if (select === 'partners' && action === 'post') {
-      const url = 'https://big-lapa-api-production.up.railway.app/api/images'
+      const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/documents'
       const description = 'Optional description here'
       const category = 'Logo'
 
@@ -49,9 +49,7 @@ function usePost(select: select, data: data, action: action = 'post') {
     }
 
     if (select === 'partners' && action === 'delete') {
-      const url = `https://big-lapa-api-production.up.railway.app/api/images/${
-        data as string
-      }`
+      const url = `https://sore-tan-perch-tutu.cyclic.app/api/images/${data as string}`
 
       const response = await axios.delete(url)
       if (response.status) console.log('Image deleted succesefully', response.data)

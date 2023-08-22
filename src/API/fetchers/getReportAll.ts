@@ -2,10 +2,11 @@ import axios from 'axios'
 
 const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/category/document'
 
-const getReportsId = (): Promise<string[]> =>
+const getReportAll = (): Promise<any[]> =>
   axios.get(url).then((res) => {
-    console.log('getReportsID api called')
+    console.log(res.data, 'Hello')
+
     return res.data
   })
 
-export default getReportsId
+export default getReportAll

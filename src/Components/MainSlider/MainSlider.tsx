@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import SlidersData from './content'
-
+import useSwipe from '../../hooks/useSwipe'
 import {
   CarouselDiv,
   StyledPrevArrow,
@@ -10,19 +10,31 @@ import {
   StyledSlider,
   WrapperSliders,
   TextContainer,
+  StyledNextArrowContainer,
+  StyledPrevArrowContainer,
 } from '../../Components/MainSlider/MainSlider.style'
 import TitleH1 from '../UI/TitleH1.style'
 import TitleH3 from '../UI/TitleH3.styles'
 
-function MainSlider() {
-  const [sliderNumber, setSliderNumber] = useState(0)
+interface MainSliderProps {
+  initialSliderNumber: number
+  setInitialSliderNumber: React.Dispatch<React.SetStateAction<number>>
+}
+
+function MainSlider({ initialSliderNumber, setInitialSliderNumber }: MainSliderProps) {
+  if (initialSliderNumber === -1) return null
+
   const [sliderWidth, setSliderWidth] = useState(window.innerWidth)
 
   const nextSlide = () =>
-    setSliderNumber(sliderNumber === SlidersData.length - 1 ? 0 : sliderNumber + 1)
+    setInitialSliderNumber(
+      initialSliderNumber === SlidersData.length - 1 ? 0 : initialSliderNumber + 1,
+    )
 
   const prevSlide = () =>
-    setSliderNumber(sliderNumber === 0 ? SlidersData.length - 1 : sliderNumber - 1)
+    setInitialSliderNumber(
+      initialSliderNumber === 0 ? SlidersData.length - 1 : initialSliderNumber - 1,
+    )
 
   useEffect(() => {
     const wrapper = document.querySelector('#wrapper')
@@ -30,11 +42,11 @@ function MainSlider() {
     console.log('swipe')
     wrapper?.scrollTo({
       top: 0,
-      left: sliderWidth * sliderNumber,
+      left: sliderWidth * initialSliderNumber,
       behavior: 'smooth',
     })
     window.scrollTo(0, 0)
-  }, [sliderNumber, sliderWidth])
+  }, [initialSliderNumber, sliderWidth])
 
   useEffect(() => {
     // Update sliderWidth when the viewport is resized
@@ -49,14 +61,29 @@ function MainSlider() {
     }
   }, [])
 
+  const handleSwipe = (direction: any) => {
+    if (direction === 'next') {
+      setInitialSliderNumber((prevIndex) =>
+        prevIndex === SlidersData.length - 1 ? 0 : prevIndex + 1,
+      )
+    } else if (direction === 'prev') {
+      setInitialSliderNumber((prevIndex) =>
+        prevIndex === 0 ? SlidersData.length - 1 : prevIndex - 1,
+      )
+    }
+  }
+
+  const { onTouchStart, onTouchMove } = useSwipe(handleSwipe)
   return (
-    <CarouselDiv>
-      <StyledPrevArrow type="button" onClick={prevSlide} />
+    <CarouselDiv onTouchStart={onTouchStart} onTouchMove={onTouchMove}>
+      <StyledPrevArrowContainer>
+        <StyledPrevArrow type="button" onClick={prevSlide} />
+      </StyledPrevArrowContainer>
       <WrapperSliders id="wrapper">
         {SlidersData.map((slider, idx) => (
           <StyledSlider
             key={idx}
-            $isActive={sliderNumber === idx}
+            $isActive={initialSliderNumber === idx}
             $background={slider.image}
           >
             <TextContainer>
@@ -66,14 +93,16 @@ function MainSlider() {
           </StyledSlider>
         ))}
       </WrapperSliders>
-      <StyledNextArrow type="button" onClick={nextSlide} />
+      <StyledNextArrowContainer>
+        <StyledNextArrow type="button" onClick={nextSlide} />
+      </StyledNextArrowContainer>
 
       <StyledBullets>
         {SlidersData.map((_, idx) => (
           <Bullet
             key={idx}
-            $isActive={sliderNumber === idx}
-            onClick={() => setSliderNumber(idx)}
+            $isActive={initialSliderNumber === idx}
+            onClick={() => setInitialSliderNumber(idx)}
           />
         ))}
       </StyledBullets>

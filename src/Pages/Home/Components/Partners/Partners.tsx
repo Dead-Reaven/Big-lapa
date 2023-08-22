@@ -1,17 +1,29 @@
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
+import getPartner from '../../../../API/fetchers/getPartnerImg'
+import getPartnersId from '../../../../API/fetchers/getPartnersId'
 import { PartnerTypes } from '../../../../API/types'
-import useGet from '../../../../API/useGet'
 import Container from '../../../../Components/UI/Container.style'
-import { PartnersSection, PartnersTitle, PartnersFlex } from './Partners.style'
+import { PartnersFlex, PartnersSection, PartnersTitle } from './Partners.style'
 
 function Partners() {
   const [partnersState, setPartnersState] = useState<PartnerTypes[]>([])
 
-  useGet({
-    category: 'partners',
-    state: partnersState,
-    setState: setPartnersState,
-  }) as PartnerTypes[]
+  useQuery({
+    queryKey: ['partnersId'],
+    initialData: [],
+    queryFn: getPartnersId,
+    onSuccess: (data) => mutatePartnersIMG(data),
+    refetchOnWindowFocus: false,
+  })
+
+  const fetchPartnersIMG = (partnersIds: string[]) => {
+    return Promise.all(partnersIds.map((id) => getPartner(id)))
+  }
+
+  const { mutate: mutatePartnersIMG } = useMutation(fetchPartnersIMG, {
+    onSuccess: (data) => setPartnersState(data),
+  })
 
   return (
     <>

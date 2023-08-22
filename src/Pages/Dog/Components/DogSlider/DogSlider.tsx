@@ -13,6 +13,8 @@ import {
   SliderContainer,
 } from './DogSlider.style'
 
+import useSwipe from '../../../../hooks/useSwipe'
+
 import { ReactComponent as IcoPrevBtn } from '../DogSlider/img/PrevButton.svg'
 import { ReactComponent as IcoNextBtn } from '../DogSlider/img/NextButton.svg'
 import domen from '../../../../API/domen'
@@ -36,39 +38,43 @@ function DogSlider({ photos }: Props) {
   }
 
   const sliderData = `${domen}/api/files/${photos[slide]}`
+
+  const handleSwipe = (direction: any) => {
+    if (direction === 'next') {
+      setSlide((prevIndex) => (prevIndex === photos.length - 1 ? 0 : prevIndex + 1))
+    } else if (direction === 'prev') {
+      setSlide((prevIndex) => (prevIndex === 0 ? photos.length - 1 : prevIndex - 1))
+    }
+  }
+
+  const { onTouchStart, onTouchMove } = useSwipe(handleSwipe)
   return (
-    <>
-      {photos[0] && (
-        <SliderContainer>
-          <MainImageWrapper>
-            <StyledMainImage src={sliderData} alt="dog" />
-          </MainImageWrapper>
-          {photos.length > 1 && (
-            <StyledThumbsBtnsContainer>
-              <StyledPrevButton onClick={onPrevClick}>
-                <IcoPrevBtn />
-              </StyledPrevButton>
-              <ThumbsContainer>
-                <ThumbsWrapper $left={slide}>
-                  {photos.map((image, index) => (
-                    <StyledThumbsDiv key={image} $isActive={slide === index}>
-                      <StyledThumbs
-                        src={`${domen}/api/files/${image}`}
-                        onClick={() => handleClick(index)}
-                        alt="dog"
-                      />
-                    </StyledThumbsDiv>
-                  ))}
-                </ThumbsWrapper>
-              </ThumbsContainer>
-              <StyledNextButton onClick={onNextClick}>
-                <IcoNextBtn />
-              </StyledNextButton>
-            </StyledThumbsBtnsContainer>
-          )}
-        </SliderContainer>
-      )}
-    </>
+    <SliderContainer onTouchStart={onTouchStart} onTouchMove={onTouchMove}>
+      <MainImageWrapper>
+        <StyledMainImage src={sliderData} alt={'dog'} />
+      </MainImageWrapper>
+      <StyledThumbsBtnsContainer>
+        <StyledPrevButton onClick={onPrevClick}>
+          <IcoPrevBtn />
+        </StyledPrevButton>
+        <ThumbsContainer>
+          <ThumbsWrapper $left={slide}>
+            {photos.map((image, index) => (
+              <StyledThumbsDiv key={image} $isActive={slide === index}>
+                <StyledThumbs
+                  src={`${domen}/api/files/${image}`}
+                  onClick={() => handleClick(index)}
+                  alt="dog"
+                />
+              </StyledThumbsDiv>
+            ))}
+          </ThumbsWrapper>
+        </ThumbsContainer>
+        <StyledNextButton onClick={onNextClick}>
+          <IcoNextBtn />
+        </StyledNextButton>
+      </StyledThumbsBtnsContainer>
+    </SliderContainer>
   )
 }
 

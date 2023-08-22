@@ -43,7 +43,7 @@ interface LoginType {
 }
 
 interface changePassType {
-  oldPassword: string
+  currentPassword: string
   newPassword: string
 }
 

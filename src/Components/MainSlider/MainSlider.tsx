@@ -63,11 +63,11 @@ function MainSlider({ initialSliderNumber, setInitialSliderNumber }: MainSliderP
 
   const handleSwipe = (direction: any) => {
     if (direction === 'next') {
-      setSliderNumber((prevIndex) =>
+      setInitialSliderNumber((prevIndex) =>
         prevIndex === SlidersData.length - 1 ? 0 : prevIndex + 1,
       )
     } else if (direction === 'prev') {
-      setSliderNumber((prevIndex) =>
+      setInitialSliderNumber((prevIndex) =>
         prevIndex === 0 ? SlidersData.length - 1 : prevIndex - 1,
       )
     }

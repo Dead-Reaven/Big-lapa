@@ -11,7 +11,6 @@ import {
   postDog,
   postDogImages,
   deleteDogImage,
-  getDogImages,
 } from '../../../../../API/fetchers/DogCards/dogFetchers'
 
 import Modal from '../../../Components/UI/Modal'
@@ -65,7 +64,7 @@ const initialState: DogType = {
 function DogCard({ $newCard }: Props) {
   // State management
   const [dogData, setDogData] = useState<DogType>(initialState)
-  const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>(dogData.photos)
+  const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>([])
   const [deletedPhotos, setDeletedPhotos] = useState<string[]>([])
   const [sidePhotos, setSidePhotos] = useState<File[]>([])
   const [mainPhoto, setMainPhoto] = useState<File | null>(null)
@@ -148,7 +147,7 @@ function DogCard({ $newCard }: Props) {
       const sidePhotoResponse = await uploadImage(sidePhotos, 'side-photo')
       updatedData = {
         ...updatedData,
-        photos: [...sidePhotoResponse],
+        photos: [...initialSidePhotos, ...sidePhotoResponse],
       }
     }
 
@@ -194,15 +193,6 @@ function DogCard({ $newCard }: Props) {
     handlePostOrPatch()
   }, [canPost])
 
-  // const deleteDogPhotos = async () => {
-  //   const sideImages = await getDogImages('main-photo')
-  //   console.log(sideImages)
-  //   sideImages.forEach((image) => {
-  //     deleteDogImage(image)
-  //   })
-  //   console.log(sideImages)
-  // }
-
   // Component rendering
   return (
     <DogCardContainer>
@@ -219,7 +209,6 @@ function DogCard({ $newCard }: Props) {
           Назад
         </Link>
       </StyledLink>
-      {/* <button onClick={deleteDogPhotos}>delete all photos</button> */}
       <DogCardContent onSubmit={handleSubmit}>
         <TitleH2>{$newCard ? 'Створення нової картки' : 'Редагування'}</TitleH2>
         <Photos
@@ -227,6 +216,7 @@ function DogCard({ $newCard }: Props) {
           setMainPhoto={setMainPhoto}
           setSidePhotos={setSidePhotos}
           setDeletedPhotos={setDeletedPhotos}
+          setInitialSidePhotos={setInitialSidePhotos}
           dogData={dogData}
         />
         <Inputs>

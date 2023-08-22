@@ -8,6 +8,7 @@ interface SidePhotosProps {
   setDogData: React.Dispatch<React.SetStateAction<DogType>>
   setSidePhotos: React.Dispatch<React.SetStateAction<File[]>>
   setDeletedPhotos: React.Dispatch<React.SetStateAction<string[]>>
+  setInitialSidePhotos: React.Dispatch<React.SetStateAction<string[]>>
   dogData: DogType
 }
 
@@ -15,6 +16,7 @@ function SidePhotos({
   setDogData,
   setSidePhotos,
   setDeletedPhotos,
+  setInitialSidePhotos,
   dogData,
 }: SidePhotosProps) {
   const [IsModalOpen, setIsModalOpen] = useState(false)
@@ -28,6 +30,9 @@ function SidePhotos({
       photos: dogData.photos?.filter((photo) => photo !== id),
     })
     setDeletedPhotos((deletedPhotos) => [...deletedPhotos, id])
+    setInitialSidePhotos((initialSidePhotos) =>
+      initialSidePhotos.filter((photo) => photo !== id),
+    )
     setIsModalOpen((curr) => !curr)
   }
 

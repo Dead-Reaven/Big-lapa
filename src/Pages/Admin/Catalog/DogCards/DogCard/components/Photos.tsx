@@ -9,6 +9,7 @@ interface PhotosProps {
   setSidePhotos: React.Dispatch<React.SetStateAction<File[]>>
   setMainPhoto: React.Dispatch<React.SetStateAction<File | null>>
   setDeletedPhotos: React.Dispatch<React.SetStateAction<string[]>>
+  setInitialSidePhotos: React.Dispatch<React.SetStateAction<string[]>>
   dogData: DogType
 }
 
@@ -17,6 +18,7 @@ function Photos({
   setSidePhotos,
   setMainPhoto,
   setDeletedPhotos,
+  setInitialSidePhotos,
   dogData,
 }: PhotosProps) {
   return (
@@ -31,6 +33,7 @@ function Photos({
         setDogData={setDogData}
         setSidePhotos={setSidePhotos}
         setDeletedPhotos={setDeletedPhotos}
+        setInitialSidePhotos={setInitialSidePhotos}
         dogData={dogData}
       />
     </PhotosStyled>

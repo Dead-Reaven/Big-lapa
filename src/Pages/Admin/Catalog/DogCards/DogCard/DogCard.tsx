@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { Link, useNavigate } from 'react-router-dom'
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
-
+// API and types imports
 import { DogType } from '../../../../../API/types'
-
 import {
   getDog,
   patchDog,
@@ -13,35 +12,18 @@ import {
   deleteDogImage,
 } from '../../../../../API/fetchers/DogCards/dogFetchers'
 
+// UI components imports
 import Modal from '../../../Components/UI/Modal'
 import Message from '../../../Components/UI/Message'
 import Photos from './components/Photos'
 import ValidationMessage from './components/ValidationMessage'
-
-import {
-  Characteristic,
-  CharacteristicItem,
-  Characteristics,
-  Description,
-  DogCardContainer,
-  DogCardContent,
-  Input,
-  Inputs,
-  StyledLink,
-} from './DogCard.style'
-
+import { DogCardContainer, DogCardContent, StyledLink } from './DogCard.style'
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
-import StyledInput from '../../../../../Components/UI/Input.styles'
 import Button from '../../../../../Components/UI/Button.styles'
-
-import {
-  ArrowIco,
-  FemaleIco,
-  MaleIco,
-  SizeIco,
-  BreedIco,
-  ChipIco,
-} from './img/DogCardIcons'
+import { ArrowIco } from './img/DogCardIcons'
+import CharacteristicsSection from './components/CharacteristicsSection'
+import DogCardInfo from './components/DogCardInfo'
+import DogDescription from './components/DogDescription'
 
 // Props interface
 interface Props {
@@ -63,7 +45,6 @@ const initialState: DogType = {
 }
 
 function DogCard({ $newCard }: Props) {
-  // State management
   const [dogData, setDogData] = useState<DogType>(initialState)
   const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>([])
   const [deletedPhotos, setDeletedPhotos] = useState<string[]>([])
@@ -75,11 +56,10 @@ function DogCard({ $newCard }: Props) {
   const [validationMessage, setValidationMessage] = useState('')
 
   const navigate = useNavigate()
-  // Get dog ID from URL params
   const { _id } = useParams<{ _id: string }>()
   const isFirstRender = useRef(0)
 
-  // Fetch dog data if not creating a new card
+  // Fetch the dog data if it's not a new card
   if (!$newCard) {
     useQuery(['dog', _id], {
       initialData: dogData,
@@ -101,10 +81,10 @@ function DogCard({ $newCard }: Props) {
   const { mutate: postDogData, isSuccess: isSuccessPost } = useMutation(
     () => postDog(dogData),
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         // Invalidate and refetch
         queryClient.invalidateQueries({ queryKey: ['dog'] })
-        navigate('/admin/')
+        navigate(`/admin/edit-card/${data._id}`)
       },
     },
   )
@@ -116,11 +96,11 @@ function DogCard({ $newCard }: Props) {
         // Invalidate and refetch
         queryClient.invalidateQueries({ queryKey: ['dog'] })
         deletedPhotos.forEach((photo) => deleteDogImage(photo))
-        navigate('/admin/')
       },
     },
   )
 
+  // Validate if the images have been uploaded
   const validateImages = () => {
     if (dogData.mainPhoto === '') {
       setValidationMessage('Завантажте головне фото')
@@ -135,7 +115,7 @@ function DogCard({ $newCard }: Props) {
     return false
   }
 
-  // Process uploaded images and data
+  // Process uploaded images and update the dog data
   const processImagesAndData = async () => {
     let updatedData = { mainPhoto: dogData.mainPhoto, photos: dogData.photos }
     if (mainPhoto) {
@@ -157,7 +137,7 @@ function DogCard({ $newCard }: Props) {
     return updatedData
   }
 
-  // Upload an image
+  // Handle the image upload process
   const uploadImage = async (imageData: any, type: string): Promise<string[]> => {
     try {
       const response = await postDogImages(imageData, type)
@@ -168,7 +148,7 @@ function DogCard({ $newCard }: Props) {
     }
   }
 
-  // Update dog data with new images
+  // Update the dog data after the images have been uploaded
   const updateDogImages = async (updatedData: Partial<DogType>) => {
     await setDogData((prevDogData) => ({
       ...prevDogData,
@@ -177,7 +157,7 @@ function DogCard({ $newCard }: Props) {
     setCanPost(true)
   }
 
-  // Handle posting or patching data based on mode
+  // Logic to determine whether to create a new dog card or update an existing one
   const handlePostOrPatch = () => {
     if ($newCard) {
       postDogData()
@@ -186,7 +166,7 @@ function DogCard({ $newCard }: Props) {
     }
   }
 
-  // Effect to handle posting or patching data
+  // Effect to handle the creation or update process after the images have been uploaded
   useEffect(() => {
     if (isFirstRender.current < 2) {
       //TODO зв'ясувати чому canPost змінюється
@@ -242,173 +222,12 @@ function DogCard({ $newCard }: Props) {
           setInitialSidePhotos={setInitialSidePhotos}
           dogData={dogData}
         />
-        <Inputs>
-          <Input>
-            <label htmlFor="dog-name">Кличка собаки:</label>
-            <StyledInput
-              type="text"
-              placeholder={'Введіть кличку собаки'}
-              value={dogData.name}
-              id="dog-name"
-              onChange={(event) => setDogData({ ...dogData, name: event.target.value })}
-              required
-            />
-          </Input>
-          <Input>
-            <label htmlFor="dog-age">Вік собаки:</label>
-            <StyledInput
-              type="text"
-              placeholder={'Введіть вік собаки'}
-              value={dogData.age}
-              id="dog-age"
-              onChange={(event) => setDogData({ ...dogData, age: event.target.value })}
-              required
-            />
-          </Input>
-        </Inputs>
-        <Characteristics>
-          <Characteristic>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="sex"
-                value="Дівчинка"
-                checked={dogData.sex === 'Дівчинка'}
-                onChange={(event) => setDogData({ ...dogData, sex: event.target.value })}
-              />
-              <span>
-                <FemaleIco /> Дівчинка
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="sex"
-                value="Хлопчик"
-                checked={dogData.sex === 'Хлопчик'}
-                onChange={(event) => setDogData({ ...dogData, sex: event.target.value })}
-              />
-              <span>
-                <MaleIco />
-                Хлопчик
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-          <Characteristic>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="size"
-                value="Великий"
-                checked={dogData.size === 'Великий'}
-                onChange={(event) => setDogData({ ...dogData, size: event.target.value })}
-              />
-              <span>
-                <SizeIco />
-                Великий
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="size"
-                value="Середній"
-                checked={dogData.size === 'Середній'}
-                onChange={(event) => setDogData({ ...dogData, size: event.target.value })}
-              />
-              <span>
-                <SizeIco />
-                Середній
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="size"
-                value="Маленький"
-                checked={dogData.size === 'Маленький'}
-                onChange={(event) => setDogData({ ...dogData, size: event.target.value })}
-              />
-              <span>
-                <SizeIco />
-                Маленький
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-          <Characteristic>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="breed"
-                checked={!dogData.hasbreed}
-                onChange={() => setDogData({ ...dogData, hasbreed: false, breed: '' })}
-              />
-              <span>
-                <BreedIco />
-                Без породи
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="breed"
-                checked={dogData.hasbreed}
-                onChange={() => {
-                  setDogData({ ...dogData, hasbreed: true })
-                }}
-              />
-              <span>
-                <BreedIco />
-                <input
-                  type="text"
-                  placeholder={'Введіть породу'}
-                  value={dogData.breed}
-                  onChange={(event) =>
-                    setDogData({ ...dogData, breed: event.target.value, hasbreed: true })
-                  }
-                  required={dogData.hasbreed}
-                />
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-          <Characteristic>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="chip"
-                checked={dogData.haschip}
-                onChange={() => setDogData({ ...dogData, haschip: true })}
-              />
-              <span>
-                <ChipIco />
-                Так
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input
-                type="radio"
-                name="chip"
-                checked={!dogData.haschip}
-                onChange={() => setDogData({ ...dogData, haschip: false })}
-              />
-              <span>
-                <ChipIco />
-                Hі
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-        </Characteristics>
-        <Description>
-          <label htmlFor="dog-about">Про тваринку:</label>
-          <textarea
-            placeholder="Опишіть тваринку"
-            id="dog-about"
-            defaultValue={$newCard ? '' : dogData.description}
-            onChange={(event) =>
-              setDogData({ ...dogData, description: event.target.value })
-            }
-          ></textarea>
-        </Description>
+        <DogCardInfo setDogData={setDogData} dogData={dogData} />
+        <CharacteristicsSection setDogData={setDogData} dogData={dogData} />
+        <DogDescription
+          description={dogData.description || ''}
+          setDescription={(desc) => setDogData({ ...dogData, description: desc })}
+        />
         <Button type="submit">{$newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
         {isSuccessPost && <Message mode="green">Картка собаки успішно додана✔️</Message>}
         {isSuccessPatch && (

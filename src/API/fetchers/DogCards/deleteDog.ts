@@ -8,7 +8,7 @@ const deleteDog = (id: string) =>
     .delete(`${baseUrl}/${id}`)
     .then((res) => {
       console.log('delete dog api call')
-      res.data
+      return res.data
     })
     .catch(() => console.log({ id }))
 

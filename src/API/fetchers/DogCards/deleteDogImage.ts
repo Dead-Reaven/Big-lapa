@@ -7,7 +7,7 @@ const deleteDogImage = (id: string) =>
   axios
     .delete(url + id)
     .then((res) => {
-      console.log('deleteDogImage call')
+      console.log('delete Dog Image call')
       res.data
     })
     .catch(() => console.log({ id }))

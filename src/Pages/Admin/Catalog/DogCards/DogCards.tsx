@@ -8,6 +8,7 @@ import { AdminGalleryButton, StyledDogCards } from './DogCards.style'
 import { Link } from 'react-router-dom'
 import getDogs from '../../../../API/fetchers/DogCards/getDogs'
 import deleteDog from '../../../../API/fetchers/DogCards/deleteDog'
+import Message from '../../Components/UI/Message'
 
 function DogCards() {
   const [dogsState, setDogsState] = useState<DogType[]>([])
@@ -27,7 +28,7 @@ function DogCards() {
     mutate: deleteSelectedDog,
     isSuccess: isDeleteSuccess,
     isError: isDeleteError,
-  } = useMutation((dogId: any) => deleteDog(dogId), {
+  } = useMutation((dogId: string) => deleteDog(dogId), {
     onSuccess: () => {
       refetchGetDogs()
       console.log('dog card deleted')
@@ -51,6 +52,12 @@ function DogCards() {
         admin={true}
         onDeleteDog={deleteSelectedDog}
       />
+      {isDeleteSuccess && <Message mode="green">Картку собаки успішно видалено!</Message>}
+      {isDeleteError && (
+        <Message mode="green">
+          Видалення картки не було виконано, спробуйте ще раз
+        </Message>
+      )}
     </StyledDogCards>
   )
 }

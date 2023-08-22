@@ -14,7 +14,7 @@ import deleteDogImage from '../../API/fetchers/DogCards/deleteDogImage'
 interface Props {
   dog: DogType
   admin?: boolean
-  onDeleteDog?: UseMutateFunction<void, unknown, string, unknown>
+  onDeleteDog: UseMutateFunction<void, unknown, string, unknown>
 }
 
 function DogCard({ dog, admin, onDeleteDog }: Props) {

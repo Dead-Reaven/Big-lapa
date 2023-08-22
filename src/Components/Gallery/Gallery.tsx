@@ -15,8 +15,8 @@ import { UseMutateFunction } from '@tanstack/react-query'
 
 interface Props {
   admin?: boolean
-  dogsList?: DogType[] | null
-  onDeleteDog?: UseMutateFunction<string, unknown, string, unknown>
+  dogsList: DogType[] | null
+  onDeleteDog: UseMutateFunction<void, unknown, string, unknown>
 }
 
 function Gallery({ admin, dogsList, onDeleteDog }: Props) {

@@ -6,7 +6,7 @@ const baseUrl = `${domen}/api/dog-cards/`
 
 const getDog = (id: string): Promise<DogType> =>
   axios.get(`${baseUrl}/${id}`).then((res) => {
-    console.log('get dogs called')
+    console.log('get dog called')
     return res.data
   })
 

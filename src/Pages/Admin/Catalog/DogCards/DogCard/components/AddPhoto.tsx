@@ -21,13 +21,13 @@ function AddPhoto({ setDogData, setMainPhoto, setSidePhotos, main }: AddPhotoPro
     if (selectedFile) {
       const fileUrl = URL.createObjectURL(selectedFile)
 
-      if (isMain) {
+      if (isMain && setMainPhoto) {
         setDogData((prevDogData) => ({
           ...prevDogData,
           mainPhoto: fileUrl,
         }))
         setMainPhoto(selectedFile)
-      } else {
+      } else if (!isMain && setSidePhotos) {
         setDogData((prevDogData) => ({
           ...prevDogData,
           photos: [...prevDogData.photos, fileUrl],

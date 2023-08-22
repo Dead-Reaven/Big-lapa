@@ -12,9 +12,7 @@ const patchDog = (data: DogType, id: string): Promise<any> =>
       },
     })
     .then((res) => {
-      console.log('Patch successfully called')
-      console.log(res.data)
-
+      console.log('Patch dog successfully called')
       res.data
     })
     .catch((error) => {

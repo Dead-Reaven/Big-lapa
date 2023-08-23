@@ -10,7 +10,7 @@ import {
   postDog,
   postDogImages,
   deleteDogImage,
-} from '../../../../../API/fetchers/DogCards/dogFetchers'
+} from '../../../../../API/fetchers/DogCards'
 
 // UI components imports
 import Modal from '../../../Components/UI/Modal'
@@ -60,19 +60,19 @@ function DogCard({ $newCard }: Props) {
   const isFirstRender = useRef(0)
 
   // Fetch the dog data if it's not a new card
-  if (!$newCard) {
-    useQuery(['dog', _id], {
-      initialData: dogData,
-      queryFn: () => (_id ? getDog(_id) : Promise.resolve(null)),
-      onSuccess: (data) => {
-        if (_id && data !== null) {
-          setDogData(data)
-          setInitialSidePhotos(data.photos)
-        }
-      },
-      refetchOnWindowFocus: false,
-    })
-  }
+
+  useQuery(['dog', _id], {
+    enabled: !$newCard, // only run the query if $newCard is false
+    initialData: dogData,
+    queryFn: () => (_id ? getDog(_id) : Promise.resolve(null)),
+    onSuccess: (data) => {
+      if (_id && data !== null) {
+        setDogData(data)
+        setInitialSidePhotos(data.photos)
+      }
+    },
+    refetchOnWindowFocus: false,
+  })
 
   // Query client for managing data
   const queryClient = useQueryClient()

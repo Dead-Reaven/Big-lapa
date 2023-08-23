@@ -102,6 +102,8 @@ const StyledDogCard = styled.div`
   text-align: left;
   img {
     width: 100%;
+    height: 360px;
+    object-fit: cover;
     border-radius: 4px;
     margin-bottom: 10px;
   }
@@ -131,6 +133,10 @@ const StyledDogCard = styled.div`
 const Buttons = styled.div`
   display: flex;
   gap: 12px;
+
+  a {
+    width: 100%;
+  }
 
   @media (max-width: 1279px) {
     gap: 8px;

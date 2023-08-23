@@ -12,53 +12,18 @@ import {
   ThumbsContainer,
   SliderContainer,
 } from './DogSlider.style'
+
 import useSwipe from '../../../../hooks/useSwipe'
-// import dog1 from './img/dog1.png'
-import dog2 from './img/dog2.png'
-import dog3 from './img/dog3.png'
-import dog4 from './img/dog4.png'
-import dog5 from './img/dog5.png'
+
 import { ReactComponent as IcoPrevBtn } from '../DogSlider/img/PrevButton.svg'
 import { ReactComponent as IcoNextBtn } from '../DogSlider/img/NextButton.svg'
+import domen from '../../../../API/domen'
 
 interface Props {
-  src?: string
+  photos: string[]
 }
 
-function DogSlider({ src }: Props) {
-  const images = [
-    {
-      image: src,
-      title: 'dog 1',
-      id: 0,
-    },
-    {
-      image: dog2,
-      title: 'dog 2',
-      id: 1,
-    },
-    {
-      image: dog3,
-      title: 'dog 3',
-      id: 2,
-    },
-    {
-      image: dog4,
-      title: 'dog 4',
-      id: 3,
-    },
-    {
-      image: dog5,
-      title: 'dog 5',
-      id: 4,
-    },
-    {
-      image: dog3,
-      title: 'dog 5',
-      id: 5,
-    },
-  ]
-
+function DogSlider({ photos }: Props) {
   const [slide, setSlide] = useState(0)
 
   const handleClick = (imageIndex: number) => {
@@ -66,18 +31,19 @@ function DogSlider({ src }: Props) {
   }
 
   const onPrevClick = () => {
-    setSlide(slide === 0 ? images.length - 1 : slide - 1)
+    setSlide(slide === 0 ? photos.length - 1 : slide - 1)
   }
   const onNextClick = () => {
-    setSlide(slide === images.length - 1 ? 0 : slide + 1)
+    setSlide(slide === photos.length - 1 ? 0 : slide + 1)
   }
 
-  const sliderData = images[slide]
+  const sliderData = `${domen}/api/files/${photos[slide]}`
+
   const handleSwipe = (direction: any) => {
     if (direction === 'next') {
-      setSlide((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+      setSlide((prevIndex) => (prevIndex === photos.length - 1 ? 0 : prevIndex + 1))
     } else if (direction === 'prev') {
-      setSlide((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+      setSlide((prevIndex) => (prevIndex === 0 ? photos.length - 1 : prevIndex - 1))
     }
   }
 
@@ -85,7 +51,7 @@ function DogSlider({ src }: Props) {
   return (
     <SliderContainer onTouchStart={onTouchStart} onTouchMove={onTouchMove}>
       <MainImageWrapper>
-        <StyledMainImage src={sliderData.image} alt={sliderData.title} />
+        <StyledMainImage src={sliderData} alt={'dog'} />
       </MainImageWrapper>
       <StyledThumbsBtnsContainer>
         <StyledPrevButton onClick={onPrevClick}>
@@ -93,12 +59,12 @@ function DogSlider({ src }: Props) {
         </StyledPrevButton>
         <ThumbsContainer>
           <ThumbsWrapper $left={slide}>
-            {images.map(({ id, image, title }, index) => (
-              <StyledThumbsDiv key={id} $isActive={slide === index}>
+            {photos.map((image, index) => (
+              <StyledThumbsDiv key={image} $isActive={slide === index}>
                 <StyledThumbs
-                  src={image}
+                  src={`${domen}/api/files/${image}`}
                   onClick={() => handleClick(index)}
-                  alt={title}
+                  alt="dog"
                 />
               </StyledThumbsDiv>
             ))}

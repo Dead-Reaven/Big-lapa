@@ -12,7 +12,6 @@ const StyledDogSearch = styled.form`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px !important;
   background-color: white;
   box-shadow: 0px 4px 16px 0px #cdcdcd;
   border-radius: 4px;

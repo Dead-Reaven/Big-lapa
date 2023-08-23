@@ -1,16 +1,11 @@
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 import { theme } from '../../../../../Components/UI/Theme.styles'
 import Button from '../../../../../Components/UI/Button.styles'
-import PhotoIco from './img/photoIco.svg'
 import CrossIco from './img/Cross.svg'
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
 
-interface Props {
-  newCard?: boolean
-}
-
-const DogCardContainer = styled.div<Props>`
+const DogCardContainer = styled.div`
   padding-bottom: 80px;
 
   ${TitleH2} {
@@ -19,39 +14,6 @@ const DogCardContainer = styled.div<Props>`
       text-align: center;
     }
   }
-
-  ${({ newCard }) =>
-    !newCard &&
-    css`
-      ${MainPhoto} {
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      ${SidePhoto} {
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        button {
-          position: absolute;
-          background: ${theme.colors.background} url(${CrossIco}) center / 14px no-repeat;
-          top: 4px;
-          right: 4px;
-          width: 18px;
-          height: 18px;
-          border-radius: 4px;
-        }
-      }
-
-      ${Input} {
-      }
-    `}
 `
 
 const StyledLink = styled.div`
@@ -65,11 +27,11 @@ const StyledLink = styled.div`
   }
 `
 
-const DogCardContent = styled.div`
+const DogCardContent = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 55px;
+  row-gap: 55px;
   max-width: 920px;
 
   label {
@@ -90,25 +52,47 @@ const DogCardContent = styled.div`
   }
 `
 
-const Photos = styled.div`
+const PhotosStyled = styled.div`
   max-width: 700px;
   width: 100%;
   align-self: start;
   display: flex;
-  gap: 24px;
-
-  @media (max-width: 1279px) {
-    gap: 18px;
-  }
 
   @media (max-width: 500px) {
     height: 262px;
     align-self: center;
-    gap: 16px;
   }
 `
 
-const MainPhoto = styled.div`
+const AddPhotoStyled = styled.div`
+  width: 100%;
+  height: 100%;
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+
+    p {
+      font-size: ${theme.fontSizes.buttonText};
+      font-weight: ${theme.fontWeights.semiBold};
+    }
+  }
+
+  input[type='file'] {
+    height: 1px;
+    width: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+`
+
+const MainPhotoStyled = styled.div`
   background-color: #fff;
   width: 68%;
   display: flex;
@@ -116,10 +100,37 @@ const MainPhoto = styled.div`
   align-items: center;
   justify-content: center;
   gap: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 24px;
 
   aspect-ratio: 4.76 / 6;
 
+  img {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  button {
+    position: absolute;
+    z-index: 6;
+    background: ${theme.colors.background} url(${CrossIco}) center / 28px no-repeat;
+    top: 4px;
+    right: 4px;
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 1279px) {
+    margin-right: 18px;
+  }
+
   @media (max-width: 767px) {
+    margin-right: 16px;
     svg {
       width: 32px;
       height: 32px;
@@ -134,7 +145,7 @@ const SidePhotosContainer = styled.div`
   width: 28%;
 `
 
-const SidePhotos = styled.div`
+const SidePhotosStyled = styled.div`
   width: 90%;
   max-width: 194px;
   max-height: 312px;
@@ -151,10 +162,36 @@ const SidePhotos = styled.div`
   }
 `
 
-const SidePhoto = styled.div`
+const SidePhotoStyled = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #fff url(${PhotoIco}) center / 20px no-repeat;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  button {
+    position: absolute;
+    z-index: 6;
+    background: ${theme.colors.background} url(${CrossIco}) center / 14px no-repeat;
+    top: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+  }
+
+  svg {
+    height: 20px;
+    width: 20px;
+  }
 `
 
 const Inputs = styled.div`
@@ -291,11 +328,12 @@ export {
   DogCardContainer,
   DogCardContent,
   StyledLink,
-  Photos,
-  MainPhoto,
+  PhotosStyled,
+  AddPhotoStyled,
+  MainPhotoStyled,
   SidePhotosContainer,
-  SidePhotos,
-  SidePhoto,
+  SidePhotosStyled,
+  SidePhotoStyled,
   Inputs,
   Input,
   Characteristics,

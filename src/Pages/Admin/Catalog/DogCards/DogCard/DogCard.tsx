@@ -1,199 +1,239 @@
-import { Link } from 'react-router-dom'
-
+import React, { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
+import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
+// API and types imports
+import { DogType } from '../../../../../API/types'
 import {
-  Characteristic,
-  CharacteristicItem,
-  Characteristics,
-  Description,
-  DogCardContainer,
-  DogCardContent,
-  Input,
-  Inputs,
-  MainPhoto,
-  Photos,
-  SidePhoto,
-  SidePhotos,
-  SidePhotosContainer,
-  StyledLink,
-} from './DogCard.style'
+  getDog,
+  patchDog,
+  postDog,
+  postDogImages,
+  deleteDogImage,
+} from '../../../../../API/fetchers/DogCards/dogFetchers'
+
+// UI components imports
+import Modal from '../../../Components/UI/Modal'
+import Message from '../../../Components/UI/Message'
+import Photos from './components/Photos'
+import ValidationMessage from './components/ValidationMessage'
+import { DogCardContainer, DogCardContent, StyledLink } from './DogCard.style'
 import TitleH2 from '../../../../../Components/UI/TitleH2.styles'
-import StyledInput from '../../../../../Components/UI/Input.styles'
 import Button from '../../../../../Components/UI/Button.styles'
-import TitleH3 from '../../../../../Components/UI/TitleH3.styles'
+import { ArrowIco } from './img/DogCardIcons'
+import CharacteristicsSection from './components/CharacteristicsSection'
+import DogCardInfo from './components/DogCardInfo'
+import DogDescription from './components/DogDescription'
 
-import dog1 from '../../../../Dog/Components/DogSlider/img/dog1.png'
-import {
-  PhotoIco,
-  ArrowIco,
-  FemaleIco,
-  MaleIco,
-  SizeIco,
-  BreedIco,
-  ChipIco,
-} from './img/DogCardIcons'
-
+// Props interface
 interface Props {
-  newCard?: boolean
+  $newCard?: boolean
 }
 
-function DogCard({ newCard }: Props) {
-  const data = {
-    name: 'Джулі',
-    age: '10 місяців',
-    sex: 'Дівчинка',
-    size: 'Великий',
-    breed: 'Лабрадор',
-    chip: 'Так',
-    description: `Джулі - чарівна та енергійна собачка, яка відмінно ладнає з іншими собаками і людьми. Вона обожнює прогулянки і гратися з м'ячиком.\n
-    Джулі має певні медичні проблеми, і для підтримки її здоров'я їй потрібні регулярні ліки та спеціальний догляд. Незважаючи на свої проблеми, Джулі є надзвичайно лагідною та люблячою собакою.\n
-    Ваші пожертви допоможуть нам забезпечити Джулі необхідними ліками, медичним та спеціальним доглядом.
-    Ваша підтримка дозволить нам зробити все можливе для поліпшення її стану і забезпечити їй комфортні умови проживання.`,
+// Initial state for the dog card data
+const initialState: DogType = {
+  mainPhoto: '',
+  photos: [],
+  name: '',
+  sex: '',
+  age: '',
+  haschip: false,
+  hasbreed: false,
+  breed: '',
+  size: '',
+  description: '',
+}
+
+function DogCard({ $newCard }: Props) {
+  const [dogData, setDogData] = useState<DogType>(initialState)
+  const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>([])
+  const [deletedPhotos, setDeletedPhotos] = useState<string[]>([])
+  const [sidePhotos, setSidePhotos] = useState<File[]>([])
+  const [mainPhoto, setMainPhoto] = useState<File | null>(null)
+  const [IsModalOpen, setIsModalOpen] = useState(false)
+  const [canPost, setCanPost] = useState(false)
+  const [isValidationFailed, setIsValidationFailed] = useState(false)
+  const [validationMessage, setValidationMessage] = useState('')
+
+  const navigate = useNavigate()
+  const { _id } = useParams<{ _id: string }>()
+  const isFirstRender = useRef(0)
+
+  // Fetch the dog data if it's not a new card
+  if (!$newCard) {
+    useQuery(['dog', _id], {
+      initialData: dogData,
+      queryFn: () => (_id ? getDog(_id) : Promise.resolve(null)),
+      onSuccess: (data) => {
+        if (_id && data !== null) {
+          setDogData(data)
+          setInitialSidePhotos(data.photos)
+        }
+      },
+      refetchOnWindowFocus: false,
+    })
   }
 
+  // Query client for managing data
+  const queryClient = useQueryClient()
+
+  // Mutations for posting and patching dog data
+  const { mutate: postDogData, isSuccess: isSuccessPost } = useMutation(
+    () => postDog(dogData),
+    {
+      onSuccess: (data) => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ['dog'] })
+        navigate(`/admin/edit-card/${data._id}`)
+      },
+    },
+  )
+
+  const { mutate: patchDogData, isSuccess: isSuccessPatch } = useMutation(
+    () => (_id ? patchDog(dogData, _id) : Promise.resolve()),
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries({ queryKey: ['dog'] })
+        deletedPhotos.forEach((photo) => deleteDogImage(photo))
+      },
+    },
+  )
+
+  // Validate if the images have been uploaded
+  const validateImages = () => {
+    if (dogData.mainPhoto === '') {
+      setValidationMessage('Завантажте головне фото')
+      return true
+    }
+
+    if (dogData.photos.length === 0) {
+      setValidationMessage('Завантажте принаймні одне додаткове фото')
+      return true
+    }
+
+    return false
+  }
+
+  // Process uploaded images and update the dog data
+  const processImagesAndData = async () => {
+    let updatedData = { mainPhoto: dogData.mainPhoto, photos: dogData.photos }
+    if (mainPhoto) {
+      const mainPhotoResponse = await uploadImage(mainPhoto, 'main-photo')
+      updatedData = {
+        ...updatedData,
+        mainPhoto: mainPhotoResponse[0],
+      }
+    }
+
+    if (sidePhotos[0]) {
+      const sidePhotoResponse = await uploadImage(sidePhotos, 'side-photo')
+      updatedData = {
+        ...updatedData,
+        photos: [...initialSidePhotos, ...sidePhotoResponse],
+      }
+    }
+
+    return updatedData
+  }
+
+  // Handle the image upload process
+  const uploadImage = async (imageData: any, type: string): Promise<string[]> => {
+    try {
+      const response = await postDogImages(imageData, type)
+      return response
+    } catch (error) {
+      console.error(`Error uploading ${type} photo:`, error)
+      return []
+    }
+  }
+
+  // Update the dog data after the images have been uploaded
+  const updateDogImages = async (updatedData: Partial<DogType>) => {
+    await setDogData((prevDogData) => ({
+      ...prevDogData,
+      ...updatedData,
+    }))
+    setCanPost(true)
+  }
+
+  // Logic to determine whether to create a new dog card or update an existing one
+  const handlePostOrPatch = () => {
+    if ($newCard) {
+      postDogData()
+    } else {
+      patchDogData()
+    }
+  }
+
+  // Effect to handle the creation or update process after the images have been uploaded
+  useEffect(() => {
+    if (isFirstRender.current < 2) {
+      //TODO зв'ясувати чому canPost змінюється
+      isFirstRender.current++
+      return
+    }
+    handlePostOrPatch()
+  }, [canPost])
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const validationFailed = validateImages()
+    setIsValidationFailed(validationFailed)
+
+    if (validationFailed) {
+      console.log('Validation failed')
+      return
+    } else {
+      try {
+        const imageData = await processImagesAndData()
+        await updateDogImages(imageData)
+      } catch (error) {
+        console.error('Error uploading photos:', error)
+      }
+    }
+  }
+
+  // Component rendering
   return (
-    <DogCardContainer newCard={newCard}>
+    <DogCardContainer>
+      <Modal
+        title="Введені дані не будуть збережені"
+        body="Ви дійсно хочете покинути сторінку?"
+        isOpen={IsModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        onSubmit={() => setIsModalOpen(false)}
+      />
       <StyledLink>
         <Link to="/admin">
           <ArrowIco />
           Назад
         </Link>
       </StyledLink>
-      <DogCardContent>
-        <TitleH2>{newCard ? 'Створення нової картки' : 'Редагування'}</TitleH2>
-        <Photos>
-          <MainPhoto>
-            {newCard ? (
-              <>
-                <PhotoIco />
-                <TitleH3>Завантажити фото</TitleH3>
-              </>
-            ) : (
-              <img src={dog1} alt="dog1" />
-            )}
-          </MainPhoto>
-
-          <SidePhotosContainer>
-            <SidePhotos>
-              <SidePhoto>
-                {newCard ? (
-                  <></>
-                ) : (
-                  <>
-                    <img src={dog1} alt="dog1" />
-                    <button />
-                  </>
-                )}
-              </SidePhoto>
-              <SidePhoto></SidePhoto>
-              <SidePhoto></SidePhoto>
-              <SidePhoto></SidePhoto>
-              <SidePhoto></SidePhoto>
-              <SidePhoto></SidePhoto>
-            </SidePhotos>
-          </SidePhotosContainer>
-        </Photos>
-        <Inputs>
-          <Input>
-            <label htmlFor="dog-name">Кличка собаки:</label>
-            <StyledInput
-              type="text"
-              placeholder={newCard ? 'Введіть кличку собаки' : data.name}
-              id="dog-name"
-            />
-          </Input>
-          <Input>
-            <label htmlFor="dog-age">Вік собаки:</label>
-            <StyledInput
-              type="text"
-              placeholder={newCard ? 'Введіть вік собаки' : data.age}
-              id="dog-age"
-            />
-          </Input>
-        </Inputs>
-        <Characteristics>
-          <Characteristic>
-            <CharacteristicItem>
-              <input type="radio" name="sex" defaultChecked={!newCard} />
-              <span>
-                <FemaleIco /> Дівчинка
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input type="radio" name="sex" />
-              <span>
-                <MaleIco />
-                Хлопчик
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-          <Characteristic>
-            <CharacteristicItem>
-              <input type="radio" name="size" defaultChecked={!newCard} />
-              <span>
-                <SizeIco />
-                Великий
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input type="radio" name="size" />
-              <span>
-                <SizeIco />
-                Середній
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input type="radio" name="size" />
-              <span>
-                <SizeIco />
-                Маленький
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-          <Characteristic>
-            <CharacteristicItem>
-              <input type="radio" name="breed" defaultChecked={!newCard} />
-              <span>
-                <BreedIco />
-                Без породи
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input type="radio" name="breed" />
-              <span>
-                <BreedIco />
-                <input
-                  type="text"
-                  placeholder={newCard ? 'Введіть вік собаки' : data.breed}
-                />
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-          <Characteristic>
-            <CharacteristicItem>
-              <input type="radio" name="chip" defaultChecked={!newCard} />
-              <span>
-                <ChipIco />
-                Так
-              </span>
-            </CharacteristicItem>
-            <CharacteristicItem>
-              <input type="radio" name="chip" />
-              <span>
-                <ChipIco />
-                Hі
-              </span>
-            </CharacteristicItem>
-          </Characteristic>
-        </Characteristics>
-        <Description>
-          <label htmlFor="dog-about">Про тваринку:</label>
-          <textarea
-            placeholder="Опишіть тваринку"
-            id="dog-about"
-            defaultValue={newCard ? '' : data.description}
-          ></textarea>
-        </Description>
-        <Button>{newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
+      <DogCardContent onSubmit={handleSubmit}>
+        <TitleH2>{$newCard ? 'Створення нової картки' : 'Редагування'}</TitleH2>
+        <Photos
+          setDogData={setDogData}
+          setMainPhoto={setMainPhoto}
+          setSidePhotos={setSidePhotos}
+          setDeletedPhotos={setDeletedPhotos}
+          setInitialSidePhotos={setInitialSidePhotos}
+          dogData={dogData}
+        />
+        <DogCardInfo setDogData={setDogData} dogData={dogData} />
+        <CharacteristicsSection setDogData={setDogData} dogData={dogData} />
+        <DogDescription
+          description={dogData.description || ''}
+          setDescription={(desc) => setDogData({ ...dogData, description: desc })}
+        />
+        <Button type="submit">{$newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
+        {isSuccessPost && <Message mode="green">Картка собаки успішно додана✔️</Message>}
+        {isSuccessPatch && (
+          <Message mode="green">Картка собаки успішно оновлена✔️</Message>
+        )}
+        {isValidationFailed && <ValidationMessage message={validationMessage} />}
       </DogCardContent>
     </DogCardContainer>
   )

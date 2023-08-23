@@ -6,21 +6,20 @@ import {
   StyledGallery,
   DogsAmount,
 } from './Gallery.style'
-import dogImage from './img/Dog_photo.png'
 import { ReactComponent as Refresh } from './img/refresh.svg'
 import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
 import DogCard from './DogCard'
-import { DogTypes } from '../../API/types'
+import { DogType } from '../../API/types'
+import { UseMutateFunction } from '@tanstack/react-query'
 
 interface Props {
   admin?: boolean
-  state?: DogTypes | null
+  dogsList: DogType[] | null
+  onDeleteDog: UseMutateFunction<void, unknown, string, unknown>
 }
 
-function Gallery({ admin, state }: Props) {
-  const dogsList = state?.data
-
+function Gallery({ admin, dogsList, onDeleteDog }: Props) {
   return (
     <StyledGallery $admin={admin}>
       <Container>
@@ -30,7 +29,7 @@ function Gallery({ admin, state }: Props) {
           </DogsAmount>
           <DogsCards>
             {dogsList?.map((dog) => (
-              <DogCard dog={dog} src={dogImage} key={dog.id} admin={admin} />
+              <DogCard dog={dog} key={dog._id} admin={admin} onDeleteDog={onDeleteDog} />
             ))}
           </DogsCards>
           <Pagination>

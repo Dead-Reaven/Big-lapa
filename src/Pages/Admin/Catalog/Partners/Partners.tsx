@@ -10,7 +10,7 @@ import {
   PartnersLogos,
   PartnersStyled,
 } from './Partners.style'
-import Modal from './components/Modal'
+import Modal from '../../Components/UI/Modal'
 import { SadIco } from './img/icons'
 import PartnersItem from './components/PartnersItem'
 import AddPartner from './components/AddPartner'
@@ -95,7 +95,7 @@ function Partners() {
         isOpen={IsModalOpen}
         onCancel={cancelHandler}
         onSubmit={onDeleteLogo}
-        logoId={selectedId}
+        id={selectedId}
       />
       <PartnersStyled>
         <PartnersLogos>

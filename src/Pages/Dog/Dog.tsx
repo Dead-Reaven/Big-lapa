@@ -21,26 +21,30 @@ import {
   DogText,
   HiddenDogText,
 } from './Dog.style'
-import useGet from '../../API/useGet'
-import { DogTypes } from '../../API/types'
+import { DogType } from '../../API/types'
+import { useQuery } from '@tanstack/react-query'
+import getDog from '../../API/fetchers/DogCards/getDog'
 
 function Dog() {
-  const [dogsState, setDogsState] = useState<DogTypes>({ data: [] })
-  useGet({
-    category: 'dogs',
-    state: dogsState,
-    setState: setDogsState,
-  }) as DogTypes
+  const [dogState, setDogState] = useState<DogType>()
 
   const { id } = useParams()
-  const index = id ? +id : 0
 
-  const dog = dogsState?.data[index]
+  useQuery(['dog', id], {
+    initialData: dogState,
+    queryFn: () => (id ? getDog(id) : Promise.resolve(null)),
+    onSuccess: (data) => {
+      if (id && data !== null) {
+        setDogState(data)
+        console.log(data)
+      }
+    },
+  })
 
-  const { name, age, sex, size, hasbreed, breed, haschip } = dog || {}
+  const dog = dogState
 
-  const src =
-    'https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*'
+  const { name, age, sex, size, hasbreed, breed, haschip, photos, mainPhoto } = dog || {}
+
   return (
     <DogStyled data-testid="dogs-page">
       <Container>
@@ -62,9 +66,12 @@ function Dog() {
                 проживання.
               </p>
             </HiddenDogText>
-            <Slider>
-              <DogSlider src={src} />
-            </Slider>
+            {photos && (
+              <Slider>
+                <DogSlider photos={mainPhoto ? [mainPhoto, ...photos] : photos} />
+              </Slider>
+            )}
+
             <DogContent>
               <DogTitle>
                 <TitleH2>{name}</TitleH2>

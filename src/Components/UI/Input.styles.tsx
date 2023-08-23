@@ -4,6 +4,7 @@ interface Props {
   type?: string
   withSvg?: boolean
   width?: string
+  onChange?: (e: any) => void
   iserror?: boolean | string
   changecolor?: boolean
 }
@@ -36,7 +37,7 @@ const StyledInput = styled.input<Props>`
     !changecolor &&
     css`
       border-radius: 4px;
-      border: 2px solid #e8b535;
+      /* border: 2px solid #e8b535; */
       background: #f9f9f9;
     `}
 `

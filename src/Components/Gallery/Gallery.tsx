@@ -24,29 +24,42 @@ function Gallery({ admin, dogsList, onDeleteDog }: Props) {
     <StyledGallery $admin={admin}>
       <Container>
         <Flex $direction="column" $align="center">
-          <DogsAmount>
-            <span>Знайдено:</span> {dogsList?.length} собак
-          </DogsAmount>
-          <DogsCards>
-            {dogsList?.map((dog) => (
-              <DogCard dog={dog} key={dog._id} admin={admin} onDeleteDog={onDeleteDog} />
-            ))}
-          </DogsCards>
-          <Pagination>
-            <PaginationButton>
-              <Refresh />
-              Показати ще
-            </PaginationButton>
-            <PaginationNav>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>...</li>
-              <li>16</li>
-            </PaginationNav>
-          </Pagination>
+          {dogsList && dogsList.length === 0 && (
+            <DogsAmount>Нічого не знайдено. Змініть запит</DogsAmount>
+          )}
+
+          {dogsList && dogsList.length > 0 && (
+            <>
+              <DogsAmount>
+                <span>Знайдено:</span> {dogsList?.length} собак
+              </DogsAmount>
+              <DogsCards>
+                {dogsList?.map((dog) => (
+                  <DogCard
+                    dog={dog}
+                    key={dog._id}
+                    admin={admin}
+                    onDeleteDog={onDeleteDog}
+                  />
+                ))}
+              </DogsCards>
+              <Pagination>
+                <PaginationButton>
+                  <Refresh />
+                  Показати ще
+                </PaginationButton>
+                <PaginationNav>
+                  <li>1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                  <li>...</li>
+                  <li>16</li>
+                </PaginationNav>
+              </Pagination>
+            </>
+          )}
         </Flex>
       </Container>
     </StyledGallery>

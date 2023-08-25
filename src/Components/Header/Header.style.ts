@@ -107,7 +107,6 @@ const StyledHeaderRight = styled(Flex)<HeaderRightProps>`
 
   @media (max-width: 767px) {
     width: 240px;
-    ${({ $extendNavbar }) => $extendNavbar && 'flex-direction: row-reverse;'}
   }
 `
 interface HeaderButtonProps {

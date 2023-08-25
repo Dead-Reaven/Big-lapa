@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { DonationButton, Grid, StyledAmount } from './Donation.style'
-import Flex from '../../../../Components/UI/Flex.styles'
+import { DonationButton, DonationFormFlex, Grid, StyledAmount } from './Donation.style'
 
 declare global {
   interface Window {
@@ -46,7 +45,7 @@ function DonationForm({ setIsModalOpen }: Props) {
   //   window.location.href = button.getUrl()
   // }
   return (
-    <Flex $direction="column" $align="center" $gap="35px">
+    <DonationFormFlex $direction="column" $align="center" $gap="35px">
       <Grid>
         {amounts.map((amount) => (
           <StyledAmount key={amount}>
@@ -56,9 +55,7 @@ function DonationForm({ setIsModalOpen }: Props) {
               value={amount}
               onChange={handleAmountClick}
             />
-            <span>
-              <span>{amount} грн</span>
-            </span>
+            <span>{amount} грн</span>
           </StyledAmount>
         ))}
         <StyledAmount>
@@ -75,7 +72,7 @@ function DonationForm({ setIsModalOpen }: Props) {
         </StyledAmount>
       </Grid>
       <DonationButton onClick={handleSubmit}>Зробити внесок</DonationButton>
-    </Flex>
+    </DonationFormFlex>
   )
 }
 

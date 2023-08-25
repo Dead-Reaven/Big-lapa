@@ -102,7 +102,7 @@ const StyledDogCard = styled.div`
   text-align: left;
   img {
     width: 100%;
-    height: 360px;
+    aspect-ratio: 3 / 3.6;
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 10px;

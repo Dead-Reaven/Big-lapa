@@ -30,7 +30,6 @@ function Dogs() {
           options={dogsState as DogType[]}
         />
       </Container>
-      <br />
       <Gallery dogsList={filteredDogsState} />
     </DogsStyled>
   )

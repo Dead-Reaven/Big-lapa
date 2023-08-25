@@ -9,7 +9,6 @@ import { ReactComponent as IcoPartners } from './icons/LogoPartners.svg'
 import { ReactComponent as IcoPhone } from './icons/Phone.svg'
 import { ReactComponent as IcoReports } from './icons/Reports.svg'
 import { ReactComponent as IcoSettings } from './icons/Settings.svg'
-import { ReactComponent as IcoSliders } from './icons/SliderImg.svg'
 
 function SideBar() {
   const { signout }: any = useAuth()
@@ -29,9 +28,6 @@ function SideBar() {
       </Item>
       <Item link="/admin/partners" text="Партнери">
         <IcoPartners />
-      </Item>
-      <Item link="/admin/sliders" text="Слайдери">
-        <IcoSliders />
       </Item>
       <Item link="/admin/reports" text="Звітність">
         <IcoReports />

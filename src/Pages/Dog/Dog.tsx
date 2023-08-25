@@ -43,29 +43,31 @@ function Dog() {
 
   const dog = dogState
 
-  const { name, age, sex, size, hasbreed, breed, haschip, photos, mainPhoto } = dog || {}
+  const {
+    name,
+    age,
+    sex,
+    size,
+    hasbreed,
+    breed,
+    haschip,
+    photos,
+    mainPhoto,
+    description,
+  } = dog || {}
 
   return (
     <DogStyled data-testid="dogs-page">
       <Container>
         <DogContainer>
           <DogFlex>
-            <HiddenDogText>
-              <TitleH3 $marginBottom="24px">Про тваринку:</TitleH3>
-              <p>
-                {name} - чарівна та енергійна собачка, яка відмінно ладнає з іншими
-                собаками і людьми. Вона обожнює прогулянки і гратися з м&apos;ячиком.{' '}
-                <br />
-                <br /> {name} має певні медичні проблеми, і для підтримки її здоров&apos;я
-                їй потрібні регулярні ліки та спеціальний догляд. Незважаючи на свої
-                проблеми, {name} є надзвичайно лагідною та люблячою собакою.
-                <br />
-                <br /> Ваші пожертви допоможуть нам забезпечити {name} необхідними ліками,
-                медичним та спеціальним доглядом. Ваша підтримка дозволить нам зробити все
-                можливе для поліпшення її стану і забезпечити їй комфортні умови
-                проживання.
-              </p>
-            </HiddenDogText>
+            {description && (
+              <HiddenDogText>
+                <TitleH3 $marginBottom="24px">Про тваринку:</TitleH3>
+                <p>{description}</p>
+              </HiddenDogText>
+            )}
+
             {photos && (
               <Slider>
                 <DogSlider photos={mainPhoto ? [mainPhoto, ...photos] : photos} />
@@ -91,23 +93,12 @@ function Dog() {
                   <ChipIco />
                 </Label>
               </Lables>
-              <DogText>
-                <TitleH3 $marginBottom="24px">Про тваринку:</TitleH3>
-                <p>
-                  {name} - чарівна та енергійна собачка, яка відмінно ладнає з іншими
-                  собаками і людьми. Вона обожнює прогулянки і гратися з м&apos;ячиком.{' '}
-                  <br />
-                  <br /> {name} має певні медичні проблеми, і для підтримки її
-                  здоров&apos;я їй потрібні регулярні ліки та спеціальний догляд.
-                  Незважаючи на свої проблеми, {name} є надзвичайно лагідною та люблячою
-                  собакою.
-                  <br />
-                  <br /> Ваші пожертви допоможуть нам забезпечити {name} необхідними
-                  ліками, медичним та спеціальним доглядом. Ваша підтримка дозволить нам
-                  зробити все можливе для поліпшення її стану і забезпечити їй комфортні
-                  умови проживання.
-                </p>
-              </DogText>
+              {description && (
+                <DogText>
+                  <TitleH3 $marginBottom="24px">Про тваринку:</TitleH3>
+                  <p>{description}</p>
+                </DogText>
+              )}
             </DogContent>
           </DogFlex>
         </DogContainer>

@@ -1,30 +1,34 @@
 import { useState } from 'react'
-import useGet from '../../API/useGet'
-import { ContactTypes } from '../../API/types'
 import { NavLink } from 'react-router-dom'
+import { ContactTypes, ReportTypes } from '../../API/types'
+import useGet from '../../API/useGet'
 import {
+  AbsoluteLink,
+  ContactItem,
+  ContactListItem,
+  FlexList,
+  FlexWrapper,
   FooterSection,
   ListItem,
   Paragraph,
-  AbsoluteLink,
-  FlexWrapper,
-  FlexList,
-  ContactListItem,
   SocialIcons,
+  StyledContactsList,
   StyledIcon,
   StyledInstaIcon,
   StyledLinksList,
-  StyledContactsList,
-  ContactItem,
 } from './Footer.style'
+import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 import { ReactComponent as LogoIcon } from './svgs-footer/logo-footer.svg'
 import { ReactComponent as PhoneIcon } from './svgs-footer/phone.svg'
-import { ReactComponent as EmailIcon } from './svgs-footer/email.svg'
 
-import { theme } from '../UI/Theme.styles'
+import { useQuery } from '@tanstack/react-query'
+import getReportAll from '../../API/fetchers/getReportAll'
 import Container from '../UI/Container.style'
+import { theme } from '../UI/Theme.styles'
 
+const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/document/'
 function Footer() {
+  const [reportsState, setReportsState] = useState<ReportTypes[]>([])
   const [contactsState, setContactsState] = useState<ContactTypes>({
     email: '',
     first_phoneNumber: '',
@@ -36,6 +40,29 @@ function Footer() {
     state: contactsState,
     setState: setContactsState,
   }) as ContactTypes
+
+  useQuery({
+    queryKey: ['reportsId'],
+    initialData: [],
+    queryFn: getReportAll,
+    onSuccess: (data) => {
+      const reports = data.map((document) => {
+        return {
+          id: document.Url,
+          name: document.name,
+          src: null,
+        }
+      })
+      setReportsState(reports)
+    },
+    refetchOnWindowFocus: false,
+  })
+
+  function downloadFiles() {
+    reportsState.forEach((obj) => {
+      window.open(url + obj.id, '_blank')
+    })
+  }
 
   return (
     <FooterSection>
@@ -61,9 +88,11 @@ function Footer() {
               </AbsoluteLink>
             </ListItem>
             <ListItem>
-              <AbsoluteLink href="path/to/reports" target="_blank">
+              <button onClick={downloadFiles}>Звітність</button>
+
+              {/* <AbsoluteLink href="path/to/reports" target="_blank">
                 Звітність
-              </AbsoluteLink>
+              </AbsoluteLink> */}
             </ListItem>
           </StyledLinksList>
 

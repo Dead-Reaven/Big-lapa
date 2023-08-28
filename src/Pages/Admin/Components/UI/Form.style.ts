@@ -32,6 +32,7 @@ const ErrorValid = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+  bottom: 21px;
 `
 
 export { ErrorValid, Form, FormButton, FormContainer, FormH2 }

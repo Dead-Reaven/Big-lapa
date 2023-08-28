@@ -1,18 +1,11 @@
-import {
-  DogsCards,
-  Pagination,
-  PaginationButton,
-  PaginationNav,
-  StyledGallery,
-  DogsAmount,
-} from './Gallery.style'
-import { ReactComponent as Refresh } from './img/refresh.svg'
+import { DogsCards, StyledGallery, DogsAmount } from './Gallery.style'
 import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
 import DogCard from './DogCard'
 import { DogType } from '../../API/types'
 import { UseMutateFunction } from '@tanstack/react-query'
-
+import { useState, useEffect } from 'react'
+import Pagination from '../Pagination/Pagination'
 interface Props {
   admin?: boolean
   dogsList: DogType[] | null
@@ -20,6 +13,37 @@ interface Props {
 }
 
 function Gallery({ admin, dogsList, onDeleteDog }: Props) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [cardsPerPage, setCardsPerPage] = useState(10)
+  const [message, setMessage] = useState('')
+
+  const indexOfLastCard = currentPage * cardsPerPage
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage
+  const currentCards = dogsList ? dogsList.slice(indexOfFirstCard, indexOfLastCard) : []
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber)
+  }
+
+  const nextPage = () => {
+    if (dogsList !== null) {
+      if (currentPage !== Math.ceil(dogsList.length / cardsPerPage)) {
+        setCardsPerPage(cardsPerPage + 10)
+      } else {
+        setMessage('Список песиків закінчився')
+      }
+    }
+  }
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth
+    console.log('SCREEN WIDTH', screenWidth)
+    if (screenWidth >= 1001) {
+      setCardsPerPage(12)
+    } else {
+      setCardsPerPage(10)
+    }
+  }, [])
   return (
     <StyledGallery $admin={admin}>
       <Container>
@@ -34,7 +58,7 @@ function Gallery({ admin, dogsList, onDeleteDog }: Props) {
                 <span>Знайдено:</span> {dogsList?.length} собак
               </DogsAmount>
               <DogsCards>
-                {dogsList?.map((dog) => (
+                {currentCards?.map((dog) => (
                   <DogCard
                     dog={dog}
                     key={dog._id}
@@ -43,21 +67,13 @@ function Gallery({ admin, dogsList, onDeleteDog }: Props) {
                   />
                 ))}
               </DogsCards>
-              <Pagination>
-                <PaginationButton>
-                  <Refresh />
-                  Показати ще
-                </PaginationButton>
-                <PaginationNav>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                  <li>5</li>
-                  <li>...</li>
-                  <li>16</li>
-                </PaginationNav>
-              </Pagination>
+              <Pagination
+                cardsPerPage={cardsPerPage}
+                totalCards={dogsList.length}
+                paginate={paginate}
+                nextPage={nextPage}
+                message={message}
+              />
             </>
           )}
         </Flex>

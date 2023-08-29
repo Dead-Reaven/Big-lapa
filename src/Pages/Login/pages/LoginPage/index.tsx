@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useLogin from '../../../../API/fetchers/postLogin'
 import { useAuth } from '../../../../AuthHoc/useAuth'
@@ -12,36 +12,8 @@ import {
 } from '../../../Admin/Components/UI/Form.style'
 import Input from '../../../Admin/Components/UI/Input'
 import Message from '../../../Admin/Components/UI/Message'
-import useValidForm from '../../../useValidForm'
+import { validationHook } from '../../validSetting'
 import { ForgotButton } from '../ForgotPage/ForgotPage.style'
-
-const validationHook = (initialState: string, validations: any) => {
-  const [value, setStateUser] = useState(initialState)
-  const [isDirty, setIsDirty] = useState(false)
-  const valid = useValidForm({ value, validations })
-
-  const onChange = (newValue: string) => {
-    setStateUser(newValue)
-  }
-
-  const handleClear = (e: any) => {
-    e.preventDefault()
-    setStateUser('')
-  }
-
-  const onBlur = () => {
-    setIsDirty(true)
-  }
-
-  return {
-    value,
-    isDirty,
-    onChange,
-    handleClear,
-    onBlur,
-    ...valid,
-  }
-}
 
 const LoginComponent = () => {
   const token = localStorage.getItem('access_token')
@@ -57,7 +29,7 @@ const LoginComponent = () => {
     },
   })
 
-  const loginUser = validationHook('', {
+  const emailUser = validationHook('', {
     isEmpty: false,
     minLength: 8,
     emailError: false,
@@ -66,11 +38,11 @@ const LoginComponent = () => {
 
   const onHandlerSubmit = (e: any) => {
     const data = {
-      login: loginUser.value,
+      login: emailUser.value,
       password: passwordUser.value,
     }
     mutate(data)
-    loginUser.handleClear(e)
+    emailUser.handleClear(e)
     passwordUser.handleClear(e)
   }
   useEffect(() => {
@@ -84,26 +56,26 @@ const LoginComponent = () => {
       <Form onSubmit={onHandlerSubmit}>
         <FormH2>Вхід до панелі</FormH2>
         <FormContainer>
-          {isError && loginUser.emailError && (
-            <ErrorValid>Введіть дійсний email</ErrorValid>
-          )}
           {isError ? (
             <Input
-              state={loginUser.value}
-              onChange={(newValue) => loginUser.onChange(newValue)}
-              onBlur={loginUser.onBlur}
+              state={emailUser.value}
+              onChange={(newValue) => emailUser.onChange(newValue)}
+              onBlur={emailUser.onBlur}
               label="Електронна пошта адміністратора:"
               placeholder="email@gmail.com"
               iserror={isError}
-              changecolor={loginUser.emailError}
+              changecolor={emailUser.emailError}
             />
           ) : (
             <Input
-              state={loginUser.value}
-              onChange={(newValue) => loginUser.onChange(newValue)}
+              state={emailUser.value}
+              onChange={(newValue) => emailUser.onChange(newValue)}
               label="Електронна пошта адміністратора:"
               placeholder="email@gmail.com"
             />
+          )}
+          {isError && emailUser.emailError && (
+            <ErrorValid>Введіть дійсний email</ErrorValid>
           )}
           {isError ? (
             <Input
@@ -130,12 +102,12 @@ const LoginComponent = () => {
           {passwordUser.isDirty && passwordUser.maxLengthError && (
             <ErrorValid>Пароль має містити максимум 12 символів</ErrorValid>
           )}
-          <Link to="authorization">
+          <Link to="reset-password">
             <ForgotButton>Забули пароль?</ForgotButton>
           </Link>
           <FormButton
             type="submit"
-            disabled={!loginUser.inputDisabled || !passwordUser.inputDisabled}
+            disabled={!emailUser.inputDisabled || !passwordUser.inputDisabled}
           >
             Увійти
           </FormButton>

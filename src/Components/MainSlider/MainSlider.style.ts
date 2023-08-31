@@ -28,6 +28,16 @@ const WrapperSliders = styled.div`
   display: flex;
   overflow-x: hidden; /* Hide the default scrollbar */
   scroll-behavior: smooth; /* Enable smooth scrolling */
+  transition: transform 0.3s ease-out;
+
+  #inner-wrapper {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    transition: transform 0.3s ease-out;
+  }
 `
 const TextContainer = styled(Container)`
   /* padding: 25px; */

@@ -37,17 +37,26 @@ interface DogType {
   description?: string
 }
 
-interface LoginType {
+interface IEmailUser {
   login: string
   password: string
 }
 
-interface changePassType {
+interface IAdminChangePass {
   currentPassword: string
   newPassword: string
 }
 
-interface ValidationsType {
+interface IChangePass {
+  token: string | null
+  newPassword: string
+}
+
+interface IForgotPass {
+  email: string
+}
+
+interface IValidation {
   value: string
   validations: boolean | any
 }
@@ -55,10 +64,12 @@ interface ValidationsType {
 export type {
   ContactTypes,
   DogType,
-  LoginType,
+  IAdminChangePass,
+  IChangePass,
+  IEmailUser,
+  IForgotPass,
+  IValidation,
   PartnerTypes,
   ReportTypes,
   RequestStatusTypes,
-  ValidationsType,
-  changePassType,
 }

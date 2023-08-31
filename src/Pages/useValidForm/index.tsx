@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { ValidationsType } from '../../API/types'
+import { IValidation } from '../../API/types'
 
-const useValidForm = (props: ValidationsType) => {
+const useValidForm = (props: IValidation) => {
   const { value, validations } = props
   const [isEmpty, setIsEmpty] = useState(true)
   const [minLengthError, setMinLengthError] = useState(false)

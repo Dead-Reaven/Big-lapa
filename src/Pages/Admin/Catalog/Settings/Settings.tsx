@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
 import usePatch from '../../../../API/fetchers/patchPatch'
-import useValidForm from '../../../useValidForm'
+import { validationHook } from '../../../Login/validSetting'
 import {
   ErrorValid,
   Form,
@@ -11,34 +10,6 @@ import {
 } from '../../Components/UI/Form.style'
 import Input from '../../Components/UI/Input'
 import Message from '../../Components/UI/Message'
-
-const validationHook = (initialState: string, validations: any) => {
-  const [value, setStateUser] = useState(initialState)
-  const [isDirty, setIsDirty] = useState(false)
-  const valid = useValidForm({ value, validations })
-
-  const onChange = (newValue: string) => {
-    setStateUser(newValue)
-  }
-
-  const handleClear = (e: any) => {
-    e.preventDefault()
-    setStateUser('')
-  }
-
-  const onBlur = () => {
-    setIsDirty(true)
-  }
-
-  return {
-    value,
-    isDirty,
-    onChange,
-    handleClear,
-    onBlur,
-    ...valid,
-  }
-}
 
 function Settings() {
   const queryClient = useQueryClient()
@@ -74,9 +45,7 @@ function Settings() {
     }
     if (passwordNew.value === passwordNewConf.value) {
       mutate(updateData)
-    } else {
-      return
-    }
+    } else return
     passwordOld.handleClear(e)
     passwordNew.handleClear(e)
     passwordNewConf.handleClear(e)
@@ -86,12 +55,6 @@ function Settings() {
       <FormH2>Налаштування</FormH2>
       <p style={{ fontWeight: '700', marginBottom: '20px' }}>Змінити пароль</p>
       <FormContainer>
-        {passwordOld.isDirty && passwordOld.minLengthError && (
-          <ErrorValid>Пароль має містити мінімум 8 символів</ErrorValid>
-        )}
-        {passwordOld.isDirty && passwordOld.maxLengthError && (
-          <ErrorValid>Пароль має містити максимум 12 символів</ErrorValid>
-        )}
         {isError && <ErrorValid>Відбулася помилка, схоже пароль не вірний</ErrorValid>}
         {isError ? (
           <Input
@@ -111,12 +74,13 @@ function Settings() {
             placeholder="*********"
           />
         )}
-        {passwordNew.isDirty && passwordNew.minLengthError && (
+        {passwordOld.isDirty && passwordOld.minLengthError && (
           <ErrorValid>Пароль має містити мінімум 8 символів</ErrorValid>
         )}
-        {passwordNew.isDirty && passwordNew.maxLengthError && (
+        {passwordOld.isDirty && passwordOld.maxLengthError && (
           <ErrorValid>Пароль має містити максимум 12 символів</ErrorValid>
         )}
+
         {isError ? (
           <Input
             state={passwordNew.value}
@@ -135,12 +99,13 @@ function Settings() {
             placeholder="*********"
           />
         )}
-        {passwordNewConf.isDirty && passwordNewConf.minLengthError && (
+        {passwordNew.isDirty && passwordNew.minLengthError && (
           <ErrorValid>Пароль має містити мінімум 8 символів</ErrorValid>
         )}
-        {passwordNewConf.isDirty && passwordNewConf.maxLengthError && (
+        {passwordNew.isDirty && passwordNew.maxLengthError && (
           <ErrorValid>Пароль має містити максимум 12 символів</ErrorValid>
         )}
+
         {isError ? (
           <Input
             state={passwordNewConf.value}
@@ -159,7 +124,12 @@ function Settings() {
             placeholder="*********"
           />
         )}
-
+        {passwordNewConf.isDirty && passwordNewConf.minLengthError && (
+          <ErrorValid>Пароль має містити мінімум 8 символів</ErrorValid>
+        )}
+        {passwordNewConf.isDirty && passwordNewConf.maxLengthError && (
+          <ErrorValid>Пароль має містити максимум 12 символів</ErrorValid>
+        )}
         <FormButton
           type="submit"
           disabled={!passwordNew.inputDisabled || !passwordOld.inputDisabled}

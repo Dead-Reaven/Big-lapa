@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import SlidersData from './content'
 import useSwipe from '../../hooks/useSwipe'
 import {
@@ -26,27 +26,17 @@ function MainSlider({ initialSliderNumber, setInitialSliderNumber }: MainSliderP
 
   const [sliderWidth, setSliderWidth] = useState(window.innerWidth)
 
-  const nextSlide = () =>
-    setInitialSliderNumber(
-      initialSliderNumber === SlidersData.length - 1 ? 0 : initialSliderNumber + 1,
-    )
+  const changeSlide = useCallback(
+    (offset: number) => {
+      const nextSlide =
+        (initialSliderNumber + offset + SlidersData.length) % SlidersData.length
+      setInitialSliderNumber(nextSlide)
+    },
+    [initialSliderNumber, setInitialSliderNumber],
+  )
 
-  const prevSlide = () =>
-    setInitialSliderNumber(
-      initialSliderNumber === 0 ? SlidersData.length - 1 : initialSliderNumber - 1,
-    )
-
-  useEffect(() => {
-    const wrapper = document.querySelector('#wrapper')
-
-    console.log('swipe')
-    wrapper?.scrollTo({
-      top: 0,
-      left: sliderWidth * initialSliderNumber,
-      behavior: 'smooth',
-    })
-    window.scrollTo(0, 0)
-  }, [initialSliderNumber, sliderWidth])
+  const nextSlide = () => changeSlide(1)
+  const prevSlide = () => changeSlide(-1)
 
   useEffect(() => {
     // Update sliderWidth when the viewport is resized
@@ -61,17 +51,13 @@ function MainSlider({ initialSliderNumber, setInitialSliderNumber }: MainSliderP
     }
   }, [])
 
-  const handleSwipe = (direction: any) => {
-    if (direction === 'next') {
-      setInitialSliderNumber((prevIndex) =>
-        prevIndex === SlidersData.length - 1 ? 0 : prevIndex + 1,
-      )
-    } else if (direction === 'prev') {
-      setInitialSliderNumber((prevIndex) =>
-        prevIndex === 0 ? SlidersData.length - 1 : prevIndex - 1,
-      )
-    }
-  }
+  const handleSwipe = useCallback(
+    (direction: string) => {
+      if (direction === 'next') changeSlide(1)
+      else if (direction === 'prev') changeSlide(-1)
+    },
+    [changeSlide],
+  )
 
   const { onTouchStart, onTouchMove } = useSwipe(handleSwipe)
   return (
@@ -79,19 +65,24 @@ function MainSlider({ initialSliderNumber, setInitialSliderNumber }: MainSliderP
       <StyledPrevArrowContainer>
         <StyledPrevArrow type="button" onClick={prevSlide} />
       </StyledPrevArrowContainer>
-      <WrapperSliders id="wrapper">
-        {SlidersData.map((slider, idx) => (
-          <StyledSlider
-            key={idx}
-            $isActive={initialSliderNumber === idx}
-            $background={slider.image}
-          >
-            <TextContainer>
-              <TitleH1>{slider.heading}</TitleH1>
-              <TitleH3>{slider.paragraph}</TitleH3>
-            </TextContainer>
-          </StyledSlider>
-        ))}
+      <WrapperSliders>
+        <div
+          id="inner-wrapper"
+          style={{ transform: `translateX(-${sliderWidth * initialSliderNumber}px)` }}
+        >
+          {SlidersData.map((slider, idx) => (
+            <StyledSlider
+              key={idx}
+              $isActive={initialSliderNumber === idx}
+              $background={slider.image}
+            >
+              <TextContainer>
+                <TitleH1>{slider.heading}</TitleH1>
+                <TitleH3>{slider.paragraph}</TitleH3>
+              </TextContainer>
+            </StyledSlider>
+          ))}
+        </div>
       </WrapperSliders>
       <StyledNextArrowContainer>
         <StyledNextArrow type="button" onClick={nextSlide} />

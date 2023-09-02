@@ -1,9 +1,8 @@
 import axios from 'axios'
-
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/'
+import domen from '../domen'
 
 const deleteReport = (id: string): Promise<any> => {
-  return axios.delete(url + id).then((res) => {
+  return axios.delete(`${domen}/api/files/` + id).then((res) => {
     console.log('Delete report successfully called')
     return res.data
   })

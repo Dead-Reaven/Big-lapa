@@ -1,10 +1,9 @@
 import axios from 'axios'
-
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/category/document'
+import domen from '../domen'
 
 const getReportFile = (id: string): Promise<File> =>
   axios
-    .get(url + id, {
+    .get(`${domen}/api/files/category/document` + id, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then((res) => {

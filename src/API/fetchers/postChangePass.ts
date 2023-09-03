@@ -1,13 +1,13 @@
 import axios from 'axios'
+import domen from '../domen'
 import { IChangePass } from '../types'
 
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/auth/reset-password'
 const headers = {
   'Content-Type': 'application/json',
 }
 
 const postChangePass = async (data: IChangePass): Promise<any> => {
-  await axios.post(url, data, { headers }).then((res) => {
+  await axios.post(`${domen}/api/auth/reset-password`, data, { headers }).then((res) => {
     return res.data
   })
 }

@@ -42,6 +42,12 @@ interface IEmailUser {
   password: string
 }
 
+interface IUserContacts {
+  name: string
+  email: string
+  question: string
+}
+
 interface IAdminChangePass {
   currentPassword: string
   newPassword: string
@@ -68,6 +74,7 @@ export type {
   IChangePass,
   IEmailUser,
   IForgotPass,
+  IUserContacts,
   IValidation,
   PartnerTypes,
   ReportTypes,

@@ -1,10 +1,9 @@
 import axios from 'axios'
+import domen from '../domen'
 import { PartnerTypes } from '../types'
 
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/'
-
 const getPartner = (id: string): Promise<PartnerTypes> =>
-  axios.get(url + id, { responseType: 'arraybuffer' }).then((res) => {
+  axios.get(`${domen}/api/files/` + id, { responseType: 'arraybuffer' }).then((res) => {
     console.log('fetched partner img', { id })
 
     const data = new Uint8Array(res.data) // No need to spread the data into an array

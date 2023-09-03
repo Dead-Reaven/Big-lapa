@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/images'
+import domen from '../domen'
 
 const postPartners = async (data: File) => {
   const category = 'Logo'
@@ -10,7 +9,7 @@ const postPartners = async (data: File) => {
   formData.append('category', category)
 
   return axios
-    .post(url, formData, {
+    .post(`${domen}/api/files/images`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then((res) => {

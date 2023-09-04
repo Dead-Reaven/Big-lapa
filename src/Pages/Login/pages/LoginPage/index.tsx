@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useLogin from '../../../../API/fetchers/postLogin'
 import { useAuth } from '../../../../AuthHoc/useAuth'
+import { useSuccessMessage } from '../../../../successContextMess'
 import {
   ErrorValid,
   Form,
@@ -16,6 +17,8 @@ import { validationHook } from '../../validSetting'
 import { ForgotButton } from '../ForgotPage/ForgotPage.style'
 
 const LoginComponent = () => {
+  const { showSuccessMessage } = useSuccessMessage()
+
   const token = localStorage.getItem('access_token')
   const location = useLocation()
   const navigate = useNavigate()
@@ -23,7 +26,7 @@ const LoginComponent = () => {
   const fromPage = location.state?.from?.pathname || '/admin'
 
   const queryClient = useQueryClient()
-  const { mutate, isSuccess, isError } = useMutation(useLogin, {
+  const { mutate, isError } = useMutation(useLogin, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['auth'] })
     },
@@ -41,16 +44,17 @@ const LoginComponent = () => {
       login: emailUser.value,
       password: passwordUser.value,
     }
-    mutate(data)
     emailUser.handleClear(e)
     passwordUser.handleClear(e)
+    mutate(data)
+    showSuccessMessage('Успішно виконано!✔️')
   }
   useEffect(() => {
     if (token) {
       signin(token, () => navigate(fromPage, { replace: true }))
     }
   }, [token])
-
+  const { successMessage } = useSuccessMessage()
   return (
     <>
       <Form onSubmit={onHandlerSubmit}>
@@ -112,7 +116,8 @@ const LoginComponent = () => {
             Увійти
           </FormButton>
         </FormContainer>
-        {isSuccess && <Message mode="green">Успіх! ✔️</Message>}
+
+        {successMessage ? <Message mode="green">{successMessage}</Message> : null}
       </Form>
     </>
   )

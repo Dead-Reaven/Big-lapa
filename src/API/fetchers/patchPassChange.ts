@@ -5,7 +5,7 @@ import { IAdminChangePass } from '../types'
 const token = localStorage.getItem('access_token')
 const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
 
-const usePatch = async (updateData: IAdminChangePass) => {
+const usePatch = async (updateData: IAdminChangePass): Promise<any> => {
   await axios
     .patch(`${domen}/api/auth/change-password`, updateData, { headers })
     .then((res) => {

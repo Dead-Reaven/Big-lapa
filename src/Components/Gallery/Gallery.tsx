@@ -1,11 +1,11 @@
-import { DogsCards, StyledGallery, DogsAmount } from './Gallery.style'
+import { UseMutateFunction } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import { DogType } from '../../API/types'
+import Pagination from '../Pagination/Pagination'
 import Container from '../UI/Container.style'
 import Flex from '../UI/Flex.styles'
 import DogCard from './DogCard'
-import { DogType } from '../../API/types'
-import { UseMutateFunction } from '@tanstack/react-query'
-import { useState, useEffect } from 'react'
-import Pagination from '../Pagination/Pagination'
+import { DogsAmount, DogsCards, StyledGallery } from './Gallery.style'
 interface Props {
   admin?: boolean
   dogsList: DogType[] | null

@@ -1,10 +1,14 @@
 import { Route, Routes } from 'react-router'
-import { StyledAdmin } from './Admin.style'
-import { DogCards, Partners, Reports, Contacts, Settings } from './Catalog'
+import { useSuccessMessage } from '../../successContextMess'
 import NotFound from '../NotFound/NotFound'
+import { StyledAdmin } from './Admin.style'
+import { Contacts, DogCards, Partners, Reports, Settings } from './Catalog'
 import DogCard from './Catalog/DogCards/DogCard/DogCard'
+import Message from './Components/UI/Message'
 
 function Admin() {
+  const { successMessage } = useSuccessMessage()
+
   return (
     <StyledAdmin>
       <Routes>
@@ -17,6 +21,7 @@ function Admin() {
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {successMessage ? <Message mode="green">{successMessage}</Message> : null}
     </StyledAdmin>
   )
 }

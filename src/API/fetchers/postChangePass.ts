@@ -6,7 +6,7 @@ const headers = {
   'Content-Type': 'application/json',
 }
 
-const postChangePass = async (data: IChangePass): Promise<any> => {
+const postChangePass = async (data: IChangePass) => {
   await axios.post(`${domen}/api/auth/reset-password`, data, { headers }).then((res) => {
     return res.data
   })

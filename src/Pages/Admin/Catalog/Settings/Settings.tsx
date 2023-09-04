@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import usePatch from '../../../../API/fetchers/patchPatch'
+import usePatch from '../../../../API/fetchers/patchPassChange'
 import { validationHook } from '../../../Login/validSetting'
 import {
   ErrorValid,
@@ -45,7 +45,7 @@ function Settings() {
     }
     if (passwordNew.value === passwordNewConf.value) {
       mutate(updateData)
-    } else return
+    }
     passwordOld.handleClear(e)
     passwordNew.handleClear(e)
     passwordNewConf.handleClear(e)

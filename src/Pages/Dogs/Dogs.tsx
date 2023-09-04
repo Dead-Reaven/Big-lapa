@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { DogType } from '../../API/types'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import getDogs from '../../API/fetchers/DogCards/getDogs'
+import { DogType } from '../../API/types'
 import DogSearch from '../../Components/DogSearch/DogSearch'
 import Gallery from '../../Components/Gallery/Gallery'
-import { DogsStyled } from './Dogs.style'
 import Container from '../../Components/UI/Container.style'
-import getDogs from '../../API/fetchers/DogCards/getDogs'
+import { DogsStyled } from './Dogs.style'
 
 function Dogs() {
   const [dogsState, setDogsState] = useState<DogType[]>([])

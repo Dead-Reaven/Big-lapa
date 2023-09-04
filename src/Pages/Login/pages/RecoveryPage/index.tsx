@@ -1,7 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import postChangePass from '../../../../API/fetchers/postChangePass'
-import { useAuth } from '../../../../AuthHoc/useAuth'
+import { useSuccessMessage } from '../../../../successContextMess'
 import {
   ErrorValid,
   Form,
@@ -10,13 +12,10 @@ import {
   FormH2,
 } from '../../../Admin/Components/UI/Form.style'
 import Input from '../../../Admin/Components/UI/Input'
-import Message from '../../../Admin/Components/UI/Message'
 import { validationHook } from '../../validSetting'
 
 const RecoveryPage = () => {
-  const { signin }: any = useAuth()
-  const queryClient = useQueryClient()
-
+  const { showSuccessMessage } = useSuccessMessage()
   const recoveryPass = validationHook('', {
     isEmpty: false,
     minLength: 8,
@@ -27,34 +26,35 @@ const RecoveryPage = () => {
     minLength: 8,
     maxLength: 12,
   })
-
-  const [searchParams] = useSearchParams()
-  const tokenQuery = searchParams.get('token')
-
-  const { mutate, isSuccess, isError } = useMutation(postChangePass, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['token'] })
-    },
-  })
-  const onHandlerForm = () => {
-    const data = {
-      token: tokenQuery,
-      newPassword: recoveryPass.value,
-    }
-    if (recoveryPass.value === confRecoveryPass.value) {
-      mutate(data)
-    } else return
-  }
+  const [token, setToken] = useState('')
 
   const location = useLocation()
   const navigate = useNavigate()
   const fromPage = location.state?.from?.pathname || '/login'
 
-  if (isSuccess) {
-    signin(searchParams, () => navigate(fromPage, { replace: true }))
+  const queryClient = useQueryClient()
+  const { mutate, isSuccess, isError } = useMutation(postChangePass, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['token'] })
+      navigate(fromPage, { replace: true })
+    },
+  })
+  const onHandlerForm = () => {
+    const data = {
+      token: token,
+      newPassword: recoveryPass.value,
+    }
+    if (recoveryPass.value === confRecoveryPass.value) {
+      mutate(data)
+    }
+    showSuccessMessage('Успішно виконано!✔️')
   }
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search)
+    const extractedToken = searchParams.get('token')
+    setToken(extractedToken || '')
+  })
 
-  console.log(tokenQuery)
   return (
     <Form onSubmit={onHandlerForm}>
       <FormH2>Відновлення паролю</FormH2>
@@ -115,7 +115,6 @@ const RecoveryPage = () => {
           Підтвердити
         </FormButton>
       </FormContainer>
-      {isSuccess && <Message mode="green">Успіх! ✔️</Message>}
     </Form>
   )
 }

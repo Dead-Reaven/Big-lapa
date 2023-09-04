@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
+import { DogType } from '../../API/types'
 import { Menu } from './CheckBox.styles'
+import CheckBoxItem from './CheckBoxItem'
 import { SearchInput, StyledDogSearch } from './DogSearch.style'
 import { ReactComponent as IcoSearch } from './icons/search_ico.svg'
 import { ReactComponent as IcoSettings } from './icons/settings_ico.svg'
-import CheckBoxItem from './CheckBoxItem'
-import { DogType } from '../../API/types'
 import useQuery from './useParams'
 
 interface DogSearchProps {

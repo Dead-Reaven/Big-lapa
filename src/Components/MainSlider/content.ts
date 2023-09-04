@@ -7,7 +7,7 @@ const images = [
   {
     image: slide1,
     title: 'dog 1',
-    heading: 'Big Lapa - притулок для собак',
+    heading: 'ЕКО захист - притулок для собак',
     paragraph: 'Знайдіть свого вірного хвоста у нашому притулку',
     id: 0,
   },

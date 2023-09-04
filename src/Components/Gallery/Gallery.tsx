@@ -73,6 +73,7 @@ function Gallery({ admin, dogsList, onDeleteDog }: Props) {
                 paginate={paginate}
                 nextPage={nextPage}
                 message={message}
+                currentPage={currentPage}
               />
             </>
           )}

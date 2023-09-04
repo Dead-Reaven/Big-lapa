@@ -21,7 +21,7 @@ function AboutContent() {
   return (
     <AboutStyled>
       <Container>
-        <AboutTitle>Ласкаво просимо до Big Lapa - притулку для собак!</AboutTitle>
+        <AboutTitle>Ласкаво просимо до ЕКО захист - притулку для собак!</AboutTitle>
         <AboutGallery>
           <GalleryImg>
             <img src={firstImg} alt="dogs" />
@@ -89,7 +89,7 @@ function AboutContent() {
           </AboutParagraph>
         </AboutParagraphs>
         <AboutContacts>
-          <AdressTitle>Команда Big Lapa</AdressTitle>
+          <AdressTitle>Команда ЕКО Захист</AdressTitle>
           <AboutAdress>
             <AdressIco />
             <div>

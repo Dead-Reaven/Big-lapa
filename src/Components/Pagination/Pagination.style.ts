@@ -52,5 +52,16 @@ const PaginationNav = styled.ul`
     }
   }
 `
-
-export { Pagination, PaginationButton, PaginationNav }
+const ActivePageNumber = styled.button`
+  color: ${theme.colors.dark};
+`
+const InactivePageNumber = styled.button`
+  color: ${theme.colors.lightGrey};
+`
+export {
+  Pagination,
+  PaginationButton,
+  PaginationNav,
+  ActivePageNumber,
+  InactivePageNumber,
+}

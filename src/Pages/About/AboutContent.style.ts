@@ -104,15 +104,21 @@ const AboutAdress = styled.div`
 const AdressTitle = styled(TitleH3)`
   margin-bottom: 40px;
 `
+const IFrame = styled.iframe`
+  width: 600px;
+  height: 450px;
+  border: 0px;
+`
 
 export {
+  AboutAdress,
+  AboutContacts,
+  AboutGallery,
+  AboutParagraph,
+  AboutParagraphs,
   AboutStyled,
   AboutTitle,
-  AboutGallery,
-  GalleryImg,
-  AboutParagraphs,
-  AboutParagraph,
-  AboutContacts,
-  AboutAdress,
   AdressTitle,
+  GalleryImg,
+  IFrame,
 }

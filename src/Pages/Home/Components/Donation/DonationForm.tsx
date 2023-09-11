@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { DonationButton, DonationFormFlex, Grid, StyledAmount } from './Donation.style'
 
 declare global {
@@ -71,7 +72,9 @@ function DonationForm({ setIsModalOpen }: Props) {
           />
         </StyledAmount>
       </Grid>
-      <DonationButton onClick={handleSubmit}>Зробити внесок</DonationButton>
+      <Link to="https://linktr.ee/ekozahust">
+        <DonationButton onClick={handleSubmit}>Зробити внесок</DonationButton>
+      </Link>
     </DonationFormFlex>
   )
 }

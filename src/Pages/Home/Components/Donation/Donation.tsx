@@ -1,34 +1,32 @@
+import { useState } from 'react'
+import Dogs from '../../../../Assets/Home/dogs donation.webp'
 import Flex from '../../../../Components/UI/Flex.styles'
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 import TitleH3 from '../../../../Components/UI/TitleH3.styles'
-import Dogs from '../../../../Assets/Home/dogs donation.webp'
-import NovaPoshta from './img/Nova_Poshta.png'
 import {
-  StyledDonation,
   DonationContainer,
   DonationContent,
-  StyledDogs,
   DonationFlex,
-  StyledAdress,
-  StyledDonationCard,
   DonationText,
+  StyledAdress,
+  StyledDogs,
+  StyledDonation,
+  StyledDonationCard,
 } from './Donation.style'
 import DonationForm from './DonationForm'
-import FeedbackModal from '../../../../Components/FeedbackModal/FeedbackModal'
-import PhotoModal from './img/photoModal.webp'
-import { useState } from 'react'
+import NovaPoshta from './img/Nova_Poshta.png'
 
 function Donation() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <StyledDonation id="donation">
-      <FeedbackModal
+      {/*       <FeedbackModal
         title="Дякуємо за донат!"
         body="Завдяки вашій підтримці, ми маємо змогу забезпечити собак необхідною кількістю їжі, медикаментів та засобів для догляду. Дякуємо, що піклуєтеся про наших хвостиків!"
         image={PhotoModal}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-      />
+      /> */}
       <DonationContainer>
         <DonationContent>
           <Flex $direction="column" $align="center">
@@ -61,8 +59,7 @@ function Donation() {
                       <div>
                         <p>Наше відділення для посилок:</p>
                         <p>
-                          Відділення № 19, м. Кривий Ріг, Мусоргского 3<br /> Притулок для
-                          тварин “Біг Лапа”
+                          Старокостянтинів відділення №1 Журба Оксана Василівна Нова пошта
                         </p>
                       </div>
                       <img src={NovaPoshta} alt="nova poshta logo" />

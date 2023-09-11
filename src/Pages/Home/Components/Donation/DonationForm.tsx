@@ -32,19 +32,6 @@ function DonationForm({ setIsModalOpen }: Props) {
     setIsModalOpen(true)
   }
 
-  // function createOrder(amount: number, order_desc: string) {
-  //   const button = window.$ipsp.get('button')
-  //   button.setMerchantId(1397120)
-  //   button.setAmount(amount, 'UAH')
-  //   button.setResponseUrl('http://example.com/result/')
-  //   button.setHost('pay.fondy.eu')
-  //   button.addField({
-  //     label: 'Призначення оплати',
-  //     name: 'order_desc',
-  //     value: order_desc,
-  //   })
-  //   window.location.href = button.getUrl()
-  // }
   return (
     <DonationFormFlex $direction="column" $align="center" $gap="35px">
       <Grid>
@@ -60,7 +47,15 @@ function DonationForm({ setIsModalOpen }: Props) {
           </StyledAmount>
         ))}
         <StyledAmount>
-          <input type="radio" name="radio" value={amount} checked={checked} />
+          <input
+            type="radio"
+            name="radio"
+            value={amount}
+            checked={checked}
+            onChange={() => {
+              ;('')
+            }}
+          />
           <input
             type="number"
             placeholder="Інша сума, UAH"

@@ -23,6 +23,7 @@ function Gallery({ admin, dogsList, onDeleteDog }: Props) {
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber)
+    window.scrollTo(750, 750)
   }
 
   const nextPage = () => {

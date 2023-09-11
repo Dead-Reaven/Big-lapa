@@ -98,6 +98,8 @@ function AboutContent() {
               <p>Хмельницька область Старокостянтинів Миру 1/106</p>
               <IFrame
                 title="map"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5306.398988760912!2d27.186289926081713!3d49.75468897302442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472de08abfeb9e09%3A0x80053d05a55c6fde!2z0LLRg9C70LjRhtGPINCc0LjRgNGDLCAxLCDQodGC0LDRgNC-0LrQvtGB0YLRj9C90YLQuNC90ZbQsiwg0KXQvNC10LvRjNC90LjRhtGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgMzExMDA!5e0!3m2!1sru!2sua!4v1694442057619!5m2!1sru!2sua"
               />
             </div>

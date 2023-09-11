@@ -105,8 +105,8 @@ const AdressTitle = styled(TitleH3)`
   margin-bottom: 40px;
 `
 const IFrame = styled.iframe`
-  width: 600px;
-  height: 450px;
+  width: 75vmax;
+  height: 60vh;
   border: 0px;
 `
 

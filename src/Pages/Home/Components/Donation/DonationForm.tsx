@@ -67,7 +67,7 @@ function DonationForm({ setIsModalOpen }: Props) {
           />
         </StyledAmount>
       </Grid>
-      <Link to="https://linktr.ee/ekozahust">
+      <Link to="https://linktr.ee/ekozahust" target="_blank">
         <DonationButton onClick={handleSubmit}>Зробити внесок</DonationButton>
       </Link>
     </DonationFormFlex>

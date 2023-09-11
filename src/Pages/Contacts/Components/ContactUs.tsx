@@ -112,7 +112,7 @@ function ContactUs({ setIsModalOpen }: Props) {
                 </a>
               </StyledListItem>
               <StyledListItem>
-                <IcoMap /> <p>Адреса: місто Львів, вул. Городоцька, 397</p>
+                <IcoMap /> <p>Хмельницька область Старокостянтинів Миру 1/106</p>
               </StyledListItem>
             </StyledContactsList>
             <IconsDiv>

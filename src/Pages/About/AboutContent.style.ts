@@ -95,9 +95,6 @@ const AboutContacts = styled.div`
 `
 
 const AboutAdress = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
   gap: 25px;
 `
 
@@ -105,8 +102,9 @@ const AdressTitle = styled(TitleH3)`
   margin-bottom: 40px;
 `
 const IFrame = styled.iframe`
-  width: 75vmax;
-  height: 60vh;
+  margin: 15px auto;
+  width: 90vw;
+  height: 400px;
   border: 0px;
 `
 

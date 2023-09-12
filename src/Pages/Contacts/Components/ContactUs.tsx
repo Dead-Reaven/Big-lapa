@@ -4,6 +4,7 @@ import getMainContact from '../../../API/fetchers/getMainContact'
 import postMainContact from '../../../API/fetchers/postMainContact'
 import { ContactTypes } from '../../../API/types'
 import dogM from '../../../Assets/Contacts/contacts photo.webp'
+import { SocialIcons } from '../../../Components/Footer/Footer.style'
 import Container from '../../../Components/UI/Container.style'
 import TitleH2 from '../../../Components/UI/TitleH2.styles'
 import { ErrorValid } from '../../Admin/Components/UI/Form.style'
@@ -116,8 +117,18 @@ function ContactUs({ setIsModalOpen }: Props) {
               </StyledListItem>
             </StyledContactsList>
             <IconsDiv>
-              <StyledIcoInsta />
-              <StyledIcoFb />
+              <SocialIcons
+                target="_blank"
+                href="https://www.instagram.com/ekozahust.starkon_24/"
+              >
+                <StyledIcoInsta />
+              </SocialIcons>
+              <SocialIcons
+                target="_blank"
+                href="https://www.facebook.com/ekozahyststsrokonstantyniv/"
+              >
+                <StyledIcoFb />
+              </SocialIcons>
             </IconsDiv>
           </StyledContactsDiv>
           <StyledFormDiv>

@@ -123,13 +123,19 @@ function Footer() {
             <ContactListItem>
               <FlexList>
                 <ListItem>
-                  <SocialIcons href="path/to/insta">
+                  <SocialIcons
+                    target="_blank"
+                    href="https://www.instagram.com/ekozahust.starkon_24/"
+                  >
                     <StyledInstaIcon />
                   </SocialIcons>
                 </ListItem>
 
                 <ContactListItem>
-                  <SocialIcons href="path/to/fb">
+                  <SocialIcons
+                    target="_blank"
+                    href="https://www.facebook.com/ekozahyststsrokonstantyniv/"
+                  >
                     <StyledIcon />
                   </SocialIcons>
                 </ContactListItem>

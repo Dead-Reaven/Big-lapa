@@ -9,7 +9,7 @@ import { DogsAmount, DogsCards, StyledGallery } from './Gallery.style'
 interface Props {
   admin?: boolean
   dogsList: DogType[] | null
-  onDeleteDog: UseMutateFunction<void, unknown, string, unknown>
+  onDeleteDog?: UseMutateFunction<void, unknown, string, unknown>
 }
 
 function Gallery({ admin, dogsList, onDeleteDog }: Props) {

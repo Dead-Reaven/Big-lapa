@@ -45,6 +45,7 @@ const initialState: DogType = {
 }
 
 function DogCard({ $newCard }: Props) {
+  console.log('dogcard')
   const [dogData, setDogData] = useState<DogType>(initialState)
   const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>([])
   const [deletedPhotos, setDeletedPhotos] = useState<string[]>([])
@@ -54,6 +55,9 @@ function DogCard({ $newCard }: Props) {
   const [canPost, setCanPost] = useState(false)
   const [isValidationFailed, setIsValidationFailed] = useState(false)
   const [validationMessage, setValidationMessage] = useState('')
+
+  // Query client for managing data
+  const queryClient = useQueryClient()
 
   const navigate = useNavigate()
   const { _id } = useParams<{ _id: string }>()
@@ -73,9 +77,6 @@ function DogCard({ $newCard }: Props) {
     },
     refetchOnWindowFocus: false,
   })
-
-  // Query client for managing data
-  const queryClient = useQueryClient()
 
   // Mutations for posting and patching dog data
   const { mutate: postDogData, isSuccess: isSuccessPost } = useMutation(

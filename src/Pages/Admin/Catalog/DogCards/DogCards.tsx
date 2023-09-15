@@ -11,6 +11,7 @@ import deleteDog from '../../../../API/fetchers/DogCards/deleteDog'
 import Message from '../../Components/UI/Message'
 
 function DogCards() {
+  console.log('DogCards')
   const [dogsState, setDogsState] = useState<DogType[]>([])
   const [filteredDogsState, setFilteredDogsState] = useState<DogType[]>([])
 

@@ -13,6 +13,9 @@ const patchDog = (data: DogType, id: string): Promise<any> =>
     })
     .then((res) => {
       console.log('Patch dog successfully called')
+      console.log(`---data: ${data} ---`, `\n---id: ${id}---`)
+      console.log('response patch:', res.data)
+
       res.data
     })
     .catch((error) => {

@@ -11,6 +11,8 @@ const postDog = (data: DogType): Promise<any> =>
     })
     .then((res) => {
       console.log('Post dog successfully called')
+      console.log(`---data: ${data} ---`, `\n---id: ${data._id}---`)
+      console.log('response post:', res.data)
       return res.data
     })
 

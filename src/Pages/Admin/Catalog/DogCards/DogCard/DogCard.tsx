@@ -169,7 +169,7 @@ function DogCard({ $newCard }: Props) {
 
   // Effect to handle the creation or update process after the images have been uploaded
   useEffect(() => {
-    if (isFirstRender.current < 2) {
+    if (isFirstRender.current < 1) {
       //TODO зв'ясувати чому canPost змінюється
       isFirstRender.current++
       return

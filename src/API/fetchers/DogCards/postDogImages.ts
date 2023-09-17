@@ -21,6 +21,9 @@ const postDogImages = async (data: File[] | File, category: string) => {
     })
     .then((res) => {
       console.log('post dog images successfully called')
+      console.log('---data img---:', res.data)
+      console.log(res.data)
+
       return res.data
     })
 }

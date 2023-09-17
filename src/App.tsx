@@ -17,7 +17,7 @@ import { SuccessMessageProvider } from './successContextMess'
 const queryClient = new QueryClient()
 
 function App() {
-  
+  console.log('Test App rendered');
   return (
     <SuccessMessageProvider>
       <AuthProvider>

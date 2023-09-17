@@ -39,6 +39,7 @@ function Settings() {
   })
 
   const handlerPatch = (e: any) => {
+    e.preventDefault()
     const updateData = {
       currentPassword: passwordOld.value,
       newPassword: passwordNew.value,

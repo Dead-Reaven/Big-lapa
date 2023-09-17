@@ -39,7 +39,8 @@ const RecoveryPage = () => {
       navigate(fromPage, { replace: true })
     },
   })
-  const onHandlerForm = () => {
+  const onHandlerForm = (e: any) => {
+    e.preventDefault()
     const data = {
       token: token,
       newPassword: recoveryPass.value,

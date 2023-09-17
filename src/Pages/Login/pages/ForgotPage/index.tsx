@@ -27,6 +27,7 @@ const ForgotComponent = () => {
   })
 
   const onHandlerSubmit = (e: any) => {
+    e.preventDefault()
     const data = {
       email: emailUser.value,
     }

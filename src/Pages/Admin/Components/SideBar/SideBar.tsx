@@ -16,7 +16,8 @@ function SideBar() {
   const navigate = useNavigate()
   const fromPage = location.state?.from?.pathname || '/login'
 
-  const onHandlerForm = () => {
+  const onHandlerForm = (e: any) => {
+    e.preventDefault()
     localStorage.clear()
     signout(() => navigate(fromPage, { replace: false }))
   }

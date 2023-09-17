@@ -40,6 +40,7 @@ const LoginComponent = () => {
   const passwordUser = validationHook('', { isEmpty: false, minLength: 8, maxLength: 12 })
 
   const onHandlerSubmit = (e: any) => {
+    e.preventDefault()
     const data = {
       login: emailUser.value,
       password: passwordUser.value,
@@ -47,10 +48,10 @@ const LoginComponent = () => {
     emailUser.handleClear(e)
     passwordUser.handleClear(e)
     mutate(data)
-    showSuccessMessage('Успішно виконано!✔️')
   }
   useEffect(() => {
     if (token) {
+      showSuccessMessage('Успішно виконано!✔️')
       signin(token, () => navigate(fromPage, { replace: true }))
     }
   }, [token])

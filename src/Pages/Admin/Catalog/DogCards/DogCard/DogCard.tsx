@@ -63,7 +63,7 @@ function DogCard({ $newCard }: Props) {
   const navigate = useNavigate()
   const { _id } = useParams<{ _id: string }>()
 
-  useQuery(['dog', _id], {
+  const { refetch, isLoading, isRefetching } = useQuery(['dog', _id], {
     enabled: !$newCard, // only run the query if $newCard is false
     initialData: dogData,
     queryFn: () => (_id ? getDog(_id) : Promise.resolve(null)),
@@ -98,7 +98,8 @@ function DogCard({ $newCard }: Props) {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ['dog'] })
       setDeletedPhotos([])
-      window.location.reload()
+      refetch()
+      // window.location.reload()
     },
   })
 
@@ -226,7 +227,10 @@ function DogCard({ $newCard }: Props) {
         />
         <Button type="submit">{$newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
         {(isLoadingPostDog || isLoadingPatchDog) && (
-          <Message mode="green">Будь ласка зачекайте ⌛</Message>
+          <Message mode="green">Відправка данних ⌛</Message>
+        )}
+        {(isLoading || isRefetching) && (
+          <Message mode="green">Отримання данних ⌛</Message>
         )}
         {isValidationFailed && <ValidationMessage message={validationMessage} />}
       </DogCardContent>

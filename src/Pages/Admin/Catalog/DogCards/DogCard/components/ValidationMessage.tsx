@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const MessageContainer = styled.div`
   align-self: flex-end;
-  position: sticky;
+  position: fixed;
   bottom: 20px;
   right: 0;
   padding: 10px;

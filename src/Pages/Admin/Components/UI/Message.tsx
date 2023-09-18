@@ -10,7 +10,7 @@ const MessageContainer = styled.div<Props>`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 0px;
   overflow: auto;

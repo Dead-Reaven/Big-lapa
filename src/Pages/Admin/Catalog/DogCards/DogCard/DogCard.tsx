@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Link, useNavigate } from 'react-router-dom'
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
@@ -9,7 +9,7 @@ import {
   patchDog,
   postDog,
   postDogImages,
-  deleteDogImage,
+  // deleteDogImage,
 } from '../../../../../API/fetchers/DogCards'
 
 // UI components imports
@@ -48,22 +48,20 @@ function DogCard({ $newCard }: Props) {
   console.log('dogcard')
   const [dogData, setDogData] = useState<DogType>(initialState)
   const [initialSidePhotos, setInitialSidePhotos] = useState<string[]>([])
-  const [deletedPhotos, setDeletedPhotos] = useState<string[]>([])
+  const [, setDeletedPhotos] = useState<string[]>([])
   const [sidePhotos, setSidePhotos] = useState<File[]>([])
   const [mainPhoto, setMainPhoto] = useState<File | null>(null)
   const [IsModalOpen, setIsModalOpen] = useState(false)
-  const [canPost, setCanPost] = useState(false)
+  // const [canPost, setCanPost] = useState(false)
   const [isValidationFailed, setIsValidationFailed] = useState(false)
   const [validationMessage, setValidationMessage] = useState('')
+  const [acceptRequest, setAcceptRequest] = useState(false)
 
   // Query client for managing data
   const queryClient = useQueryClient()
 
   const navigate = useNavigate()
   const { _id } = useParams<{ _id: string }>()
-  const isFirstRender = useRef(0)
-
-  // Fetch the dog data if it's not a new card
 
   useQuery(['dog', _id], {
     enabled: !$newCard, // only run the query if $newCard is false
@@ -79,27 +77,30 @@ function DogCard({ $newCard }: Props) {
   })
 
   // Mutations for posting and patching dog data
-  const { mutate: postDogData, isSuccess: isSuccessPost } = useMutation(
-    () => postDog(dogData),
-    {
-      onSuccess: (data) => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries({ queryKey: ['dog'] })
-        navigate(`/admin/edit-card/${data._id}`)
-      },
+  const {
+    mutate: postDogData,
+    isSuccess: isSuccessPost,
+    isLoading: isLoadingPostDog,
+  } = useMutation(() => postDog(dogData), {
+    onSuccess: (data) => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['dog'] })
+      navigate(`/admin/edit-card/${data._id}`)
     },
-  )
+  })
 
-  const { mutate: patchDogData, isSuccess: isSuccessPatch } = useMutation(
-    () => (_id ? patchDog(dogData, _id) : Promise.resolve()),
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries({ queryKey: ['dog'] })
-        deletedPhotos.forEach((photo) => deleteDogImage(photo))
-      },
+  const {
+    mutate: patchDogData,
+    isSuccess: isSuccessPatch,
+    isLoading: isLoadingPatchDog,
+  } = useMutation(() => (_id ? patchDog(dogData, _id) : Promise.resolve()), {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['dog'] })
+      setDeletedPhotos([])
+      window.location.reload()
     },
-  )
+  })
 
   // Validate if the images have been uploaded
   const validateImages = () => {
@@ -155,27 +156,15 @@ function DogCard({ $newCard }: Props) {
       ...prevDogData,
       ...updatedData,
     }))
-    setCanPost(true)
   }
 
   // Logic to determine whether to create a new dog card or update an existing one
-  const handlePostOrPatch = () => {
-    if ($newCard) {
-      postDogData()
-    } else {
-      patchDogData()
-    }
+  const request = async () => {
+    $newCard ? postDogData() : patchDogData()
+    setAcceptRequest(false)
   }
 
   // Effect to handle the creation or update process after the images have been uploaded
-  useEffect(() => {
-    if (isFirstRender.current < 1) {
-      //TODO зв'ясувати чому canPost змінюється
-      isFirstRender.current++
-      return
-    }
-    handlePostOrPatch()
-  }, [canPost])
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -189,13 +178,19 @@ function DogCard({ $newCard }: Props) {
       return
     } else {
       try {
-        const imageData = await processImagesAndData()
-        await updateDogImages(imageData)
+        await updateDogImages(await processImagesAndData())
+        await setAcceptRequest(true)
+        // await request()
       } catch (error) {
         console.error('Error uploading photos:', error)
       }
     }
   }
+  useEffect(() => {
+    if (acceptRequest) {
+      request()
+    }
+  }, [acceptRequest])
 
   // Component rendering
   return (
@@ -230,9 +225,8 @@ function DogCard({ $newCard }: Props) {
           setDescription={(desc) => setDogData({ ...dogData, description: desc })}
         />
         <Button type="submit">{$newCard ? 'Додати картку' : 'Оновити інформацію'}</Button>
-        {isSuccessPost && <Message mode="green">Картка собаки успішно додана✔️</Message>}
-        {isSuccessPatch && (
-          <Message mode="green">Картка собаки успішно оновлена✔️</Message>
+        {(isLoadingPostDog || isLoadingPatchDog) && (
+          <Message mode="green">Будь ласка зачекайте ⌛</Message>
         )}
         {isValidationFailed && <ValidationMessage message={validationMessage} />}
       </DogCardContent>

@@ -4,8 +4,9 @@ import domen from '../../domen'
 
 const baseUrl = `${domen}/api/dog-cards`
 
-const patchDog = (data: DogType, id: string): Promise<any> =>
-  axios
+const patchDog = async (data: DogType, id: string): Promise<any> => {
+  console.log({ data }, { id })
+  return await axios
     .patch(`${baseUrl}/${id}`, data, {
       headers: {
         'Content-Type': 'application/json',
@@ -21,5 +22,6 @@ const patchDog = (data: DogType, id: string): Promise<any> =>
     .catch((error) => {
       console.error('error in patchDog:', error)
     })
+}
 
 export default patchDog

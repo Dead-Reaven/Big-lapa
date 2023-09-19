@@ -44,10 +44,12 @@ function ContactUs({ setIsModalOpen }: Props) {
   const userName = validationHook('', {
     isEmpty: false,
     minLength: 2,
+    maxLength: 50,
   })
   const userEmail = validationHook('', {
     isEmpty: false,
-    minLength: 8,
+    minLength: 6,
+    maxLength: 320,
     emailError: false,
   })
   const userQuestion = validationHook('', {
@@ -71,12 +73,20 @@ function ContactUs({ setIsModalOpen }: Props) {
     },
   })
 
-  console.log(contactsInputState.email)
   const handleSubmit = (e: any) => {
+    e.preventDefault()
+    if (
+      userQuestion.value.includes('SELECT') ||
+      userQuestion.value.includes('DROP TABLE')
+    ) {
+      alert('Обнаружены SQL-инъекции. Пожалуйста, уберите их.')
+      return
+    }
+    const sanitizedValue = userQuestion.value.replace(/<[^>]*>/g, '')
     const data = {
       name: userName.value,
       email: userEmail.value,
-      question: userQuestion.value,
+      question: sanitizedValue,
     }
     mutate(data)
     userName.handleClear(e)

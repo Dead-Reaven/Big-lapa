@@ -29,7 +29,7 @@ const useValidForm = (props: IValidation) => {
         default:
           {
             const re =
-              /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@(([^<>()[\]\\.,;:\s@\\"]+\.)+[^<>()[\]\\.,;:\s@\\"]{2,})$/i
+              /^[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
             re.test(String(value).toLowerCase())
               ? setEmailError(false)
               : setEmailError(true)

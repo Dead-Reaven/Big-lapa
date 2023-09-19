@@ -25,7 +25,7 @@ interface PartnerTypes {
 
 interface DogType {
   _id?: string
-  mainPhoto: string
+  mainPhoto: any
   photos: string[]
   name: string
   sex: string

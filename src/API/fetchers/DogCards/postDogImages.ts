@@ -7,6 +7,7 @@ const postDogImages = async (data: File[] | File, category: string) => {
   const formData = new FormData()
   if (Array.isArray(data)) {
     data.forEach((photo) => {
+      console.log(photo, 'PHOTO!ITSHERE')
       formData.append('images', photo)
     })
   } else {

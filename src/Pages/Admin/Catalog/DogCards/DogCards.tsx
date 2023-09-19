@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import DogSearch from '../../../../Components/DogSearch/DogSearch'
 import Gallery from '../../../../Components/Gallery/Gallery'
 import { DogType } from '../../../../API/types'
-import { AdminGalleryButton, StyledDogCards } from './DogCards.style'
+import { AddCardsLink, AdminGalleryButton, StyledDogCards } from './DogCards.style'
 import { Link } from 'react-router-dom'
 import getDogs from '../../../../API/fetchers/DogCards/getDogs'
 import deleteDog from '../../../../API/fetchers/DogCards/deleteDog'
@@ -38,9 +38,9 @@ function DogCards() {
 
   return (
     <StyledDogCards>
-      <AdminGalleryButton>
-        <Link to="/admin/new-card">Додати нову картку</Link>
-      </AdminGalleryButton>
+      <AddCardsLink to="/admin/new-card">
+        <AdminGalleryButton>Додати нову картку</AdminGalleryButton>
+      </AddCardsLink>
       <div>
         <DogSearch
           state={filteredDogsState}

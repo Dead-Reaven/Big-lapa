@@ -6,6 +6,7 @@ import Container from '../../../../Components/UI/Container.style'
 import Button from '../../../../Components/UI/Button.styles'
 
 const StyledDonation = styled.section`
+  scroll-margin-top: 96px;
   background-image: url(${firstGreenRectangle}), url(${secondGreenRectangle});
   background-repeat: no-repeat;
   background-position: left top, right bottom;
@@ -84,29 +85,32 @@ const StyledDonationCard = styled.div`
   }
 `
 
-interface GridProps {
-  direction?: string
-  align?: string
-  justify?: string
-  gap?: string
-  height?: string
-  width?: string
-}
+const DonationText = styled.div`
+  text-align: center;
+`
 
-const Grid = styled.div<GridProps>`
+const DonationFormFlex = styled(Flex)`
+  width: 100%;
+  max-width: 320px;
+`
+
+const Grid = styled.div`
   display: grid;
   grid-gap: 20px 40px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto;
+  width: 100%;
 
   label:last-child {
     grid-column: span 2;
+    max-width: 100%;
   }
 `
 
 const StyledAmount = styled.label`
   border: 1px solid ${({ theme }) => theme.colors.lightGreen};
   border-radius: 4px;
+  max-width: 140px;
   cursor: pointer;
 
   &:focus {
@@ -114,18 +118,16 @@ const StyledAmount = styled.label`
   }
 
   span {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 54px;
     transition: ${({ theme }) => theme.transitions.quick};
-    padding: 15px 37px;
+    text-align: center;
 
     &:hover {
       background-color: ${({ theme }) => theme.colors.lightGreen};
-    }
-
-    span {
-      padding: 0;
     }
   }
 
@@ -138,16 +140,26 @@ const StyledAmount = styled.label`
     position: absolute;
     white-space: nowrap;
 
-    &:checked + span {
+    &:checked + span,
+    &:checked + input[type='number'] {
       background-color: ${({ theme }) => theme.colors.lightGreen};
       z-index: 1;
     }
   }
 
-  input[type='text'] {
+  input[type='number'] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    width: 100%;
+    height: 100%;
+    padding: 15px 37px;
     background-color: transparent;
     display: block;
     text-align: center;
+    transition: ${({ theme }) => theme.transitions.quick};
 
     &:hover {
       background-color: ${({ theme }) => theme.colors.lightGreen};
@@ -156,11 +168,20 @@ const StyledAmount = styled.label`
     &::placeholder {
       color: ${({ theme }) => theme.colors.dark};
     }
+
+    &:focus {
+      background-color: ${({ theme }) => theme.colors.lightGreen};
+      &::placeholder {
+        color: transparent;
+      }
+    }
   }
 `
 
 const DonationButton = styled(Button)`
+  max-width: 194px;
   @media (max-width: 500px) {
+    max-width: 100%;
     width: 100%;
   }
 `
@@ -225,6 +246,8 @@ export {
   DonationContent,
   DonationFlex,
   StyledDonationCard,
+  DonationText,
+  DonationFormFlex,
   Grid,
   StyledAmount,
   DonationButton,

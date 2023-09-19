@@ -4,7 +4,7 @@ import rectangle1 from './img/rectangle2.png'
 import TitleH2 from '../../../../Components/UI/TitleH2.styles'
 
 const StyledSection = styled.section`
-  padding: 120px 0;
+  padding: 0px 0px 20px 0px;
 
   @media (max-width: 767px) {
     padding: 80px 0;

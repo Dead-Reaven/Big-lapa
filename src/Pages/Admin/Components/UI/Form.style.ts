@@ -25,4 +25,14 @@ const FormH2 = styled(TitleH2)`
   text-align: center;
 `
 
-export { Form, FormButton, FormContainer, FormH2 }
+const ErrorValid = styled.div`
+  padding: 1px;
+  color: var(--grey, #acabab);
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  bottom: 21px;
+`
+
+export { ErrorValid, Form, FormButton, FormContainer, FormH2 }

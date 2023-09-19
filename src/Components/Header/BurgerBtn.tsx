@@ -8,7 +8,7 @@ interface Props {
 
 function BurgerBtn({ className, onClick, isActive }: Props) {
   return (
-    <StyledBurgerBtn className={className} onClick={onClick} isActive={isActive}>
+    <StyledBurgerBtn className={className} onClick={onClick} $isActive={isActive}>
       <span></span>
     </StyledBurgerBtn>
   )

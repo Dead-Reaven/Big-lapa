@@ -7,8 +7,12 @@ const Text = styled.span`
   font-weight: 600;
   line-height: 140%;
   text-align: left;
-  @media screen and (max-width: 767px) {
+  overflow: visible;
+  margin-left: 40px;
+
+  @media screen and (max-width: 1279px) {
     font-size: 0;
+    margin-left: 0px;
   }
 `
 interface Props {
@@ -25,7 +29,8 @@ const GreenMark = styled(Mark)<Props>`
 const StyledItem = styled.button`
   display: flex;
   align-content: center;
-  height: 30px;
+  /* height: 30px; */
+  height: fit-content;
   margin-bottom: 40px;
 
   & svg {
@@ -33,6 +38,7 @@ const StyledItem = styled.button`
     height: 24px;
     margin-right: 12px;
     overflow: visible;
+    position: absolute;
   }
   &:hover {
     transition: 0.1s;

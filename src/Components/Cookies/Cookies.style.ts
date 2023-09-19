@@ -1,15 +1,16 @@
-import { styled } from 'styled-components'
+import { styled, css } from 'styled-components'
 import Button from '../UI/Button.styles'
 
-interface Props {
-  isShow: boolean
+interface CookiesProps {
+  $scrolledToBottom: boolean
 }
 
-const StyledCookies = styled.div<Props>`
-  ${({ isShow }) => !isShow && 'display: none;'}
+const StyledCookies = styled.div<CookiesProps>`
   background-color: ${({ theme }) => theme.colors.background};
   width: 100%;
-  padding: 48px 0;
+  transition: all ease 0.5s;
+  padding: 15px 0;
+  margin-bottom: 0;
   position: fixed;
   bottom: 0;
   z-index: 5;
@@ -23,6 +24,12 @@ const StyledCookies = styled.div<Props>`
       text-decoration: underline;
     }
   }
+
+  ${({ $scrolledToBottom }) =>
+    $scrolledToBottom &&
+    css`
+      margin-bottom: 100px;
+    `}
 
   ${Button} {
     font-size: ${({ theme }) => theme.fontSizes.h3};

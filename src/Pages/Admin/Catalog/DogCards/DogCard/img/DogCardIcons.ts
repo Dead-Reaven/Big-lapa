@@ -1,0 +1,8 @@
+export { ReactComponent as PhotoIco } from './photoIco.svg'
+export { ReactComponent as ArrowIco } from './ArrowIco.svg'
+export { ReactComponent as FemaleIco } from './FemaleIco.svg'
+export { ReactComponent as MaleIco } from './MaleIco.svg'
+export { ReactComponent as SizeIco } from './SizeIco.svg'
+export { ReactComponent as BreedIco } from './BreedIco.svg'
+export { ReactComponent as ChipIco } from './ChipIco.svg'
+export { ReactComponent as CrossIco } from './Cross.svg'

@@ -30,7 +30,7 @@ const NavBar = ({ setExtendNavbar }: Props) => {
   return (
     <StyledNavBar>
       <ul>
-        <NavFlex gap="20px">
+        <NavFlex $gap="20px">
           {navItems.map((item) => (
             <NavItem
               title={item.title}

@@ -1,6 +1,6 @@
 export { default as DogCards } from './DogCards/DogCards'
+export { default as DogCard } from './DogCards/DogCard/DogCard'
 export { default as Settings } from './Settings/Settings'
 export { default as Contacts } from './Contacts/Contacts'
 export { default as Reports } from './Reports/Reports'
-export { default as Sliders } from './Sliders/Sliders'
 export { default as Partners } from './Partners/Partners'

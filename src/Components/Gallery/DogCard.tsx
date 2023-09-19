@@ -10,6 +10,7 @@ import Modal from '../../Pages/Admin/Components/UI/Modal'
 import { useState } from 'react'
 import domen from '../../API/domen'
 import deleteDogImage from '../../API/fetchers/DogCards/deleteDogImage'
+import { Circles } from 'react-loader-spinner'
 
 interface Props {
   dog: DogType
@@ -19,6 +20,7 @@ interface Props {
 
 function DogCard({ dog, admin, onDeleteDog }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  // const [isMainPhotoLoaded, setIsTheMainPhotoLoaded] = useState(false)
   const { _id, name, sex, age, mainPhoto, photos } = dog
 
   const deleteHandler = () => {
@@ -32,6 +34,23 @@ function DogCard({ dog, admin, onDeleteDog }: Props) {
     }
   }
 
+  const dogPhoto = mainPhoto ? (
+    mainPhoto.includes('blob') ? (
+      mainPhoto
+    ) : (
+      `${domen}/api/files/${mainPhoto}`
+    )
+  ) : (
+    <Circles
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="circles-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+    />
+  )
   return (
     <StyledDogCard>
       <Modal
@@ -45,11 +64,22 @@ function DogCard({ dog, admin, onDeleteDog }: Props) {
       {!admin && (
         <Link to={`/dog/${_id}/${name}`}>
           <img
-            src={
-              mainPhoto.includes('blob') ? mainPhoto : `${domen}/api/files/${mainPhoto}`
-            }
+            src={dogPhoto}
+            // onLoad={() => setIsTheMainPhotoLoaded(true)}
+            // onError={() => setIsTheMainPhotoLoaded(false)}
             alt="/dog"
           />
+          {/* {isMainPhotoLoaded ? null : (
+            <Circles
+              height="80"
+              width="80"
+              color="#4fa94d"
+              ariaLabel="circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          )} */}
           <TitleH3>{name}</TitleH3>
           <p>
             {sex}, {age}

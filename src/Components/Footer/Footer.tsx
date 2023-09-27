@@ -26,7 +26,7 @@ import getReportAll from '../../API/fetchers/getReportAll'
 import Container from '../UI/Container.style'
 import { theme } from '../UI/Theme.styles'
 
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/document/'
+const url = 'https://naughty-bear-train.cyclic.cloud/api/files/document/'
 function Footer() {
   const [reportsState, setReportsState] = useState<ReportTypes[]>([])
   const [contactsState, setContactsState] = useState<ContactTypes>({

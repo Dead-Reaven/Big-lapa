@@ -22,7 +22,7 @@ import getReportAll from '../../../../API/fetchers/getReportAll'
 import postReport from '../../../../API/fetchers/postReport'
 import Message from '../../Components/UI/Message'
 
-const url = 'https://sore-tan-perch-tutu.cyclic.app/api/files/document/'
+const url = 'https://naughty-bear-train.cyclic.cloud/api/files/document/'
 
 function Partners() {
   const [reportsState, setReportsState] = useState<ReportTypes[]>([])

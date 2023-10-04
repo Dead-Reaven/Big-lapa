@@ -26,7 +26,7 @@ function useGet({ category, state, setState }: Props) {
       console.log('contacts api called')
       const getData = async (handleSetState: React.Dispatch<ContactTypes>) => {
         await axios
-          .get(`https://sore-tan-perch-tutu.cyclic.app/api/main/get`)
+          .get(`https://naughty-bear-train.cyclic.cloud/api/main/get`)
           .then((res) => {
             return handleSetState(res.data)
           })
@@ -51,7 +51,7 @@ function useGet({ category, state, setState }: Props) {
       console.log('partners api called')
       const getPartnersId = async () => {
         await axios
-          .get(`https://sore-tan-perch-tutu.cyclic.app/api/files/category/Logo`)
+          .get(`https://naughty-bear-train.cyclic.cloud/api/files/category/Logo`)
           .then((res) => {
             const mappedIds: string[] = res.data.map(
               (el: GetPartnersIdResponse) => el.Url,

@@ -1,2 +1,2 @@
-const domen = 'https://sore-tan-perch-tutu.cyclic.app'
+const domen = 'https://naughty-bear-train.cyclic.cloud'
 export default domen
